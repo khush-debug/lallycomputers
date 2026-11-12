@@ -3,12 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Lally Computers Moga | Supreme Infosys</title>
-  <meta name="description" content="Lally Computers (Supreme Infosys) in Sodhi Nagar, Moga: laptops, gadgets, hardware and repair services. Call 098720 10193 or get directions. Rated 4.2 on Google.">
+  <title>Lally Computers Moga | Supreme Infosys - Laptops, Gadgets & Repairs</title>
+  <meta name="description" content="Lally Computers (Supreme Infosys) in Sodhi Nagar, Moga: browse our catalogue of laptops, Apple Watches, gadgets, hardware upgrades and repair services. Call 098720 10193.">
   <meta name="theme-color" content="#0A1E18">
   <meta property="og:type" content="website">
   <meta property="og:title" content="Lally Computers (Supreme Infosys), Moga">
-  <meta property="og:description" content="Laptops, gadgets, hardware and repairs at 5-A, Sodhi Nagar, Moga. Rated 4.2 on Google from 709 reviews.">
+  <meta property="og:description" content="Browse catalogue of laptops, gadgets, hardware and repairs at 5-A, Sodhi Nagar, Moga. Rated 4.2 on Google.">
   <meta property="og:image" content="og.jpg">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
@@ -56,8 +56,6 @@
   }
   </script>
   <style>
-  /* Layout concept: a datasheet laid over a slow macro dolly across a circuit board.
-     Hero = the board in motion. Below it, quiet panels that read like part labels and pin tables. */
   :root {
     --bg: #0A1E18;
     --surface: #0F2B22;
@@ -142,9 +140,10 @@
     text-transform: uppercase;
     color: var(--accent);
   }
-  h1, h2, h3 { font-family: var(--font-display); text-wrap: balance; margin: 0; }
+  h1, h2, h3, h4 { font-family: var(--font-display); text-wrap: balance; margin: 0; }
   h2 { font-weight: 600; font-size: clamp(2rem, 5.2vw, 3.4rem); line-height: 1.02; letter-spacing: 0.002em; }
   h3 { font-weight: 600; font-size: 1.55rem; line-height: 1.1; }
+  h4 { font-weight: 600; font-size: 1.25rem; line-height: 1.2; }
   p { margin: 0; }
   .skip { position: absolute; left: 12px; top: -60px; background: var(--gold); color: #0A1E18; padding: 10px 14px; border-radius: 6px; z-index: 50; }
   .skip:focus { top: 12px; }
@@ -166,6 +165,7 @@
   .btn--ghost:hover { transform: translateY(-2px); background: rgba(255,255,255,.07); }
   .btn--whatsapp { background: #25D366; color: #072615; border-color: #25D366; }
   .btn--whatsapp:hover { background: #1ebc57; transform: translateY(-2px); box-shadow: 0 4px 14px rgba(37, 211, 102, 0.35); }
+  .btn--sm { min-height: 38px; padding: 0.6rem 0.95rem; font-size: 0.88rem; }
   .hero .btn--primary { background: var(--hero-accent); color: #0A1E18; }
   .hero .btn--ghost { color: var(--hero-fg); }
 
@@ -232,9 +232,9 @@
   .trace path { fill: none; stroke: currentColor; stroke-width: 2.5; vector-effect: non-scaling-stroke; }
 
   /* ---------- sections ---------- */
-  .section { position: relative; overflow: hidden; padding-block: clamp(3.5rem, 9vw, 7rem); }
+  .section { position: relative; overflow: hidden; padding-block: clamp(3.5rem, 9vw, 6.5rem); }
   .section--alt { background: var(--surface); }
-  .section__head { display: grid; gap: .9rem; margin-bottom: clamp(1.8rem, 4vw, 3rem); max-width: 42rem; }
+  .section__head { display: grid; gap: .9rem; margin-bottom: clamp(1.8rem, 4vw, 2.8rem); max-width: 44rem; }
   .ornament {
     position: absolute; z-index: 0; width: min(620px, 120vw); height: auto; color: var(--accent);
     opacity: .1; pointer-events: none; will-change: transform;
@@ -258,27 +258,186 @@
     padding: 1.6rem 1.4rem 1.8rem;
     border-right: 1px solid var(--line);
     border-bottom: 1px solid var(--line);
-    display: flex; flex-direction: column; gap: .6rem;
+    display: flex; flex-direction: column; gap: .7rem;
     align-content: start; justify-content: space-between;
     transition: background-color .2s ease;
   }
   .shelves li:hover { background: var(--surface-2); }
   .shelves p { color: var(--fg-dim); }
   .shelves li.wide { grid-column: span 3; }
-  .shelf-inquire {
-    margin-top: .8rem;
-    display: inline-flex;
+  .shelf-actions {
+    margin-top: .9rem;
+    display: flex;
+    flex-wrap: wrap;
     align-items: center;
-    gap: .4rem;
+    gap: .75rem;
+  }
+  .btn-catalog-pill {
+    display: inline-flex; align-items: center; gap: .4rem;
+    font: 600 .78rem/1.2 var(--font-mono); letter-spacing: .08em; text-transform: uppercase;
+    padding: .5rem .85rem; border-radius: 4px;
+    background: var(--surface-2); border: 1px solid var(--line); color: var(--fg);
+    cursor: pointer; text-decoration: none; transition: background .18s, border-color .18s, color .18s;
+  }
+  .btn-catalog-pill:hover {
+    background: var(--accent); color: var(--accent-ink); border-color: var(--accent);
+  }
+  .shelf-inquire {
     font: 600 .78rem/1.2 var(--font-mono);
-    letter-spacing: .08em;
-    text-transform: uppercase;
-    color: var(--accent);
-    text-decoration: none;
-    align-self: flex-start;
+    letter-spacing: .08em; text-transform: uppercase;
+    color: var(--accent); text-decoration: none;
   }
   .shelf-inquire:hover { text-decoration: underline; }
   .note { margin-top: 1.2rem; font: 400 .8rem/1.5 var(--font-mono); color: var(--fg-dim); max-width: 46rem; }
+
+  /* ============================================================
+     PRODUCT CATALOGUE SHOWCASE SECTION
+     ============================================================ */
+  .catalogue-nav {
+    display: flex; flex-wrap: wrap; gap: .5rem;
+    margin-bottom: 1.8rem;
+  }
+  .cat-btn {
+    font: 600 .8rem/1 var(--font-mono); letter-spacing: .08em; text-transform: uppercase;
+    padding: .65rem 1rem; border-radius: 999px;
+    border: 1px solid var(--line); background: var(--surface-2); color: var(--fg-dim);
+    cursor: pointer; transition: background .2s, color .2s, border-color .2s;
+  }
+  .cat-btn:hover { color: var(--fg); border-color: var(--accent); }
+  .cat-btn.active {
+    background: var(--accent); color: var(--accent-ink); border-color: var(--accent);
+    font-weight: 700;
+  }
+  .catalogue-toolbar {
+    display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 1rem;
+    margin-bottom: 2rem; padding: 1rem 1.2rem;
+    background: var(--surface-2); border: 1px solid var(--line); border-radius: 8px;
+  }
+  .cat-search {
+    flex: 1; min-width: 260px; position: relative; display: flex; align-items: center;
+  }
+  .cat-search svg {
+    position: absolute; left: 14px; width: 18px; height: 18px; color: var(--fg-dim); pointer-events: none;
+  }
+  .cat-search input {
+    width: 100%; padding: .65rem 1rem .65rem 2.6rem;
+    background: var(--bg); border: 1px solid var(--line); border-radius: 6px;
+    color: var(--fg); font: 400 .95rem/1.4 var(--font-body);
+  }
+  .cat-search input:focus {
+    outline: none; border-color: var(--accent); box-shadow: 0 0 0 2px rgba(224, 138, 60, 0.25);
+  }
+  .cat-disclaimer {
+    font: 500 .8rem/1.4 var(--font-mono); color: var(--fg-dim);
+    display: flex; align-items: center; gap: .4rem;
+  }
+  .cat-disclaimer b { color: var(--accent); }
+
+  /* catalogue grid */
+  .catalogue-grid {
+    display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.25rem;
+  }
+  .cat-card {
+    background: var(--surface); border: 1px solid var(--line); border-radius: 8px;
+    padding: 1.5rem; display: flex; flex-direction: column; justify-content: space-between; gap: 1.2rem;
+    transition: transform .2s ease, border-color .2s ease, box-shadow .2s ease;
+  }
+  .cat-card:hover {
+    transform: translateY(-3px); border-color: var(--accent);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+  }
+  .cat-card__top { display: grid; gap: .75rem; }
+  .cat-card__meta {
+    display: flex; justify-content: space-between; align-items: center; gap: .5rem;
+  }
+  .cat-badge {
+    font: 600 .7rem/1 var(--font-mono); letter-spacing: .1em; text-transform: uppercase;
+    padding: .35rem .6rem; border-radius: 4px;
+    background: var(--surface-2); border: 1px solid var(--line); color: var(--gold);
+  }
+  .cat-badge--new { color: #34d399; border-color: rgba(52, 211, 153, 0.4); }
+  .cat-badge--service { color: var(--hero-accent); border-color: rgba(237, 163, 90, 0.4); }
+  .cat-warranty {
+    font: 500 .75rem/1 var(--font-mono); color: var(--fg-dim);
+  }
+  .cat-card h3 { font-size: 1.35rem; line-height: 1.2; margin: 0; color: var(--fg); }
+  .cat-card__desc { font-size: .92rem; color: var(--fg-dim); line-height: 1.45; }
+  .cat-specs {
+    list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: .4rem;
+  }
+  .cat-specs li {
+    font: 500 .72rem/1.2 var(--font-mono); letter-spacing: .04em;
+    padding: .3rem .55rem; background: var(--bg); border: 1px solid var(--line); border-radius: 4px;
+    color: var(--fg);
+  }
+  .cat-card__bottom {
+    padding-top: 1rem; border-top: 1px solid var(--line); display: grid; gap: .9rem;
+  }
+  .cat-price-wrap {
+    display: flex; justify-content: space-between; align-items: baseline;
+  }
+  .cat-price-label { font: 500 .72rem/1 var(--font-mono); letter-spacing: .1em; text-transform: uppercase; color: var(--fg-dim); }
+  .cat-price {
+    font: 700 1.35rem/1 var(--font-display); color: var(--accent);
+  }
+  .cat-card__btns {
+    display: grid; grid-template-columns: 1fr auto; gap: .5rem;
+  }
+  .btn-wa-inquire {
+    display: inline-flex; align-items: center; justify-content: center; gap: .5rem;
+    font: 600 .85rem/1 var(--font-body); padding: .7rem .9rem; min-height: 40px;
+    border-radius: 5px; background: #25D366; color: #072615; text-decoration: none;
+    transition: background-color .18s, transform .18s;
+  }
+  .btn-wa-inquire:hover { background: #1ebc57; transform: translateY(-1px); }
+  .btn-wa-inquire svg { width: 16px; height: 16px; flex: none; }
+  .btn-inspect {
+    font: 600 .78rem/1 var(--font-mono); letter-spacing: .08em; text-transform: uppercase;
+    padding: .7rem .85rem; border-radius: 5px; border: 1px solid var(--line);
+    background: transparent; color: var(--fg); cursor: pointer; transition: background .18s, color .18s;
+  }
+  .btn-inspect:hover { background: var(--surface-2); border-color: var(--accent); color: var(--accent); }
+  .cat-empty {
+    grid-column: 1 / -1; text-align: center; padding: 4rem 1rem;
+    background: var(--surface); border: 1px dashed var(--line); border-radius: 8px;
+  }
+
+  /* spec modal */
+  .modal-backdrop {
+    position: fixed; inset: 0; z-index: 100;
+    background: rgba(5, 17, 13, 0.85); backdrop-filter: blur(6px);
+    display: none; align-items: center; justify-content: center; padding: 1.5rem;
+  }
+  .modal-backdrop.is-open { display: flex; }
+  .modal-box {
+    background: var(--surface); border: 1.5px solid var(--line); border-radius: 10px;
+    max-width: 620px; width: 100%; max-height: 90vh; overflow-y: auto;
+    padding: clamp(1.5rem, 4vw, 2.2rem); position: relative;
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.5);
+  }
+  .modal-close {
+    position: absolute; right: 1.2rem; top: 1.2rem;
+    background: var(--surface-2); border: 1px solid var(--line); color: var(--fg);
+    width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center;
+    cursor: pointer; transition: background .18s, transform .18s;
+  }
+  .modal-close:hover { background: var(--accent); color: var(--accent-ink); transform: rotate(90deg); }
+  .modal-title { font-size: 1.8rem; margin: .5rem 0 1rem; }
+  .modal-specs-table { width: 100%; border-collapse: collapse; margin: 1rem 0 1.5rem; }
+  .modal-specs-table tr { border-bottom: 1px solid var(--line); }
+  .modal-specs-table th, .modal-specs-table td {
+    padding: .65rem .4rem; text-align: left; font-size: .95rem;
+  }
+  .modal-specs-table th {
+    font: 600 .75rem/1.2 var(--font-mono); letter-spacing: .1em; text-transform: uppercase;
+    color: var(--fg-dim); width: 35%;
+  }
+  .modal-notice {
+    padding: .85rem 1rem; border-radius: 6px;
+    background: var(--surface-2); border: 1px solid var(--line);
+    font: 400 .85rem/1.4 var(--font-mono); color: var(--fg-dim); margin-bottom: 1.5rem;
+  }
+  .modal-actions { display: flex; flex-wrap: wrap; gap: .75rem; }
 
   /* reviews */
   .score { display: flex; flex-wrap: wrap; align-items: baseline; gap: .5rem 1.4rem; margin-bottom: clamp(1.6rem, 4vw, 2.6rem); }
@@ -335,10 +494,7 @@
     background: var(--surface-2);
   }
   .map-wrap iframe {
-    display: block;
-    width: 100%;
-    height: 220px;
-    border: 0;
+    display: block; width: 100%; height: 220px; border: 0;
   }
 
   /* footer / contact */
@@ -359,60 +515,32 @@
 
   /* floating buttons */
   .wa-float {
-    position: fixed;
-    bottom: 22px;
-    right: 22px;
-    z-index: 90;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    background: #25D366;
-    color: #051A10;
-    padding: 12px 18px;
-    border-radius: 999px;
-    font-family: var(--font-body);
-    font-weight: 600;
-    font-size: 0.95rem;
-    text-decoration: none;
-    box-shadow: 0 4px 18px rgba(0,0,0,0.35);
-    transition: transform .2s ease, box-shadow .2s ease;
+    position: fixed; bottom: 22px; right: 22px; z-index: 90;
+    display: flex; align-items: center; gap: 8px;
+    background: #25D366; color: #051A10; padding: 12px 18px; border-radius: 999px;
+    font-family: var(--font-body); font-weight: 600; font-size: 0.95rem; text-decoration: none;
+    box-shadow: 0 4px 18px rgba(0,0,0,0.35); transition: transform .2s ease, box-shadow .2s ease;
   }
   .wa-float:hover {
-    transform: translateY(-3px) scale(1.02);
-    box-shadow: 0 6px 24px rgba(37,211,102,0.45);
+    transform: translateY(-3px) scale(1.02); box-shadow: 0 6px 24px rgba(37,211,102,0.45);
   }
   .wa-float svg { width: 22px; height: 22px; }
 
   .back-to-top {
-    position: fixed;
-    bottom: 22px;
-    left: 22px;
-    z-index: 90;
-    width: 44px;
-    height: 44px;
-    border-radius: 50%;
-    background: var(--surface-2);
-    border: 1px solid var(--line);
-    color: var(--fg);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    opacity: 0;
-    pointer-events: none;
+    position: fixed; bottom: 22px; left: 22px; z-index: 90;
+    width: 44px; height: 44px; border-radius: 50%;
+    background: var(--surface-2); border: 1px solid var(--line); color: var(--fg);
+    display: flex; align-items: center; justify-content: center; cursor: pointer;
+    opacity: 0; pointer-events: none;
     transition: opacity .25s ease, transform .25s ease, background-color .2s ease;
   }
-  .back-to-top.is-visible {
-    opacity: 1;
-    pointer-events: auto;
-  }
-  .back-to-top:hover {
-    transform: translateY(-2px);
-    background: var(--accent);
-    color: var(--accent-ink);
-  }
+  .back-to-top.is-visible { opacity: 1; pointer-events: auto; }
+  .back-to-top:hover { transform: translateY(-2px); background: var(--accent); color: var(--accent-ink); }
 
   /* ---------- responsive ---------- */
+  @media (max-width: 1020px) {
+    .catalogue-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  }
   @media (max-width: 860px) {
     .about, .where, .contact__grid { grid-template-columns: minmax(0, 1fr); }
     .shelves { grid-template-columns: repeat(2, minmax(0, 1fr)); }
@@ -423,8 +551,8 @@
     .wa-float span { display: none; }
     .wa-float { padding: 14px; border-radius: 50%; }
   }
-  @media (max-width: 520px) {
-    body { font-size: 1rem; }
+  @media (max-width: 640px) {
+    .catalogue-grid { grid-template-columns: minmax(0, 1fr); }
     .shelves { grid-template-columns: minmax(0, 1fr); }
     .shelves li.wide { grid-column: auto; }
     .hero__links a:first-child { display: none; }
@@ -432,11 +560,12 @@
     .spec dl > div { grid-template-columns: minmax(0, 1fr); gap: .15rem; }
     .btn { width: 100%; justify-content: center; }
     .contact .btn, .hero .btn { width: 100%; }
+    .catalogue-toolbar { flex-direction: column; align-items: stretch; }
   }
 
   @media (prefers-reduced-motion: reduce) {
     html { scroll-behavior: auto; }
-    .btn, .shelves li, .hero__media video { transition: none; }
+    .btn, .shelves li, .cat-card, .hero__media video { transition: none; }
     .hero__media, .hero__stitch, .hero__copy, .ornament { transform: none !important; }
     .status-open { animation: none; }
   }
@@ -480,7 +609,8 @@
         <b>Lally Computers</b>
       </a>
       <nav class="hero__links" aria-label="Quick links">
-        <a href="#shelves">On the shelves</a>
+        <a href="#shelves">Shelves</a>
+        <a href="#catalogue">Catalogue</a>
         <a href="#visit">Hours &amp; Location</a>
         <a href="tel:+919872010193">Call</a>
         <button id="themeToggle" class="theme-toggle" type="button" aria-label="Toggle light/dark theme" title="Toggle theme">
@@ -498,17 +628,17 @@
         <h1><span>Lally</span><span>Computers</span></h1>
         <p class="hero__lede">Electronics, computers and expert repairs at Sodhi Nagar, Moga.</p>
         <div class="hero__actions">
-          <a class="btn btn--primary" href="tel:+919872010193">
-            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11.4 11.4 0 0 0 3.6.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.57a1 1 0 0 1-.25 1z"/></svg>
-            Call 098720 10193
+          <a class="btn btn--primary" href="#catalogue">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
+            Browse Catalogue
           </a>
           <a class="btn btn--whatsapp" href="https://wa.me/919872010193?text=Hi%20Lally%20Computers%2C%20I%20have%20an%20enquiry%20regarding%20laptops%2C%20accessories%20and%20repairs." target="_blank" rel="noopener">
             <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.301-.15-1.782-.879-2.058-.98-.276-.1-.476-.15-.677.15-.2.301-.777.98-.952 1.18-.175.201-.351.226-.652.076-.301-.15-1.27-.468-2.42-1.493-.894-.799-1.498-1.786-1.674-2.087-.175-.3-.019-.463.132-.612.136-.134.301-.351.451-.527.15-.175.2-.301.301-.501.1-.2.05-.376-.025-.526-.075-.15-.677-1.631-.928-2.233-.244-.585-.493-.506-.677-.515-.175-.009-.376-.011-.577-.011-.2 0-.526.075-.802.376-.276.301-1.053 1.028-1.053 2.508 0 1.48 1.078 2.91 1.228 3.111.15.2 2.122 3.24 5.141 4.544.718.31 1.279.496 1.716.635.722.23 1.379.197 1.898.12.579-.086 1.782-.728 2.033-1.431.251-.703.251-1.305.175-1.431-.075-.126-.276-.201-.577-.351zM12.04 2C6.516 2 2.023 6.49 2.023 12.013c0 1.942.555 3.756 1.517 5.292L2 22l4.834-1.503a10.007 10.007 0 0 0 5.206 1.516c5.524 0 10.017-4.49 10.017-10.013C22.057 6.49 17.564 2 12.04 2z"/></svg>
             WhatsApp
           </a>
-          <a class="btn btn--ghost" href="https://www.google.com/maps/dir/?api=1&amp;destination=Supreme%20Infosys%20(Lally%20Computers)%2C%205-A%2C%20Sodhi%20Nagar%2C%20Moga%2C%20Punjab%20142001" target="_blank" rel="noopener">
-            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a7 7 0 0 0-7 7c0 5.2 7 13 7 13s7-7.8 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg>
-            Get directions
+          <a class="btn btn--ghost" href="tel:+919872010193">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11.4 11.4 0 0 0 3.6.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.57a1 1 0 0 1-.25 1z"/></svg>
+            Call 098720 10193
           </a>
         </div>
         <p class="rating">
@@ -539,8 +669,8 @@
             <h2 id="about-h">Computers, gadgets and repairs in Moga.</h2>
           </div>
           <div class="about__text">
-            <p>Supreme Infosys, also called Lally Computers, is an electronics and computer store at 5-A, Sodhi Nagar. It stocks hardware and gadgets and runs repair services.</p>
-            <p>Customers talk about competitive prices, knowledgeable staff, and dedicated post-purchase after-sale support. Quoted customer reviews are featured below.</p>
+            <p>Supreme Infosys, also called Lally Computers, is an electronics and computer store at 5-A, Sodhi Nagar. It stocks laptops, gadgets, desktop hardware and runs professional chip-level repair services.</p>
+            <p>Customers talk about competitive prices, knowledgeable staff, and dedicated post-purchase after-sale support. Browse our stock catalogue below or contact us to check live inventory.</p>
           </div>
         </div>
         <aside class="spec" aria-label="Store details">
@@ -558,68 +688,155 @@
     </div>
   </section>
 
+  <!-- ON THE SHELVES CATEGORIES -->
   <section class="section section--alt" id="shelves" aria-labelledby="shelves-h">
     <div class="inner">
       <div class="section__head">
         <p class="label">On the shelves</p>
         <h2 id="shelves-h">What people come in for.</h2>
+        <p style="color:var(--fg-dim)">Click <b>"View Items"</b> on any category below to filter our in-store stock showcase, or inquire directly via WhatsApp.</p>
       </div>
       <ul class="shelves">
         <li>
           <div>
             <h3>Laptops</h3>
-            <p>New and refurbished models for work, study, and gaming.</p>
+            <p>Certified refurbished business laptops and brand-new models for office, study, and gaming.</p>
           </div>
-          <a class="shelf-inquire" href="https://wa.me/919872010193?text=Hi%20Lally%20Computers%2C%20what%20laptops%20do%20you%20currently%20have%20in%20stock%3F" target="_blank" rel="noopener">Inquire stock &rarr;</a>
+          <div class="shelf-actions">
+            <button type="button" class="btn-catalog-pill" onclick="switchCategory('laptops')">
+              <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
+              View Laptops
+            </button>
+            <a class="shelf-inquire" href="https://wa.me/919872010193?text=Hi%20Lally%20Computers%2C%20what%20laptops%20do%20you%20currently%20have%20in%20stock%3F" target="_blank" rel="noopener">Inquire stock &rarr;</a>
+          </div>
         </li>
         <li>
           <div>
             <h3>Apple Watches</h3>
-            <p>Wearables and smart accessories for iPhone users.</p>
+            <p>Smart wearables, Series 8/9, SE, and accessories for iPhone users.</p>
           </div>
-          <a class="shelf-inquire" href="https://wa.me/919872010193?text=Hi%20Lally%20Computers%2C%20I%20am%20inquiring%20about%20Apple%20Watch%20availability%20and%20prices." target="_blank" rel="noopener">Inquire models &rarr;</a>
+          <div class="shelf-actions">
+            <button type="button" class="btn-catalog-pill" onclick="switchCategory('watches')">
+              <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
+              View Watches
+            </button>
+            <a class="shelf-inquire" href="https://wa.me/919872010193?text=Hi%20Lally%20Computers%2C%20I%20am%20inquiring%20about%20Apple%20Watch%20availability%20and%20prices." target="_blank" rel="noopener">Inquire models &rarr;</a>
+          </div>
         </li>
         <li>
           <div>
             <h3>Bluetooth speakers</h3>
-            <p>Portable audio and wireless speakers for home and travel.</p>
+            <p>Portable audio, waterproof party speakers and wireless soundbars.</p>
           </div>
-          <a class="shelf-inquire" href="https://wa.me/919872010193?text=Hi%20Lally%20Computers%2C%20what%20Bluetooth%20speakers%20are%20available%3F" target="_blank" rel="noopener">Ask price &rarr;</a>
+          <div class="shelf-actions">
+            <button type="button" class="btn-catalog-pill" onclick="switchCategory('audio')">
+              <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
+              View Audio
+            </button>
+            <a class="shelf-inquire" href="https://wa.me/919872010193?text=Hi%20Lally%20Computers%2C%20what%20Bluetooth%20speakers%20are%20available%3F" target="_blank" rel="noopener">Ask price &rarr;</a>
+          </div>
         </li>
         <li>
           <div>
             <h3>Chargers &amp; batteries</h3>
-            <p>Original chargers, laptop power bricks, and replacement batteries.</p>
+            <p>Original 65W GaN Type-C adapters, replacement laptop batteries, and Apple MagSafe chargers.</p>
           </div>
-          <a class="shelf-inquire" href="https://wa.me/919872010193?text=Hi%20Lally%20Computers%2C%20I%20need%20a%20charger%20%2F%20battery%20for%20my%20device." target="_blank" rel="noopener">Check compatibility &rarr;</a>
+          <div class="shelf-actions">
+            <button type="button" class="btn-catalog-pill" onclick="switchCategory('power')">
+              <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
+              View Chargers
+            </button>
+            <a class="shelf-inquire" href="https://wa.me/919872010193?text=Hi%20Lally%20Computers%2C%20I%20need%20a%20charger%20%2F%20battery%20for%20my%20device." target="_blank" rel="noopener">Check compatibility &rarr;</a>
+          </div>
         </li>
         <li>
           <div>
             <h3>Carry bags &amp; sleeves</h3>
-            <p>Durable protective backpacks and laptop sleeves for your gear.</p>
+            <p>Durable protective backpacks, shock-proof cases and laptop sleeves for your gear.</p>
           </div>
-          <a class="shelf-inquire" href="https://wa.me/919872010193?text=Hi%20Lally%20Computers%2C%20I%20am%20looking%20for%20a%20laptop%20bag%20%2F%20sleeve." target="_blank" rel="noopener">Ask options &rarr;</a>
+          <div class="shelf-actions">
+            <button type="button" class="btn-catalog-pill" onclick="switchCategory('bags')">
+              <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
+              View Bags
+            </button>
+            <a class="shelf-inquire" href="https://wa.me/919872010193?text=Hi%20Lally%20Computers%2C%20I%20am%20looking%20for%20a%20laptop%20bag%20%2F%20sleeve." target="_blank" rel="noopener">Ask options &rarr;</a>
+          </div>
         </li>
         <li>
           <div>
             <h3>Hardware &amp; components</h3>
-            <p>SSDs, RAM upgrades, keyboards, mice, and PC components.</p>
+            <p>NVMe SSDs, DDR4/DDR5 RAM upgrades, gaming mice, keyboards, and PC parts.</p>
           </div>
-          <a class="shelf-inquire" href="https://wa.me/919872010193?text=Hi%20Lally%20Computers%2C%20I%20am%20looking%20for%20PC%20hardware%20%2F%20upgrade%20parts." target="_blank" rel="noopener">Inquire parts &rarr;</a>
+          <div class="shelf-actions">
+            <button type="button" class="btn-catalog-pill" onclick="switchCategory('hardware')">
+              <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
+              View Parts
+            </button>
+            <a class="shelf-inquire" href="https://wa.me/919872010193?text=Hi%20Lally%20Computers%2C%20I%20am%20looking%20for%20PC%20hardware%20%2F%20upgrade%20parts." target="_blank" rel="noopener">Inquire parts &rarr;</a>
+          </div>
         </li>
         <li class="wide">
           <div>
             <h3>Repairs &amp; after-sale service</h3>
-            <p>Fast chip-level motherboard repair, screen replacements, OS install, data recovery, and reliable post-sale support.</p>
+            <p>Chip-level motherboard repair, screen replacements, thermal servicing, OS install, and reliable after-sale warranty support.</p>
           </div>
-          <a class="shelf-inquire" href="https://wa.me/919872010193?text=Hi%20Lally%20Computers%2C%20I%20need%20repair%20service%20for%20my%20laptop%20%2F%20computer." target="_blank" rel="noopener">Book repair &rarr;</a>
+          <div class="shelf-actions">
+            <button type="button" class="btn-catalog-pill" onclick="switchCategory('repairs')">
+              <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
+              View Repair Services
+            </button>
+            <a class="shelf-inquire" href="https://wa.me/919872010193?text=Hi%20Lally%20Computers%2C%20I%20need%20repair%20service%20for%20my%20laptop%20%2F%20computer." target="_blank" rel="noopener">Book repair &rarr;</a>
+          </div>
         </li>
       </ul>
       <p class="note">Compiled from the store's Google listing and customer reviews. Call or WhatsApp ahead to check real-time stock and prices.</p>
     </div>
   </section>
 
-  <section class="section" id="reviews" aria-labelledby="reviews-h">
+  <!-- ============================================================
+       INTERACTIVE PRODUCT CATALOGUE SHOWCASE (VIEW-ONLY, NO CHECKOUT)
+       ============================================================ -->
+  <section class="section" id="catalogue" aria-labelledby="catalogue-h">
+    <div class="inner">
+      <div class="section__head">
+        <p class="label">Inventory Showcase &middot; View Only</p>
+        <h2 id="catalogue-h">Store Stock Catalogue.</h2>
+        <p style="color:var(--fg-dim)">Browse available laptop configurations, Apple Watches, components and repair options. <em>There is no online cart or checkout</em> — click <b>"Inquire on WhatsApp"</b> on any item to check live stock, request current best pricing, or reserve your unit for store pickup.</p>
+      </div>
+
+      <!-- Category Filter Pills -->
+      <div class="catalogue-nav" role="tablist" aria-label="Product categories">
+        <button class="cat-btn active" data-category="all" role="tab">All Stock</button>
+        <button class="cat-btn" data-category="laptops" role="tab">Laptops &amp; PCs</button>
+        <button class="cat-btn" data-category="watches" role="tab">Apple Watches</button>
+        <button class="cat-btn" data-category="audio" role="tab">Audio</button>
+        <button class="cat-btn" data-category="power" role="tab">Chargers &amp; Batteries</button>
+        <button class="cat-btn" data-category="bags" role="tab">Bags &amp; Sleeves</button>
+        <button class="cat-btn" data-category="hardware" role="tab">Hardware &amp; Upgrades</button>
+        <button class="cat-btn" data-category="repairs" role="tab">Repair Services</button>
+      </div>
+
+      <!-- Toolbar: Search + Notice -->
+      <div class="catalogue-toolbar">
+        <div class="cat-search">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+          <input type="text" id="catSearchInput" placeholder="Search models (e.g. ThinkPad, Dell, M1, SSD, 16GB, Screen)..." aria-label="Search catalogue">
+        </div>
+        <div class="cat-disclaimer">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" style="color:var(--accent)" aria-hidden="true"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
+          <span><b>View Only</b> &middot; Pick up in store or local delivery in Moga</span>
+        </div>
+      </div>
+
+      <!-- Catalogue Product Cards Grid -->
+      <div class="catalogue-grid" id="catalogueGrid">
+        <!-- Rendered dynamically by JavaScript -->
+      </div>
+    </div>
+  </section>
+
+  <!-- REVIEWS SECTION -->
+  <section class="section section--alt" id="reviews" aria-labelledby="reviews-h">
     <div class="inner">
       <div class="section__head">
         <p class="label">Customer reviews</p>
@@ -653,7 +870,8 @@
     </div>
   </section>
 
-  <section class="section section--alt" id="visit" aria-labelledby="visit-h">
+  <!-- HOURS & LOCATION -->
+  <section class="section" id="visit" aria-labelledby="visit-h">
     <div class="inner">
       <div class="section__head">
         <p class="label">Hours and location</p>
@@ -731,6 +949,36 @@
   </div>
 </footer>
 
+<!-- SPECIFICATION MODAL DIALOG (VIEW DETAILS) -->
+<div class="modal-backdrop" id="specModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+  <div class="modal-box">
+    <button type="button" class="modal-close" id="modalCloseBtn" aria-label="Close details">
+      <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+    </button>
+    <p class="label" id="modalCategory">Product Category</p>
+    <h3 class="modal-title" id="modalTitle">Product Title</h3>
+    <p style="color:var(--fg-dim); margin-bottom:1rem;" id="modalDesc"></p>
+
+    <table class="modal-specs-table" id="modalTable">
+      <tbody></tbody>
+    </table>
+
+    <div class="modal-notice">
+      <b>Store Notice:</b> This is an in-store stock showcase. No payment is processed on this website. To check live availability, reserve your unit, or negotiate best price, contact us below or visit our Sodhi Nagar store.
+    </div>
+
+    <div class="modal-actions">
+      <a class="btn btn--whatsapp" id="modalWaBtn" href="#" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M17.472 14.382c-.301-.15-1.782-.879-2.058-.98-.276-.1-.476-.15-.677.15-.2.301-.777.98-.952 1.18-.175.201-.351.226-.652.076-.301-.15-1.27-.468-2.42-1.493-.894-.799-1.498-1.786-1.674-2.087-.175-.3-.019-.463.132-.612.136-.134.301-.351.451-.527.15-.175.2-.301.301-.501.1-.2.05-.376-.025-.526-.075-.15-.677-1.631-.928-2.233-.244-.585-.493-.506-.677-.515-.175-.009-.376-.011-.577-.011-.2 0-.526.075-.802.376-.276.301-1.053 1.028-1.053 2.508 0 1.48 1.078 2.91 1.228 3.111.15.2 2.122 3.24 5.141 4.544.718.31 1.279.496 1.716.635.722.23 1.379.197 1.898.12.579-.086 1.782-.728 2.033-1.431.251-.703.251-1.305.175-1.431-.075-.126-.276-.201-.577-.351zM12.04 2C6.516 2 2.023 6.49 2.023 12.013c0 1.942.555 3.756 1.517 5.292L2 22l4.834-1.503a10.007 10.007 0 0 0 5.206 1.516c5.524 0 10.017-4.49 10.017-10.013C22.057 6.49 17.564 2 12.04 2z"/></svg>
+        Inquire This on WhatsApp
+      </a>
+      <a class="btn btn--ghost" href="tel:+919872010193">
+        Call 098720 10193
+      </a>
+    </div>
+  </div>
+</div>
+
 <!-- Floating WhatsApp Action -->
 <a class="wa-float" href="https://wa.me/919872010193?text=Hi%20Lally%20Computers%2C%20I%20have%20an%20enquiry." target="_blank" rel="noopener" aria-label="Chat on WhatsApp">
   <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.301-.15-1.782-.879-2.058-.98-.276-.1-.476-.15-.677.15-.2.301-.777.98-.952 1.18-.175.201-.351.226-.652.076-.301-.15-1.27-.468-2.42-1.493-.894-.799-1.498-1.786-1.674-2.087-.175-.3-.019-.463.132-.612.136-.134.301-.351.451-.527.15-.175.2-.301.301-.501.1-.2.05-.376-.025-.526-.075-.15-.677-1.631-.928-2.233-.244-.585-.493-.506-.677-.515-.175-.009-.376-.011-.577-.011-.2 0-.526.075-.802.376-.276.301-1.053 1.028-1.053 2.508 0 1.48 1.078 2.91 1.228 3.111.15.2 2.122 3.24 5.141 4.544.718.31 1.279.496 1.716.635.722.23 1.379.197 1.898.12.579-.086 1.782-.728 2.033-1.431.251-.703.251-1.305.175-1.431-.075-.126-.276-.201-.577-.351zM12.04 2C6.516 2 2.023 6.49 2.023 12.013c0 1.942.555 3.756 1.517 5.292L2 22l4.834-1.503a10.007 10.007 0 0 0 5.206 1.516c5.524 0 10.017-4.49 10.017-10.013C22.057 6.49 17.564 2 12.04 2z"/></svg>
@@ -743,9 +991,562 @@
 </button>
 
 <script>
+/* ============================================================
+   PRODUCT CATALOGUE INVENTORY DATA (VIEW ONLY)
+   ============================================================ */
+var CATALOGUE_DATA = [
+  // --- LAPTOPS ---
+  {
+    id: "lap-1",
+    category: "laptops",
+    badge: "Grade A++ Refurbished",
+    badgeClass: "cat-badge",
+    title: "Lenovo ThinkPad T480 / T14",
+    desc: "Legendary rugged business ultrabook with dual battery system and durable spill-resistant keyboard.",
+    specs: ["Core i5 / i7", "16GB DDR4", "512GB NVMe SSD", "14\" FHD IPS", "Dual Battery"],
+    warranty: "6 Mos Warranty + Bill",
+    price: "From ₹21,999",
+    details: {
+      "Brand & Model": "Lenovo ThinkPad T480 / T14 Business Series",
+      "Processor": "Intel Core i5 (8th / 10th Gen) vPro",
+      "Memory": "16 GB DDR4 (Upgradable to 32GB)",
+      "Storage": "512 GB M.2 NVMe High-Speed SSD",
+      "Display": "14.0-inch Full HD (1920x1080) Anti-Glare IPS",
+      "Operating System": "Genuine Windows 11 Pro Activated",
+      "Ports": "Thunderbolt 3, USB-C, 2x USB 3.0, HDMI, RJ-45 LAN, SD Card",
+      "Condition": "Grade A++ Certified Refurbished (Original Charger Included)",
+      "Warranty": "Store Testing & Hardware Warranty Included with GST Bill"
+    }
+  },
+  {
+    id: "lap-2",
+    category: "laptops",
+    badge: "Popular Business",
+    badgeClass: "cat-badge",
+    title: "Dell Latitude 7490 / 5400",
+    desc: "Slim enterprise laptop with carbon fiber magnesium alloy lid, back-lit keyboard, and all-day battery life.",
+    specs: ["Core i5 8th Gen", "16GB RAM", "256GB / 512GB SSD", "14\" FHD", "Backlit Keyboard"],
+    warranty: "Store Warranty + GST",
+    price: "From ₹22,500",
+    details: {
+      "Brand & Model": "Dell Latitude 7000 / 5000 Series Ultrabook",
+      "Processor": "Intel Core i5 8350U Quad Core",
+      "Memory": "16 GB DDR4 RAM",
+      "Storage": "256GB or 512GB Ultra-Fast Solid State Drive",
+      "Display": "14.0\" FHD Anti-Glare LED-backlit Display",
+      "Features": "Backlit Keyboard, HD Webcam with Privacy Shutter, Precision Touchpad",
+      "Condition": "Clean Pre-owned / Corporate Lease Return (100% Tested)",
+      "Included": "Original Dell 65W Power Adapter, Windows 11 Pro"
+    }
+  },
+  {
+    id: "lap-3",
+    category: "laptops",
+    badge: "Brand New & Pre-owned",
+    badgeClass: "cat-badge cat-badge--new",
+    title: "Apple MacBook Air (M1 / M2)",
+    desc: "Incredible speed and battery life with Apple Silicon. Featherlight silent fanless design.",
+    specs: ["Apple M1 / M2", "8GB / 16GB RAM", "256GB / 512GB SSD", "13.3\" Retina", "18 Hr Battery"],
+    warranty: "Apple / Store Warranty",
+    price: "Best Price on Call",
+    details: {
+      "Brand & Model": "Apple MacBook Air (Space Grey / Silver / Starlight)",
+      "Chip": "Apple M1 / M2 Chip with 8-Core CPU and up to 10-Core GPU",
+      "Unified Memory": "8GB or 16GB Fast Unified Memory",
+      "Display": "13.3-inch Retina Display with P3 Wide Color and True Tone",
+      "Keyboard & Security": "Magic Keyboard with Touch ID Sensor",
+      "Audio": "Three-mic array & Stereo speakers with Spatial Audio",
+      "Status": "Available in Brand New Sealed Box or Pristine Mint Pre-owned"
+    }
+  },
+  {
+    id: "lap-4",
+    category: "laptops",
+    badge: "Gaming & Performance",
+    badgeClass: "cat-badge cat-badge--new",
+    title: "HP Victus / Pavilion Gaming",
+    desc: "Dedicated NVIDIA GeForce graphics with high-refresh rate display for gaming, AutoCAD, and video editing.",
+    specs: ["Ryzen 5 / Core i5", "16GB RAM", "RTX 3050 4GB", "512GB SSD", "144Hz IPS"],
+    warranty: "1 Year Official Warranty",
+    price: "From ₹53,990",
+    details: {
+      "Brand & Model": "HP Victus 15 Gaming Laptop",
+      "Processor": "AMD Ryzen 5 5600H or Intel Core i5 12th Gen",
+      "Graphics": "NVIDIA GeForce RTX 3050 (4GB GDDR6 Dedicated)",
+      "Display": "15.6-inch Full HD (144Hz Refresh Rate) IPS Micro-edge",
+      "Cooling": "Dual-fan thermal design with wide rear vents",
+      "Warranty": "1 Year HP On-site Brand Warranty with Official Tax Invoice"
+    }
+  },
+  {
+    id: "lap-5",
+    category: "laptops",
+    badge: "Custom Assembled",
+    badgeClass: "cat-badge",
+    title: "Custom Desktop PC Builds",
+    desc: "Custom assembled PCs tailored for accounting, shop billing, video editing, or heavy gaming.",
+    specs: ["Core i3/i5/i7/Ryzen", "Custom RAM", "NVMe SSD + HDD", "RGB Cabinets", "Dedicated GPUs"],
+    warranty: "Full Component Warranty",
+    price: "Builds from ₹17,500",
+    details: {
+      "Customization": "Built to your exact requirement and budget (Office / Accounting / Gaming / 3D)",
+      "Components": "100% Brand New Motherboards, Processors, Cabinets, and Power Supplies",
+      "Brands Used": "Intel, AMD, Gigabyte, Asus, MSI, Corsair, Crucial, Zebronics, Ant Esports",
+      "Assembly": "Professional cable management, OS setup, stress testing included",
+      "Invoicing": "Complete GST bill with individual component warranties (1 to 5 years)"
+    }
+  },
+
+  // --- APPLE WATCHES ---
+  {
+    id: "wat-1",
+    category: "watches",
+    badge: "Smart Wearable",
+    badgeClass: "cat-badge",
+    title: "Apple Watch Series 8 / Series 9",
+    desc: "Advanced health sensors, ECG, Blood Oxygen monitoring, Always-On Retina display, and Crash Detection.",
+    specs: ["41mm / 45mm", "Always-On OLED", "ECG + SpO2", "Fast Charge", "Water Resistant 50m"],
+    warranty: "Checked & Verified",
+    price: "Inquire Best Price",
+    details: {
+      "Model": "Apple Watch Series 8 / Series 9 (Midnight / Starlight / Silver / Product RED)",
+      "Display": "Always-On Retina LTPO OLED display with up to 2000 nits brightness",
+      "Sensors": "Temperature sensing, ECG app, Blood Oxygen app, High and low heart rate notifications",
+      "Features": "Crash Detection, Fall Detection, Emergency SOS, Cycle Tracking",
+      "Condition": "Available in Mint condition and Open Box with magnetic charger"
+    }
+  },
+  {
+    id: "wat-2",
+    category: "watches",
+    badge: "Great Value",
+    badgeClass: "cat-badge",
+    title: "Apple Watch SE (2nd Gen)",
+    desc: "All the essential fitness and connectivity features of Apple Watch at a great price point.",
+    specs: ["40mm / 44mm", "Retina Display", "Heart Rate Monitor", "Sleep Tracking", "Swimproof"],
+    warranty: "Store Warranty",
+    price: "From ₹18,999",
+    details: {
+      "Model": "Apple Watch SE (2nd Generation)",
+      "Case": "100% recycled aluminum case",
+      "Features": "Activity rings, Workout app, Sleep stages, Fall detection, Family Setup",
+      "Compatibility": "Requires iPhone 8 or later with latest iOS",
+      "Condition": "Available in New and Grade-A certified condition"
+    }
+  },
+  {
+    id: "wat-3",
+    category: "watches",
+    badge: "Rugged Titanium",
+    badgeClass: "cat-badge cat-badge--new",
+    title: "Apple Watch Ultra 49mm",
+    desc: "Aerospace-grade titanium case, precision dual-frequency GPS, 100m water resistance, and 36-hour battery.",
+    specs: ["49mm Titanium", "Action Button", "Up to 36h Battery", "Dual GPS", "100m Water Resist"],
+    warranty: "Verified Stock",
+    price: "Inquire Availability",
+    details: {
+      "Model": "Apple Watch Ultra 49mm Titanium Case",
+      "Durability": "MIL-STD 810H tested, IP6X dust resistance, 100m water resistance, depth gauge",
+      "Display": "Flat sapphire crystal front with display brightness up to 2000 nits",
+      "Battery": "Up to 36 hours regular use or up to 60 hours in Low Power Mode",
+      "Audio": "Dual speakers and three-microphone array with beamforming"
+    }
+  },
+
+  // --- AUDIO & SPEAKERS ---
+  {
+    id: "aud-1",
+    category: "audio",
+    badge: "Waterproof Audio",
+    badgeClass: "cat-badge",
+    title: "JBL Flip 6 / Charge 5",
+    desc: "Powerful 2-way speaker system with racetrack woofer, dual passive radiators, and IP67 waterproof body.",
+    specs: ["IP67 Waterproof", "PartyBoost", "12-20 Hr Battery", "Deep Bass", "Bluetooth 5.1"],
+    warranty: "Brand Sealed Stock",
+    price: "Best Price on Request",
+    details: {
+      "Brand": "JBL by Harman",
+      "Sound Output": "High-output woofer + separate tweeter for crystal clear highs and punchy bass",
+      "Battery Life": "Up to 12 hours (Flip 6) / 20 hours with built-in power bank (Charge 5)",
+      "Protection": "IP67 dustproof and waterproof (safe for beach, rain, pool)",
+      "Connectivity": "JBL PartyBoost allows pairing multiple compatible speakers"
+    }
+  },
+  {
+    id: "aud-2",
+    category: "audio",
+    badge: "Budget Friendly",
+    badgeClass: "cat-badge",
+    title: "boAt Stone Wireless Speakers",
+    desc: "Rugged portable Bluetooth speakers with RGB lighting and heavy bass for everyday music.",
+    specs: ["Portable Sound", "RGB LEDs", "Type-C Charging", "Multi-mode (AUX/TF/BT)", "Mic for Calls"],
+    warranty: "Brand Warranty",
+    price: "From ₹1,299",
+    details: {
+      "Brand": "boAt Lifestyle",
+      "Features": "Dynamic sound, IPX water resistance, hands-free calling mic",
+      "Playback": "Supports Bluetooth v5.0, AUX cable, and TF MicroSD cards",
+      "Warranty": "1 Year boAt National Warranty"
+    }
+  },
+
+  // --- CHARGERS & BATTERIES ---
+  {
+    id: "pow-1",
+    category: "power",
+    badge: "Universal Fast Charger",
+    badgeClass: "cat-badge cat-badge--new",
+    title: "65W GaN Type-C Laptop Fast Charger",
+    desc: "Compact GaN charger compatible with Lenovo, Dell, HP, MacBook, Asus, Samsung, and phones.",
+    specs: ["65W Fast Charge", "Type-C PD 3.0", "Overheat Protection", "Detachable Cable", "Ultra Compact"],
+    warranty: "6 Mos Replacement",
+    price: "From ₹1,199",
+    details: {
+      "Type": "Gallium Nitride (GaN) Power Delivery Adapter",
+      "Wattage": "65 Watts (Autodetects 5V/9V/12V/15V/20V for your device)",
+      "Compatibility": "Lenovo ThinkPad, HP Envy/Pavilion, Dell XPS/Latitude, MacBook Air/Pro, iPad",
+      "Safety": "Built-in protection against over-current, over-voltage, and short circuit"
+    }
+  },
+  {
+    id: "pow-2",
+    category: "power",
+    badge: "OEM Tested",
+    badgeClass: "cat-badge",
+    title: "Original Replacement Laptop Batteries",
+    desc: "Tested Grade-A lithium-ion battery packs for HP, Dell, Lenovo, Acer, and Asus laptops.",
+    specs: ["Grade-A Cells", "High Capacity", "Zero Degradation", "Tested Backup", "Instant Replacement"],
+    warranty: "6 - 12 Mos Warranty",
+    price: "From ₹1,750",
+    details: {
+      "Availability": "In stock for popular HP 240/250, Dell Inspiron/Latitude, Lenovo Ideapad/Thinkpad models",
+      "Testing": "Each battery is verified for charging cycle health and thermal safety before sale",
+      "Installation": "Free fitting and health check in our Sodhi Nagar store"
+    }
+  },
+  {
+    id: "pow-3",
+    category: "power",
+    badge: "Genuine MagSafe",
+    badgeClass: "cat-badge",
+    title: "Apple MagSafe 1 / 2 / 3 Chargers",
+    desc: "Magnetic power adapters for all generations of MacBook Air and MacBook Pro.",
+    specs: ["45W / 60W / 85W / 140W", "Magnetic Connector", "LED Indicator", "Apple OEM"],
+    warranty: "Store Warranty",
+    price: "From ₹1,800",
+    details: {
+      "Models": "MagSafe 1 (L-tip), MagSafe 2 (T-tip), and MagSafe 3 braided cables",
+      "Supported Devices": "MacBook Air 11\"/13\", MacBook Pro 13\"/15\"/16\" (2012 through M3 models)",
+      "Status": "Tested for safe power delivery and stable voltage regulation"
+    }
+  },
+
+  // --- BAGS & SLEEVES ---
+  {
+    id: "bag-1",
+    category: "bags",
+    badge: "Shockproof Protection",
+    badgeClass: "cat-badge",
+    title: "Water-Resistant Laptop Backpack",
+    desc: "Heavy-duty ergonomic laptop bag with padded shockproof compartment, anti-theft hidden pocket, and USB port.",
+    specs: ["Fits up to 15.6\"-16\"", "Water Repellent", "Padded Straps", "Luggage Strap", "Multi-Pocket"],
+    warranty: "Durable Quality",
+    price: "From ₹899",
+    details: {
+      "Capacity": "Dedicated 360° padded compartment for laptops up to 15.6-inch",
+      "Material": "High-density splash-resistant polyester fabric with reinforced stitching",
+      "Features": "Luggage strap for suitcase attachment, external USB charging port, breathable mesh back panel"
+    }
+  },
+  {
+    id: "bag-2",
+    category: "bags",
+    badge: "Sleek & Slim",
+    badgeClass: "cat-badge",
+    title: "Padded Neoprene Laptop Sleeve",
+    desc: "Minimalist shock-absorbing sleeve with fleece lining and reinforced zipper for MacBook and ultrabooks.",
+    specs: ["13.3\" / 14\" / 15.6\"", "Corner Cushioning", "Front Zipper Pocket", "Scratch-Proof Inner"],
+    warranty: "Ready in Store",
+    price: "From ₹450",
+    details: {
+      "Sizes": "Available for 13-inch, 14-inch, and 15.6-inch slim laptops",
+      "Lining": "Soft velvet-like fleece interior to prevent scratches on aluminium lids",
+      "Colors": "Black, Grey, Navy Blue, and Dark Circuit Green"
+    }
+  },
+
+  // --- HARDWARE & UPGRADES ---
+  {
+    id: "hd-1",
+    category: "hardware",
+    badge: "10x Speed Boost",
+    badgeClass: "cat-badge cat-badge--new",
+    title: "NVMe & SATA SSD Upgrades",
+    desc: "Instantly breathe new life into slow laptops. Kingston, Crucial, WD Green / Blue SSDs with free data clone.",
+    specs: ["256GB / 512GB / 1TB", "Up to 3500 MB/s", "Free Fitting", "Free Windows OS", "5 Yr Warranty"],
+    warranty: "3 - 5 Years Brand Warranty",
+    price: "From ₹1,650 (Fitted)",
+    details: {
+      "Brands Available": "Crucial, Western Digital, Kingston, Consistent, Samsung",
+      "Form Factors": "2.5-inch SATA SSD (for old hard drives) and M.2 NVMe PCIe Gen3/Gen4",
+      "Speed": "Boots Windows in under 8 seconds; 10x faster than traditional spinning hard disks",
+      "Bonus Service": "Free laptop opening, dust cleanup, and OS installation included with every SSD upgrade"
+    }
+  },
+  {
+    id: "hd-2",
+    category: "hardware",
+    badge: "Multitasking Upgrade",
+    badgeClass: "cat-badge",
+    title: "DDR4 & DDR5 RAM Upgrades",
+    desc: "Crucial, Samsung, Hynix laptop and desktop RAM modules for smoother multitasking and gaming.",
+    specs: ["8GB / 16GB / 32GB", "2666 / 3200 / 4800MHz", "Original ICs", "Free Dual-Channel Test"],
+    warranty: "Lifetime / 3 Yr Warranty",
+    price: "From ₹1,350",
+    details: {
+      "Compatibility": "SODIMM for laptops and UDIMM for desktop motherboards",
+      "Frequencies": "DDR3L 1600MHz, DDR4 2666MHz/3200MHz, and DDR5 4800MHz/5600MHz",
+      "Installation": "Tested on-the-spot with memory diagnostic tools to ensure 100% stability"
+    }
+  },
+  {
+    id: "hd-3",
+    category: "hardware",
+    badge: "Computer Peripherals",
+    badgeClass: "cat-badge",
+    title: "Wireless Mouse & Mechanical Keyboards",
+    desc: "High-precision optical mice, silent wireless combos, and RGB gaming keyboards from top brands.",
+    specs: ["Logitech / HP / Dell", "2.4GHz Wireless", "Silent Clicks", "Long Battery Life"],
+    warranty: "1 Year Replacement",
+    price: "From ₹350",
+    details: {
+      "Products": "Wireless mice, ergonomic vertical mice, RGB gaming keyboards, and durable office combos",
+      "Brands": "Logitech, HP, Dell, Zebronics, Portronics, Ant Esports",
+      "Features": "Plug-and-play USB nano receiver, auto sleep energy saving"
+    }
+  },
+
+  // --- REPAIR SERVICES ---
+  {
+    id: "rep-1",
+    category: "repairs",
+    badge: "Expert Service",
+    badgeClass: "cat-badge cat-badge--service",
+    title: "Chip-Level Motherboard Repair",
+    desc: "Microscopic SMD component repair for laptops with no display, short circuit, power dead, or liquid damage.",
+    specs: ["BGA Rework", "Short Circuit Repair", "BIOS Reprogramming", "Power IC Swap", "24-48h Service"],
+    warranty: "Service Warranty Included",
+    price: "Quote after Free Inspection",
+    details: {
+      "Specialty": "Advanced chip-level motherboard troubleshooting using digital microscopes and DC power analyzers",
+      "Common Issues": "Laptop not turning on, charging light blinking, water/chai spill damage, overheating shutdown",
+      "Policy": "No repair without customer cost approval. If not repairable, zero service charge."
+    }
+  },
+  {
+    id: "rep-2",
+    category: "repairs",
+    badge: "Same-Day Replacement",
+    badgeClass: "cat-badge cat-badge--service",
+    title: "Laptop Screen / Display Replacement",
+    desc: "Replacement of cracked, flickering, or line-damaged laptop screens with original grade-A panels.",
+    specs: ["14\" & 15.6\" Slim LED", "FHD 1080p IPS", "144Hz Gaming Screens", "Original Colors"],
+    warranty: "6 Mos Screen Warranty",
+    price: "Check by Model Number",
+    details: {
+      "Panel Types": "Slim 30-pin and 40-pin EDP LED panels, IPS wide-angle displays, and high-refresh gaming displays",
+      "Brands Serviced": "Dell, HP, Lenovo, Asus, Acer, Apple MacBook, MSI, Toshiba",
+      "Turnaround": "In-stock panels replaced within 1 to 2 hours right in front of you"
+    }
+  },
+  {
+    id: "rep-3",
+    category: "repairs",
+    badge: "Maintenance & Speedup",
+    badgeClass: "cat-badge cat-badge--service",
+    title: "Deep Cleaning & Thermal Servicing",
+    desc: "Complete fan dust cleanup and application of premium high-conductivity thermal paste to prevent laptop overheating.",
+    specs: ["Heatsink Cleaning", "Thermal Paste Re-apply", "Hinge Tightening", "Fan Lubrication"],
+    warranty: "Instant Temperature Drop",
+    price: "From ₹450",
+    details: {
+      "Benefit": "Lowers CPU/GPU operating temperatures by 15°C to 25°C, preventing thermal throttling and loud fan noise",
+      "Materials": "Arctic MX-4 / Cooler Master high-performance thermal paste used",
+      "Bonus": "Body and keyboard sanitization and hinge torque adjustment included"
+    }
+  }
+];
+
+/* ============================================================
+   RENDER CATALOGUE GRID & FILTER LOGIC
+   ============================================================ */
+var currentCategory = 'all';
+var searchQuery = '';
+
+function renderCatalogue() {
+  var grid = document.getElementById('catalogueGrid');
+  if (!grid) return;
+
+  var filtered = CATALOGUE_DATA.filter(function (item) {
+    var matchCat = (currentCategory === 'all') || (item.category === currentCategory);
+    if (!matchCat) return false;
+
+    if (!searchQuery) return true;
+    var q = searchQuery.toLowerCase();
+    var inTitle = item.title.toLowerCase().indexOf(q) !== -1;
+    var inDesc = item.desc.toLowerCase().indexOf(q) !== -1;
+    var inSpecs = item.specs.some(function(s) { return s.toLowerCase().indexOf(q) !== -1; });
+    return inTitle || inDesc || inSpecs;
+  });
+
+  if (filtered.length === 0) {
+    grid.innerHTML = '<div class="cat-empty">' +
+      '<svg viewBox="0 0 24 24" width="48" height="48" fill="none" stroke="currentColor" stroke-width="1.5" style="color:var(--accent);margin-bottom:.8rem;"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>' +
+      '<h3>No items found</h3>' +
+      '<p style="color:var(--fg-dim);margin-top:.4rem;">Try searching for another keyword or switch category tab above.</p>' +
+      '<button class="btn btn--primary btn--sm" style="margin-top:1.2rem;" onclick="resetCatalogueFilter()">View All Items</button>' +
+      '</div>';
+    return;
+  }
+
+  var html = '';
+  filtered.forEach(function (item) {
+    var waText = encodeURIComponent('Hi Lally Computers, I saw the "' + item.title + '" in your website catalogue. Can you confirm if this is currently available in your Sodhi Nagar store and share best price?');
+    var waUrl = 'https://wa.me/919872010193?text=' + waText;
+
+    var specsHtml = item.specs.map(function (s) {
+      return '<li>' + s + '</li>';
+    }).join('');
+
+    html += '<article class="cat-card" data-id="' + item.id + '">' +
+      '<div class="cat-card__top">' +
+        '<div class="cat-card__meta">' +
+          '<span class="' + item.badgeClass + '">' + item.badge + '</span>' +
+          '<span class="cat-warranty">' + item.warranty + '</span>' +
+        '</div>' +
+        '<h3>' + item.title + '</h3>' +
+        '<p class="cat-card__desc">' + item.desc + '</p>' +
+        '<ul class="cat-specs">' + specsHtml + '</ul>' +
+      '</div>' +
+      '<div class="cat-card__bottom">' +
+        '<div class="cat-price-wrap">' +
+          '<span class="cat-price-label">Catalogue Estimate</span>' +
+          '<span class="cat-price">' + item.price + '</span>' +
+        '</div>' +
+        '<div class="cat-card__btns">' +
+          '<a class="btn-wa-inquire" href="' + waUrl + '" target="_blank" rel="noopener">' +
+            '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.301-.15-1.782-.879-2.058-.98-.276-.1-.476-.15-.677.15-.2.301-.777.98-.952 1.18-.175.201-.351.226-.652.076-.301-.15-1.27-.468-2.42-1.493-.894-.799-1.498-1.786-1.674-2.087-.175-.3-.019-.463.132-.612.136-.134.301-.351.451-.527.15-.175.2-.301.301-.501.1-.2.05-.376-.025-.526-.075-.15-.677-1.631-.928-2.233-.244-.585-.493-.506-.677-.515-.175-.009-.376-.011-.577-.011-.2 0-.526.075-.802.376-.276.301-1.053 1.028-1.053 2.508 0 1.48 1.078 2.91 1.228 3.111.15.2 2.122 3.24 5.141 4.544.718.31 1.279.496 1.716.635.722.23 1.379.197 1.898.12.579-.086 1.782-.728 2.033-1.431.251-.703.251-1.305.175-1.431-.075-.126-.276-.201-.577-.351zM12.04 2C6.516 2 2.023 6.49 2.023 12.013c0 1.942.555 3.756 1.517 5.292L2 22l4.834-1.503a10.007 10.007 0 0 0 5.206 1.516c5.524 0 10.017-4.49 10.017-10.013C22.057 6.49 17.564 2 12.04 2z"/></svg>' +
+            '<span>Inquire Stock</span>' +
+          '</a>' +
+          '<button class="btn-inspect" type="button" onclick="openProductModal(\'' + item.id + '\')">Specs &rarr;</button>' +
+        '</div>' +
+      '</div>' +
+    '</article>';
+  });
+
+  grid.innerHTML = html;
+}
+
+function switchCategory(cat) {
+  currentCategory = cat;
+  var btns = document.querySelectorAll('.cat-btn');
+  btns.forEach(function (btn) {
+    if (btn.getAttribute('data-category') === cat) {
+      btn.classList.add('active');
+    } else {
+      btn.classList.remove('active');
+    }
+  });
+  renderCatalogue();
+
+  // Scroll smoothly to catalogue section
+  var catSec = document.getElementById('catalogue');
+  if (catSec) {
+    catSec.scrollIntoView({ behavior: 'smooth' });
+  }
+}
+
+function resetCatalogueFilter() {
+  currentCategory = 'all';
+  searchQuery = '';
+  var searchInput = document.getElementById('catSearchInput');
+  if (searchInput) searchInput.value = '';
+  switchCategory('all');
+}
+
+// Modal inspection
+function openProductModal(id) {
+  var item = CATALOGUE_DATA.find(function(x) { return x.id === id; });
+  if (!item) return;
+
+  var modal = document.getElementById('specModal');
+  document.getElementById('modalCategory').textContent = item.badge + ' · Supreme Infosys Inventory';
+  document.getElementById('modalTitle').textContent = item.title;
+  document.getElementById('modalDesc').textContent = item.desc;
+
+  var waText = encodeURIComponent('Hi Lally Computers, I would like to inquire regarding "' + item.title + '" shown on your website catalogue. What is today\'s availability and price?');
+  document.getElementById('modalWaBtn').href = 'https://wa.me/919872010193?text=' + waText;
+
+  var tbody = document.querySelector('#modalTable tbody');
+  tbody.innerHTML = '';
+  for (var key in item.details) {
+    if (item.details.hasOwnProperty(key)) {
+      var tr = document.createElement('tr');
+      tr.innerHTML = '<th>' + key + '</th><td>' + item.details[key] + '</td>';
+      tbody.appendChild(tr);
+    }
+  }
+
+  modal.classList.add('is-open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeModal() {
+  var modal = document.getElementById('specModal');
+  if (modal) modal.classList.remove('is-open');
+  document.body.style.overflow = '';
+}
+
+/* ============================================================
+   PAGE INITIALIZATION
+   ============================================================ */
 (function () {
   var reduce = window.matchMedia('(prefers-reduced-motion: reduce)');
   var video = document.getElementById('heroVideo');
+
+  // Render initial catalogue
+  renderCatalogue();
+
+  // Category filter clicks
+  var catBtns = document.querySelectorAll('.cat-btn');
+  catBtns.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var cat = this.getAttribute('data-category');
+      switchCategory(cat);
+    });
+  });
+
+  // Search input
+  var searchInput = document.getElementById('catSearchInput');
+  if (searchInput) {
+    searchInput.addEventListener('input', function (e) {
+      searchQuery = e.target.value.trim();
+      renderCatalogue();
+    });
+  }
+
+  // Modal close handlers
+  var modalCloseBtn = document.getElementById('modalCloseBtn');
+  var modal = document.getElementById('specModal');
+  if (modalCloseBtn) modalCloseBtn.addEventListener('click', closeModal);
+  if (modal) {
+    modal.addEventListener('click', function (e) {
+      if (e.target === modal) closeModal();
+    });
+  }
+  window.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') closeModal();
+  });
 
   /* ---- theme switcher ---- */
   var themeBtn = document.getElementById('themeToggle');
@@ -832,7 +1633,6 @@
     var vh = window.innerHeight;
     var y = window.pageYOffset || document.documentElement.scrollTop || 0;
 
-    // Back to top visibility
     if (backToTop) {
       if (y > 400) {
         backToTop.classList.add('is-visible');
