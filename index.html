@@ -25,7 +25,7 @@
     --bg-surface-elevated: #1c1c1e;
     --bg-subtle: #242426;
     --border-subtle: rgba(255, 255, 255, 0.12);
-    --border-strong: rgba(255, 255, 255, 0.22);
+    --border-strong: rgba(255, 255, 255, 0.24);
     --text-primary: #f5f5f7;
     --text-secondary: #86868b;
     --text-tertiary: #6e6e73;
@@ -33,7 +33,6 @@
     --apple-blue-hover: #0077ed;
     --apple-gold: #f5c563;
     --circuit-green: #25d366;
-    --circuit-green-dark: #072615;
     --font-sans: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Hanken Grotesk", "Helvetica Neue", sans-serif;
     --font-mono: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, monospace;
     --nav-height: 52px;
@@ -83,7 +82,7 @@
   }
 
   /* ==========================================================================
-     GLOBAL FROSTED NAVIGATION BAR (APPLE STYLE)
+     GLOBAL FROSTED NAVIGATION BAR
      ========================================================================== */
   .apple-nav {
     position: sticky;
@@ -171,7 +170,7 @@
   :root:not([data-theme="light"]) .theme-toggle-btn .icon-moon { display: none; }
 
   /* ==========================================================================
-     HERO SECTION (BOLD, CINEMATIC & MINIMAL)
+     HERO SECTION
      ========================================================================== */
   .hero-apple {
     position: relative;
@@ -249,6 +248,8 @@
     border-radius: var(--radius-pill);
     font-size: 16px;
     font-weight: 600;
+    cursor: pointer;
+    border: none;
     transition: transform 0.18s, background 0.18s;
   }
   .apple-pill-btn--primary {
@@ -288,7 +289,7 @@
   .hero-badge-strip svg { width: 15px; height: 15px; color: var(--apple-gold); }
 
   /* ==========================================================================
-     APPLE CHAPTER NAV / ICON RIBBON (CATEGORY SELECTOR)
+     CHAPTER NAV / CATEGORY RIBBON
      ========================================================================== */
   .chapter-ribbon {
     position: sticky;
@@ -347,7 +348,7 @@
   .chap-item.is-active span { font-weight: 600; color: var(--apple-blue); }
 
   /* ==========================================================================
-     SECTION HEADINGS (APPLE EDITORIAL STYLE)
+     SECTION HEADINGS
      ========================================================================== */
   .apple-section {
     padding-block: clamp(3.5rem, 7vw, 6.5rem);
@@ -382,92 +383,210 @@
   }
 
   /* ==========================================================================
-     SEARCH & FILTER TOOLBAR (MINIMALIST & CLEAN)
+     SEPARATE CATEGORY OPTIONS GRID (NORMAL VIEW - CLOSED BY DEFAULT)
      ========================================================================== */
-  .lineup-toolbar {
+  .category-options-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1.25rem;
+  }
+  .cat-opt-card {
+    background: var(--bg-surface-elevated);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-card);
+    padding: 1.8rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 1.4rem;
+    transition: transform 0.22s, border-color 0.22s, box-shadow 0.22s;
+  }
+  .cat-opt-card:hover {
+    transform: translateY(-3px);
+    border-color: var(--border-strong);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  }
+  .cat-opt-top {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+  }
+  .cat-opt-icon {
+    width: 44px; height: 44px; border-radius: 12px;
+    background: var(--bg-subtle); display: flex; align-items: center; justify-content: center;
+    color: var(--apple-blue); margin-bottom: 0.4rem;
+  }
+  .cat-opt-icon svg { width: 22px; height: 22px; }
+  .cat-opt-card h3 {
+    font-size: 1.35rem; font-weight: 700; letter-spacing: -0.015em; color: var(--text-primary); margin: 0;
+  }
+  .cat-opt-card p {
+    font-size: 14px; color: var(--text-secondary); line-height: 1.45;
+  }
+  .cat-opt-actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.8rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--border-subtle);
+  }
+  .btn-open-cat {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 13px;
+    font-weight: 600;
+    padding: 8px 16px;
+    border-radius: var(--radius-pill);
+    background: var(--apple-blue);
+    color: #ffffff !important;
+    border: none;
+    cursor: pointer;
+    transition: background 0.18s, transform 0.15s;
+  }
+  .btn-open-cat:hover {
+    background: var(--apple-blue-hover);
+    transform: scale(1.02);
+  }
+  .btn-quick-wa {
+    font-size: 13px;
+    color: var(--text-secondary);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+  }
+  .btn-quick-wa:hover { color: #25d366; text-decoration: underline; }
+
+  /* ==========================================================================
+     ACTIVE STOCK VIEWER (EXPANDS/OPENS ONLY WHEN CLICKED)
+     ========================================================================== */
+  .stock-active-view {
+    display: none;
+    background: var(--bg-surface-elevated);
+    border: 1px solid var(--border-strong);
+    border-radius: var(--radius-card);
+    padding: clamp(1.4rem, 3.5vw, 2.2rem);
+    animation: fadeIn 0.25s ease-out;
+  }
+  .stock-active-view.is-open { display: block; }
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .stock-active-bar {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
     justify-content: space-between;
     gap: 1rem;
-    margin-bottom: 2rem;
-    padding: 0.8rem 1.2rem;
-    background: var(--bg-surface-elevated);
-    border: 1px solid var(--border-subtle);
-    border-radius: 14px;
+    padding-bottom: 1.4rem;
+    border-bottom: 1px solid var(--border-subtle);
+    margin-bottom: 1.5rem;
   }
-  .lineup-search {
+  .stock-active-title h3 {
+    font-size: 1.6rem; font-weight: 700; letter-spacing: -0.02em; color: var(--text-primary);
+  }
+  .stock-active-title p {
+    font-size: 13px; color: var(--text-secondary); margin-top: 2px;
+  }
+  .btn-close-stock {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 13px;
+    font-weight: 600;
+    padding: 7px 15px;
+    border-radius: var(--radius-pill);
+    background: var(--bg-subtle);
+    border: 1px solid var(--border-subtle);
+    color: var(--text-primary);
+    cursor: pointer;
+    transition: background 0.18s, color 0.18s;
+  }
+  .btn-close-stock:hover {
+    background: var(--border-strong);
+  }
+
+  /* search & tabs inside active stock */
+  .stock-controls {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+  }
+  .stock-cat-pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+  }
+  .stock-pill {
+    font-size: 12px;
+    font-weight: 500;
+    padding: 5px 12px;
+    border-radius: var(--radius-pill);
+    background: var(--bg-main);
+    border: 1px solid var(--border-subtle);
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: background 0.18s, color 0.18s, border-color 0.18s;
+  }
+  .stock-pill:hover { color: var(--text-primary); }
+  .stock-pill.is-active {
+    background: var(--apple-blue);
+    border-color: var(--apple-blue);
+    color: #ffffff;
+    font-weight: 600;
+  }
+  .stock-search-wrap {
     flex: 1;
-    min-width: 260px;
+    min-width: 240px;
     position: relative;
     display: flex;
     align-items: center;
   }
-  .lineup-search svg {
-    position: absolute;
-    left: 14px;
-    width: 17px;
-    height: 17px;
-    color: var(--text-tertiary);
-    pointer-events: none;
+  .stock-search-wrap svg {
+    position: absolute; left: 12px; width: 16px; height: 16px; color: var(--text-tertiary); pointer-events: none;
   }
-  .lineup-search input {
+  .stock-search-wrap input {
     width: 100%;
-    padding: 0.65rem 1rem 0.65rem 2.6rem;
-    border-radius: 10px;
+    padding: 7px 12px 7px 34px;
+    border-radius: 8px;
     border: 1px solid var(--border-subtle);
     background: var(--bg-main);
     color: var(--text-primary);
-    font-size: 15px;
+    font-size: 14px;
     outline: none;
-    transition: border-color 0.2s, box-shadow 0.2s;
   }
-  .lineup-search input:focus {
+  .stock-search-wrap input:focus {
     border-color: var(--apple-blue);
-    box-shadow: 0 0 0 3px rgba(41, 151, 255, 0.2);
   }
-  .lineup-note {
-    font-size: 13px;
-    color: var(--text-secondary);
-    display: flex;
-    align-items: center;
-    gap: 0.4rem;
-  }
-  .lineup-note b { color: var(--text-primary); }
 
-  /* ==========================================================================
-     APPLE-STYLE PRODUCT CARDS (THE LINEUP)
-     ========================================================================== */
+  /* cards grid */
   .lineup-grid {
     display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 1.5rem;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.25rem;
   }
   .apple-card {
-    background: var(--bg-surface);
+    background: var(--bg-main);
     border: 1px solid var(--border-subtle);
-    border-radius: var(--radius-card);
-    padding: clamp(1.5rem, 3vw, 2rem);
+    border-radius: 14px;
+    padding: 1.4rem;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    gap: 1.4rem;
-    transition: transform 0.24s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.24s ease, border-color 0.24s ease;
-    position: relative;
+    gap: 1.2rem;
+    transition: transform 0.2s, border-color 0.2s;
   }
   .apple-card:hover {
-    transform: translateY(-4px);
+    transform: translateY(-2px);
     border-color: var(--border-strong);
-    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.35);
   }
-  :root[data-theme="light"] .apple-card {
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
-  }
-  :root[data-theme="light"] .apple-card:hover {
-    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.08);
-  }
-
-  .card-top { display: flex; flex-direction: column; gap: 0.8rem; }
+  .card-top { display: flex; flex-direction: column; gap: 0.6rem; }
   .card-badge-row {
     display: flex;
     align-items: center;
@@ -479,414 +598,167 @@
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.04em;
-    padding: 4px 9px;
+    padding: 3px 8px;
     border-radius: var(--radius-pill);
     background: var(--bg-subtle);
     color: var(--apple-blue);
   }
   .apple-badge--new { color: #34d399; background: rgba(52, 211, 153, 0.12); }
   .apple-badge--gold { color: var(--apple-gold); background: rgba(245, 197, 99, 0.12); }
-  .card-warranty {
-    font-size: 12px;
-    color: var(--text-tertiary);
-  }
+  .card-warranty { font-size: 12px; color: var(--text-tertiary); }
   .card-title {
-    font-size: 1.45rem;
-    font-weight: 700;
-    line-height: 1.2;
-    letter-spacing: -0.02em;
-    color: var(--text-primary);
+    font-size: 1.3rem; font-weight: 700; line-height: 1.2; letter-spacing: -0.015em; color: var(--text-primary);
   }
-  .card-desc {
-    font-size: 14px;
-    color: var(--text-secondary);
-    line-height: 1.45;
-  }
+  .card-desc { font-size: 13.5px; color: var(--text-secondary); line-height: 1.45; }
   .card-spec-list {
-    list-style: none;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.4rem;
-    margin-top: 0.2rem;
+    list-style: none; display: flex; flex-wrap: wrap; gap: 0.35rem; margin-top: 0.2rem;
   }
   .card-spec-list li {
-    font-size: 12px;
-    font-family: var(--font-mono);
-    padding: 3px 8px;
-    background: var(--bg-subtle);
-    border-radius: 6px;
-    color: var(--text-primary);
+    font-size: 11px; font-family: var(--font-mono); padding: 3px 7px;
+    background: var(--bg-surface-elevated); border-radius: 4px; color: var(--text-primary);
   }
 
   .card-bottom {
-    padding-top: 1.2rem;
-    border-top: 1px solid var(--border-subtle);
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
+    padding-top: 1rem; border-top: 1px solid var(--border-subtle);
+    display: flex; flex-direction: column; gap: 0.8rem;
   }
   .card-price-row {
-    display: flex;
-    align-items: baseline;
-    justify-content: space-between;
+    display: flex; align-items: baseline; justify-content: space-between;
   }
-  .card-price-label {
-    font-size: 11px;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    color: var(--text-tertiary);
-  }
-  .card-price-val {
-    font-size: 1.35rem;
-    font-weight: 700;
-    letter-spacing: -0.02em;
-    color: var(--text-primary);
-  }
+  .card-price-label { font-size: 11px; text-transform: uppercase; color: var(--text-tertiary); }
+  .card-price-val { font-size: 1.25rem; font-weight: 700; color: var(--text-primary); }
   .card-actions {
-    display: grid;
-    grid-template-columns: 1fr auto;
-    gap: 0.5rem;
+    display: grid; grid-template-columns: 1fr auto; gap: 0.5rem;
   }
   .btn-card-wa {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.45rem;
-    font-size: 13px;
-    font-weight: 600;
-    padding: 9px 14px;
-    border-radius: var(--radius-pill);
-    background: #25d366;
-    color: #072615 !important;
-    transition: transform 0.15s, background 0.15s;
+    display: inline-flex; align-items: center; justify-content: center; gap: 0.45rem;
+    font-size: 13px; font-weight: 600; padding: 8px 14px; border-radius: var(--radius-pill);
+    background: #25d366; color: #072615 !important; transition: transform 0.15s, background 0.15s;
   }
-  .btn-card-wa:hover {
-    background: #1ebc57;
-    transform: scale(1.02);
-  }
+  .btn-card-wa:hover { background: #1ebc57; transform: scale(1.02); }
   .btn-card-wa svg { width: 15px; height: 15px; flex: none; }
   .btn-card-specs {
-    font-size: 13px;
-    font-weight: 500;
-    padding: 9px 14px;
-    border-radius: var(--radius-pill);
-    background: var(--bg-subtle);
-    color: var(--text-primary);
-    border: 1px solid transparent;
-    cursor: pointer;
-    transition: background 0.15s, border-color 0.15s;
+    font-size: 13px; font-weight: 500; padding: 8px 14px; border-radius: var(--radius-pill);
+    background: var(--bg-surface-elevated); color: var(--text-primary); border: 1px solid transparent;
+    cursor: pointer; transition: background 0.15s;
   }
-  .btn-card-specs:hover {
-    background: var(--border-strong);
-  }
+  .btn-card-specs:hover { background: var(--border-strong); }
 
   /* ==========================================================================
-     WHY SUPREME INFOSYS / HIGHLIGHTS (APPLE GRID)
+     WHY US & REVIEWS & VISIT
      ========================================================================== */
   .why-grid {
-    display: grid;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-    gap: 1.25rem;
+    display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1.25rem;
   }
   .why-card {
-    background: var(--bg-surface-elevated);
-    border: 1px solid var(--border-subtle);
-    border-radius: var(--radius-card);
-    padding: 1.8rem 1.5rem;
-    display: flex;
-    flex-direction: column;
-    gap: 0.9rem;
+    background: var(--bg-surface-elevated); border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-card); padding: 1.8rem 1.5rem; display: flex; flex-direction: column; gap: 0.9rem;
   }
   .why-icon {
-    width: 44px;
-    height: 44px;
-    border-radius: 12px;
-    background: var(--bg-subtle);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--apple-blue);
-    margin-bottom: 0.3rem;
+    width: 44px; height: 44px; border-radius: 12px; background: var(--bg-subtle);
+    display: flex; align-items: center; justify-content: center; color: var(--apple-blue); margin-bottom: 0.3rem;
   }
   .why-icon svg { width: 22px; height: 22px; }
-  .why-card h3 {
-    font-size: 1.15rem;
-    font-weight: 700;
-    letter-spacing: -0.01em;
-    color: var(--text-primary);
-  }
-  .why-card p {
-    font-size: 14px;
-    color: var(--text-secondary);
-    line-height: 1.48;
-  }
+  .why-card h3 { font-size: 1.15rem; font-weight: 700; color: var(--text-primary); }
+  .why-card p { font-size: 14px; color: var(--text-secondary); line-height: 1.48; }
 
-  /* ==========================================================================
-     CUSTOMER REVIEWS (APPLE QUOTE TILES)
-     ========================================================================== */
   .reviews-summary {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: baseline;
-    gap: 1rem 1.8rem;
-    margin-bottom: 2rem;
+    display: flex; flex-wrap: wrap; align-items: baseline; gap: 1rem 1.8rem; margin-bottom: 2rem;
   }
   .reviews-score {
-    font-size: clamp(3rem, 6vw, 4.2rem);
-    font-weight: 800;
-    letter-spacing: -0.03em;
-    color: var(--apple-gold);
-    line-height: 1;
+    font-size: clamp(3rem, 6vw, 4.2rem); font-weight: 800; color: var(--apple-gold); line-height: 1;
   }
-  .reviews-meta {
-    font-size: 14px;
-    color: var(--text-secondary);
-  }
-  .reviews-meta a {
-    color: var(--apple-blue);
-    font-weight: 500;
-    display: inline-block;
-    margin-top: 3px;
-  }
+  .reviews-meta { font-size: 14px; color: var(--text-secondary); }
+  .reviews-meta a { color: var(--apple-blue); font-weight: 500; display: inline-block; margin-top: 3px; }
   .reviews-meta a:hover { text-decoration: underline; }
   .quotes-grid {
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 1.25rem;
+    display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.25rem;
   }
   .quote-card {
-    background: var(--bg-surface-elevated);
-    border: 1px solid var(--border-subtle);
-    border-radius: var(--radius-card);
-    padding: 1.8rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    gap: 1.2rem;
+    background: var(--bg-surface-elevated); border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-card); padding: 1.8rem; display: flex; flex-direction: column; justify-content: space-between; gap: 1.2rem;
   }
-  .quote-card blockquote {
-    font-size: 16px;
-    line-height: 1.48;
-    color: var(--text-primary);
-    font-weight: 500;
-  }
-  .quote-author {
-    font-size: 13px;
-    color: var(--text-secondary);
-  }
-  .quote-author b {
-    display: block;
-    color: var(--text-primary);
-    font-weight: 600;
-    font-size: 14px;
-    margin-bottom: 2px;
-  }
+  .quote-card blockquote { font-size: 16px; line-height: 1.48; color: var(--text-primary); font-weight: 500; }
+  .quote-author { font-size: 13px; color: var(--text-secondary); }
+  .quote-author b { display: block; color: var(--text-primary); font-weight: 600; font-size: 14px; margin-bottom: 2px; }
 
-  /* ==========================================================================
-     STORE & HOURS PANEL (CLEAN & INTEGRATED)
-     ========================================================================== */
   .store-panel {
-    background: var(--bg-surface-elevated);
-    border: 1px solid var(--border-subtle);
-    border-radius: var(--radius-card);
-    padding: clamp(1.8rem, 4vw, 2.8rem);
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) minmax(0, 1.3fr);
-    gap: 2.5rem;
-    align-items: start;
+    background: var(--bg-surface-elevated); border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-card); padding: clamp(1.8rem, 4vw, 2.8rem); display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.3fr); gap: 2.5rem; align-items: start;
   }
   .store-info { display: flex; flex-direction: column; gap: 1.2rem; }
   .store-status-pill {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    font-size: 13px;
-    font-weight: 600;
-    padding: 6px 14px;
-    border-radius: var(--radius-pill);
-    background: var(--bg-subtle);
-    border: 1px solid var(--border-subtle);
+    display: inline-flex; align-items: center; gap: 0.5rem; font-size: 13px; font-weight: 600;
+    padding: 6px 14px; border-radius: var(--radius-pill); background: var(--bg-subtle); border: 1px solid var(--border-subtle);
     width: fit-content;
   }
-  .dot-status {
-    width: 9px; height: 9px; border-radius: 50%;
-  }
-  .dot-open {
-    background: #34d399;
-    box-shadow: 0 0 8px #34d399;
-  }
+  .dot-status { width: 9px; height: 9px; border-radius: 50%; }
+  .dot-open { background: #34d399; box-shadow: 0 0 8px #34d399; }
   .dot-closed { background: #f59e0b; }
-  .store-title {
-    font-size: clamp(1.8rem, 3.5vw, 2.4rem);
-    font-weight: 700;
-    letter-spacing: -0.025em;
-  }
-  .store-address {
-    font-style: normal;
-    font-size: 16px;
-    color: var(--text-secondary);
-    line-height: 1.5;
-  }
-  .store-phone-link {
-    font-size: clamp(1.5rem, 3vw, 2rem);
-    font-weight: 700;
-    color: var(--apple-blue);
-    letter-spacing: -0.01em;
-  }
+  .store-title { font-size: clamp(1.8rem, 3.5vw, 2.4rem); font-weight: 700; }
+  .store-address { font-style: normal; font-size: 16px; color: var(--text-secondary); line-height: 1.5; }
+  .store-phone-link { font-size: clamp(1.5rem, 3vw, 2rem); font-weight: 700; color: var(--apple-blue); }
   .store-phone-link:hover { text-decoration: underline; }
-  .store-actions {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.75rem;
-  }
+  .store-actions { display: flex; flex-wrap: wrap; gap: 0.75rem; }
 
   .map-card {
-    border-radius: 14px;
-    overflow: hidden;
-    border: 1px solid var(--border-subtle);
-    height: 100%;
-    min-height: 280px;
-    background: var(--bg-main);
+    border-radius: 14px; overflow: hidden; border: 1px solid var(--border-subtle);
+    height: 100%; min-height: 280px; background: var(--bg-main);
   }
-  .map-card iframe {
-    display: block;
-    width: 100%;
-    height: 100%;
-    min-height: 280px;
-    border: none;
-  }
+  .map-card iframe { display: block; width: 100%; height: 100%; min-height: 280px; border: none; }
 
-  /* ==========================================================================
-     APPLE-STYLE FOOTER
-     ========================================================================== */
   .apple-footer {
-    background: var(--bg-main);
-    border-top: 1px solid var(--border-subtle);
-    padding-block: 2.5rem;
-    font-size: 12px;
-    color: var(--text-tertiary);
+    background: var(--bg-main); border-top: 1px solid var(--border-subtle);
+    padding-block: 2.5rem; font-size: 12px; color: var(--text-tertiary);
   }
   .apple-footer__grid {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    align-items: center;
-    gap: 1rem;
-    margin-bottom: 1.2rem;
+    display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 1rem; margin-bottom: 1.2rem;
   }
-  .footer-fine {
-    line-height: 1.5;
-    border-top: 1px solid var(--border-subtle);
-    padding-top: 1.2rem;
-  }
+  .footer-fine { line-height: 1.5; border-top: 1px solid var(--border-subtle); padding-top: 1.2rem; }
 
-  /* ==========================================================================
-     SPECS MODAL (APPLE SHEET STYLE)
-     ========================================================================== */
+  /* modal sheet */
   .modal-backdrop {
-    position: fixed;
-    inset: 0;
-    z-index: 2000;
-    background: rgba(0, 0, 0, 0.7);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    display: none;
-    align-items: center;
-    justify-content: center;
-    padding: 1.5rem;
+    position: fixed; inset: 0; z-index: 2000;
+    background: rgba(0, 0, 0, 0.75); backdrop-filter: blur(12px);
+    display: none; align-items: center; justify-content: center; padding: 1.5rem;
   }
   .modal-backdrop.is-open { display: flex; }
   .modal-sheet {
-    background: var(--bg-surface);
-    border: 1px solid var(--border-strong);
-    border-radius: 20px;
-    max-width: 580px;
-    width: 100%;
-    max-height: 85vh;
-    overflow-y: auto;
-    padding: clamp(1.6rem, 4vw, 2.4rem);
-    position: relative;
-    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.6);
+    background: var(--bg-surface); border: 1px solid var(--border-strong);
+    border-radius: 20px; max-width: 580px; width: 100%; max-height: 85vh; overflow-y: auto;
+    padding: clamp(1.6rem, 4vw, 2.4rem); position: relative; box-shadow: 0 24px 60px rgba(0, 0, 0, 0.6);
   }
   .modal-sheet-close {
-    position: absolute;
-    right: 1.2rem; top: 1.2rem;
-    width: 32px; height: 32px;
-    border-radius: 50%;
-    border: none;
-    background: var(--bg-subtle);
-    color: var(--text-primary);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    transition: background 0.18s;
+    position: absolute; right: 1.2rem; top: 1.2rem; width: 32px; height: 32px; border-radius: 50%;
+    border: none; background: var(--bg-subtle); color: var(--text-primary); display: flex; align-items: center; justify-content: center;
+    cursor: pointer; transition: background 0.18s;
   }
   .modal-sheet-close:hover { background: var(--border-strong); }
-  .modal-spec-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin: 1.2rem 0 1.5rem;
-  }
-  .modal-spec-table tr {
-    border-bottom: 1px solid var(--border-subtle);
-  }
-  .modal-spec-table th,
-  .modal-spec-table td {
-    padding: 0.7rem 0.3rem;
-    font-size: 14px;
-    text-align: left;
-  }
-  .modal-spec-table th {
-    color: var(--text-tertiary);
-    font-weight: 500;
-    width: 36%;
-  }
-  .modal-spec-table td {
-    color: var(--text-primary);
-  }
-  .modal-sheet-notice {
-    font-size: 13px;
-    color: var(--text-secondary);
-    background: var(--bg-surface-elevated);
-    border-radius: 10px;
-    padding: 0.8rem 1rem;
-    margin-bottom: 1.4rem;
-    line-height: 1.45;
-  }
+  .modal-spec-table { width: 100%; border-collapse: collapse; margin: 1.2rem 0 1.5rem; }
+  .modal-spec-table tr { border-bottom: 1px solid var(--border-subtle); }
+  .modal-spec-table th, .modal-spec-table td { padding: 0.7rem 0.3rem; font-size: 14px; text-align: left; }
+  .modal-spec-table th { color: var(--text-tertiary); font-weight: 500; width: 36%; }
+  .modal-spec-table td { color: var(--text-primary); }
 
-  /* floating WhatsApp pill */
   .wa-float-apple {
-    position: fixed;
-    bottom: 24px;
-    right: 24px;
-    z-index: 800;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    background: #25d366;
-    color: #072615 !important;
-    font-size: 14px;
-    font-weight: 600;
-    padding: 11px 18px;
-    border-radius: var(--radius-pill);
-    box-shadow: 0 4px 20px rgba(0,0,0,0.35);
-    transition: transform 0.2s, box-shadow 0.2s;
+    position: fixed; bottom: 24px; right: 24px; z-index: 800;
+    display: flex; align-items: center; gap: 8px; background: #25d366; color: #072615 !important;
+    font-size: 14px; font-weight: 600; padding: 11px 18px; border-radius: var(--radius-pill);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.35); transition: transform 0.2s, box-shadow 0.2s;
   }
-  .wa-float-apple:hover {
-    transform: translateY(-2px) scale(1.02);
-    box-shadow: 0 6px 26px rgba(37, 211, 102, 0.4);
-  }
+  .wa-float-apple:hover { transform: translateY(-2px) scale(1.02); box-shadow: 0 6px 26px rgba(37, 211, 102, 0.4); }
   .wa-float-apple svg { width: 20px; height: 20px; }
 
   /* responsive */
   @media (max-width: 960px) {
-    .lineup-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .category-options-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     .why-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     .quotes-grid { grid-template-columns: minmax(0, 1fr); }
     .store-panel { grid-template-columns: minmax(0, 1fr); }
   }
   @media (max-width: 620px) {
+    .category-options-grid { grid-template-columns: minmax(0, 1fr); }
     .lineup-grid { grid-template-columns: minmax(0, 1fr); }
     .why-grid { grid-template-columns: minmax(0, 1fr); }
     .nav-links { display: none; }
@@ -915,7 +787,7 @@
 
       <nav aria-label="Main Navigation">
         <ul class="nav-links">
-          <li><a href="#lineup">Lineup</a></li>
+          <li><a href="#lineup">Stock Categories</a></li>
           <li><a href="#why">Why Us</a></li>
           <li><a href="#reviews">Reviews</a></li>
           <li><a href="#visit">Location</a></li>
@@ -933,7 +805,7 @@
   </header>
 
   <!-- ========================================================================
-       APPLE HERO SECTION
+       HERO SECTION
        ======================================================================== -->
   <section class="hero-apple" id="top">
     <div class="hero-apple__bg">
@@ -950,7 +822,7 @@
         
         <div class="hero-cta-group">
           <a class="apple-pill-btn apple-pill-btn--primary" href="#lineup">
-            Explore Lineup
+            View Categories
           </a>
           <a class="apple-pill-btn apple-pill-btn--whatsapp" href="https://wa.me/919872010193?text=Hi%20Lally%20Computers%2C%20I%20have%20an%20enquiry%20regarding%20laptops%2C%20accessories%20and%20repairs." target="_blank" rel="noopener">
             <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.301-.15-1.782-.879-2.058-.98-.276-.1-.476-.15-.677.15-.2.301-.777.98-.952 1.18-.175.201-.351.226-.652.076-.301-.15-1.27-.468-2.42-1.493-.894-.799-1.498-1.786-1.674-2.087-.175-.3-.019-.463.132-.612.136-.134.301-.351.451-.527.15-.175.2-.301.301-.501.1-.2.05-.376-.025-.526-.075-.15-.677-1.631-.928-2.233-.244-.585-.493-.506-.677-.515-.175-.009-.376-.011-.577-.011-.2 0-.526.075-.802.376-.276.301-1.053 1.028-1.053 2.508 0 1.48 1.078 2.91 1.228 3.111.15.2 2.122 3.24 5.141 4.544.718.31 1.279.496 1.716.635.722.23 1.379.197 1.898.12.579-.086 1.782-.728 2.033-1.431.251-.703.251-1.305.175-1.431-.075-.126-.276-.201-.577-.351zM12.04 2C6.516 2 2.023 6.49 2.023 12.013c0 1.942.555 3.756 1.517 5.292L2 22l4.834-1.503a10.007 10.007 0 0 0 5.206 1.516c5.524 0 10.017-4.49 10.017-10.013C22.057 6.49 17.564 2 12.04 2z"/></svg>
@@ -976,35 +848,31 @@
   <nav class="chapter-ribbon" aria-label="Lineup Categories">
     <div class="inner">
       <div class="chapter-ribbon__scroller" id="categoryScroller">
-        <button class="chap-item is-active" data-cat="all">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/></svg>
-          <span>All Stock</span>
-        </button>
-        <button class="chap-item" data-cat="laptops">
+        <button class="chap-item" onclick="openCategoryStock('laptops')">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M2 20h20"/></svg>
           <span>Laptops &amp; PCs</span>
         </button>
-        <button class="chap-item" data-cat="watches">
+        <button class="chap-item" onclick="openCategoryStock('watches')">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="6" y="7" width="12" height="10" rx="3"/><path d="M9 3h6v4H9zM9 17h6v4H9z"/></svg>
           <span>Apple Watches</span>
         </button>
-        <button class="chap-item" data-cat="audio">
+        <button class="chap-item" onclick="openCategoryStock('audio')">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="4" y="2" width="16" height="20" rx="3"/><circle cx="12" cy="14" r="4"/><circle cx="12" cy="6" r="1.5"/></svg>
           <span>Audio</span>
         </button>
-        <button class="chap-item" data-cat="power">
+        <button class="chap-item" onclick="openCategoryStock('power')">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
           <span>Power &amp; Chargers</span>
         </button>
-        <button class="chap-item" data-cat="bags">
+        <button class="chap-item" onclick="openCategoryStock('bags')">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="8" width="18" height="13" rx="2"/><path d="M8 8V5a4 4 0 0 1 8 0v3"/></svg>
           <span>Bags &amp; Sleeves</span>
         </button>
-        <button class="chap-item" data-cat="hardware">
+        <button class="chap-item" onclick="openCategoryStock('hardware')">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6"/><path d="M9 1v3M15 1v3M9 20v3M15 20v3M20 9h3M20 15h3M1 9h3M1 15h3"/></svg>
           <span>Hardware &amp; SSD</span>
         </button>
-        <button class="chap-item" data-cat="repairs">
+        <button class="chap-item" onclick="openCategoryStock('repairs')">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
           <span>Repair Services</span>
         </button>
@@ -1013,32 +881,153 @@
   </nav>
 
   <!-- ========================================================================
-       THE LINEUP (CATALOGUE SHOWCASE)
+       STOCK LINEUP (SEPARATE OPTIONS - CLOSED BY DEFAULT, OPENS ON CLICK)
        ======================================================================== -->
   <section class="apple-section" id="lineup">
     <div class="inner">
       <div class="section-intro">
-        <p class="section-eyebrow">Inventory Showcase</p>
+        <p class="section-eyebrow">In-Store Stock</p>
         <h2 class="section-headline">Explore the Lineup.</h2>
-        <p class="section-desc">Browse in-store laptop models, Apple Watches, hardware, and repair services available in our Sodhi Nagar showroom. Contact us on WhatsApp to check today's stock or reserve.</p>
+        <p class="section-desc">Click any category below to open and browse available models, hardware upgrades, and repair services. Everything stays clean and closed until you choose to open it.</p>
       </div>
 
-      <!-- Toolbar: Search & View Notice -->
-      <div class="lineup-toolbar">
-        <div class="lineup-search">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-          <input type="text" id="searchInput" placeholder="Search by model or spec (e.g. ThinkPad, Dell, M1, SSD, 16GB)..." aria-label="Search models">
+      <!-- SEPARATE CATEGORY OPTIONS (VISIBLE BY DEFAULT) -->
+      <div class="category-options-grid" id="categoryOptionsGrid">
+        <div class="cat-opt-card" onclick="openCategoryStock('laptops')">
+          <div class="cat-opt-top">
+            <div class="cat-opt-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M2 20h20"/></svg>
+            </div>
+            <h3>Laptops &amp; PCs</h3>
+            <p>Certified refurbished business laptops (ThinkPad, Dell Latitude), MacBook Air, HP Gaming, and custom PCs.</p>
+          </div>
+          <div class="cat-opt-actions">
+            <button class="btn-open-cat" type="button">Open Stock (5) &rarr;</button>
+            <a class="btn-quick-wa" href="https://wa.me/919872010193?text=Hi%20Lally%20Computers%2C%20what%20laptops%20do%20you%20have%20in%20stock%3F" target="_blank" rel="noopener" onclick="event.stopPropagation()">Inquire on WhatsApp</a>
+          </div>
         </div>
-        <div class="lineup-note">
-          <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" style="color:var(--apple-blue)"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
-          <span><b>View Only</b> &middot; In-store demo &amp; pickup in Sodhi Nagar, Moga</span>
+
+        <div class="cat-opt-card" onclick="openCategoryStock('watches')">
+          <div class="cat-opt-top">
+            <div class="cat-opt-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="6" y="7" width="12" height="10" rx="3"/><path d="M9 3h6v4H9zM9 17h6v4H9z"/></svg>
+            </div>
+            <h3>Apple Watches</h3>
+            <p>Smart wearables, Apple Watch Series 8/9, SE 2nd Gen, and Ultra 49mm Titanium with verified sensors.</p>
+          </div>
+          <div class="cat-opt-actions">
+            <button class="btn-open-cat" type="button">Open Stock (3) &rarr;</button>
+            <a class="btn-quick-wa" href="https://wa.me/919872010193?text=Hi%20Lally%20Computers%2C%20what%20Apple%20Watch%20models%20are%20available%3F" target="_blank" rel="noopener" onclick="event.stopPropagation()">Inquire on WhatsApp</a>
+          </div>
+        </div>
+
+        <div class="cat-opt-card" onclick="openCategoryStock('audio')">
+          <div class="cat-opt-top">
+            <div class="cat-opt-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="4" y="2" width="16" height="20" rx="3"/><circle cx="12" cy="14" r="4"/><circle cx="12" cy="6" r="1.5"/></svg>
+            </div>
+            <h3>Bluetooth Audio</h3>
+            <p>Waterproof portable audio, JBL Flip 6 / Charge 5, and boAt Stone wireless speakers with punchy bass.</p>
+          </div>
+          <div class="cat-opt-actions">
+            <button class="btn-open-cat" type="button">Open Stock (2) &rarr;</button>
+            <a class="btn-quick-wa" href="https://wa.me/919872010193?text=Hi%20Lally%20Computers%2C%20what%20speakers%20are%20in%20stock%3F" target="_blank" rel="noopener" onclick="event.stopPropagation()">Inquire on WhatsApp</a>
+          </div>
+        </div>
+
+        <div class="cat-opt-card" onclick="openCategoryStock('power')">
+          <div class="cat-opt-top">
+            <div class="cat-opt-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+            </div>
+            <h3>Power &amp; Chargers</h3>
+            <p>Universal 65W GaN Type-C adapters, original replacement laptop batteries, and Apple MagSafe chargers.</p>
+          </div>
+          <div class="cat-opt-actions">
+            <button class="btn-open-cat" type="button">Open Stock (3) &rarr;</button>
+            <a class="btn-quick-wa" href="https://wa.me/919872010193?text=Hi%20Lally%20Computers%2C%20I%20need%20a%20charger%20or%20battery." target="_blank" rel="noopener" onclick="event.stopPropagation()">Inquire on WhatsApp</a>
+          </div>
+        </div>
+
+        <div class="cat-opt-card" onclick="openCategoryStock('bags')">
+          <div class="cat-opt-top">
+            <div class="cat-opt-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="8" width="18" height="13" rx="2"/><path d="M8 8V5a4 4 0 0 1 8 0v3"/></svg>
+            </div>
+            <h3>Bags &amp; Sleeves</h3>
+            <p>Water-repellent shockproof backpacks and plush padded neoprene sleeves for 13" through 16" laptops.</p>
+          </div>
+          <div class="cat-opt-actions">
+            <button class="btn-open-cat" type="button">Open Stock (2) &rarr;</button>
+            <a class="btn-quick-wa" href="https://wa.me/919872010193?text=Hi%20Lally%20Computers%2C%20what%20laptop%20bags%20are%20available%3F" target="_blank" rel="noopener" onclick="event.stopPropagation()">Inquire on WhatsApp</a>
+          </div>
+        </div>
+
+        <div class="cat-opt-card" onclick="openCategoryStock('hardware')">
+          <div class="cat-opt-top">
+            <div class="cat-opt-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6"/><path d="M9 1v3M15 1v3M9 20v3M15 20v3M20 9h3M20 15h3M1 9h3M1 15h3"/></svg>
+            </div>
+            <h3>Hardware &amp; SSD</h3>
+            <p>High-speed NVMe/SATA SSD upgrades with free fitting, Crucial DDR4/DDR5 RAM, and wireless peripherals.</p>
+          </div>
+          <div class="cat-opt-actions">
+            <button class="btn-open-cat" type="button">Open Stock (2) &rarr;</button>
+            <a class="btn-quick-wa" href="https://wa.me/919872010193?text=Hi%20Lally%20Computers%2C%20I%20am%20looking%20for%20SSD%20or%20RAM%20upgrade." target="_blank" rel="noopener" onclick="event.stopPropagation()">Inquire on WhatsApp</a>
+          </div>
+        </div>
+
+        <div class="cat-opt-card" style="grid-column: span 3;" onclick="openCategoryStock('repairs')">
+          <div class="cat-opt-top">
+            <div class="cat-opt-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+            </div>
+            <h3>Chip-Level Laptop Repair Services</h3>
+            <p>Specialized repair lab in Sodhi Nagar: No display, motherboard short circuits, liquid spill repair, same-day screen swaps, and thermal overhaul.</p>
+          </div>
+          <div class="cat-opt-actions">
+            <button class="btn-open-cat" type="button">View Repair Services (3) &rarr;</button>
+            <a class="btn-quick-wa" href="https://wa.me/919872010193?text=Hi%20Lally%20Computers%2C%20I%20need%20a%20repair%20quote%20for%20my%20laptop." target="_blank" rel="noopener" onclick="event.stopPropagation()">Book Repair on WhatsApp</a>
+          </div>
         </div>
       </div>
 
-      <!-- Cards Grid -->
-      <div class="lineup-grid" id="lineupGrid">
-        <!-- Rendered dynamically via JavaScript -->
+      <!-- ACTIVE STOCK SHOWCASE (EXPANDS ONLY WHEN A USER CLICKS) -->
+      <div class="stock-active-view" id="stockActiveView">
+        <div class="stock-active-bar">
+          <div class="stock-active-title">
+            <h3 id="activeStockTitle">Laptops &amp; PCs</h3>
+            <p>In-store stock &middot; Click "Inquire on WhatsApp" to check live availability or reserve.</p>
+          </div>
+          <button class="btn-close-stock" type="button" onclick="closeCategoryStock()">
+            &times; Close Stock View
+          </button>
+        </div>
+
+        <!-- Controls: Category Switcher & Search inside active view -->
+        <div class="stock-controls">
+          <div class="stock-cat-pills">
+            <button class="stock-pill is-active" data-cat="laptops" onclick="switchActiveCategory('laptops')">Laptops</button>
+            <button class="stock-pill" data-cat="watches" onclick="switchActiveCategory('watches')">Apple Watches</button>
+            <button class="stock-pill" data-cat="audio" onclick="switchActiveCategory('audio')">Audio</button>
+            <button class="stock-pill" data-cat="power" onclick="switchActiveCategory('power')">Power</button>
+            <button class="stock-pill" data-cat="bags" onclick="switchActiveCategory('bags')">Bags</button>
+            <button class="stock-pill" data-cat="hardware" onclick="switchActiveCategory('hardware')">Hardware</button>
+            <button class="stock-pill" data-cat="repairs" onclick="switchActiveCategory('repairs')">Repairs</button>
+          </div>
+
+          <div class="stock-search-wrap">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+            <input type="text" id="activeSearchInput" placeholder="Filter this category..." aria-label="Filter models">
+          </div>
+        </div>
+
+        <!-- Cards Grid -->
+        <div class="lineup-grid" id="lineupGrid">
+          <!-- Rendered on demand -->
+        </div>
       </div>
+
     </div>
   </section>
 
@@ -1213,10 +1202,6 @@
         <tbody></tbody>
       </table>
 
-      <div class="modal-sheet-notice">
-        <b>Store Notice:</b> Items listed are available in our Sodhi Nagar store. Contact us on WhatsApp to verify today's stock, get exact pricing, or reserve your unit.
-      </div>
-
       <div style="display:flex; flex-wrap:wrap; gap:0.75rem;">
         <a class="apple-pill-btn apple-pill-btn--whatsapp" id="modalWaBtn" href="#" target="_blank" rel="noopener">
           <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M17.472 14.382c-.301-.15-1.782-.879-2.058-.98-.276-.1-.476-.15-.677.15-.2.301-.777.98-.952 1.18-.175.201-.351.226-.652.076-.301-.15-1.27-.468-2.42-1.493-.894-.799-1.498-1.786-1.674-2.087-.175-.3-.019-.463.132-.612.136-.134.301-.351.451-.527.15-.175.2-.301.301-.501.1-.2.05-.376-.025-.526-.075-.15-.677-1.631-.928-2.233-.244-.585-.493-.506-.677-.515-.175-.009-.376-.011-.577-.011-.2 0-.526.075-.802.376-.276.301-1.053 1.028-1.053 2.508 0 1.48 1.078 2.91 1.228 3.111.15.2 2.122 3.24 5.141 4.544.718.31 1.279.496 1.716.635.722.23 1.379.197 1.898.12.579-.086 1.782-.728 2.033-1.431.251-.703.251-1.305.175-1.431-.075-.126-.276-.201-.577-.351zM12.04 2C6.516 2 2.023 6.49 2.023 12.013c0 1.942.555 3.756 1.517 5.292L2 22l4.834-1.503a10.007 10.007 0 0 0 5.206 1.516c5.524 0 10.017-4.49 10.017-10.013C22.057 6.49 17.564 2 12.04 2z"/></svg>
@@ -1236,7 +1221,7 @@
   </a>
 
   <!-- ========================================================================
-       DATA & JAVASCRIPT
+       DATA & JAVASCRIPT (SEPARATE ON-DEMAND OPENING)
        ======================================================================== -->
   <script>
   var LINEUP_ITEMS = [
@@ -1257,7 +1242,6 @@
         "Storage": "512 GB M.2 NVMe High-Speed Solid State Drive",
         "Display": "14.0\" Full HD (1920x1080) Anti-Glare IPS Display",
         "Operating System": "Windows 11 Pro Genuine Activated",
-        "Ports": "Thunderbolt 3, USB-C, 2x USB 3.0, HDMI, Ethernet, SD Card",
         "Condition": "Grade A++ Tested, Original 65W Fast Charger Included"
       }
     },
@@ -1277,7 +1261,6 @@
         "RAM": "16 GB DDR4 Memory",
         "Storage": "256GB or 512GB Ultra-Fast SSD",
         "Display": "14.0\" FHD (1920x1080) Anti-Glare LED",
-        "Features": "Backlit Keyboard, HD Webcam, Precision Touchpad",
         "Condition": "Corporate Lease Return, 100% Hardware Health Verified"
       }
     },
@@ -1296,7 +1279,6 @@
         "Chip": "Apple M1 / M2 with 8-Core CPU and up to 10-Core GPU",
         "Memory": "8GB or 16GB Unified Memory",
         "Display": "13.3-inch Retina Display with True Tone and P3 Wide Color",
-        "Security": "Touch ID Sensor & Apple Magic Keyboard",
         "Status": "Brand New Sealed and Certified Pre-owned Available"
       }
     },
@@ -1315,7 +1297,6 @@
         "Processor": "AMD Ryzen 5 5600H or Intel Core i5 12th Gen",
         "Graphics": "NVIDIA GeForce RTX 3050 (4GB GDDR6 Dedicated)",
         "Display": "15.6\" FHD (1920x1080) 144Hz Micro-edge IPS",
-        "Cooling": "Dual-fan thermal cooling design with wide exhaust vents",
         "Warranty": "1 Year Official HP Brand Warranty with Tax Invoice"
       }
     },
@@ -1332,7 +1313,6 @@
       details: {
         "Customization": "Configured to your exact workflow, budget, and software requirements",
         "Components": "100% Brand New Motherboards, CPUs, Cabinets, and Gold PSUs",
-        "Brands": "Intel, AMD, Asus, Gigabyte, MSI, Crucial, Corsair",
         "Assembly": "Free assembly, cable management, stress testing, and OS setup included"
       }
     },
@@ -1350,8 +1330,7 @@
       details: {
         "Model": "Apple Watch Series 8 / Series 9 (Midnight / Starlight / Silver)",
         "Display": "Always-On Retina LTPO OLED display with up to 2000 nits brightness",
-        "Health": "Temperature sensor, ECG app, Blood Oxygen monitoring, High/Low heart alerts",
-        "Condition": "Available in Mint Pre-owned and Open Box with Magnetic Fast Charger"
+        "Health": "Temperature sensor, ECG app, Blood Oxygen monitoring, High/Low heart alerts"
       }
     },
     {
@@ -1366,8 +1345,7 @@
       price: "From ₹18,999",
       details: {
         "Model": "Apple Watch SE 2nd Generation",
-        "Features": "Activity tracking rings, Workout app, Sleep stages, Fall detection",
-        "Condition": "Brand New Sealed Box and Pristine Pre-owned Available"
+        "Features": "Activity tracking rings, Workout app, Sleep stages, Fall detection"
       }
     },
     {
@@ -1382,8 +1360,7 @@
       price: "Inquire Availability",
       details: {
         "Model": "Apple Watch Ultra (49mm Titanium)",
-        "Durability": "MIL-STD 810H military certified, 100m water resistance with depth gauge",
-        "Battery": "Up to 36 hours normal use or 60 hours in Low Power Mode"
+        "Durability": "MIL-STD 810H military certified, 100m water resistance with depth gauge"
       }
     },
     // --- AUDIO ---
@@ -1399,7 +1376,6 @@
       price: "Best Price on Request",
       details: {
         "Brand": "JBL by Harman",
-        "Audio": "Separate high-output woofer and dedicated tweeter for crystal clarity",
         "Battery": "12 hours (Flip 6) / 20 hours with powerbank function (Charge 5)"
       }
     },
@@ -1415,8 +1391,7 @@
       price: "From ₹1,299",
       details: {
         "Brand": "boAt Lifestyle",
-        "Connectivity": "Bluetooth 5.0, AUX line-in, and MicroSD support",
-        "Warranty": "1 Year National Warranty"
+        "Connectivity": "Bluetooth 5.0, AUX line-in, and MicroSD support"
       }
     },
     // --- POWER ---
@@ -1446,8 +1421,7 @@
       warranty: "6 - 12 Mos Warranty",
       price: "From ₹1,750",
       details: {
-        "Testing": "Each battery is benchmarked for thermal safety and charge retention",
-        "Installation": "Free fitting and health report in our Sodhi Nagar store"
+        "Testing": "Each battery is benchmarked for thermal safety and charge retention"
       }
     },
     {
@@ -1461,8 +1435,7 @@
       warranty: "Store Warranty",
       price: "From ₹1,800",
       details: {
-        "Types": "MagSafe 1 (L-tip), MagSafe 2 (T-tip), and MagSafe 3 braided cable",
-        "Supported": "MacBook Air & MacBook Pro models (2012 to M3 series)"
+        "Types": "MagSafe 1 (L-tip), MagSafe 2 (T-tip), and MagSafe 3 braided cable"
       }
     },
     // --- BAGS ---
@@ -1477,8 +1450,7 @@
       warranty: "Durable Quality",
       price: "From ₹899",
       details: {
-        "Padding": "High-density shock absorbing foam pocket for up to 16\" laptops",
-        "Features": "Luggage strap, hidden security pocket, external USB port"
+        "Padding": "High-density shock absorbing foam pocket for up to 16\" laptops"
       }
     },
     {
@@ -1492,8 +1464,7 @@
       warranty: "In Store",
       price: "From ₹450",
       details: {
-        "Lining": "Scratch-resistant velvet fleece interior to protect aluminium finish",
-        "Sizes": "Available for 13-inch, 14-inch, and 15.6-inch ultrabooks"
+        "Lining": "Scratch-resistant velvet fleece interior to protect aluminium finish"
       }
     },
     // --- HARDWARE ---
@@ -1509,8 +1480,7 @@
       price: "From ₹1,650 (Fitted)",
       details: {
         "Brands": "Crucial, Western Digital, Kingston, Samsung",
-        "Performance": "Boots Windows in under 8 seconds. 10x faster than traditional hard drives",
-        "Free Service": "Free laptop interior dust cleanup and OS install included"
+        "Performance": "Boots Windows in under 8 seconds. 10x faster than traditional hard drives"
       }
     },
     {
@@ -1524,8 +1494,7 @@
       warranty: "Lifetime / 3 Yr Warranty",
       price: "From ₹1,350",
       details: {
-        "Types": "SODIMM for laptops and UDIMM for desktop motherboards",
-        "Testing": "Tested on-the-spot with memory diagnostic tools for 100% stability"
+        "Types": "SODIMM for laptops and UDIMM for desktop motherboards"
       }
     },
     // --- REPAIRS ---
@@ -1540,8 +1509,7 @@
       warranty: "Service Warranty Included",
       price: "Quote after Free Inspection",
       details: {
-        "Equipment": "High-magnification stereo microscopes and programmable DC power analyzers",
-        "Policy": "No charges if laptop cannot be revived. Full quote before work begins."
+        "Equipment": "High-magnification stereo microscopes and programmable DC power analyzers"
       }
     },
     {
@@ -1555,8 +1523,7 @@
       warranty: "6 Mos Screen Warranty",
       price: "Quote by Model",
       details: {
-        "Panels": "Slim 30-pin and 40-pin EDP IPS LED displays for Dell, HP, Lenovo, Asus, Apple",
-        "Turnaround": "In-stock screen panels replaced in 1 to 2 hours in store"
+        "Panels": "Slim 30-pin and 40-pin EDP IPS LED displays for Dell, HP, Lenovo, Asus, Apple"
       }
     },
     {
@@ -1570,21 +1537,110 @@
       warranty: "Noticeable Performance Gain",
       price: "From ₹450",
       details: {
-        "Results": "Lowers CPU/GPU operating temperatures by 15°C to 25°C, stopping throttling",
-        "Paste": "High-conductivity Arctic MX-4 / Cooler Master paste used"
+        "Results": "Lowers CPU/GPU operating temperatures by 15°C to 25°C, stopping throttling"
       }
     }
   ];
 
-  var activeCategory = 'all';
+  var activeCategory = 'laptops';
   var searchFilter = '';
+
+  var titlesMap = {
+    laptops: "Laptops & PCs Stock",
+    watches: "Apple Watches Stock",
+    audio: "Bluetooth Audio Stock",
+    power: "Chargers & Batteries Stock",
+    bags: "Bags & Sleeves Stock",
+    hardware: "Hardware & SSD Upgrades Stock",
+    repairs: "Repair Services & Rates"
+  };
+
+  /* OPEN ON CLICK */
+  function openCategoryStock(cat) {
+    activeCategory = cat || 'laptops';
+    var activeView = document.getElementById('stockActiveView');
+    var optionsGrid = document.getElementById('categoryOptionsGrid');
+    if (!activeView || !optionsGrid) return;
+
+    optionsGrid.style.display = 'none';
+    activeView.classList.add('is-open');
+
+    // Update title
+    document.getElementById('activeStockTitle').textContent = titlesMap[activeCategory] || "Store Stock";
+
+    // Update pill buttons
+    var pills = document.querySelectorAll('.stock-pill');
+    pills.forEach(function (p) {
+      if (p.getAttribute('data-cat') === activeCategory) {
+        p.classList.add('is-active');
+      } else {
+        p.classList.remove('is-active');
+      }
+    });
+
+    // Update ribbon active state
+    var chapItems = document.querySelectorAll('.chap-item');
+    chapItems.forEach(function (c) {
+      if (c.getAttribute('onclick') && c.getAttribute('onclick').indexOf(activeCategory) !== -1) {
+        c.classList.add('is-active');
+      } else {
+        c.classList.remove('is-active');
+      }
+    });
+
+    renderLineup();
+
+    // Smooth scroll to active view
+    var lineupSec = document.getElementById('lineup');
+    if (lineupSec) {
+      lineupSec.scrollIntoView({ behavior: 'smooth' });
+    }
+  }
+
+  /* CLOSE AND RESTORE NORMAL OPTIONS */
+  function closeCategoryStock() {
+    var activeView = document.getElementById('stockActiveView');
+    var optionsGrid = document.getElementById('categoryOptionsGrid');
+    if (!activeView || !optionsGrid) return;
+
+    activeView.classList.remove('is-open');
+    optionsGrid.style.display = 'grid';
+
+    // Clear ribbon active state
+    var chapItems = document.querySelectorAll('.chap-item');
+    chapItems.forEach(function (c) {
+      c.classList.remove('is-active');
+    });
+
+    // Clear search
+    searchFilter = '';
+    var search = document.getElementById('activeSearchInput');
+    if (search) search.value = '';
+  }
+
+  /* SWITCH CATEGORY INSIDE ACTIVE VIEW */
+  function switchActiveCategory(cat) {
+    activeCategory = cat;
+    document.getElementById('activeStockTitle').textContent = titlesMap[activeCategory] || "Store Stock";
+
+    var pills = document.querySelectorAll('.stock-pill');
+    pills.forEach(function (p) {
+      if (p.getAttribute('data-cat') === cat) {
+        p.classList.add('is-active');
+      } else {
+        p.classList.remove('is-active');
+      }
+    });
+
+    renderLineup();
+  }
 
   function renderLineup() {
     var grid = document.getElementById('lineupGrid');
     if (!grid) return;
 
     var filtered = LINEUP_ITEMS.filter(function (item) {
-      if (activeCategory !== 'all' && item.category !== activeCategory) return false;
+      if (item.category !== activeCategory) return false;
       if (!searchFilter) return true;
       var q = searchFilter.toLowerCase();
       var inTitle = item.title.toLowerCase().indexOf(q) !== -1;
@@ -1594,17 +1650,16 @@
     });
 
     if (filtered.length === 0) {
-      grid.innerHTML = '<div style="grid-column:1/-1; text-align:center; padding:3.5rem 1rem; background:var(--bg-surface-elevated); border:1px dashed var(--border-subtle); border-radius:18px;">' +
-        '<h3 style="font-size:1.4rem; margin-bottom:0.4rem;">No matching models</h3>' +
-        '<p style="color:var(--text-secondary); margin-bottom:1.2rem;">Try another keyword or select All Stock above.</p>' +
-        '<button class="apple-pill-btn apple-pill-btn--primary" onclick="setCategory(\'all\')">View All Stock</button>' +
+      grid.innerHTML = '<div style="grid-column:1/-1; text-align:center; padding:2.5rem 1rem;">' +
+        '<p style="color:var(--text-secondary); margin-bottom:0.8rem;">No matching models found in this category.</p>' +
+        '<button class="apple-pill-btn apple-pill-btn--primary" onclick="searchFilter=\'\'; document.getElementById(\'activeSearchInput\').value=\'\'; renderLineup();">Clear Search</button>' +
         '</div>';
       return;
     }
 
     var html = '';
     filtered.forEach(function (item) {
-      var waMsg = encodeURIComponent('Hi Lally Computers, I saw the "' + item.title + '" on your website. Is this currently available in your Sodhi Nagar store and what is today\'s best price?');
+      var waMsg = encodeURIComponent('Hi Lally Computers, I saw the "' + item.title + '" on your website stock list. Is this available in your Sodhi Nagar store and what is today\'s best price?');
       var waUrl = 'https://wa.me/919872010193?text=' + waMsg;
 
       var specTags = item.specs.map(function(s) {
@@ -1638,20 +1693,6 @@
     });
 
     grid.innerHTML = html;
-  }
-
-  function setCategory(cat) {
-    activeCategory = cat;
-    var btns = document.querySelectorAll('.chap-item');
-    btns.forEach(function (b) {
-      if (b.getAttribute('data-cat') === cat) {
-        b.classList.add('is-active');
-        b.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
-      } else {
-        b.classList.remove('is-active');
-      }
-    });
-    renderLineup();
   }
 
   function openSpecSheet(id) {
@@ -1688,19 +1729,8 @@
 
   /* Page setup */
   document.addEventListener('DOMContentLoaded', function () {
-    renderLineup();
-
-    // Chapter scroller clicks
-    var chapButtons = document.querySelectorAll('.chap-item');
-    chapButtons.forEach(function (btn) {
-      btn.addEventListener('click', function () {
-        var cat = this.getAttribute('data-cat');
-        setCategory(cat);
-      });
-    });
-
-    // Search bar
-    var search = document.getElementById('searchInput');
+    // Search input inside active view
+    var search = document.getElementById('activeSearchInput');
     if (search) {
       search.addEventListener('input', function (e) {
         searchFilter = e.target.value.trim();
