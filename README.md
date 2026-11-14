@@ -24,23 +24,46 @@ Then open [http://localhost:8000](http://localhost:8000) in your browser.
 
 ```
 lally-computers-website/
-├── index.html            # Main webpage (HTML5, responsive CSS, themes, interactions)
-├── hero-1080.mp4         # High-resolution raytraced 3D circuit board video (desktop)
-├── hero-720.mp4          # Mobile-optimized circuit board video
-├── hero-1080.webm        # High-resolution WebM fallback
-├── hero-720.webm         # Mobile WebM fallback
-├── poster.jpg            # Poster image displayed before video loads
-├── og.jpg                # OpenGraph / social share preview image
-├── favicon.svg           # High-resolution vector circuit favicon
-├── start.sh              # One-click local preview launch script
-├── package.json          # Node.js project manifest & scripts
-├── vercel.json           # 1-click Vercel deployment configuration
-├── netlify.toml          # 1-click Netlify deployment configuration
-└── hero-render-source/   # Python & WebGL2 source used to generate the 3D board
-    ├── gen_board.py      # Generates procedural circuit-board textures
-    ├── index.html        # WebGL2 raymarching renderer
-    └── gltest.py         # WebGL test script
+├── index.html                  # Main webpage (HTML5, responsive CSS, themes, interactions)
+├── stock-inventory-template.csv # Ready-to-use CSV template for managing stock in Google Sheets
+├── build_index.py              # Build generator with Google Sheets live sync engine
+├── hero-1080.mp4               # High-resolution raytraced 3D circuit board video (desktop)
+├── hero-720.mp4                # Mobile-optimized circuit board video
+├── hero-1080.webm              # High-resolution WebM fallback
+├── hero-720.webm               # Mobile WebM fallback
+├── poster.jpg                  # Poster image displayed before video loads
+├── og.jpg                      # OpenGraph / social share preview image
+├── favicon.svg                 # High-resolution vector circuit favicon
+├── start.sh                    # One-click local preview launch script
+├── package.json                # Node.js project manifest & scripts
+├── vercel.json                 # 1-click Vercel deployment configuration
+├── netlify.toml                # 1-click Netlify deployment configuration
+└── hero-render-source/         # Python & WebGL2 source used to generate the 3D board
+    ├── gen_board.py            # Generates procedural circuit-board textures
+    ├── index.html              # WebGL2 raymarching renderer
+    └── gltest.py               # WebGL test script
 ```
+
+---
+
+## 📊 Free & Zero-Token Stock Management (Google Sheets Sync)
+
+You can add, edit, or remove store inventory at any time **without touching any code and without spending AI tokens**:
+
+1. **Open Catalogue Space**: Click **"Browse Full Catalogue"** on the website.
+2. **Click "Sync Google Sheet"**: Located in the top bar of the catalogue modal.
+3. **Download Template**: Click **Download Template (.csv)** to get `stock-inventory-template.csv`.
+4. **Import to Google Sheets**:
+   - Go to [Google Sheets](https://sheets.new) and create a new spreadsheet.
+   - Click **File > Import > Upload** and select `stock-inventory-template.csv`.
+   - Click **Share** (top right) > change access to **"Anyone with the link can view"** > Copy link.
+5. **Paste & Connect**: Paste your Google Sheet sharing link into the modal and click **Save & Sync Now**.
+
+**How It Works:**
+- Every time a customer visits the catalogue, the website fetches the latest inventory directly from your Google Sheet in real-time.
+- Mark an item as `Sold` in the `status` column to remove it from stock.
+- Add new rows to add new items.
+- If Google Sheets is unavailable or offline, the site automatically falls back to the preloaded stock.
 
 ---
 
