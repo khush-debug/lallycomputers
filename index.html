@@ -15,6 +15,18 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
   
+  <script>
+    // Immediate Theme Initialization
+    try {
+      var saved = localStorage.getItem('lally_apple_theme');
+      if (saved) {
+        document.documentElement.setAttribute('data-theme', saved);
+      } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) {
+        document.documentElement.setAttribute('data-theme', 'light');
+      }
+    } catch(e) {}
+  </script>
+
   <style>
   /* ==========================================================================
      APPLE-INSPIRED DESIGN SYSTEM & VARIABLES
@@ -427,6 +439,7 @@
     flex-direction: column;
     justify-content: space-between;
     gap: 1.2rem;
+    cursor: pointer;
     transition: transform 0.22s, border-color 0.22s, box-shadow 0.22s;
   }
   .cat-opt-card:hover {
@@ -523,7 +536,7 @@
     background: var(--bg-surface);
     border-top: 1px solid var(--border-subtle);
     border-bottom: 1px solid var(--border-subtle);
-    padding-block: 2rem 4rem;
+    padding-block: 2.5rem 4rem;
     animation: fadeIn 0.25s ease-out;
   }
   .catalogue-space.is-open { display: block; }
@@ -1030,7 +1043,7 @@
         <button class="nav-cat-space-btn" type="button" onclick="openCatalogueSpace('laptops_used')">
           <span>Explore Stock &rarr;</span>
         </button>
-        <button id="themeToggle" class="theme-toggle-btn" type="button" aria-label="Toggle dark/light mode">
+        <button id="themeToggle" class="theme-toggle-btn" type="button" onclick="toggleSiteTheme()" aria-label="Toggle dark/light mode">
           <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
           <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
         </button>
@@ -1082,51 +1095,51 @@
   <nav class="chapter-ribbon" aria-label="Lineup Categories">
     <div class="inner">
       <div class="chapter-ribbon__scroller" id="categoryScroller">
-        <button class="chap-item" onclick="openCatalogueSpace('laptops_used')">
+        <button class="chap-item" data-chap-id="laptops_used" onclick="openCatalogueSpace('laptops_used')">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M2 20h20"/><circle cx="12" cy="10" r="2.5"/><path d="M12 7.5v-1M12 13.5v-1"/></svg>
           <span>Pre-Owned Laptops</span>
         </button>
-        <button class="chap-item" onclick="openCatalogueSpace('laptops_new')">
+        <button class="chap-item" data-chap-id="laptops_new" onclick="openCatalogueSpace('laptops_new')">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M2 20h20"/><path d="M8 12l2.5 2.5 5.5-5.5"/></svg>
           <span>Brand New Laptops</span>
         </button>
-        <button class="chap-item" onclick="openCatalogueSpace('pc')">
+        <button class="chap-item" data-chap-id="pc" onclick="openCatalogueSpace('pc')">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="4" y="2" width="16" height="20" rx="2"/><line x1="8" y1="6" x2="8.01" y2="6"/><line x1="8" y1="10" x2="8.01" y2="10"/><path d="M8 18h8"/></svg>
           <span>Custom PCs & Workstations</span>
         </button>
-        <button class="chap-item" onclick="openCatalogueSpace('pc_components')">
+        <button class="chap-item" data-chap-id="pc_components" onclick="openCatalogueSpace('pc_components')">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6"/><path d="M9 1v3M15 1v3M9 20v3M15 20v3M20 9h3M20 15h3M1 9h3M1 15h3"/></svg>
           <span>PC Building Materials</span>
         </button>
-        <button class="chap-item" onclick="openCatalogueSpace('pc_peripherals')">
+        <button class="chap-item" data-chap-id="pc_peripherals" onclick="openCatalogueSpace('pc_peripherals')">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="6" y1="12" x2="6.01" y2="12"/><line x1="10" y1="12" x2="10.01" y2="12"/><line x1="14" y1="12" x2="14.01" y2="12"/><line x1="18" y1="12" x2="18.01" y2="12"/></svg>
           <span>PC Equipments & Peripherals</span>
         </button>
-        <button class="chap-item" onclick="openCatalogueSpace('monitors')">
+        <button class="chap-item" data-chap-id="monitors" onclick="openCatalogueSpace('monitors')">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
           <span>Monitors, LEDs & LCDs</span>
         </button>
-        <button class="chap-item" onclick="openCatalogueSpace('watches')">
+        <button class="chap-item" data-chap-id="watches" onclick="openCatalogueSpace('watches')">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="6" y="7" width="12" height="10" rx="3"/><path d="M9 3h6v4H9zM9 17h6v4H9z"/><circle cx="12" cy="12" r="2"/></svg>
           <span>Watches (Smart & Classic)</span>
         </button>
-        <button class="chap-item" onclick="openCatalogueSpace('gadgets')">
+        <button class="chap-item" data-chap-id="gadgets" onclick="openCatalogueSpace('gadgets')">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="4" y="2" width="16" height="20" rx="3"/><circle cx="12" cy="14" r="4"/><circle cx="12" cy="6" r="1.5"/></svg>
           <span>Gadgets & Audio</span>
         </button>
-        <button class="chap-item" onclick="openCatalogueSpace('gym')">
+        <button class="chap-item" data-chap-id="gym" onclick="openCatalogueSpace('gym')">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 5v14M18 5v14M2 9v6M22 9v6M6 12h12"/></svg>
           <span>Gym & Fitness Equipment</span>
         </button>
-        <button class="chap-item" onclick="openCatalogueSpace('suitcases')">
+        <button class="chap-item" data-chap-id="suitcases" onclick="openCatalogueSpace('suitcases')">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="5" y="7" width="14" height="14" rx="2"/><path d="M9 7V4a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v3M8 21v1M16 21v1"/></svg>
           <span>Travel Suitcases & Luggage</span>
         </button>
-        <button class="chap-item" onclick="openCatalogueSpace('appliances')">
+        <button class="chap-item" data-chap-id="appliances" onclick="openCatalogueSpace('appliances')">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="4" y="2" width="16" height="20" rx="2"/><circle cx="12" cy="13" r="5"/><circle cx="12" cy="13" r="2"/><line x1="8" y1="5" x2="10" y2="5"/></svg>
           <span>Washing Machines</span>
         </button>
-        <button class="chap-item" onclick="openCatalogueSpace('repairs')">
+        <button class="chap-item" data-chap-id="repairs" onclick="openCatalogueSpace('repairs')">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
           <span>Chip-Level Repair Lab</span>
         </button>
@@ -1292,7 +1305,7 @@
 
       <!-- 12 SEPARATE CATEGORY OPTIONS GRID -->
       <div class="category-options-grid" id="categoryOptionsGrid">
-        <div class="cat-opt-card" onclick="openCatalogueSpace('laptops_used')">
+        <div class="cat-opt-card" data-cat="laptops_used" onclick="openCatalogueSpace('laptops_used')">
           <div class="cat-opt-top">
             <div class="cat-opt-header-row">
               <div class="cat-opt-icon">
@@ -1305,11 +1318,11 @@
             <p>Certified corporate lease return laptops (ThinkPad, Latitude, EliteBook, MacBook) with complete hardware diagnostic lab reports, 6 months warranty, and GST invoice.</p>
           </div>
           <div class="cat-opt-actions">
-            <button class="btn-open-cat" type="button">Open Stock (5) &rarr;</button>
+            <button class="btn-open-cat" type="button" onclick="openCatalogueSpace('laptops_used')">Open Stock (5) &rarr;</button>
             <a class="btn-quick-wa" href="https://wa.me/919872010193?text=Hi%20Lally%20Computers%2C%20what%20do%20you%20have%20in%20Pre-Owned Laptops%3F" target="_blank" rel="noopener" onclick="event.stopPropagation()">Inquire on WhatsApp</a>
           </div>
         </div>
-        <div class="cat-opt-card" onclick="openCatalogueSpace('laptops_new')">
+        <div class="cat-opt-card" data-cat="laptops_new" onclick="openCatalogueSpace('laptops_new')">
           <div class="cat-opt-top">
             <div class="cat-opt-header-row">
               <div class="cat-opt-icon">
@@ -1322,11 +1335,11 @@
             <p>100% brand new sealed laptops from Apple, HP, Dell, Lenovo, and Asus with official 1-year brand warranty and GST billing.</p>
           </div>
           <div class="cat-opt-actions">
-            <button class="btn-open-cat" type="button">Open Stock (5) &rarr;</button>
+            <button class="btn-open-cat" type="button" onclick="openCatalogueSpace('laptops_new')">Open Stock (5) &rarr;</button>
             <a class="btn-quick-wa" href="https://wa.me/919872010193?text=Hi%20Lally%20Computers%2C%20what%20do%20you%20have%20in%20Brand New Laptops%3F" target="_blank" rel="noopener" onclick="event.stopPropagation()">Inquire on WhatsApp</a>
           </div>
         </div>
-        <div class="cat-opt-card" onclick="openCatalogueSpace('pc')">
+        <div class="cat-opt-card" data-cat="pc" onclick="openCatalogueSpace('pc')">
           <div class="cat-opt-top">
             <div class="cat-opt-header-row">
               <div class="cat-opt-icon">
@@ -1339,11 +1352,11 @@
             <p>Custom assembled gaming PCs, streaming setups, and heavy-duty 4K video editing & CAD workstations configured for your exact budget.</p>
           </div>
           <div class="cat-opt-actions">
-            <button class="btn-open-cat" type="button">Open Stock (4) &rarr;</button>
+            <button class="btn-open-cat" type="button" onclick="openCatalogueSpace('pc')">Open Stock (4) &rarr;</button>
             <a class="btn-quick-wa" href="https://wa.me/919872010193?text=Hi%20Lally%20Computers%2C%20what%20do%20you%20have%20in%20Custom PCs and Workstations%3F" target="_blank" rel="noopener" onclick="event.stopPropagation()">Inquire on WhatsApp</a>
           </div>
         </div>
-        <div class="cat-opt-card" onclick="openCatalogueSpace('pc_components')">
+        <div class="cat-opt-card" data-cat="pc_components" onclick="openCatalogueSpace('pc_components')">
           <div class="cat-opt-top">
             <div class="cat-opt-header-row">
               <div class="cat-opt-icon">
@@ -1356,11 +1369,11 @@
             <p>Everything required to assemble a PC: Cabinets, Graphic Cards (RTX 4060/3060), Gold PSUs, Intel/AMD Motherboards, CPUs, DDR5 RAM, Gen4 SSDs & Liquid Coolers.</p>
           </div>
           <div class="cat-opt-actions">
-            <button class="btn-open-cat" type="button">Open Stock (12) &rarr;</button>
+            <button class="btn-open-cat" type="button" onclick="openCatalogueSpace('pc_components')">Open Stock (12) &rarr;</button>
             <a class="btn-quick-wa" href="https://wa.me/919872010193?text=Hi%20Lally%20Computers%2C%20what%20do%20you%20have%20in%20PC Building Materials%3F" target="_blank" rel="noopener" onclick="event.stopPropagation()">Inquire on WhatsApp</a>
           </div>
         </div>
-        <div class="cat-opt-card" onclick="openCatalogueSpace('pc_peripherals')">
+        <div class="cat-opt-card" data-cat="pc_peripherals" onclick="openCatalogueSpace('pc_peripherals')">
           <div class="cat-opt-top">
             <div class="cat-opt-header-row">
               <div class="cat-opt-icon">
@@ -1373,11 +1386,11 @@
             <p>Ergonomic gaming and productivity peripherals: Optical & Wireless Mice, Mechanical Keyboards, Extended Desk Mats, Aluminium Laptop Stands, and Headsets.</p>
           </div>
           <div class="cat-opt-actions">
-            <button class="btn-open-cat" type="button">Open Stock (8) &rarr;</button>
+            <button class="btn-open-cat" type="button" onclick="openCatalogueSpace('pc_peripherals')">Open Stock (8) &rarr;</button>
             <a class="btn-quick-wa" href="https://wa.me/919872010193?text=Hi%20Lally%20Computers%2C%20what%20do%20you%20have%20in%20PC Equipments and Peripherals%3F" target="_blank" rel="noopener" onclick="event.stopPropagation()">Inquire on WhatsApp</a>
           </div>
         </div>
-        <div class="cat-opt-card" onclick="openCatalogueSpace('monitors')">
+        <div class="cat-opt-card" data-cat="monitors" onclick="openCatalogueSpace('monitors')">
           <div class="cat-opt-top">
             <div class="cat-opt-header-row">
               <div class="cat-opt-icon">
@@ -1390,11 +1403,11 @@
             <p>High refresh rate 144Hz-165Hz IPS gaming monitors, 4K color-accurate editing screens, 34" curved ultrawides, and 32"/43" Smart Android LED displays.</p>
           </div>
           <div class="cat-opt-actions">
-            <button class="btn-open-cat" type="button">Open Stock (6) &rarr;</button>
+            <button class="btn-open-cat" type="button" onclick="openCatalogueSpace('monitors')">Open Stock (6) &rarr;</button>
             <a class="btn-quick-wa" href="https://wa.me/919872010193?text=Hi%20Lally%20Computers%2C%20what%20do%20you%20have%20in%20Monitors, LEDs and LCDs%3F" target="_blank" rel="noopener" onclick="event.stopPropagation()">Inquire on WhatsApp</a>
           </div>
         </div>
-        <div class="cat-opt-card" onclick="openCatalogueSpace('watches')">
+        <div class="cat-opt-card" data-cat="watches" onclick="openCatalogueSpace('watches')">
           <div class="cat-opt-top">
             <div class="cat-opt-header-row">
               <div class="cat-opt-icon">
@@ -1407,11 +1420,11 @@
             <p>Apple Watch Series 9, Ultra 2, SE alongside legendary non-display classic watches like Casio G-Shock CasiOak, Titan Classic, and Fossil Chronographs.</p>
           </div>
           <div class="cat-opt-actions">
-            <button class="btn-open-cat" type="button">Open Stock (7) &rarr;</button>
+            <button class="btn-open-cat" type="button" onclick="openCatalogueSpace('watches')">Open Stock (7) &rarr;</button>
             <a class="btn-quick-wa" href="https://wa.me/919872010193?text=Hi%20Lally%20Computers%2C%20what%20do%20you%20have%20in%20Watches (Smart and Classic)%3F" target="_blank" rel="noopener" onclick="event.stopPropagation()">Inquire on WhatsApp</a>
           </div>
         </div>
-        <div class="cat-opt-card" onclick="openCatalogueSpace('gadgets')">
+        <div class="cat-opt-card" data-cat="gadgets" onclick="openCatalogueSpace('gadgets')">
           <div class="cat-opt-top">
             <div class="cat-opt-header-row">
               <div class="cat-opt-icon">
@@ -1424,11 +1437,11 @@
             <p>AirPods Pro, boAt ANC earbuds, JBL waterproof speakers, 20,000mAh PD fast powerbanks, 65W GaN multi-chargers, and Wi-Fi 6 gigabit routers.</p>
           </div>
           <div class="cat-opt-actions">
-            <button class="btn-open-cat" type="button">Open Stock (6) &rarr;</button>
+            <button class="btn-open-cat" type="button" onclick="openCatalogueSpace('gadgets')">Open Stock (6) &rarr;</button>
             <a class="btn-quick-wa" href="https://wa.me/919872010193?text=Hi%20Lally%20Computers%2C%20what%20do%20you%20have%20in%20Gadgets and Audio%3F" target="_blank" rel="noopener" onclick="event.stopPropagation()">Inquire on WhatsApp</a>
           </div>
         </div>
-        <div class="cat-opt-card" onclick="openCatalogueSpace('gym')">
+        <div class="cat-opt-card" data-cat="gym" onclick="openCatalogueSpace('gym')">
           <div class="cat-opt-top">
             <div class="cat-opt-header-row">
               <div class="cat-opt-icon">
@@ -1441,11 +1454,11 @@
             <p>Motorized auto-incline treadmills, solid rubber hex dumbbell sets, magnetic studio spin bikes, multi-station workout stations, and resistance gear.</p>
           </div>
           <div class="cat-opt-actions">
-            <button class="btn-open-cat" type="button">Open Stock (5) &rarr;</button>
+            <button class="btn-open-cat" type="button" onclick="openCatalogueSpace('gym')">Open Stock (5) &rarr;</button>
             <a class="btn-quick-wa" href="https://wa.me/919872010193?text=Hi%20Lally%20Computers%2C%20what%20do%20you%20have%20in%20Gym and Fitness Equipment%3F" target="_blank" rel="noopener" onclick="event.stopPropagation()">Inquire on WhatsApp</a>
           </div>
         </div>
-        <div class="cat-opt-card" onclick="openCatalogueSpace('suitcases')">
+        <div class="cat-opt-card" data-cat="suitcases" onclick="openCatalogueSpace('suitcases')">
           <div class="cat-opt-top">
             <div class="cat-opt-header-row">
               <div class="cat-opt-icon">
@@ -1458,11 +1471,11 @@
             <p>3-Piece hard-shell polycarbonate luggage sets, 20" international airline cabin bags with embedded TSA locks, and heavy-duty aluminium corner trunks.</p>
           </div>
           <div class="cat-opt-actions">
-            <button class="btn-open-cat" type="button">Open Stock (3) &rarr;</button>
+            <button class="btn-open-cat" type="button" onclick="openCatalogueSpace('suitcases')">Open Stock (3) &rarr;</button>
             <a class="btn-quick-wa" href="https://wa.me/919872010193?text=Hi%20Lally%20Computers%2C%20what%20do%20you%20have%20in%20Travel Suitcases and Luggage%3F" target="_blank" rel="noopener" onclick="event.stopPropagation()">Inquire on WhatsApp</a>
           </div>
         </div>
-        <div class="cat-opt-card" onclick="openCatalogueSpace('appliances')">
+        <div class="cat-opt-card" data-cat="appliances" onclick="openCatalogueSpace('appliances')">
           <div class="cat-opt-top">
             <div class="cat-opt-header-row">
               <div class="cat-opt-icon">
@@ -1475,11 +1488,11 @@
             <p>5-Star energy-efficient Front Load washers with Direct Drive Inverter & Steam, Top Load tangle-free machines, and heavy-duty Semi-Automatic washers.</p>
           </div>
           <div class="cat-opt-actions">
-            <button class="btn-open-cat" type="button">Open Stock (3) &rarr;</button>
+            <button class="btn-open-cat" type="button" onclick="openCatalogueSpace('appliances')">Open Stock (3) &rarr;</button>
             <a class="btn-quick-wa" href="https://wa.me/919872010193?text=Hi%20Lally%20Computers%2C%20what%20do%20you%20have%20in%20Washing Machines%3F" target="_blank" rel="noopener" onclick="event.stopPropagation()">Inquire on WhatsApp</a>
           </div>
         </div>
-        <div class="cat-opt-card" onclick="openCatalogueSpace('repairs')">
+        <div class="cat-opt-card" data-cat="repairs" onclick="openCatalogueSpace('repairs')">
           <div class="cat-opt-top">
             <div class="cat-opt-header-row">
               <div class="cat-opt-icon">
@@ -1492,7 +1505,7 @@
             <p>In-house motherboard BGA rework, micro-soldering for short-circuited & water-damaged laptops, same-day screen replacements, and thermal deep overhauls.</p>
           </div>
           <div class="cat-opt-actions">
-            <button class="btn-open-cat" type="button">Open Stock (3) &rarr;</button>
+            <button class="btn-open-cat" type="button" onclick="openCatalogueSpace('repairs')">Open Stock (3) &rarr;</button>
             <a class="btn-quick-wa" href="https://wa.me/919872010193?text=Hi%20Lally%20Computers%2C%20what%20do%20you%20have%20in%20Chip-Level Repair Lab%3F" target="_blank" rel="noopener" onclick="event.stopPropagation()">Inquire on WhatsApp</a>
           </div>
         </div>
@@ -1811,6 +1824,15 @@
   var sizeFilter = '';
   var panelFilter = '';
 
+  /* THEME SWITCHER */
+  function toggleSiteTheme() {
+    var current = document.documentElement.getAttribute('data-theme');
+    var isLight = current === 'light' || (!current && window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches);
+    var next = isLight ? 'dark' : 'light';
+    document.documentElement.setAttribute('data-theme', next);
+    try { localStorage.setItem('lally_apple_theme', next); } catch(e) {}
+  }
+
   /* OPEN DEDICATED CATALOGUE SPACE */
   function openCatalogueSpace(catId) {
     if (catId) activeCategory = catId;
@@ -1838,7 +1860,7 @@
     // Update ribbon active state
     var chapItems = document.querySelectorAll('.chap-item');
     chapItems.forEach(function(c) {
-      if (c.getAttribute('onclick') && c.getAttribute('onclick').indexOf(activeCategory) !== -1) {
+      if (c.getAttribute('data-chap-id') === activeCategory) {
         c.classList.add('is-active');
       } else {
         c.classList.remove('is-active');
@@ -1979,9 +2001,9 @@
 
     var html = '';
     filtered.forEach(function(item) {
-      var waMsg = encodeURIComponent('Hi Lally Computers, I saw "' + item.title + '" on your website catalogue. Is this available at your Sodhi Nagar store and what is today's best price?');
+      var waMsg = encodeURIComponent('Hi Lally Computers, I saw ' + item.title + ' on your website catalogue. Is this available at your Sodhi Nagar store and what is the best price?');
       if (item.labReport) {
-        waMsg = encodeURIComponent('Hi Lally Computers, I saw "' + item.title + '" with Lab Report ID #' + item.labReport.reportId + ' on your website. Is this certified unit available for store pickup in Sodhi Nagar?');
+        waMsg = encodeURIComponent('Hi Lally Computers, I saw ' + item.title + ' with Lab Report ID #' + item.labReport.reportId + ' on your website. Is this certified unit available for store pickup in Sodhi Nagar?');
       }
       var waUrl = 'https://wa.me/919872010193?text=' + waMsg;
 
@@ -1991,7 +2013,7 @@
 
       var labBtn = '';
       if (item.labReport) {
-        labBtn = '<button class="btn-card-lab" type="button" onclick="openLabReportModal('' + item.id + '')">' +
+        labBtn = '<button class="btn-card-lab" type="button" data-lab-id="' + item.id + '">' +
           '<svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>' +
           '<span>Lab Report</span>' +
         '</button>';
@@ -2018,7 +2040,7 @@
               '<span>Inquire WhatsApp</span>' +
             '</a>' +
             labBtn +
-            '<button class="btn-card-specs" type="button" onclick="openSpecSheet('' + item.id + '')">Specs &rarr;</button>' +
+            '<button class="btn-card-specs" type="button" data-specs-id="' + item.id + '">Specs &rarr;</button>' +
           '</div>' +
         '</div>' +
       '</div>';
@@ -2047,7 +2069,7 @@
     document.getElementById('labCasing').textContent = rep.casingHinges;
     document.getElementById('labTechnician').textContent = rep.technician;
 
-    var waMsg = encodeURIComponent('Hi Lally Computers, I reviewed the 25-Point Diagnostic Lab Report for "' + item.title + '" (Report ID #' + rep.reportId + ', ' + rep.overallGrade + '). Is this certified laptop ready for in-store pickup at Sodhi Nagar, Moga?');
+    var waMsg = encodeURIComponent('Hi Lally Computers, I reviewed the 25-Point Diagnostic Lab Report for ' + item.title + ' (Report ID #' + rep.reportId + ', ' + rep.overallGrade + '). Is this certified laptop ready for in-store pickup at Sodhi Nagar, Moga?');
     document.getElementById('labWaInquireBtn').href = 'https://wa.me/919872010193?text=' + waMsg;
 
     var modal = document.getElementById('labReportModal');
@@ -2073,7 +2095,7 @@
     document.getElementById('modalTitle').textContent = item.title;
     document.getElementById('modalDesc').textContent = item.desc;
 
-    var waMsg = encodeURIComponent('Hi Lally Computers, I would like to inquire regarding "' + item.title + '" shown on your website catalogue. Is this currently in stock at your Sodhi Nagar store and what is today's price?');
+    var waMsg = encodeURIComponent('Hi Lally Computers, I would like to inquire regarding ' + item.title + ' shown on your website catalogue. Is this currently in stock at your Sodhi Nagar store and what is the best price?');
     document.getElementById('modalWaBtn').href = 'https://wa.me/919872010193?text=' + waMsg;
 
     var tbody = document.querySelector('#modalTable tbody');
@@ -2098,10 +2120,28 @@
 
   /* Page initialization */
   document.addEventListener('DOMContentLoaded', function() {
+    // Search input
     var search = document.getElementById('spaceSearchInput');
     if (search) {
       search.addEventListener('input', function() {
         applyFilters();
+      });
+    }
+
+    // Grid Event Delegation for Specs & Lab Report buttons
+    var grid = document.getElementById('spaceLineupGrid');
+    if (grid) {
+      grid.addEventListener('click', function(e) {
+        var specsBtn = e.target.closest('[data-specs-id]');
+        if (specsBtn) {
+          openSpecSheet(specsBtn.getAttribute('data-specs-id'));
+          return;
+        }
+        var labBtn = e.target.closest('[data-lab-id]');
+        if (labBtn) {
+          openLabReportModal(labBtn.getAttribute('data-lab-id'));
+          return;
+        }
       });
     }
 
@@ -2129,22 +2169,6 @@
         closeLabReportModal();
       }
     });
-
-    // Theme toggle
-    var themeBtn = document.getElementById('themeToggle');
-    var savedTheme = localStorage.getItem('lally_apple_theme');
-    if (savedTheme) {
-      document.documentElement.setAttribute('data-theme', savedTheme);
-    }
-    if (themeBtn) {
-      themeBtn.addEventListener('click', function() {
-        var current = document.documentElement.getAttribute('data-theme');
-        var isLight = current === 'light' || (!current && window.matchMedia('(prefers-color-scheme: light)').matches);
-        var next = isLight ? 'dark' : 'light';
-        document.documentElement.setAttribute('data-theme', next);
-        localStorage.setItem('lally_apple_theme', next);
-      });
-    }
 
     // Live store status in IST (UTC+5:30)
     function updateHours() {

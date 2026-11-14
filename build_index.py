@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 import json
 import os
+import subprocess
 
 with open('/Users/khushmansingh/.gemini/antigravity/scratch/lally-computers-website/categories.json') as f:
     cat_data = json.load(f)
@@ -12,7 +13,6 @@ with open('/Users/khushmansingh/.gemini/antigravity/scratch/lally-computers-webs
 
 print(f"Loaded {len(categories)} categories and {len(products)} products.")
 
-# Build HTML
 html = '''<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -30,6 +30,18 @@ html = '''<!DOCTYPE html>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
   
+  <script>
+    // Immediate Theme Initialization
+    try {
+      var saved = localStorage.getItem('lally_apple_theme');
+      if (saved) {
+        document.documentElement.setAttribute('data-theme', saved);
+      } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) {
+        document.documentElement.setAttribute('data-theme', 'light');
+      }
+    } catch(e) {}
+  </script>
+
   <style>
   /* ==========================================================================
      APPLE-INSPIRED DESIGN SYSTEM & VARIABLES
@@ -442,6 +454,7 @@ html = '''<!DOCTYPE html>
     flex-direction: column;
     justify-content: space-between;
     gap: 1.2rem;
+    cursor: pointer;
     transition: transform 0.22s, border-color 0.22s, box-shadow 0.22s;
   }
   .cat-opt-card:hover {
@@ -538,7 +551,7 @@ html = '''<!DOCTYPE html>
     background: var(--bg-surface);
     border-top: 1px solid var(--border-subtle);
     border-bottom: 1px solid var(--border-subtle);
-    padding-block: 2rem 4rem;
+    padding-block: 2.5rem 4rem;
     animation: fadeIn 0.25s ease-out;
   }
   .catalogue-space.is-open { display: block; }
@@ -1045,7 +1058,7 @@ html = '''<!DOCTYPE html>
         <button class="nav-cat-space-btn" type="button" onclick="openCatalogueSpace('laptops_used')">
           <span>Explore Stock &rarr;</span>
         </button>
-        <button id="themeToggle" class="theme-toggle-btn" type="button" aria-label="Toggle dark/light mode">
+        <button id="themeToggle" class="theme-toggle-btn" type="button" onclick="toggleSiteTheme()" aria-label="Toggle dark/light mode">
           <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
           <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
         </button>
@@ -1100,9 +1113,9 @@ html = '''<!DOCTYPE html>
 '''
 
 for cat in categories:
-    html += f'''        <button class="chap-item" onclick="openCatalogueSpace('{cat["id"]}')">
-          {cat["icon"]}
-          <span>{cat["name"]}</span>
+    html += f'''        <button class="chap-item" data-chap-id="{cat['id']}" onclick="openCatalogueSpace('{cat['id']}')">
+          {cat['icon']}
+          <span>{cat['name']}</span>
         </button>
 '''
 
@@ -1135,8 +1148,8 @@ html += '''      </div>
 '''
 
 for cat in categories:
-    html += f'''        <button class="space-cat-btn" data-cat="{cat["id"]}" onclick="switchSpaceCategory('{cat["id"]}')">
-          {cat["name"]} ({cat["count"]})
+    html += f'''        <button class="space-cat-btn" data-cat="{cat['id']}" onclick="switchSpaceCategory('{cat['id']}')">
+          {cat['name']} ({cat['count']})
         </button>
 '''
 
@@ -1243,20 +1256,20 @@ html += '''      </div>
 '''
 
 for cat in categories:
-    html += f'''        <div class="cat-opt-card" onclick="openCatalogueSpace('{cat["id"]}')">
+    html += f'''        <div class="cat-opt-card" data-cat="{cat['id']}" onclick="openCatalogueSpace('{cat['id']}')">
           <div class="cat-opt-top">
             <div class="cat-opt-header-row">
               <div class="cat-opt-icon">
-                {cat["icon"]}
+                {cat['icon']}
               </div>
-              <span class="cat-opt-count-badge">{cat["count"]} Items</span>
+              <span class="cat-opt-count-badge">{cat['count']} Items</span>
             </div>
-            <h3>{cat["name"]}</h3>
-            <span class="cat-opt-feature-tag">{cat["badge"]}</span>
-            <p>{cat["desc"]}</p>
+            <h3>{cat['name']}</h3>
+            <span class="cat-opt-feature-tag">{cat['badge']}</span>
+            <p>{cat['desc']}</p>
           </div>
           <div class="cat-opt-actions">
-            <button class="btn-open-cat" type="button">Open Stock ({cat["count"]}) &rarr;</button>
+            <button class="btn-open-cat" type="button" onclick="openCatalogueSpace('{cat['id']}')">Open Stock ({cat['count']}) &rarr;</button>
             <a class="btn-quick-wa" href="https://wa.me/919872010193?text=Hi%20Lally%20Computers%2C%20what%20do%20you%20have%20in%20{cat['name'].replace('&', 'and')}%3F" target="_blank" rel="noopener" onclick="event.stopPropagation()">Inquire on WhatsApp</a>
           </div>
         </div>
@@ -1577,6 +1590,15 @@ html += '''      </div>
   var sizeFilter = '';
   var panelFilter = '';
 
+  /* THEME SWITCHER */
+  function toggleSiteTheme() {
+    var current = document.documentElement.getAttribute('data-theme');
+    var isLight = current === 'light' || (!current && window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches);
+    var next = isLight ? 'dark' : 'light';
+    document.documentElement.setAttribute('data-theme', next);
+    try { localStorage.setItem('lally_apple_theme', next); } catch(e) {}
+  }
+
   /* OPEN DEDICATED CATALOGUE SPACE */
   function openCatalogueSpace(catId) {
     if (catId) activeCategory = catId;
@@ -1604,7 +1626,7 @@ html += '''      </div>
     // Update ribbon active state
     var chapItems = document.querySelectorAll('.chap-item');
     chapItems.forEach(function(c) {
-      if (c.getAttribute('onclick') && c.getAttribute('onclick').indexOf(activeCategory) !== -1) {
+      if (c.getAttribute('data-chap-id') === activeCategory) {
         c.classList.add('is-active');
       } else {
         c.classList.remove('is-active');
@@ -1745,9 +1767,9 @@ html += '''      </div>
 
     var html = '';
     filtered.forEach(function(item) {
-      var waMsg = encodeURIComponent('Hi Lally Computers, I saw "' + item.title + '" on your website catalogue. Is this available at your Sodhi Nagar store and what is today\'s best price?');
+      var waMsg = encodeURIComponent('Hi Lally Computers, I saw ' + item.title + ' on your website catalogue. Is this available at your Sodhi Nagar store and what is the best price?');
       if (item.labReport) {
-        waMsg = encodeURIComponent('Hi Lally Computers, I saw "' + item.title + '" with Lab Report ID #' + item.labReport.reportId + ' on your website. Is this certified unit available for store pickup in Sodhi Nagar?');
+        waMsg = encodeURIComponent('Hi Lally Computers, I saw ' + item.title + ' with Lab Report ID #' + item.labReport.reportId + ' on your website. Is this certified unit available for store pickup in Sodhi Nagar?');
       }
       var waUrl = 'https://wa.me/919872010193?text=' + waMsg;
 
@@ -1757,7 +1779,7 @@ html += '''      </div>
 
       var labBtn = '';
       if (item.labReport) {
-        labBtn = '<button class="btn-card-lab" type="button" onclick="openLabReportModal(\'' + item.id + '\')">' +
+        labBtn = '<button class="btn-card-lab" type="button" data-lab-id="' + item.id + '">' +
           '<svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>' +
           '<span>Lab Report</span>' +
         '</button>';
@@ -1784,7 +1806,7 @@ html += '''      </div>
               '<span>Inquire WhatsApp</span>' +
             '</a>' +
             labBtn +
-            '<button class="btn-card-specs" type="button" onclick="openSpecSheet(\'' + item.id + '\')">Specs &rarr;</button>' +
+            '<button class="btn-card-specs" type="button" data-specs-id="' + item.id + '">Specs &rarr;</button>' +
           '</div>' +
         '</div>' +
       '</div>';
@@ -1813,7 +1835,7 @@ html += '''      </div>
     document.getElementById('labCasing').textContent = rep.casingHinges;
     document.getElementById('labTechnician').textContent = rep.technician;
 
-    var waMsg = encodeURIComponent('Hi Lally Computers, I reviewed the 25-Point Diagnostic Lab Report for "' + item.title + '" (Report ID #' + rep.reportId + ', ' + rep.overallGrade + '). Is this certified laptop ready for in-store pickup at Sodhi Nagar, Moga?');
+    var waMsg = encodeURIComponent('Hi Lally Computers, I reviewed the 25-Point Diagnostic Lab Report for ' + item.title + ' (Report ID #' + rep.reportId + ', ' + rep.overallGrade + '). Is this certified laptop ready for in-store pickup at Sodhi Nagar, Moga?');
     document.getElementById('labWaInquireBtn').href = 'https://wa.me/919872010193?text=' + waMsg;
 
     var modal = document.getElementById('labReportModal');
@@ -1839,7 +1861,7 @@ html += '''      </div>
     document.getElementById('modalTitle').textContent = item.title;
     document.getElementById('modalDesc').textContent = item.desc;
 
-    var waMsg = encodeURIComponent('Hi Lally Computers, I would like to inquire regarding "' + item.title + '" shown on your website catalogue. Is this currently in stock at your Sodhi Nagar store and what is today\'s price?');
+    var waMsg = encodeURIComponent('Hi Lally Computers, I would like to inquire regarding ' + item.title + ' shown on your website catalogue. Is this currently in stock at your Sodhi Nagar store and what is the best price?');
     document.getElementById('modalWaBtn').href = 'https://wa.me/919872010193?text=' + waMsg;
 
     var tbody = document.querySelector('#modalTable tbody');
@@ -1864,10 +1886,28 @@ html += '''      </div>
 
   /* Page initialization */
   document.addEventListener('DOMContentLoaded', function() {
+    // Search input
     var search = document.getElementById('spaceSearchInput');
     if (search) {
       search.addEventListener('input', function() {
         applyFilters();
+      });
+    }
+
+    // Grid Event Delegation for Specs & Lab Report buttons
+    var grid = document.getElementById('spaceLineupGrid');
+    if (grid) {
+      grid.addEventListener('click', function(e) {
+        var specsBtn = e.target.closest('[data-specs-id]');
+        if (specsBtn) {
+          openSpecSheet(specsBtn.getAttribute('data-specs-id'));
+          return;
+        }
+        var labBtn = e.target.closest('[data-lab-id]');
+        if (labBtn) {
+          openLabReportModal(labBtn.getAttribute('data-lab-id'));
+          return;
+        }
       });
     }
 
@@ -1895,22 +1935,6 @@ html += '''      </div>
         closeLabReportModal();
       }
     });
-
-    // Theme toggle
-    var themeBtn = document.getElementById('themeToggle');
-    var savedTheme = localStorage.getItem('lally_apple_theme');
-    if (savedTheme) {
-      document.documentElement.setAttribute('data-theme', savedTheme);
-    }
-    if (themeBtn) {
-      themeBtn.addEventListener('click', function() {
-        var current = document.documentElement.getAttribute('data-theme');
-        var isLight = current === 'light' || (!current && window.matchMedia('(prefers-color-scheme: light)').matches);
-        var next = isLight ? 'dark' : 'light';
-        document.documentElement.setAttribute('data-theme', next);
-        localStorage.setItem('lally_apple_theme', next);
-      });
-    }
 
     // Live store status in IST (UTC+5:30)
     function updateHours() {
@@ -1962,4 +1986,4 @@ html += '''      </div>
 with open('/Users/khushmansingh/.gemini/antigravity/scratch/lally-computers-website/index.html', 'w', encoding='utf-8') as f:
     f.write(html)
 
-print("Successfully written index.html!")
+print("Successfully compiled clean index.html!")
