@@ -24,9 +24,15 @@ Then open [http://localhost:8000](http://localhost:8000) in your browser.
 
 ```
 lally-computers-website/
-├── index.html                  # Main webpage (HTML5, responsive CSS, themes, interactions)
+├── index.html                  # Main webpage (Clean HTML5 structure)
+├── css/
+│   └── styles.css              # Consolidated design system, themes, and responsive rules
+├── js/
+│   ├── data.js                 # Centralized catalogue and inventory dataset
+│   └── app.js                  # Store interactivity, cart, modals, search, and Google Sheets sync
+├── categories.json             # 12 Store departments metadata
+├── products.json               # 67 In-store verified products
 ├── stock-inventory-template.csv # Ready-to-use CSV template for managing stock in Google Sheets
-├── build_index.py              # Build generator with Google Sheets live sync engine
 ├── hero-1080.mp4               # High-resolution raytraced 3D circuit board video (desktop)
 ├── hero-720.mp4                # Mobile-optimized circuit board video
 ├── hero-1080.webm              # High-resolution WebM fallback

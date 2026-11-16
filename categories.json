@@ -4,109 +4,121 @@
       "id": "laptops_used",
       "name": "Pre-Owned Laptops",
       "eyebrow": "25-Point Lab Verified",
-      "badge": "Lab Report Included",
+      "badge": "⚡ 100% Tested · 6M Warranty",
       "icon": "<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\"><rect x=\"3\" y=\"4\" width=\"18\" height=\"12\" rx=\"2\"/><path d=\"M2 20h20\"/><circle cx=\"12\" cy=\"10\" r=\"2.5\"/><path d=\"M12 7.5v-1M12 13.5v-1\"/></svg>",
-      "desc": "Certified corporate lease return laptops (ThinkPad, Latitude, EliteBook, MacBook) with complete hardware diagnostic lab reports, 6 months warranty, and GST invoice.",
-      "count": 5
+      "desc": "Corporate ThinkPads, Latitudes & MacBooks. Complete hardware diagnostic reports included.",
+      "count": 5,
+      "cardName": "Pre-Owned Laptops"
     },
     {
       "id": "laptops_new",
       "name": "Brand New Laptops",
       "eyebrow": "Factory Sealed",
-      "badge": "Brand New Sealed",
+      "badge": "🛡️ Official 1-Yr Brand Warranty",
       "icon": "<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\"><rect x=\"3\" y=\"4\" width=\"18\" height=\"12\" rx=\"2\"/><path d=\"M2 20h20\"/><path d=\"M8 12l2.5 2.5 5.5-5.5\"/></svg>",
-      "desc": "100% brand new sealed laptops from Apple, HP, Dell, Lenovo, and Asus with official 1-year brand warranty and GST billing.",
-      "count": 5
+      "desc": "Factory-sealed Apple, HP, Dell & Lenovo with original GST tax invoice.",
+      "count": 5,
+      "cardName": "Brand New Laptops"
     },
     {
       "id": "pc",
       "name": "Custom PCs & Workstations",
       "eyebrow": "Tailored Desktop Power",
-      "badge": "Custom Assembled",
+      "badge": "🔥 Custom Built for Peak FPS",
       "icon": "<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\"><rect x=\"4\" y=\"2\" width=\"16\" height=\"20\" rx=\"2\"/><line x1=\"8\" y1=\"6\" x2=\"8.01\" y2=\"6\"/><line x1=\"8\" y1=\"10\" x2=\"8.01\" y2=\"10\"/><path d=\"M8 18h8\"/></svg>",
-      "desc": "Custom assembled gaming PCs, streaming setups, and heavy-duty 4K video editing & CAD workstations configured for your exact budget.",
-      "count": 4
+      "desc": "Precision-tuned battlestations for pro gaming, 4K video rendering & CAD workloads.",
+      "count": 4,
+      "cardName": "Custom PCs & Rigs"
     },
     {
       "id": "pc_components",
       "name": "PC Building Materials",
       "eyebrow": "Assemble Your Dream PC",
-      "badge": "All Assembly Parts",
+      "badge": "⚡ RTX 40-Series & DDR5",
       "icon": "<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\"><rect x=\"4\" y=\"4\" width=\"16\" height=\"16\" rx=\"2\"/><rect x=\"9\" y=\"9\" width=\"6\" height=\"6\"/><path d=\"M9 1v3M15 1v3M9 20v3M15 20v3M20 9h3M20 15h3M1 9h3M1 15h3\"/></svg>",
-      "desc": "Everything required to assemble a PC: Cabinets, Graphic Cards (RTX 4060/3060), Gold PSUs, Intel/AMD Motherboards, CPUs, DDR5 RAM, Gen4 SSDs & Liquid Coolers.",
-      "count": 12
+      "desc": "Original GPUs, Intel/AMD CPUs, Gen4 NVMe SSDs, Gold PSUs & liquid coolers.",
+      "count": 12,
+      "cardName": "PC Components"
     },
     {
       "id": "pc_peripherals",
       "name": "PC Equipments & Peripherals",
       "eyebrow": "Desk Setup Gear",
-      "badge": "Mice, Keys & Stands",
+      "badge": "🎮 Mechanical & Ergonomic",
       "icon": "<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\"><rect x=\"2\" y=\"5\" width=\"20\" height=\"14\" rx=\"2\"/><line x1=\"6\" y1=\"12\" x2=\"6.01\" y2=\"12\"/><line x1=\"10\" y1=\"12\" x2=\"10.01\" y2=\"12\"/><line x1=\"14\" y1=\"12\" x2=\"14.01\" y2=\"12\"/><line x1=\"18\" y1=\"12\" x2=\"18.01\" y2=\"12\"/></svg>",
-      "desc": "Ergonomic gaming and productivity peripherals: Optical & Wireless Mice, Mechanical Keyboards, Extended Desk Mats, Aluminium Laptop Stands, and Headsets.",
-      "count": 8
+      "desc": "Tactile mechanical decks, wireless gaming mice, XXL desk mats & aluminum stands.",
+      "count": 8,
+      "cardName": "Peripherals & Gear"
     },
     {
       "id": "monitors",
       "name": "Monitors, LEDs & LCDs",
       "eyebrow": "Visual Displays",
-      "badge": "144Hz IPS & 4K",
+      "badge": "🖥️ 165Hz IPS · 4K Color",
       "icon": "<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\"><rect x=\"2\" y=\"3\" width=\"20\" height=\"14\" rx=\"2\"/><line x1=\"8\" y1=\"21\" x2=\"16\" y2=\"21\"/><line x1=\"12\" y1=\"17\" x2=\"12\" y2=\"21\"/></svg>",
-      "desc": "High refresh rate 144Hz-165Hz IPS gaming monitors, 4K color-accurate editing screens, 34\" curved ultrawides, and 32\"/43\" Smart Android LED displays.",
-      "count": 6
+      "desc": "Fast-response esports displays, curved 34\" ultrawides & smart 4K HDR panels.",
+      "count": 6,
+      "cardName": "Monitors & Displays"
     },
     {
       "id": "watches",
       "name": "Watches (Smart & Classic)",
       "eyebrow": "Wearable Timepieces",
-      "badge": "Display & Non-Display",
+      "badge": "⌚ Apple Ultra & CasiOak",
       "icon": "<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\"><rect x=\"6\" y=\"7\" width=\"12\" height=\"10\" rx=\"3\"/><path d=\"M9 3h6v4H9zM9 17h6v4H9z\"/><circle cx=\"12\" cy=\"12\" r=\"2\"/></svg>",
-      "desc": "Apple Watch Series 9, Ultra 2, SE alongside legendary non-display classic watches like Casio G-Shock CasiOak, Titan Classic, and Fossil Chronographs.",
-      "count": 7
+      "desc": "Apple Watch Series 9 & Ultra 2 paired with iconic Casio G-Shock & Titan classics.",
+      "count": 7,
+      "cardName": "Smart & Classic Watches"
     },
     {
       "id": "gadgets",
       "name": "Gadgets & Audio",
       "eyebrow": "Audio & Power Hub",
-      "badge": "All Gadget Categories",
+      "badge": "🎧 ANC Sound & 65W Fast GaN",
       "icon": "<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\"><rect x=\"4\" y=\"2\" width=\"16\" height=\"20\" rx=\"3\"/><circle cx=\"12\" cy=\"14\" r=\"4\"/><circle cx=\"12\" cy=\"6\" r=\"1.5\"/></svg>",
-      "desc": "AirPods Pro, boAt ANC earbuds, JBL waterproof speakers, 20,000mAh PD fast powerbanks, 65W GaN multi-chargers, and Wi-Fi 6 gigabit routers.",
-      "count": 6
+      "desc": "AirPods Pro, JBL waterproof sound, 20,000mAh PD packs & Wi-Fi 6 gigabit routers.",
+      "count": 6,
+      "cardName": "Gadgets & Audio"
     },
     {
       "id": "gym",
       "name": "Gym & Fitness Equipment",
       "eyebrow": "Home & Commercial",
-      "badge": "Cardio & Strength",
+      "badge": "💪 Heavy-Duty Commercial",
       "icon": "<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\"><path d=\"M6 5v14M18 5v14M2 9v6M22 9v6M6 12h12\"/></svg>",
-      "desc": "Motorized auto-incline treadmills, solid rubber hex dumbbell sets, magnetic studio spin bikes, multi-station workout stations, and resistance gear.",
-      "count": 5
+      "desc": "Auto-incline motorized treadmills, solid rubber hex dumbbells & magnetic spin bikes.",
+      "count": 5,
+      "cardName": "Gym & Fitness Gear"
     },
     {
       "id": "suitcases",
       "name": "Travel Suitcases & Luggage",
       "eyebrow": "Unbreakable Shell",
-      "badge": "Cabin & Checked Bags",
+      "badge": "✈️ Unbreakable Polycarbonate",
       "icon": "<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\"><rect x=\"5\" y=\"7\" width=\"14\" height=\"14\" rx=\"2\"/><path d=\"M9 7V4a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v3M8 21v1M16 21v1\"/></svg>",
-      "desc": "3-Piece hard-shell polycarbonate luggage sets, 20\" international airline cabin bags with embedded TSA locks, and heavy-duty aluminium corner trunks.",
-      "count": 3
+      "desc": "TSA-lock airline cabin trolleys and rugged aluminum-corner luggage sets.",
+      "count": 3,
+      "cardName": "Luggage & Travel"
     },
     {
       "id": "appliances",
       "name": "Washing Machines",
       "eyebrow": "Home Appliances",
-      "badge": "Front & Top Load",
+      "badge": "⭐ 5-Star Steam Inverter",
       "icon": "<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\"><rect x=\"4\" y=\"2\" width=\"16\" height=\"20\" rx=\"2\"/><circle cx=\"12\" cy=\"13\" r=\"5\"/><circle cx=\"12\" cy=\"13\" r=\"2\"/><line x1=\"8\" y1=\"5\" x2=\"10\" y2=\"5\"/></svg>",
-      "desc": "5-Star energy-efficient Front Load washers with Direct Drive Inverter & Steam, Top Load tangle-free machines, and heavy-duty Semi-Automatic washers.",
-      "count": 3
+      "desc": "Direct Drive inverter front-loaders and tangle-free high-capacity top-load washers.",
+      "count": 3,
+      "cardName": "Washing Machines"
     },
     {
       "id": "repairs",
       "name": "Chip-Level Repair Lab",
       "eyebrow": "Specialized Lab in Moga",
-      "badge": "Free Inspection",
+      "badge": "🔬 Free Fault Diagnostics",
       "icon": "<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\"><path d=\"M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z\"/></svg>",
-      "desc": "In-house motherboard BGA rework, micro-soldering for short-circuited & water-damaged laptops, same-day screen replacements, and thermal deep overhauls.",
-      "count": 3
+      "desc": "In-house BGA motherboard rework, liquid recovery & instant high-res screen swaps.",
+      "count": 3,
+      "cardName": "Chip-Level Repair Lab"
     }
   ]
 }
