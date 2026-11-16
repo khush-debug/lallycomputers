@@ -140,6 +140,7 @@ function openCatalogueSpace(catId) {
     btn.classList.toggle('is-active', btn.getAttribute('data-chap-id') === activeCategory);
   });
 
+  renderCategoryFilters(activeCategory);
   resetFilters();
   renderSpaceProducts();
 
@@ -173,8 +174,345 @@ function switchSpaceCategory(catId) {
     btn.classList.toggle('is-active', btn.getAttribute('data-chap-id') === catId);
   });
 
+  renderCategoryFilters(activeCategory);
   resetFilters();
   renderSpaceProducts();
+}
+
+/* ==========================================================================
+   CATEGORY-SPECIFIC DYNAMIC FILTERS CONFIGURATION
+   ========================================================================== */
+const CATEGORY_FILTER_CONFIG = {
+  laptops_used: {
+    budgetLabel: "Laptop Budget",
+    budgetTiers: [
+      { label: "Under ₹25,000", value: "under-25k", min: 0, max: 25000 },
+      { label: "₹25,000 - ₹35,000", value: "25k-35k", min: 25000, max: 35000 },
+      { label: "Above ₹35,000", value: "above-35k", min: 35000, max: Infinity }
+    ],
+    typeLabel: "Screen Size",
+    typeOptions: [
+      { label: "14\" Compact Ultrabook", value: "14-inch" },
+      { label: "15.6\" Full Size Display", value: "15-inch" }
+    ],
+    panelLabel: "Series / Processor",
+    panelOptions: [
+      { label: "ThinkPad Corporate", value: "ThinkPad" },
+      { label: "Latitude Corporate", value: "Latitude" },
+      { label: "EliteBook Ultrabook", value: "EliteBook" },
+      { label: "Apple M1 Silicon", value: "M1" }
+    ]
+  },
+  laptops_new: {
+    budgetLabel: "Laptop Budget",
+    budgetTiers: [
+      { label: "Under ₹55,000", value: "under-55k", min: 0, max: 55000 },
+      { label: "₹55,000 - ₹85,000", value: "55k-85k", min: 55000, max: 85000 },
+      { label: "Above ₹85,000", value: "above-85k", min: 85000, max: Infinity }
+    ],
+    typeLabel: "Form Factor",
+    typeOptions: [
+      { label: "13.3\" / 13.6\" Ultra-Light", value: "13" },
+      { label: "14\" Compact Slim", value: "14" },
+      { label: "15.6\" Full Size", value: "15" }
+    ],
+    panelLabel: "Display Type",
+    panelOptions: [
+      { label: "Liquid Retina Display", value: "Retina" },
+      { label: "2.8K OLED Display", value: "OLED" },
+      { label: "FHD IPS Display", value: "IPS" }
+    ]
+  },
+  laptops_gaming: {
+    budgetLabel: "Gaming Budget",
+    budgetTiers: [
+      { label: "Under ₹60,000", value: "under-60k", min: 0, max: 60000 },
+      { label: "₹60,000 - ₹80,000", value: "60k-80k", min: 60000, max: 80000 },
+      { label: "Above ₹80,000", value: "above-80k", min: 80000, max: Infinity }
+    ],
+    typeLabel: "Graphics (GPU)",
+    typeOptions: [
+      { label: "RTX 2050 / 3050 (Entry Gaming)", value: "3050" },
+      { label: "RTX 4050 (Mid Gaming)", value: "4050" },
+      { label: "RTX 4060 (High-End Gaming)", value: "4060" }
+    ],
+    panelLabel: "Refresh Rate",
+    panelOptions: [
+      { label: "144Hz High Refresh", value: "144Hz" },
+      { label: "120Hz Fast Display", value: "120Hz" }
+    ]
+  },
+  pc: {
+    budgetLabel: "Custom PC Budget",
+    budgetTiers: [
+      { label: "Under ₹50,000", value: "under-50k", min: 0, max: 50000 },
+      { label: "₹50,000 - ₹1,00,000", value: "50k-100k", min: 50000, max: 100000 },
+      { label: "Above ₹1,00,000", value: "above-100k", min: 100000, max: Infinity }
+    ],
+    typeLabel: "PC Form / Rig Type",
+    typeOptions: [
+      { label: "Esports & Gaming Rig", value: "Esports" },
+      { label: "4K Video Editing Battlestation", value: "Editing" },
+      { label: "Liquid-Cooled Flagship Rig", value: "Liquid" }
+    ],
+    panelLabel: "Graphics Tier",
+    panelOptions: [
+      { label: "RTX 3060 12GB", value: "3060" },
+      { label: "RTX 4060 Ti", value: "4060" },
+      { label: "RTX 4070 Ti Super", value: "4070" }
+    ]
+  },
+  pc_components: {
+    budgetLabel: "Component Budget",
+    budgetTiers: [
+      { label: "Under ₹5,000", value: "under-5k", min: 0, max: 5000 },
+      { label: "₹5,000 - ₹15,000", value: "5k-15k", min: 5000, max: 15000 },
+      { label: "₹15,000 - ₹35,000", value: "15k-35k", min: 15000, max: 35000 },
+      { label: "Above ₹35,000", value: "above-35k", min: 35000, max: Infinity }
+    ],
+    typeLabel: "Component Category",
+    typeOptions: [
+      { label: "Graphics Card (GPU)", value: "GPU" },
+      { label: "Processor (CPU)", value: "CPU" },
+      { label: "Motherboard", value: "Motherboard" },
+      { label: "Gen4 NVMe SSD", value: "SSD" },
+      { label: "RAM (DDR4 / DDR5)", value: "RAM" },
+      { label: "Power Supply (PSU)", value: "PSU" },
+      { label: "Cooling & Cabinet", value: "Cooler" }
+    ],
+    panelLabel: "Standard / Interface",
+    panelOptions: [
+      { label: "PCIe Gen 4.0", value: "Gen4" },
+      { label: "80 Plus Gold", value: "Gold" },
+      { label: "LGA1700 / AM5", value: "Socket" }
+    ]
+  },
+  pc_peripherals: {
+    budgetLabel: "Gear Budget",
+    budgetTiers: [
+      { label: "Under ₹1,500", value: "under-1500", min: 0, max: 1500 },
+      { label: "₹1,500 - ₹3,500", value: "1500-3500", min: 1500, max: 3500 },
+      { label: "Above ₹3,500", value: "above-3500", min: 3500, max: Infinity }
+    ],
+    typeLabel: "Peripheral Type",
+    typeOptions: [
+      { label: "Mechanical Keyboard", value: "Keyboard" },
+      { label: "Gaming Mouse", value: "Mouse" },
+      { label: "Headset & Audio", value: "Headset" },
+      { label: "Desk Mat & Accessories", value: "Mat" },
+      { label: "Aluminum Stand", value: "Stand" }
+    ],
+    panelLabel: "Connectivity",
+    panelOptions: [
+      { label: "Wireless 2.4GHz / BT", value: "Wireless" },
+      { label: "Braided USB Wired", value: "Wired" }
+    ]
+  },
+  monitors: {
+    budgetLabel: "Display Budget",
+    budgetTiers: [
+      { label: "Under ₹12,000", value: "under-12k", min: 0, max: 12000 },
+      { label: "₹12,000 - ₹25,000", value: "12k-25k", min: 12000, max: 25000 },
+      { label: "Above ₹25,000", value: "above-25k", min: 25000, max: Infinity }
+    ],
+    typeLabel: "Screen Size",
+    typeOptions: [
+      { label: "24\" - 25\" Esports Size", value: "24" },
+      { label: "27\" Standard Creator", value: "27" },
+      { label: "32\" - 34\" Ultrawide / 4K", value: "34" }
+    ],
+    panelLabel: "Panel & Refresh Rate",
+    panelOptions: [
+      { label: "144Hz - 180Hz Fast IPS", value: "144Hz" },
+      { label: "100Hz Smooth IPS", value: "100Hz" },
+      { label: "Curved 1500R Ultrawide", value: "Curved" },
+      { label: "4K Ultra HD IPS", value: "4K" }
+    ]
+  },
+  watches: {
+    budgetLabel: "Watch Budget",
+    budgetTiers: [
+      { label: "Under ₹2,500", value: "under-2500", min: 0, max: 2500 },
+      { label: "₹2,500 - ₹6,000", value: "2500-6000", min: 2500, max: 6000 },
+      { label: "Above ₹6,000", value: "above-6000", min: 6000, max: Infinity }
+    ],
+    typeLabel: "Style / Type",
+    typeOptions: [
+      { label: "AMOLED Smartwatch", value: "AMOLED" },
+      { label: "Apple Watch Ultra Style", value: "Ultra" },
+      { label: "Casio G-Shock Shockproof", value: "G-Shock" },
+      { label: "Titan Formal Chronograph", value: "Chronograph" }
+    ],
+    panelLabel: "Strap & Build",
+    panelOptions: [
+      { label: "Stainless Steel Chain", value: "Steel" },
+      { label: "Silicone / Ocean Band", value: "Silicone" },
+      { label: "Rugged Resin Case", value: "Resin" }
+    ]
+  },
+  gadgets: {
+    budgetLabel: "Gadget Budget",
+    budgetTiers: [
+      { label: "Under ₹2,000", value: "under-2k", min: 0, max: 2000 },
+      { label: "₹2,000 - ₹5,000", value: "2k-5k", min: 2000, max: 5000 },
+      { label: "Above ₹5,000", value: "above-5k", min: 5000, max: Infinity }
+    ],
+    typeLabel: "Gadget Category",
+    typeOptions: [
+      { label: "True Wireless Earbuds (TWS)", value: "Earbuds" },
+      { label: "Bluetooth Party Speaker", value: "Speaker" },
+      { label: "65W GaN Fast Charger", value: "Charger" },
+      { label: "High Capacity Power Bank", value: "Power" },
+      { label: "Wi-Fi 6 Gigabit Router", value: "Router" }
+    ],
+    panelLabel: "Key Feature",
+    panelOptions: [
+      { label: "Active Noise Cancellation (ANC)", value: "ANC" },
+      { label: "Fast Charging / USB-C PD", value: "Fast" },
+      { label: "IPX Waterproof Sound", value: "Waterproof" }
+    ]
+  },
+  gym: {
+    budgetLabel: "Equipment Budget",
+    budgetTiers: [
+      { label: "Under ₹3,000", value: "under-3k", min: 0, max: 3000 },
+      { label: "₹3,000 - ₹10,000", value: "3k-10k", min: 3000, max: 10000 },
+      { label: "Above ₹10,000", value: "above-10k", min: 10000, max: Infinity }
+    ],
+    typeLabel: "Equipment Type",
+    typeOptions: [
+      { label: "Dumbbells & Weight Plates", value: "Dumbbell" },
+      { label: "Olympic Rods & Curl Bars", value: "Bar" },
+      { label: "Motorized Treadmill", value: "Treadmill" },
+      { label: "Spinning Exercise Bike", value: "Bike" },
+      { label: "Workout Bench & Sets", value: "Bench" }
+    ],
+    panelLabel: "Grade",
+    panelOptions: [
+      { label: "Commercial Heavy-Gauge Steel", value: "Commercial" },
+      { label: "Home Gym High-Durability", value: "Home" }
+    ]
+  },
+  suitcases: {
+    budgetLabel: "Luggage Budget",
+    budgetTiers: [
+      { label: "Under ₹4,000", value: "under-4k", min: 0, max: 4000 },
+      { label: "₹4,000 - ₹8,000", value: "4k-8k", min: 4000, max: 8000 },
+      { label: "Above ₹8,000", value: "above-8k", min: 8000, max: Infinity }
+    ],
+    typeLabel: "Luggage Size",
+    typeOptions: [
+      { label: "20\" International Airline Cabin", value: "20" },
+      { label: "24\" Medium Check-In", value: "24" },
+      { label: "3-Piece Complete Trolley Set", value: "3-Piece" }
+    ],
+    panelLabel: "Material & Security",
+    panelOptions: [
+      { label: "100% Polycarbonate Unbreakable", value: "Polycarbonate" },
+      { label: "Embedded TSA Lock", value: "TSA" },
+      { label: "Reinforced Aluminum Corners", value: "Aluminum" }
+    ]
+  },
+  appliances: {
+    budgetLabel: "Washer Budget",
+    budgetTiers: [
+      { label: "Under ₹18,000", value: "under-18k", min: 0, max: 18000 },
+      { label: "₹18,000 - ₹30,000", value: "18k-30k", min: 18000, max: 30000 },
+      { label: "Above ₹30,000", value: "above-30k", min: 30000, max: Infinity }
+    ],
+    typeLabel: "Loading Type",
+    typeOptions: [
+      { label: "Front Load Inverter Direct Drive", value: "Front" },
+      { label: "Top Load Fully Automatic", value: "Top" },
+      { label: "Semi-Automatic Heavy Duty", value: "Semi" }
+    ],
+    panelLabel: "Capacity & Rating",
+    panelOptions: [
+      { label: "8.0 kg Direct Drive Steam", value: "8" },
+      { label: "7.0 kg Smart Inverter", value: "7" },
+      { label: "8.5 kg High Capacity", value: "8.5" }
+    ]
+  },
+  repairs: {
+    budgetLabel: "Service Estimate",
+    budgetTiers: [
+      { label: "Free Diagnostic Inspection", value: "free-diagnostic", min: 0, max: 0 },
+      { label: "Under ₹2,500 (Express Service)", value: "under-2500", min: 1, max: 2500 },
+      { label: "Above ₹2,500 (Chip / Screen Swap)", value: "above-2500", min: 2500, max: Infinity }
+    ],
+    typeLabel: "Repair Service",
+    typeOptions: [
+      { label: "Motherboard BGA & IC Micro-Soldering", value: "BGA" },
+      { label: "Broken Display & Screen Swap", value: "Screen" },
+      { label: "Liquid Spill & Short Circuit Recovery", value: "Liquid" },
+      { label: "Thermal Deep Overhaul & Re-Paste", value: "Thermal" }
+    ],
+    panelLabel: "Turnaround Time",
+    panelOptions: [
+      { label: "Same-Day Express Lab Service", value: "Same-Day" },
+      { label: "Comprehensive 24-Hr Diagnostic", value: "24-Hour" }
+    ]
+  }
+};
+
+function renderCategoryFilters(catId) {
+  const brandSelect = document.getElementById('brandFilterSelect') || document.getElementById('spaceBrandSelect');
+  const budgetSelect = document.getElementById('budgetFilterSelect') || document.getElementById('spaceBudgetSelect');
+  const sizeSelect = document.getElementById('sizeFilterSelect') || document.getElementById('spaceSizeSelect');
+  const panelSelect = document.getElementById('panelFilterSelect') || document.getElementById('spacePanelSelect');
+
+  const cfg = CATEGORY_FILTER_CONFIG[catId] || {};
+  const catItems = window.PRODUCTS.filter(p => p.category === catId);
+
+  // 1. Brands dynamically from products in this category
+  if (brandSelect) {
+    const brands = Array.from(new Set(catItems.map(p => p.brand).filter(Boolean))).sort();
+    let bHtml = '<option value="">All Brands</option>';
+    brands.forEach(b => {
+      bHtml += `<option value="${b}">${b}</option>`;
+    });
+    brandSelect.innerHTML = bHtml;
+    brandSelect.value = brandFilter;
+  }
+
+  // 2. Custom Budget Tiers
+  if (budgetSelect) {
+    const bLabel = cfg.budgetLabel || 'Budget';
+    let bgHtml = `<option value="">All ${bLabel}</option>`;
+    if (cfg.budgetTiers) {
+      cfg.budgetTiers.forEach(t => {
+        bgHtml += `<option value="${t.value}">${t.label}</option>`;
+      });
+    }
+    budgetSelect.innerHTML = bgHtml;
+    budgetSelect.value = budgetFilter;
+  }
+
+  // 3. Category Type / Form factor
+  if (sizeSelect) {
+    const tLabel = cfg.typeLabel || 'Sizes & Types';
+    let sHtml = `<option value="">All ${tLabel}</option>`;
+    if (cfg.typeOptions) {
+      cfg.typeOptions.forEach(o => {
+        sHtml += `<option value="${o.value}">${o.label}</option>`;
+      });
+    }
+    sizeSelect.innerHTML = sHtml;
+    sizeSelect.value = sizeFilter;
+  }
+
+  // 4. Category Feature / Spec / Panel
+  if (panelSelect) {
+    const pLabel = cfg.panelLabel || 'Features & Specs';
+    let pHtml = `<option value="">All ${pLabel}</option>`;
+    if (cfg.panelOptions) {
+      cfg.panelOptions.forEach(o => {
+        pHtml += `<option value="${o.value}">${o.label}</option>`;
+      });
+    }
+    panelSelect.innerHTML = pHtml;
+    panelSelect.value = panelFilter;
+  }
 }
 
 /* ==========================================================================
@@ -240,24 +578,60 @@ function renderStars(rating) {
 }
 
 /* ==========================================================================
-   AMAZON-STYLE VERTICAL PRODUCT CATALOGUE
+   COMPACT, WELL-SPACED PRODUCT CATALOGUE
    ========================================================================== */
 function renderSpaceProducts() {
   const grid = document.getElementById('spaceLineupGrid');
   if (!grid) return;
 
+  const cfg = CATEGORY_FILTER_CONFIG[activeCategory] || {};
+
   const items = window.PRODUCTS.filter(item => {
     if (item.category !== activeCategory) return false;
     if (brandFilter && item.brand !== brandFilter) return false;
-    if (budgetFilter && item.budget !== budgetFilter) return false;
-    if (sizeFilter && item.size !== sizeFilter) return false;
-    if (panelFilter && item.panel !== panelFilter) return false;
+
+    // Custom Budget Filter
+    if (budgetFilter && cfg.budgetTiers) {
+      const tier = cfg.budgetTiers.find(t => t.value === budgetFilter);
+      if (tier) {
+        if (tier.min === 0 && tier.max === 0) {
+          if (item.priceNum !== 0) return false;
+        } else {
+          const price = item.priceNum || 0;
+          if (price < tier.min || price > tier.max) return false;
+        }
+      }
+    }
+
+    // Category Type / Form factor filter
+    if (sizeFilter) {
+      const q = sizeFilter.toLowerCase();
+      const match = (item.size || '').toLowerCase().includes(q) ||
+                    (item.title || '').toLowerCase().includes(q) ||
+                    (item.specs || []).some(s => s.toLowerCase().includes(q)) ||
+                    (item.desc || '').toLowerCase().includes(q) ||
+                    (item.badge || '').toLowerCase().includes(q);
+      if (!match) return false;
+    }
+
+    // Category Feature / Spec filter
+    if (panelFilter) {
+      const q = panelFilter.toLowerCase();
+      const match = (item.panel || '').toLowerCase().includes(q) ||
+                    (item.specs || []).some(s => s.toLowerCase().includes(q)) ||
+                    (item.title || '').toLowerCase().includes(q) ||
+                    (item.desc || '').toLowerCase().includes(q) ||
+                    (item.badge || '').toLowerCase().includes(q);
+      if (!match) return false;
+    }
+
+    // Search filter
     if (searchFilter) {
       const q = searchFilter;
       const titleMatch = (item.title || '').toLowerCase().includes(q);
       const descMatch = (item.desc || '').toLowerCase().includes(q);
       const brandMatch = (item.brand || '').toLowerCase().includes(q);
-      const specsMatch = (item.specs || []).join(' ').toLowerCase().includes(q);
+      const specsMatch = (item.specs || []).some(s => s.toLowerCase().includes(q));
       if (!titleMatch && !descMatch && !brandMatch && !specsMatch) return false;
     }
     return true;
@@ -272,13 +646,22 @@ function renderSpaceProducts() {
     const activeTags = [];
     if (searchFilter) activeTags.push({ label: `"${searchFilter}"`, type: 'search' });
     if (brandFilter) activeTags.push({ label: `Brand: ${brandFilter}`, type: 'brand' });
-    if (budgetFilter) activeTags.push({ label: `Budget: ${budgetFilter}`, type: 'budget' });
-    if (sizeFilter) activeTags.push({ label: `Size: ${sizeFilter}`, type: 'size' });
-    if (panelFilter) activeTags.push({ label: `Type: ${panelFilter}`, type: 'panel' });
+    if (budgetFilter) {
+      const tier = cfg.budgetTiers ? cfg.budgetTiers.find(t => t.value === budgetFilter) : null;
+      activeTags.push({ label: tier ? tier.label : budgetFilter, type: 'budget' });
+    }
+    if (sizeFilter) {
+      const opt = cfg.typeOptions ? cfg.typeOptions.find(o => o.value === sizeFilter) : null;
+      activeTags.push({ label: opt ? opt.label : sizeFilter, type: 'size' });
+    }
+    if (panelFilter) {
+      const opt = cfg.panelOptions ? cfg.panelOptions.find(o => o.value === panelFilter) : null;
+      activeTags.push({ label: opt ? opt.label : panelFilter, type: 'panel' });
+    }
 
     if (activeTags.length > 0) {
       tagsContainer.innerHTML = activeTags.map(t => `<span class="filter-chip">${t.label}</span>`).join('') +
-        '<button class="filter-clear-all" onclick="resetFilters()">Clear Filters &times;</button>';
+        '<button class="filter-clear-all" type="button" onclick="resetFilters()">Clear Filters &times;</button>';
       tagsContainer.style.display = 'flex';
     } else {
       tagsContainer.innerHTML = '';
@@ -305,20 +688,15 @@ function renderSpaceProducts() {
     const reviews = item.reviewsCount || 120;
     const bought = item.boughtPastMonth || '500+ bought in past month';
     const delivery = item.delivery || 'FREE delivery Thu, 19 Nov';
-    const fastDelivery = item.fastDelivery || 'Or fastest delivery Tomorrow, 17 Nov';
-    const offers = item.offers && item.offers.length ? item.offers : [
-      'Save extra with No Cost EMI & Card Offers',
-      'Official Brand Warranty with 100% Genuine Tax Invoice'
-    ];
     const image = item.image || `images/products/${item.id}.svg`;
     const waText = encodeURIComponent(`Hi Lally Computers, I want to inquire about ${item.title} (${item.price}). Is this currently in stock at Sodhi Nagar?`);
 
     const badgesHtml = `
-      <div class="amz-badge-box">
-        ${item.condition === 'service' ? '<span class="amz-badge amz-badge--lab">In-Store Lab</span>' : ''}
-        ${item.condition === 'used' ? '<span class="amz-badge amz-badge--choice">Lab Tested A+</span>' : ''}
-        ${item.condition === 'new' ? '<span class="amz-badge amz-badge--deal">Brand New Sealed</span>' : ''}
-        ${item.badge ? `<span class="amz-badge">${item.badge}</span>` : ''}
+      <div class="amz-badge-strip">
+        ${item.condition === 'service' ? '<span class="amz-badge-tag amz-badge-tag--lab">🔬 In-Store Lab Service</span>' : ''}
+        ${item.condition === 'used' ? '<span class="amz-badge-tag amz-badge-tag--used">⚡ 25-Point Lab Verified</span>' : ''}
+        ${item.condition === 'new' ? '<span class="amz-badge-tag amz-badge-tag--new">✨ 100% Factory Sealed</span>' : ''}
+        ${item.badge ? `<span class="amz-badge-tag amz-badge-tag--feature">${item.badge}</span>` : ''}
       </div>
     `;
 
@@ -344,68 +722,54 @@ function renderSpaceProducts() {
       </button>
     ` : '';
 
-    const offersHtml = offers.map(o => `
-      <div class="amz-offer-item">
-        <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor">
-          <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
-        </svg>
-        <span>${o}</span>
-      </div>
-    `).join('');
-
     return `
       <article class="amz-product-row" id="product-${item.id}">
         <div class="amz-img-col">
           <div class="amz-img-container">
-            <img class="amz-product-img" src="${image}" alt="${item.title}" loading="lazy" width="280" height="245">
-            ${badgesHtml}
+            <img class="amz-product-img" src="${image}" alt="${item.title}" loading="lazy" width="180" height="150">
           </div>
         </div>
 
         <div class="amz-info-col">
+          ${badgesHtml}
           <h3 class="amz-product-title" data-specs-id="${item.id}">${item.title}</h3>
           <p class="amz-product-desc">${item.desc}</p>
           ${specsHtml}
 
-          <div class="amz-rating-row">
-            <span class="amz-rating-num">${rating.toFixed(1)}</span>
-            <div class="amz-stars">${renderStars(rating)}</div>
-            <a class="amz-review-link" href="#reviews">${reviews.toLocaleString()} ratings</a>
-            <span class="amz-bought-tag">${bought}</span>
+          <div class="amz-meta-row">
+            <div class="amz-pricing-inline">
+              <span class="amz-price-current">${item.price}</span>
+              ${mrpHtml}
+            </div>
+            <div class="amz-rating-inline">
+              <span class="amz-rating-num">${rating.toFixed(1)}</span>
+              <div class="amz-stars">${renderStars(rating)}</div>
+              <span class="amz-review-link">(${reviews.toLocaleString()})</span>
+              <span class="amz-bought-tag">${bought}</span>
+            </div>
           </div>
 
-          <div class="amz-price-row">
-            <span class="amz-price-current">${item.price}</span>
-            ${mrpHtml}
-            ${item.warranty ? `<span class="amz-warranty-badge">${item.warranty}</span>` : ''}
-          </div>
-
-          ${labBtnHtml}
-
-          <div class="amz-offers-group">
-            ${offersHtml}
-          </div>
-
-          <div class="amz-delivery-info">
-            <div class="amz-delivery-primary">${delivery}</div>
-            <div class="amz-delivery-secondary">${fastDelivery}</div>
+          <div class="amz-delivery-strip">
+            <span class="amz-delivery-item">🚚 ${delivery}</span>
+            <span class="amz-warranty-item">🛡️ ${item.warranty || 'Official Warranty & GST Bill Included'}</span>
           </div>
 
           <div class="amz-actions-row">
             <button class="amz-btn-cart" data-cart-id="${item.id}" type="button">
-              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2">
+              <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2">
                 <circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/>
                 <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>
               </svg>
               <span>Add to cart</span>
             </button>
             <a class="amz-btn-wa" href="https://wa.me/919872010193?text=${waText}" target="_blank" rel="noopener">
-              <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+              <svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor">
                 <path d="M17.472 14.382c-.301-.15-1.782-.879-2.058-.98-.276-.1-.476-.15-.677.15-.2.301-.777.98-.952 1.18-.175.201-.351.226-.652.076-.301-.15-1.27-.468-2.42-1.493-.894-.799-1.498-1.786-1.674-2.087-.175-.3-.019-.463.132-.612.136-.134.301-.351.451-.527.15-.175.2-.301.301-.501.1-.2.05-.376-.025-.526-.075-.15-.677-1.631-.928-2.233-.244-.585-.493-.506-.677-.515-.175-.009-.376-.011-.577-.011-.2 0-.526.075-.802.376-.276.301-1.053 1.028-1.053 2.508 0 1.48 1.078 2.91 1.228 3.111.15.2 2.122 3.24 5.141 4.544.718.31 1.279.496 1.716.635.722.23 1.379.197 1.898.12.579-.086 1.782-.728 2.033-1.431.251-.703.251-1.305.175-1.431-.075-.126-.276-.201-.577-.351zM12.04 2C6.516 2 2.023 6.49 2.023 12.013c0 1.942.555 3.756 1.517 5.292L2 22l4.834-1.503a10.007 10.007 0 0 0 5.206 1.516c5.524 0 10.017-4.49 10.017-10.013C22.057 6.49 17.564 2 12.04 2z"/>
               </svg>
               <span>WhatsApp Inquiry</span>
             </a>
             <button class="amz-btn-view" data-specs-id="${item.id}" type="button">Quick View</button>
+            ${labBtnHtml}
           </div>
         </div>
       </article>
@@ -819,6 +1183,7 @@ function resetToDefaultStock() {
   if (statusEl) statusEl.innerHTML = '<span style="color:#94a3b8">Default in-store inventory restored.</span>';
 
   renderCategories();
+  renderCategoryFilters(activeCategory);
   renderSpaceProducts();
   showToast('Restored default catalogue');
   setTimeout(closeSheetSyncModal, 1000);
@@ -859,6 +1224,7 @@ function updateHours() {
 document.addEventListener('DOMContentLoaded', () => {
   // Render Categories & Initial Products
   renderCategories();
+  renderCategoryFilters(activeCategory);
   renderSpaceProducts();
   updateCartUI();
   updateHours();
