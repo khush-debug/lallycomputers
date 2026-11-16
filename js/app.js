@@ -1276,15 +1276,34 @@ document.addEventListener('DOMContentLoaded', () => {
     fetchAndSyncGoogleSheet(savedSheet, false);
   }
 
-  // Hero Video Loader
-  const video = document.getElementById('heroVideo');
-  if (video && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-    const isSmall = window.matchMedia('(max-width: 760px)').matches;
-    const ext = video.canPlayType('video/mp4; codecs="avc1.640028"') ? 'mp4' : 'webm';
-    video.muted = true;
-    video.addEventListener('playing', () => video.classList.add('is-on'), { once: true });
-    video.src = (isSmall ? 'hero-720.' : 'hero-1080.') + ext;
-    const p = video.play();
-    if (p && p.catch) p.catch(() => {});
+  // Hero Panoramic Banner Interactive Parallax
+  const heroSection = document.getElementById('top');
+  const heroPanorama = document.getElementById('heroPanorama');
+
+  if (heroSection && heroPanorama && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    let targetX = 0, targetY = 0;
+    let currentX = 0, currentY = 0;
+
+    heroSection.addEventListener('mousemove', (e) => {
+      const rect = heroSection.getBoundingClientRect();
+      const xRatio = (e.clientX - rect.left) / rect.width - 0.5;
+      const yRatio = (e.clientY - rect.top) / rect.height - 0.5;
+      targetX = xRatio * 28;
+      targetY = yRatio * 18;
+    }, { passive: true });
+
+    heroSection.addEventListener('mouseleave', () => {
+      targetX = 0;
+      targetY = 0;
+    });
+
+    function stepParallax() {
+      currentX += (targetX - currentX) * 0.08;
+      currentY += (targetY - currentY) * 0.08;
+      heroPanorama.style.setProperty('--mouse-shift-x', `${currentX.toFixed(2)}px`);
+      heroPanorama.style.setProperty('--mouse-shift-y', `${currentY.toFixed(2)}px`);
+      requestAnimationFrame(stepParallax);
+    }
+    requestAnimationFrame(stepParallax);
   }
 });

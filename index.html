@@ -12,8 +12,10 @@
   <meta property="og:title" content="Lally Computers (Supreme Infosys), Moga">
   <meta property="og:description"
     content="Browse laptops with diagnostic lab reports, custom PCs, building materials, gadgets, and repair services at 5-A, Sodhi Nagar, Moga.">
-  <meta property="og:image" content="og.jpg">
+  <meta property="og:image" content="images/store-banner.jpg">
+  <link rel="icon" type="image/png" href="favicon.png">
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="apple-touch-icon" href="images/icon-192.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet"
@@ -41,13 +43,7 @@
   <header class="apple-nav" role="banner">
     <div class="inner apple-nav__inner">
       <a class="nav-brand" href="#top" aria-label="Lally Computers Home">
-        <svg viewBox="0 0 64 64" fill="none" stroke="currentColor">
-          <rect x="14" y="14" width="36" height="36" rx="8" stroke-width="3.6" />
-          <path d="M8 24h6M8 32h6M8 40h6M50 24h6M50 32h6M50 40h6" stroke-width="3.2" stroke-linecap="round" />
-          <path d="M26 21v16l6 6h8" stroke="currentColor" stroke-width="4.4" stroke-linecap="round"
-            stroke-linejoin="round" />
-          <circle cx="40" cy="43" r="3.4" fill="currentColor" stroke="none" />
-        </svg>
+        <img src="images/logo.png" alt="Lally Computers Logo" class="nav-brand-logo" width="34" height="34">
         <span>Lally Computers</span>
       </a>
 
@@ -99,16 +95,17 @@
        HERO SECTION
        ======================================================================== -->
   <section class="hero-apple" id="top">
-    <div class="hero-apple__bg">
-      <img src="poster.jpg" width="1600" height="900" alt="" fetchpriority="high">
-      <video id="heroVideo" muted loop playsinline autoplay preload="auto" poster="poster.jpg"
-        aria-hidden="true"></video>
+    <div class="hero-apple__bg" id="heroBannerWrap">
+      <div class="hero-banner-panorama" id="heroPanorama" role="img" aria-label="Lally Computers Supreme Infosys Store Showroom"></div>
       <div class="hero-apple__overlay"></div>
     </div>
 
     <div class="inner">
       <div class="hero-apple__content">
-        <p class="hero-eyebrow">Supreme Infosys &middot; Sodhi Nagar, Moga</p>
+        <div class="hero-pill-badge">
+          <span class="hero-live-dot"></span>
+          <span class="hero-eyebrow">Supreme Infosys &middot; Sodhi Nagar, Moga</span>
+        </div>
         <h1 class="hero-headline">Lally Computers.</h1>
         <p class="hero-subhead">Certified pre-owned laptops with 25-point lab reports, factory-sealed new laptops,
           custom PC rigs, gaming components, gadgets, gym gear, and chip-level repairs.</p>
