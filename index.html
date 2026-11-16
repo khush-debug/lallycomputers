@@ -39,27 +39,41 @@
        GLOBAL FROSTED NAVIGATION BAR
        ======================================================================== -->
   <header class="apple-nav" role="banner">
-    <div class="inner nav-inner">
+    <div class="inner apple-nav__inner">
       <a class="nav-brand" href="#top" aria-label="Lally Computers Home">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"
-          stroke-linejoin="round">
-          <rect x="2" y="3" width="20" height="14" rx="2" />
-          <line x1="8" y1="21" x2="16" y2="21" />
-          <line x1="12" y1="17" x2="12" y2="21" />
+        <svg viewBox="0 0 64 64" fill="none" stroke="currentColor">
+          <rect x="14" y="14" width="36" height="36" rx="8" stroke-width="3.6" />
+          <path d="M8 24h6M8 32h6M8 40h6M50 24h6M50 32h6M50 40h6" stroke-width="3.2" stroke-linecap="round" />
+          <path d="M26 21v16l6 6h8" stroke="currentColor" stroke-width="4.4" stroke-linecap="round"
+            stroke-linejoin="round" />
+          <circle cx="40" cy="43" r="3.4" fill="currentColor" stroke="none" />
         </svg>
         <span>Lally Computers</span>
       </a>
 
-      <nav class="nav-links" aria-label="Primary navigation">
-        <a href="#lineup">Departments</a>
-        <a href="#why">Why Supreme</a>
-        <a href="#reviews">Reviews</a>
-        <a href="#visit">Location</a>
+      <nav aria-label="Main Navigation">
+        <ul class="nav-links">
+          <li><a href="#lineup">Departments</a></li>
+          <li><a href="#why">Why Supreme</a></li>
+          <li><a href="#reviews">Reviews</a></li>
+          <li><a href="#visit">Location</a></li>
+        </ul>
       </nav>
 
       <div class="nav-actions">
-        <button class="nav-cart-btn" id="cartOpenBtn" type="button" onclick="openCartModal()"
-          aria-label="View Shopping Cart">
+        <button id="themeToggle" class="theme-toggle-btn" type="button" onclick="toggleSiteTheme()"
+          aria-label="Toggle dark/light mode">
+          <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="4" />
+            <path
+              d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41" />
+          </svg>
+          <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+          </svg>
+        </button>
+        <button class="nav-cart-btn" id="cartOpenBtn" type="button" onclick="openCartModal()" aria-label="Shopping Cart"
+          title="View Cart">
           <svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="2">
             <circle cx="9" cy="21" r="1" />
             <circle cx="20" cy="21" r="1" />
@@ -77,16 +91,6 @@
           </svg>
           <span>Call Us</span>
         </a>
-        <button class="theme-toggle-btn" type="button" onclick="toggleSiteTheme()" aria-label="Toggle dark/light mode">
-          <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <circle cx="12" cy="12" r="5" />
-            <path
-              d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42" />
-          </svg>
-          <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
-          </svg>
-        </button>
       </div>
     </div>
   </header>
@@ -152,23 +156,20 @@
        ======================================================================== -->
   <section class="catalogue-space" id="catalogueSpace" aria-label="Dedicated Department Space">
     <div class="inner">
-      <!-- Space Header -->
-      <div class="space-header">
-        <div class="space-header__left">
-          <span class="space-current-badge" id="spaceCurrentCatBadge">25-Point Lab Verified</span>
-          <h2 class="space-current-title" id="spaceCurrentCatTitle">Pre-Owned Laptops</h2>
-          <p class="space-current-desc" id="spaceCurrentCatDesc">
-            Certified corporate lease return laptops with complete hardware diagnostic lab reports, 6 months warranty,
-            and GST invoice.
-          </p>
+      <!-- Top control bar -->
+      <div class="space-top-bar">
+        <div class="space-title-group">
+          <p class="section-eyebrow" id="spaceEyebrow">Department Inventory</p>
+          <h2 id="spaceTitle">Pre-Owned Laptops</h2>
+          <p id="spaceDesc">Certified corporate lease returns with 25-point hardware diagnostic lab reports.</p>
         </div>
-        <div class="space-header__actions">
+        <div class="space-top-actions">
           <button class="btn-sheet-sync" type="button" onclick="openSheetSyncModal()" title="Sync stock from Google Sheets">
-            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M21 12a9 9 0 0 0-9-9 9.75 9.75 0 0 0-6.74 2.74L3 8" />
-              <path d="M3 3v5h5" />
-              <path d="M3 12a9 9 0 0 0 9 9 9.75 9.75 0 0 0 6.74-2.74L21 16" />
-              <path d="M16 16h5v5" />
+            <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+              <polyline points="14 2 14 8 20 8" />
+              <line x1="16" y1="13" x2="8" y2="13" />
+              <line x1="16" y1="17" x2="8" y2="17" />
             </svg>
             <span id="sheetSyncBadgeText">Sync Google Sheet</span>
           </button>
@@ -181,86 +182,76 @@
       <!-- Category Pills Switcher inside Space -->
       <div class="space-categories-scroller" id="spaceCatScroller"></div>
 
-      <!-- Live Search & Multi-Filters Panel -->
-      <div class="space-filter-panel">
-        <div class="space-search-bar">
-          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
-            <circle cx="11" cy="11" r="8" />
-            <path d="m21 21-4.35-4.35" />
-          </svg>
-          <input type="text" id="spaceSearchInput" placeholder="Search by model, CPU, GPU, RAM, brand, or specs..."
-            autocomplete="off">
-        </div>
-
+      <!-- Multi-Faceted Filter Panel -->
+      <div class="filter-panel">
         <div class="filter-panel-row">
-          <div class="filter-select-group">
-            <label for="spaceBrandSelect">Brand</label>
-            <select class="filter-select" id="spaceBrandSelect" onchange="applyFilters()">
-              <option value="">All Brands</option>
-              <option value="Apple">Apple</option>
-              <option value="HP">HP</option>
-              <option value="Dell">Dell</option>
-              <option value="Lenovo">Lenovo</option>
-              <option value="Asus">Asus</option>
-              <option value="Acer">Acer</option>
-              <option value="MSI">MSI</option>
-              <option value="LG">LG</option>
-              <option value="Samsung">Samsung</option>
-              <option value="Casio">Casio</option>
-              <option value="Titan">Titan</option>
-              <option value="Supreme Rig">Supreme Custom Rig</option>
-              <option value="Supreme Lab">Supreme Lab Repair</option>
-            </select>
+          <div class="filter-search-wrap">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="11" cy="11" r="8" />
+              <line x1="21" y1="21" x2="16.65" y2="16.65" />
+            </svg>
+            <input type="text" id="spaceSearchInput" placeholder="Search by model, specs, brand..." aria-label="Search stock">
           </div>
 
-          <div class="filter-select-group">
-            <label for="spaceBudgetSelect">Budget</label>
-            <select class="filter-select" id="spaceBudgetSelect" onchange="applyFilters()">
-              <option value="">All Budgets</option>
-              <option value="under-5k">Under ₹5,000</option>
-              <option value="under-15k">₹5,000 - ₹15,000</option>
-              <option value="under-25k">₹15,000 - ₹25,000</option>
-              <option value="under-40k">₹25,000 - ₹40,000</option>
-              <option value="under-60k">₹40,000 - ₹60,000</option>
-              <option value="above-60k">Above ₹60,000</option>
-            </select>
-          </div>
+          <select class="filter-select" id="brandFilterSelect" onchange="applyFilters()">
+            <option value="">All Brands</option>
+            <option value="Apple">Apple</option>
+            <option value="Lenovo">Lenovo</option>
+            <option value="Dell">Dell</option>
+            <option value="HP">HP</option>
+            <option value="Asus">Asus</option>
+            <option value="Acer">Acer</option>
+            <option value="Samsung">Samsung</option>
+            <option value="LG">LG</option>
+            <option value="MSI">MSI</option>
+            <option value="Casio">Casio</option>
+            <option value="Titan">Titan</option>
+            <option value="Supreme Rig">Supreme Custom Rig</option>
+            <option value="Supreme Lab">Supreme Lab Repair</option>
+          </select>
 
-          <div class="filter-select-group">
-            <label for="spaceSizeSelect">Size / Form</label>
-            <select class="filter-select" id="spaceSizeSelect" onchange="applyFilters()">
-              <option value="">All Sizes</option>
-              <option value="13-inch">13-inch Compact</option>
-              <option value="14-inch">14-inch Standard</option>
-              <option value="15-inch">15.6-inch Full Size</option>
-              <option value="16-inch">16-inch Creator</option>
-              <option value="Desktop">Desktop Tower / Rig</option>
-              <option value="Component">PC Component</option>
-              <option value="Peripheral">Peripheral</option>
-              <option value="Service">Repair Service</option>
-            </select>
-          </div>
+          <select class="filter-select" id="budgetFilterSelect" onchange="applyFilters()">
+            <option value="">All Budgets</option>
+            <option value="under-5k">Under ₹5,000</option>
+            <option value="under-15k">₹5,000 - ₹15,000</option>
+            <option value="under-25k">₹15,000 - ₹25,000</option>
+            <option value="under-40k">₹25,000 - ₹40,000</option>
+            <option value="under-60k">₹40,000 - ₹60,000</option>
+            <option value="above-60k">Above ₹60,000</option>
+          </select>
 
-          <div class="filter-select-group">
-            <label for="spacePanelSelect">Type / Spec</label>
-            <select class="filter-select" id="spacePanelSelect" onchange="applyFilters()">
-              <option value="">All Types</option>
-              <option value="Retina">Apple Retina Display</option>
-              <option value="IPS FHD">IPS Full HD</option>
-              <option value="OLED">OLED Display</option>
-              <option value="144Hz">144Hz High Refresh Gaming</option>
-              <option value="4K">4K Ultra HD</option>
-              <option value="GPU">Graphics Card (NVIDIA/AMD)</option>
-              <option value="CPU">Processor (Intel/Ryzen)</option>
-              <option value="Mechanical">Mechanical Switch</option>
-              <option value="Repair">Chip-Level Repair</option>
-            </select>
-          </div>
+          <select class="filter-select" id="sizeFilterSelect" onchange="applyFilters()">
+            <option value="">All Sizes</option>
+            <option value="13-inch">13-inch Compact</option>
+            <option value="14-inch">14-inch Standard</option>
+            <option value="15-inch">15.6-inch Full Size</option>
+            <option value="16-inch">16-inch Creator</option>
+            <option value="Desktop">Desktop Tower / Rig</option>
+            <option value="Component">PC Component</option>
+            <option value="Peripheral">Peripheral</option>
+            <option value="Service">Repair Service</option>
+          </select>
 
-          <div class="filter-results-badge" id="spaceResultsCount">Loading...</div>
+          <select class="filter-select" id="panelFilterSelect" onchange="applyFilters()">
+            <option value="">All Types</option>
+            <option value="Retina">Apple Retina Display</option>
+            <option value="IPS FHD">IPS Full HD</option>
+            <option value="144Hz">144Hz High Refresh Gaming</option>
+            <option value="OLED">OLED Display</option>
+            <option value="4K">4K Ultra HD</option>
+            <option value="GPU">Graphics Card (NVIDIA/AMD)</option>
+            <option value="CPU">Processor (Intel/Ryzen)</option>
+            <option value="Mechanical">Mechanical Switch</option>
+            <option value="Repair">Chip-Level Repair</option>
+          </select>
+
+          <button class="btn-reset-filters" type="button" onclick="resetFilters()">Reset</button>
         </div>
 
-        <div class="active-filter-tags" id="activeFilterTags"></div>
+        <div class="filter-status-strip">
+          <div class="active-filter-tags" id="activeFilterTags"></div>
+          <span id="resultsCount">Showing verified in-store units</span>
+        </div>
       </div>
 
       <!-- Amazon-Style Vertical Product Lineup -->
@@ -276,7 +267,7 @@
       <div class="section-intro">
         <p class="section-eyebrow">In-Store Departments</p>
         <h2 class="section-headline">Explore the Departments.</h2>
-        <p class="section-subhead">
+        <p class="section-desc">
           Click any category below to open its dedicated catalogue space with detailed specs, verified lab reports, and
           live WhatsApp inquiry.
         </p>
@@ -295,7 +286,7 @@
       <div class="section-intro">
         <p class="section-eyebrow">The Supreme Guarantee</p>
         <h2 class="section-headline">Why Buy from Us.</h2>
-        <p class="section-subhead">We have served Moga for over 16 years with honest pricing, authentic warranty, and
+        <p class="section-desc">We have served Moga for over 16 years with honest pricing, authentic warranty, and
           in-house hardware engineering.</p>
       </div>
 
@@ -476,18 +467,17 @@
   <!-- ========================================================================
        SPECS MODAL (APPLE SHEET)
        ======================================================================== -->
-  <div class="modal-backdrop" id="appleModal" role="dialog" aria-modal="true">
+  <div class="modal-backdrop" id="appleModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
     <div class="modal-sheet">
-      <button class="modal-sheet-close" id="modalCloseBtn" aria-label="Close details" data-close-modal>
+      <button class="modal-sheet-close" id="modalCloseBtn" type="button" onclick="closeSpecSheet()" aria-label="Close details" data-close-modal>
         <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5">
           <line x1="18" y1="6" x2="6" y2="18" />
           <line x1="6" y1="6" x2="18" y2="18" />
         </svg>
       </button>
-      <p style="font-size:12px; text-transform:uppercase; letter-spacing:0.06em; color:var(--apple-blue); font-weight:600;"
-        id="modalCategory"></p>
-      <h3 style="font-size:1.6rem; font-weight:700; margin:0.3rem 0 0.8rem; letter-spacing:-0.02em;" id="modalTitle">
-      </h3>
+      <p class="section-eyebrow" id="modalCategory"></p>
+      <h3 style="font-size:1.6rem; font-weight:700; margin:0.3rem 0 0.8rem; letter-spacing:-0.02em;" id="modalTitle"></h3>
+      <div id="modalPrice" style="font-size:1.4rem; font-weight:800; color:#22c55e; margin-bottom:0.8rem;"></div>
       <p style="font-size:13.5px; color:var(--text-secondary); margin-bottom:1.2rem;" id="modalDesc"></p>
 
       <table class="modal-spec-table">
@@ -514,9 +504,9 @@
   <!-- ========================================================================
        LAB REPORT DIAGNOSTIC SHEET MODAL (FOR PRE-OWNED LAPTOPS)
        ======================================================================== -->
-  <div class="modal-backdrop" id="labReportModal" role="dialog" aria-modal="true">
+  <div class="modal-backdrop" id="labReportModal" role="dialog" aria-modal="true" aria-labelledby="labLaptopTitle">
     <div class="modal-sheet">
-      <button class="modal-sheet-close" id="labModalCloseBtn" aria-label="Close lab report" data-close-modal>
+      <button class="modal-sheet-close" id="labModalCloseBtn" type="button" onclick="closeLabReportModal()" aria-label="Close lab report" data-close-modal>
         <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5">
           <line x1="18" y1="6" x2="6" y2="18" />
           <line x1="6" y1="6" x2="18" y2="18" />
@@ -577,9 +567,9 @@
   <!-- ========================================================================
        GOOGLE SHEETS LIVE SYNC MODAL
        ======================================================================== -->
-  <div class="modal-backdrop" id="sheetSyncModal" role="dialog" aria-modal="true">
+  <div class="modal-backdrop" id="sheetSyncModal" role="dialog" aria-modal="true" aria-labelledby="sheetSyncTitle">
     <div class="modal-sheet">
-      <button class="modal-sheet-close" id="sheetCloseBtn" aria-label="Close sheet manager" data-close-modal>
+      <button class="modal-sheet-close" id="sheetCloseBtn" type="button" onclick="closeSheetSyncModal()" aria-label="Close sheet manager" data-close-modal>
         <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5">
           <line x1="18" y1="6" x2="6" y2="18" />
           <line x1="6" y1="6" x2="18" y2="18" />
@@ -599,7 +589,7 @@
           Management</span>
       </div>
 
-      <h3 style="font-size:1.6rem; font-weight:700; margin:0 0 0.5rem; letter-spacing:-0.02em;">Live Google Sheets
+      <h3 id="sheetSyncTitle" style="font-size:1.6rem; font-weight:700; margin:0 0 0.5rem; letter-spacing:-0.02em;">Live Google Sheets
         Sync</h3>
       <p style="font-size:13.5px; color:var(--text-secondary); margin-bottom:1.4rem;">
         Connect your store's Google Sheet to keep laptop models, prices, availability, and components synced live in
@@ -656,35 +646,32 @@
   <!-- ========================================================================
        SHOPPING CART DRAWER / MODAL
        ======================================================================== -->
-  <div class="modal-backdrop" id="cartModal" role="dialog" aria-modal="true">
-    <div class="modal-sheet">
-      <button class="modal-sheet-close" id="cartModalCloseBtn" aria-label="Close Cart" data-close-modal>
+  <div class="modal-backdrop" id="cartModal" role="dialog" aria-modal="true" aria-labelledby="cartModalTitle">
+    <div class="modal-sheet cart-modal-box">
+      <button class="modal-sheet-close" id="cartModalCloseBtn" type="button" onclick="closeCartModal()" aria-label="Close Cart" data-close-modal>
         <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5">
           <line x1="18" y1="6" x2="6" y2="18" />
           <line x1="6" y1="6" x2="18" y2="18" />
         </svg>
       </button>
 
-      <div style="display:flex; align-items:center; gap:0.6rem; margin-bottom:0.3rem;">
-        <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="#22c55e" stroke-width="2">
-          <circle cx="9" cy="21" r="1" />
-          <circle cx="20" cy="21" r="1" />
-          <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6" />
-        </svg>
-        <h3 style="font-size:1.5rem; font-weight:700; margin:0; letter-spacing:-0.02em;">In-Store Shopping Cart</h3>
+      <div>
+        <p class="section-eyebrow">Store Basket</p>
+        <h3 id="cartModalTitle" style="font-size:1.6rem; font-weight:700; margin:0.3rem 0 1rem; color:var(--text-primary);">Selected Products</h3>
       </div>
       <p style="font-size:13px; color:var(--text-secondary); margin-bottom:1.2rem;">
         Selected items for pickup or in-store purchase at Supreme Infosys, Sodhi Nagar, Moga.
       </p>
 
-      <div id="cartModalBody"></div>
+      <div class="cart-modal-body" id="cartModalBody" style="max-height: 50vh; overflow-y: auto; padding: 0.5rem 0;"></div>
 
       <div class="cart-modal-footer" id="cartModalFooter">
         <div class="cart-total-wrap">
-          Estimated Total: <span class="cart-total-val" id="cartTotalDisplay">₹0</span>
+          <span>Subtotal:</span>
+          <span class="cart-total-val" id="cartSubtotalVal">₹0</span>
         </div>
         <button class="btn-cart-checkout" type="button" onclick="checkoutCartWhatsApp()">
-          <svg viewBox="0 0 24 24" width="17" height="17" fill="currentColor">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
             <path
               d="M17.472 14.382c-.301-.15-1.782-.879-2.058-.98-.276-.1-.476-.15-.677.15-.2.301-.777.98-.952 1.18-.175.201-.351.226-.652.076-.301-.15-1.27-.468-2.42-1.493-.894-.799-1.498-1.786-1.674-2.087-.175-.3-.019-.463.132-.612.136-.134.301-.351.451-.527.15-.175.2-.301.301-.501.1-.2.05-.376-.025-.526-.075-.15-.677-1.631-.928-2.233-.244-.585-.493-.506-.677-.515-.175-.009-.376-.011-.577-.011-.2 0-.526.075-.802.376-.276.301-1.053 1.028-1.053 2.508 0 1.48 1.078 2.91 1.228 3.111.15.2 2.122 3.24 5.141 4.544.718.31 1.279.496 1.716.635.722.23 1.379.197 1.898.12.579-.086 1.782-.728 2.033-1.431.251-.703.251-1.305.175-1.431-.075-.126-.276-.201-.577-.351zM12.04 2C6.516 2 2.023 6.49 2.023 12.013c0 1.942.555 3.756 1.517 5.292L2 22l4.834-1.503a10.007 10.007 0 0 0 5.206 1.516c5.524 0 10.017-4.49 10.017-10.013C22.057 6.49 17.564 2 12.04 2z" />
           </svg>
@@ -692,6 +679,11 @@
         </button>
       </div>
     </div>
+  </div>
+
+  <div class="amz-toast" id="amzToast" role="status" aria-live="polite">
+    <span id="amzToastMsg">✓ Item added to cart</span>
+    <button class="amz-toast-btn" type="button" onclick="openCartModal()">View Cart</button>
   </div>
 
   <!-- ========================================================================

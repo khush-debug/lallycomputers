@@ -124,9 +124,9 @@ function openCatalogueSpace(catId) {
 
   const catObj = window.CATEGORIES.find(c => c.id === activeCategory);
   if (catObj) {
-    const titleEl = document.getElementById('spaceCurrentCatTitle');
-    const descEl = document.getElementById('spaceCurrentCatDesc');
-    const badgeEl = document.getElementById('spaceCurrentCatBadge');
+    const titleEl = document.getElementById('spaceTitle') || document.getElementById('spaceCurrentCatTitle');
+    const descEl = document.getElementById('spaceDesc') || document.getElementById('spaceCurrentCatDesc');
+    const badgeEl = document.getElementById('spaceEyebrow') || document.getElementById('spaceCurrentCatBadge');
     if (titleEl) titleEl.textContent = catObj.name;
     if (descEl) descEl.textContent = catObj.desc;
     if (badgeEl) badgeEl.textContent = catObj.badge;
@@ -158,9 +158,9 @@ function switchSpaceCategory(catId) {
   activeCategory = catId;
   const catObj = window.CATEGORIES.find(c => c.id === catId);
   if (catObj) {
-    const titleEl = document.getElementById('spaceCurrentCatTitle');
-    const descEl = document.getElementById('spaceCurrentCatDesc');
-    const badgeEl = document.getElementById('spaceCurrentCatBadge');
+    const titleEl = document.getElementById('spaceTitle') || document.getElementById('spaceCurrentCatTitle');
+    const descEl = document.getElementById('spaceDesc') || document.getElementById('spaceCurrentCatDesc');
+    const badgeEl = document.getElementById('spaceEyebrow') || document.getElementById('spaceCurrentCatBadge');
     if (titleEl) titleEl.textContent = catObj.name;
     if (descEl) descEl.textContent = catObj.desc;
     if (badgeEl) badgeEl.textContent = catObj.badge;
@@ -182,10 +182,10 @@ function switchSpaceCategory(catId) {
    ========================================================================== */
 function applyFilters() {
   const searchInput = document.getElementById('spaceSearchInput');
-  const brandSelect = document.getElementById('spaceBrandSelect');
-  const budgetSelect = document.getElementById('spaceBudgetSelect');
-  const sizeSelect = document.getElementById('spaceSizeSelect');
-  const panelSelect = document.getElementById('spacePanelSelect');
+  const brandSelect = document.getElementById('brandFilterSelect') || document.getElementById('spaceBrandSelect');
+  const budgetSelect = document.getElementById('budgetFilterSelect') || document.getElementById('spaceBudgetSelect');
+  const sizeSelect = document.getElementById('sizeFilterSelect') || document.getElementById('spaceSizeSelect');
+  const panelSelect = document.getElementById('panelFilterSelect') || document.getElementById('spacePanelSelect');
 
   searchFilter = searchInput ? searchInput.value.trim().toLowerCase() : '';
   brandFilter = brandSelect ? brandSelect.value : '';
@@ -203,7 +203,13 @@ function resetFilters() {
   sizeFilter = '';
   panelFilter = '';
 
-  const ids = ['spaceSearchInput', 'spaceBrandSelect', 'spaceBudgetSelect', 'spaceSizeSelect', 'spacePanelSelect'];
+  const ids = [
+    'spaceSearchInput',
+    'brandFilterSelect', 'spaceBrandSelect',
+    'budgetFilterSelect', 'spaceBudgetSelect',
+    'sizeFilterSelect', 'spaceSizeSelect',
+    'panelFilterSelect', 'spacePanelSelect'
+  ];
   ids.forEach(id => {
     const el = document.getElementById(id);
     if (el) el.value = '';
@@ -258,7 +264,7 @@ function renderSpaceProducts() {
   });
 
   // Update count badge & active filter chips
-  const countBadge = document.getElementById('spaceResultsCount');
+  const countBadge = document.getElementById('resultsCount') || document.getElementById('spaceResultsCount');
   if (countBadge) countBadge.textContent = `${items.length} Product${items.length === 1 ? '' : 's'}`;
 
   const tagsContainer = document.getElementById('activeFilterTags');
@@ -536,7 +542,7 @@ function renderCartModal() {
 
   if (footer) {
     footer.style.display = 'flex';
-    const totalEl = document.getElementById('cartTotalDisplay');
+    const totalEl = document.getElementById('cartSubtotalVal') || document.getElementById('cartTotalDisplay');
     if (totalEl) totalEl.textContent = totalNum > 0 ? `₹${totalNum.toLocaleString('en-IN')}` : 'Estimated in store';
   }
 }
