@@ -47,9 +47,9 @@
     --circuit-green: #25d366;
     --font-sans: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Hanken Grotesk", "Helvetica Neue", sans-serif;
     --font-mono: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, monospace;
-    --nav-height: 52px;
-    --max-w: 1180px;
-    --radius-card: 18px;
+    --nav-height: 62px;
+    --max-w: 1400px;
+    --radius-card: 22px;
     --radius-pill: 980px;
     color-scheme: dark;
   }
@@ -76,8 +76,8 @@
     background: var(--bg-main);
     color: var(--text-primary);
     font-family: var(--font-sans);
-    font-size: 16px;
-    line-height: 1.48;
+    font-size: 17px;
+    line-height: 1.55;
     font-weight: 400;
     letter-spacing: -0.02em;
     overflow-x: hidden;
@@ -90,7 +90,18 @@
     width: 100%;
     max-width: var(--max-w);
     margin-inline: auto;
-    padding-inline: max(22px, env(safe-area-inset-left, 0px));
+    padding-inline: clamp(24px, 4vw, 56px);
+  }
+
+  .text-gradient {
+    background: linear-gradient(135deg, #2997ff 0%, #64d2ff 60%, #a5b4fc 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  :root[data-theme="light"] .text-gradient {
+    background: linear-gradient(135deg, #0071e3 0%, #0284c7 60%, #4338ca 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
   }
 
   /* ==========================================================================
@@ -102,42 +113,43 @@
     left: 0;
     width: 100%;
     height: var(--nav-height);
-    background: rgba(0, 0, 0, 0.78);
-    backdrop-filter: saturate(180%) blur(20px);
-    -webkit-backdrop-filter: saturate(180%) blur(20px);
+    background: rgba(0, 0, 0, 0.82);
+    backdrop-filter: saturate(180%) blur(22px);
+    -webkit-backdrop-filter: saturate(180%) blur(22px);
     border-bottom: 1px solid var(--border-subtle);
     z-index: 1000;
     transition: background 0.3s;
   }
   :root[data-theme="light"] .apple-nav {
-    background: rgba(255, 255, 255, 0.82);
+    background: rgba(255, 255, 255, 0.86);
   }
   .apple-nav__inner {
     height: 100%;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 1.2rem;
+    gap: 1.5rem;
   }
   .nav-brand {
     display: inline-flex;
     align-items: center;
-    gap: 0.6rem;
-    font-size: 15px;
-    font-weight: 600;
-    letter-spacing: -0.01em;
+    gap: 0.75rem;
+    font-size: 17px;
+    font-weight: 700;
+    letter-spacing: -0.015em;
   }
   .nav-brand svg {
-    width: 22px; height: 22px; color: var(--apple-blue); flex: none;
+    width: 25px; height: 25px; color: var(--apple-blue); flex: none;
   }
   .nav-links {
     display: flex;
     align-items: center;
-    gap: 1.5rem;
+    gap: 2rem;
     list-style: none;
   }
   .nav-links a {
-    font-size: 13px;
+    font-size: 15px;
+    font-weight: 500;
     color: var(--text-secondary);
     transition: color 0.2s ease;
   }
@@ -145,41 +157,44 @@
   .nav-actions {
     display: flex;
     align-items: center;
-    gap: 0.65rem;
+    gap: 0.9rem;
   }
   .nav-cat-space-btn {
     display: inline-flex;
     align-items: center;
-    gap: 0.4rem;
-    font-size: 12px;
+    gap: 0.5rem;
+    font-size: 14px;
     font-weight: 600;
-    padding: 6px 14px;
+    padding: 8px 18px;
     border-radius: var(--radius-pill);
     background: var(--bg-surface-elevated);
     border: 1px solid var(--border-subtle);
     color: var(--apple-blue);
     cursor: pointer;
-    transition: background 0.2s, border-color 0.2s;
+    transition: all 0.2s ease;
   }
   .nav-cat-space-btn:hover {
     background: var(--bg-subtle);
     border-color: var(--apple-blue);
+    transform: translateY(-1px);
   }
   .nav-cta-btn {
     display: inline-flex;
     align-items: center;
-    gap: 0.4rem;
-    font-size: 12px;
-    font-weight: 500;
-    padding: 6px 14px;
+    gap: 0.55rem;
+    font-size: 14px;
+    font-weight: 600;
+    padding: 8px 20px;
     border-radius: var(--radius-pill);
     background: var(--apple-blue);
     color: #ffffff !important;
-    transition: background 0.2s, transform 0.15s;
+    box-shadow: 0 4px 14px rgba(41, 151, 255, 0.35);
+    transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
   }
   .nav-cta-btn:hover {
     background: var(--apple-blue-hover);
-    transform: scale(1.02);
+    transform: translateY(-1px) scale(1.02);
+    box-shadow: 0 6px 20px rgba(41, 151, 255, 0.5);
   }
   .theme-toggle-btn {
     background: transparent;
@@ -391,35 +406,35 @@
      SECTION HEADINGS
      ========================================================================== */
   .apple-section {
-    padding-block: clamp(3.2rem, 6vw, 5.5rem);
+    padding-block: clamp(4.5rem, 7.5vw, 7rem);
   }
   .apple-section--alt {
     background: var(--bg-surface);
   }
   .section-intro {
-    max-width: 720px;
-    margin-bottom: clamp(1.8rem, 4vw, 3rem);
+    max-width: 840px;
+    margin-bottom: clamp(2.5rem, 5vw, 4rem);
   }
   .section-eyebrow {
-    font-size: 13px;
-    font-weight: 600;
+    font-size: 14.5px;
+    font-weight: 700;
     color: var(--apple-blue);
     text-transform: uppercase;
-    letter-spacing: 0.07em;
-    margin-bottom: 0.4rem;
-  }
-  .section-headline {
-    font-size: clamp(2rem, 4.5vw, 3.2rem);
-    font-weight: 700;
-    line-height: 1.1;
-    letter-spacing: -0.03em;
-    color: var(--text-primary);
+    letter-spacing: 0.1em;
     margin-bottom: 0.6rem;
   }
+  .section-headline {
+    font-size: clamp(2.5rem, 5.5vw, 4.2rem);
+    font-weight: 800;
+    line-height: 1.08;
+    letter-spacing: -0.035em;
+    color: var(--text-primary);
+    margin-bottom: 0.8rem;
+  }
   .section-desc {
-    font-size: clamp(1rem, 1.8vw, 1.18rem);
+    font-size: clamp(1.15rem, 2.2vw, 1.35rem);
     color: var(--text-secondary);
-    line-height: 1.46;
+    line-height: 1.55;
   }
 
   /* ==========================================================================
@@ -428,65 +443,101 @@
   .category-options-grid {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 1.25rem;
+    gap: 2rem;
+  }
+  @media (max-width: 1080px) {
+    .category-options-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1.5rem;
+    }
+  }
+  @media (max-width: 680px) {
+    .category-options-grid {
+      grid-template-columns: 1fr;
+      gap: 1.25rem;
+    }
   }
   .cat-opt-card {
     background: var(--bg-surface-elevated);
     border: 1px solid var(--border-subtle);
-    border-radius: var(--radius-card);
-    padding: 1.6rem;
+    border-radius: 22px;
+    padding: 2.2rem 2rem;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    gap: 1.2rem;
+    gap: 1.75rem;
     cursor: pointer;
-    transition: transform 0.22s, border-color 0.22s, box-shadow 0.22s;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.25s, box-shadow 0.25s, background 0.25s;
   }
   .cat-opt-card:hover {
-    transform: translateY(-3px);
-    border-color: var(--border-strong);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    transform: translateY(-6px);
+    border-color: rgba(41, 151, 255, 0.45);
+    box-shadow: 0 20px 45px rgba(0, 0, 0, 0.45), 0 0 28px rgba(41, 151, 255, 0.12);
+    background: #1f1f23;
+  }
+  :root[data-theme="light"] .cat-opt-card:hover {
+    background: #ffffff;
+    border-color: rgba(0, 113, 227, 0.45);
+    box-shadow: 0 20px 45px rgba(0, 0, 0, 0.08), 0 0 28px rgba(0, 113, 227, 0.1);
   }
   .cat-opt-top {
     display: flex;
     flex-direction: column;
-    gap: 0.5rem;
+    gap: 0.65rem;
   }
   .cat-opt-header-row {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin-bottom: 0.2rem;
+    margin-bottom: 0.35rem;
   }
   .cat-opt-icon {
-    width: 42px; height: 42px; border-radius: 12px;
+    width: 52px; height: 52px; border-radius: 14px;
     background: var(--bg-subtle); display: flex; align-items: center; justify-content: center;
     color: var(--apple-blue);
+    border: 1px solid var(--border-subtle);
+    transition: transform 0.25s ease, background 0.25s ease;
   }
-  .cat-opt-icon svg { width: 22px; height: 22px; }
+  .cat-opt-card:hover .cat-opt-icon {
+    transform: scale(1.08);
+    background: rgba(41, 151, 255, 0.15);
+  }
+  .cat-opt-icon svg { width: 28px; height: 28px; }
   .cat-opt-count-badge {
-    font-size: 11px;
+    font-size: 13px;
     font-weight: 600;
-    padding: 3px 8px;
+    padding: 5px 12px;
     border-radius: var(--radius-pill);
     background: var(--bg-subtle);
     color: var(--text-secondary);
+    border: 1px solid var(--border-subtle);
   }
   .cat-opt-card h3 {
-    font-size: 1.25rem; font-weight: 700; letter-spacing: -0.015em; color: var(--text-primary); margin: 0;
+    font-size: 1.55rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: var(--text-primary);
+    margin: 0;
+    line-height: 1.25;
   }
   .cat-opt-card p {
-    font-size: 13.5px; color: var(--text-secondary); line-height: 1.45;
+    font-size: 15.5px;
+    color: var(--text-secondary);
+    line-height: 1.5;
+    margin: 0;
   }
   .cat-opt-feature-tag {
     display: inline-flex;
     align-items: center;
-    gap: 0.35rem;
-    font-size: 11px;
+    gap: 0.45rem;
+    font-size: 12.5px;
     font-weight: 600;
     color: #34d399;
-    background: rgba(52, 211, 153, 0.12);
-    padding: 2px 8px;
+    background: rgba(52, 211, 153, 0.14);
+    border: 1px solid rgba(52, 211, 153, 0.25);
+    padding: 3px 10px;
     border-radius: var(--radius-pill);
     width: fit-content;
     margin-top: 2px;
@@ -496,34 +547,38 @@
     flex-wrap: wrap;
     align-items: center;
     justify-content: space-between;
-    gap: 0.6rem;
-    padding-top: 1rem;
+    gap: 0.8rem;
+    padding-top: 1.3rem;
     border-top: 1px solid var(--border-subtle);
   }
   .btn-open-cat {
     display: inline-flex;
     align-items: center;
-    gap: 0.4rem;
-    font-size: 13px;
+    gap: 0.5rem;
+    font-size: 14.5px;
     font-weight: 600;
-    padding: 8px 16px;
+    padding: 10px 20px;
     border-radius: var(--radius-pill);
     background: var(--apple-blue);
     color: #ffffff !important;
     border: none;
     cursor: pointer;
-    transition: background 0.18s, transform 0.15s;
+    box-shadow: 0 4px 12px rgba(41, 151, 255, 0.3);
+    transition: background 0.18s, transform 0.15s, box-shadow 0.18s;
   }
   .btn-open-cat:hover {
     background: var(--apple-blue-hover);
-    transform: scale(1.02);
+    transform: translateY(-1px);
+    box-shadow: 0 6px 18px rgba(41, 151, 255, 0.45);
   }
   .btn-quick-wa {
-    font-size: 12.5px;
+    font-size: 14px;
+    font-weight: 500;
     color: var(--text-secondary);
     display: inline-flex;
     align-items: center;
-    gap: 0.3rem;
+    gap: 0.35rem;
+    transition: color 0.18s ease;
   }
   .btn-quick-wa:hover { color: #25d366; text-decoration: underline; }
 
@@ -798,11 +853,11 @@
     display: flex;
     flex-direction: row;
     align-items: flex-start;
-    gap: 1.75rem;
-    padding: 1.6rem 1.5rem;
+    gap: 2.2rem;
+    padding: 2.2rem 2rem;
     background: var(--amz-row-bg);
     border-bottom: 1px solid var(--amz-divider);
-    transition: background 0.15s ease;
+    transition: background 0.18s ease;
     width: 100%;
     box-sizing: border-box;
   }
@@ -815,25 +870,25 @@
 
   /* Left Side: Product Image Container */
   .amz-img-col {
-    flex: 0 0 260px;
-    width: 260px;
-    max-width: 260px;
+    flex: 0 0 280px;
+    width: 280px;
+    max-width: 280px;
     display: flex;
     flex-direction: column;
     align-items: center;
     position: relative;
   }
   .amz-img-container {
-    width: 260px;
-    height: 230px;
+    width: 280px;
+    height: 245px;
     background: var(--amz-img-box-bg);
     border: 1px solid var(--amz-divider);
-    border-radius: 8px;
+    border-radius: 12px;
     display: flex;
     align-items: center;
     justify-content: center;
     position: relative;
-    padding: 14px;
+    padding: 16px;
     box-sizing: border-box;
     overflow: hidden;
   }
@@ -848,40 +903,40 @@
     transition: transform 0.25s ease;
   }
   .amz-product-row:hover .amz-product-img {
-    transform: scale(1.03);
+    transform: scale(1.04);
   }
 
   /* Badges overlay on image */
   .amz-badge-choice {
     position: absolute;
-    top: 8px;
-    left: 8px;
+    top: 10px;
+    left: 10px;
     background: #232f3e;
     color: #ffffff;
-    font-size: 10.5px;
+    font-size: 11.5px;
     font-weight: 700;
     letter-spacing: 0.02em;
-    padding: 3px 8px;
-    border-radius: 3px;
+    padding: 4px 10px;
+    border-radius: 4px;
     z-index: 2;
     display: inline-flex;
     align-items: center;
     gap: 4px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    box-shadow: 0 2px 6px rgba(0,0,0,0.25);
   }
   .amz-badge-choice span.accent {
     color: #f59e0b;
   }
   .amz-badge-lab {
     position: absolute;
-    bottom: 8px;
-    left: 8px;
+    bottom: 10px;
+    left: 10px;
     background: rgba(16, 185, 129, 0.95);
     color: #ffffff;
-    font-size: 10px;
+    font-size: 11px;
     font-weight: 700;
-    padding: 2px 7px;
-    border-radius: 3px;
+    padding: 3px 9px;
+    border-radius: 4px;
     z-index: 2;
   }
 
@@ -891,7 +946,7 @@
     min-width: 0;
     display: flex;
     flex-direction: column;
-    gap: 0.45rem;
+    gap: 0.6rem;
   }
 
   /* 1. Product Title */
@@ -899,12 +954,12 @@
     display: flex;
     align-items: flex-start;
     justify-content: space-between;
-    gap: 0.75rem;
+    gap: 1rem;
   }
   .amz-product-title {
-    font-size: 1.18rem;
-    font-weight: 600;
-    line-height: 1.35;
+    font-size: 1.35rem;
+    font-weight: 700;
+    line-height: 1.3;
     color: var(--amz-title);
     margin: 0;
     cursor: pointer;
@@ -918,29 +973,30 @@
   .amz-specs-desc-group {
     display: flex;
     flex-direction: column;
-    gap: 0.35rem;
+    gap: 0.45rem;
   }
   .amz-specs-pills {
     display: flex;
     flex-wrap: wrap;
-    gap: 0.35rem;
+    gap: 0.45rem;
   }
   .amz-spec-pill {
-    font-size: 11px;
+    font-size: 12.5px;
     font-family: var(--font-mono);
     background: rgba(0, 0, 0, 0.04);
     border: 1px solid var(--amz-divider);
     color: var(--amz-title);
-    padding: 2px 8px;
-    border-radius: 4px;
+    padding: 3px 9px;
+    border-radius: 5px;
     white-space: nowrap;
+    font-weight: 500;
   }
   [data-theme="dark"] .amz-spec-pill {
-    background: rgba(255, 255, 255, 0.06);
+    background: rgba(255, 255, 255, 0.08);
   }
   .amz-product-desc {
-    font-size: 13.5px;
-    line-height: 1.45;
+    font-size: 15px;
+    line-height: 1.5;
     color: var(--amz-text-muted);
     margin: 0;
   }
@@ -950,39 +1006,39 @@
     display: flex;
     align-items: center;
     flex-wrap: wrap;
-    gap: 6px;
-    font-size: 13px;
-    margin-top: 1px;
+    gap: 8px;
+    font-size: 14px;
+    margin-top: 2px;
   }
   .amz-rating-score {
     font-weight: 700;
     color: var(--amz-title);
-    font-size: 13.5px;
+    font-size: 14.5px;
   }
   .amz-stars {
     display: inline-flex;
     align-items: center;
     color: var(--amz-star);
-    gap: 1px;
+    gap: 2px;
   }
   .amz-stars svg {
-    width: 15px;
-    height: 15px;
+    width: 17px;
+    height: 17px;
     fill: currentColor;
   }
   .amz-review-link {
     color: var(--amz-link);
     text-decoration: none;
-    font-weight: 500;
-    font-size: 13px;
+    font-weight: 600;
+    font-size: 14px;
   }
   .amz-review-link:hover {
     text-decoration: underline;
   }
   .amz-bought-count {
-    font-size: 12px;
+    font-size: 13.5px;
     color: var(--amz-text-muted);
-    padding-left: 6px;
+    padding-left: 8px;
     border-left: 1px solid var(--amz-divider);
   }
 
@@ -991,78 +1047,78 @@
     display: flex;
     align-items: baseline;
     flex-wrap: wrap;
-    gap: 10px;
-    margin-top: 2px;
+    gap: 12px;
+    margin-top: 4px;
   }
   .amz-price-current {
-    font-size: 1.7rem;
-    font-weight: 700;
+    font-size: 2.15rem;
+    font-weight: 800;
     color: var(--amz-price);
     line-height: 1;
-    letter-spacing: -0.02em;
+    letter-spacing: -0.025em;
     display: inline-flex;
     align-items: baseline;
   }
   .amz-price-current .currency {
-    font-size: 1.15rem;
-    font-weight: 600;
-    margin-right: 2px;
+    font-size: 1.35rem;
+    font-weight: 700;
+    margin-right: 3px;
   }
   .amz-mrp-group {
-    font-size: 13px;
+    font-size: 14.5px;
     color: var(--amz-text-muted);
     display: inline-flex;
     align-items: baseline;
-    gap: 6px;
+    gap: 7px;
   }
   .amz-mrp-strike {
     text-decoration: line-through;
   }
   .amz-discount-pct {
     color: var(--amz-discount);
-    font-weight: 600;
+    font-weight: 700;
   }
 
   /* 6. Offers & Warranty */
   .amz-offers-group {
     display: flex;
     flex-direction: column;
-    gap: 3px;
-    font-size: 12.5px;
-    margin-top: 1px;
+    gap: 4px;
+    font-size: 13.5px;
+    margin-top: 2px;
   }
   .amz-offer-item {
     display: flex;
     align-items: center;
-    gap: 6px;
+    gap: 7px;
     color: var(--amz-title);
   }
   .amz-offer-badge {
-    font-size: 10.5px;
+    font-size: 11.5px;
     font-weight: 700;
     text-transform: uppercase;
-    background: rgba(234, 88, 12, 0.1);
+    background: rgba(234, 88, 12, 0.12);
     color: #ea580c;
-    padding: 1px 6px;
-    border-radius: 3px;
+    padding: 2px 8px;
+    border-radius: 4px;
     flex-shrink: 0;
   }
   .amz-warranty-badge {
-    font-size: 10.5px;
+    font-size: 11.5px;
     font-weight: 700;
     text-transform: uppercase;
-    background: rgba(37, 99, 235, 0.1);
+    background: rgba(37, 99, 235, 0.12);
     color: #2563eb;
-    padding: 1px 6px;
-    border-radius: 3px;
+    padding: 2px 8px;
+    border-radius: 4px;
     flex-shrink: 0;
   }
   [data-theme="dark"] .amz-warranty-badge {
-    background: rgba(56, 189, 248, 0.15);
+    background: rgba(56, 189, 248, 0.18);
     color: #38bdf8;
   }
   .amz-offer-text {
-    font-size: 12.5px;
+    font-size: 13.5px;
     color: var(--amz-text-muted);
   }
 
@@ -1070,13 +1126,13 @@
   .amz-delivery-block {
     display: flex;
     flex-direction: column;
-    gap: 2px;
-    font-size: 13px;
-    margin-top: 2px;
+    gap: 3px;
+    font-size: 14px;
+    margin-top: 3px;
   }
   .amz-delivery-main {
     color: var(--amz-title);
-    font-size: 13px;
+    font-size: 14px;
   }
   .amz-delivery-free {
     color: #007600;
@@ -1092,7 +1148,7 @@
     color: var(--amz-text-muted);
   }
   .amz-delivery-fast {
-    font-size: 12px;
+    font-size: 13px;
     color: var(--amz-text-muted);
   }
 
@@ -1101,28 +1157,28 @@
     display: flex;
     align-items: center;
     flex-wrap: wrap;
-    gap: 8px;
-    margin-top: 8px;
+    gap: 10px;
+    margin-top: 10px;
   }
   .amz-btn-cart {
     background: var(--amz-btn-cart-bg);
     border: 1px solid var(--amz-btn-cart-border);
     border-radius: 9999px;
-    padding: 7px 20px;
-    font-size: 13px;
-    font-weight: 600;
+    padding: 9px 24px;
+    font-size: 14.5px;
+    font-weight: 700;
     color: var(--amz-btn-cart-text);
     cursor: pointer;
     display: inline-flex;
     align-items: center;
-    gap: 6px;
-    transition: all 0.15s ease;
-    box-shadow: 0 2px 5px rgba(213, 217, 217, 0.5);
+    gap: 7px;
+    transition: all 0.18s ease;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
   }
   .amz-btn-cart:hover {
     background: var(--amz-btn-cart-hover);
-    transform: translateY(-1px);
-    box-shadow: 0 4px 8px rgba(0,0,0,0.12);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 12px rgba(0,0,0,0.18);
   }
   .amz-btn-cart.is-added {
     background: #10b981 !important;
@@ -1134,9 +1190,9 @@
     background: var(--amz-row-bg);
     border: 1px solid var(--amz-border);
     border-radius: 9999px;
-    padding: 7px 16px;
-    font-size: 12.5px;
-    font-weight: 500;
+    padding: 8px 18px;
+    font-size: 13.5px;
+    font-weight: 600;
     color: var(--amz-title);
     cursor: pointer;
     transition: all 0.15s ease;
@@ -1144,6 +1200,7 @@
   .amz-btn-secondary:hover {
     background: var(--amz-row-hover);
     border-color: #9ca3af;
+    transform: translateY(-1px);
   }
 
   .amz-btn-lab {
@@ -1397,50 +1454,64 @@
   }
 
   .why-grid {
-    display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1.25rem;
+    display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1.8rem;
   }
   .why-card {
     background: var(--bg-surface-elevated); border: 1px solid var(--border-subtle);
-    border-radius: var(--radius-card); padding: 1.8rem 1.5rem; display: flex; flex-direction: column; gap: 0.9rem;
+    border-radius: 20px; padding: 2.2rem 1.8rem; display: flex; flex-direction: column; gap: 1rem;
+    transition: transform 0.2s ease, border-color 0.2s ease;
+  }
+  .why-card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(41, 151, 255, 0.4);
   }
   .why-icon {
-    width: 44px; height: 44px; border-radius: 12px; background: var(--bg-subtle);
-    display: flex; align-items: center; justify-content: center; color: var(--apple-blue); margin-bottom: 0.3rem;
+    width: 50px; height: 50px; border-radius: 14px; background: var(--bg-subtle);
+    display: flex; align-items: center; justify-content: center; color: var(--apple-blue); margin-bottom: 0.4rem;
   }
-  .why-icon svg { width: 22px; height: 22px; }
-  .why-card h3 { font-size: 1.15rem; font-weight: 700; color: var(--text-primary); }
-  .why-card p { font-size: 14px; color: var(--text-secondary); line-height: 1.48; }
+  .why-icon svg { width: 26px; height: 26px; }
+  .why-card h3 { font-size: 1.35rem; font-weight: 700; color: var(--text-primary); }
+  .why-card p { font-size: 15.5px; color: var(--text-secondary); line-height: 1.52; }
 
   .reviews-summary {
-    display: flex; flex-wrap: wrap; align-items: baseline; gap: 1rem 1.8rem; margin-bottom: 2rem;
+    display: flex; flex-wrap: wrap; align-items: baseline; gap: 1.2rem 2.2rem; margin-bottom: 2.5rem;
   }
   .reviews-score {
-    font-size: clamp(3rem, 6vw, 4.2rem); font-weight: 800; color: var(--apple-gold); line-height: 1;
+    font-size: clamp(3.6rem, 7vw, 5rem); font-weight: 800; color: var(--apple-gold); line-height: 1;
   }
-  .reviews-meta { font-size: 14px; color: var(--text-secondary); }
-  .reviews-meta a { color: var(--apple-blue); font-weight: 500; display: inline-block; margin-top: 3px; }
+  .reviews-meta { font-size: 16px; color: var(--text-secondary); line-height: 1.5; }
+  .reviews-meta a { color: var(--apple-blue); font-weight: 600; display: inline-block; margin-top: 4px; }
   .reviews-meta a:hover { text-decoration: underline; }
   .quotes-grid {
-    display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.25rem;
+    display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.8rem;
   }
   .quote-card {
     background: var(--bg-surface-elevated); border: 1px solid var(--border-subtle);
-    border-radius: var(--radius-card); padding: 1.8rem; display: flex; flex-direction: column; justify-content: space-between; gap: 1.2rem;
+    border-radius: 20px; padding: 2.2rem 2rem; display: flex; flex-direction: column; justify-content: space-between; gap: 1.5rem;
   }
-  .quote-card blockquote { font-size: 15.5px; line-height: 1.48; color: var(--text-primary); font-weight: 500; }
-  .quote-author { font-size: 13px; color: var(--text-secondary); }
-  .quote-author b { display: block; color: var(--text-primary); font-weight: 600; font-size: 14px; margin-bottom: 2px; }
+  .quote-card blockquote { font-size: 17px; line-height: 1.52; color: var(--text-primary); font-weight: 500; }
+  .quote-author { font-size: 14px; color: var(--text-secondary); }
+  .quote-author b { display: block; color: var(--text-primary); font-weight: 700; font-size: 15.5px; margin-bottom: 3px; }
 
   .store-panel {
     background: var(--bg-surface-elevated); border: 1px solid var(--border-subtle);
-    border-radius: var(--radius-card); padding: clamp(1.8rem, 4vw, 2.8rem); display: grid;
-    grid-template-columns: minmax(0, 1fr) minmax(0, 1.3fr); gap: 2.5rem; align-items: start;
+    border-radius: 24px; padding: clamp(2.2rem, 5vw, 3.6rem); display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.3fr); gap: 3rem; align-items: start;
   }
-  .store-info { display: flex; flex-direction: column; gap: 1.2rem; }
+  .store-info { display: flex; flex-direction: column; gap: 1.4rem; }
   .store-status-pill {
-    display: inline-flex; align-items: center; gap: 0.5rem; font-size: 13px; font-weight: 600;
-    padding: 6px 14px; border-radius: var(--radius-pill); background: var(--bg-subtle); border: 1px solid var(--border-subtle);
+    display: inline-flex; align-items: center; gap: 0.6rem; font-size: 14px; font-weight: 600;
+    padding: 7px 16px; border-radius: var(--radius-pill); background: var(--bg-subtle); border: 1px solid var(--border-subtle);
     width: fit-content;
+  }
+  .dot-status { width: 10px; height: 10px; border-radius: 50%; }
+  .dot-open { background: #34d399; box-shadow: 0 0 10px #34d399; }
+  .dot-closed { background: #f59e0b; }
+  .store-title { font-size: clamp(2.2rem, 4vw, 3rem); font-weight: 800; letter-spacing: -0.03em; }
+  .store-address { font-style: normal; font-size: 17px; color: var(--text-secondary); line-height: 1.55; }
+  .store-phone-link { font-size: clamp(1.8rem, 3.5vw, 2.4rem); font-weight: 800; color: var(--apple-blue); }
+  .store-phone-link:hover { text-decoration: underline; }
+  .store-actions { display: flex; flex-wrap: wrap; gap: 1rem; }
   }
   .dot-status { width: 9px; height: 9px; border-radius: 50%; }
   .dot-open { background: #34d399; box-shadow: 0 0 8px #34d399; }
@@ -1684,18 +1755,21 @@
       </nav>
 
       <div class="nav-actions">
+        <button id="themeToggle" class="theme-toggle-btn" type="button" onclick="toggleSiteTheme()" aria-label="Toggle dark/light mode">
+          <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+          <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        </button>
         <button class="nav-cart-btn" type="button" onclick="openCartModal()" aria-label="Shopping Cart" title="View Cart">
-          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+          <svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
           <span class="cart-pill-count" id="cartCountBadge">0</span>
         </button>
         <button class="nav-cat-space-btn" type="button" onclick="openCatalogueSpace('laptops_used')">
           <span>Explore Stock &rarr;</span>
         </button>
-        <button id="themeToggle" class="theme-toggle-btn" type="button" onclick="toggleSiteTheme()" aria-label="Toggle dark/light mode">
-          <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
-          <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
-        </button>
-        <a class="nav-cta-btn" href="tel:+919872010193">Call</a>
+        <a class="nav-cta-btn" href="tel:+919872010193" aria-label="Call Lally Computers at 9872010193">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          <span>Call Us</span>
+        </a>
       </div>
     </div>
   </header>
@@ -1951,8 +2025,8 @@
     <div class="inner">
       <div class="section-intro">
         <p class="section-eyebrow">In-Store Departments</p>
-        <h2 class="section-headline">Explore the Departments.</h2>
-        <p class="section-desc">Click any category below to open its dedicated catalogue space with detailed specs, verified lab reports, and live WhatsApp inquiry.</p>
+        <h2 class="section-headline">Explore the <span class="text-gradient">Departments.</span></h2>
+        <p class="section-desc">Select any department to inspect live catalog inventory, verified hardware lab reports, and direct WhatsApp booking.</p>
       </div>
 
       <!-- 12 SEPARATE CATEGORY OPTIONS GRID -->
@@ -1966,14 +2040,15 @@
               <span class="cat-opt-count-badge" data-badge-for="laptops_used">5 Items</span>
             </div>
             <h3>Pre-Owned Laptops</h3>
-            <span class="cat-opt-feature-tag">Lab Report Included</span>
-            <p>Certified corporate lease return laptops (ThinkPad, Latitude, EliteBook, MacBook) with complete hardware diagnostic lab reports, 6 months warranty, and GST invoice.</p>
+            <span class="cat-opt-feature-tag">⚡ 100% Tested · 6M Warranty</span>
+            <p>Corporate ThinkPads, Latitudes & MacBooks. Complete hardware diagnostic reports included.</p>
           </div>
           <div class="cat-opt-actions">
-            <button class="btn-open-cat" type="button" onclick="openCatalogueSpace('laptops_used')">Open Stock (<span data-btn-count-for="laptops_used">5</span>) &rarr;</button>
-            <a class="btn-quick-wa" href="https://wa.me/919872010193?text=Hi%20Lally%20Computers%2C%20what%20do%20you%20have%20in%20Pre-Owned Laptops%3F" target="_blank" rel="noopener" onclick="event.stopPropagation()">Inquire on WhatsApp</a>
+            <button class="btn-open-cat" type="button" onclick="openCatalogueSpace('laptops_used')">Explore Stock (<span data-btn-count-for="laptops_used">5</span>) <span class="arrow">&rarr;</span></button>
+            <a class="btn-quick-wa" href="https://wa.me/919872010193?text=Hi%20Lally%20Computers%2C%20what%20do%20you%20have%20in%20Pre-Owned%20Laptops%3F" target="_blank" rel="noopener" onclick="event.stopPropagation()">Inquire on WhatsApp ↗</a>
           </div>
         </div>
+
         <div class="cat-opt-card" data-cat="laptops_new" onclick="openCatalogueSpace('laptops_new')">
           <div class="cat-opt-top">
             <div class="cat-opt-header-row">
@@ -1983,14 +2058,15 @@
               <span class="cat-opt-count-badge" data-badge-for="laptops_new">5 Items</span>
             </div>
             <h3>Brand New Laptops</h3>
-            <span class="cat-opt-feature-tag">Brand New Sealed</span>
-            <p>100% brand new sealed laptops from Apple, HP, Dell, Lenovo, and Asus with official 1-year brand warranty and GST billing.</p>
+            <span class="cat-opt-feature-tag">🛡️ Official 1-Yr Brand Warranty</span>
+            <p>Factory-sealed Apple, HP, Dell & Lenovo with original GST tax invoice.</p>
           </div>
           <div class="cat-opt-actions">
-            <button class="btn-open-cat" type="button" onclick="openCatalogueSpace('laptops_new')">Open Stock (<span data-btn-count-for="laptops_new">5</span>) &rarr;</button>
-            <a class="btn-quick-wa" href="https://wa.me/919872010193?text=Hi%20Lally%20Computers%2C%20what%20do%20you%20have%20in%20Brand New Laptops%3F" target="_blank" rel="noopener" onclick="event.stopPropagation()">Inquire on WhatsApp</a>
+            <button class="btn-open-cat" type="button" onclick="openCatalogueSpace('laptops_new')">Explore Stock (<span data-btn-count-for="laptops_new">5</span>) <span class="arrow">&rarr;</span></button>
+            <a class="btn-quick-wa" href="https://wa.me/919872010193?text=Hi%20Lally%20Computers%2C%20what%20do%20you%20have%20in%20Brand%20New%20Laptops%3F" target="_blank" rel="noopener" onclick="event.stopPropagation()">Inquire on WhatsApp ↗</a>
           </div>
         </div>
+
         <div class="cat-opt-card" data-cat="pc" onclick="openCatalogueSpace('pc')">
           <div class="cat-opt-top">
             <div class="cat-opt-header-row">
@@ -1999,15 +2075,16 @@
               </div>
               <span class="cat-opt-count-badge" data-badge-for="pc">4 Items</span>
             </div>
-            <h3>Custom PCs & Workstations</h3>
-            <span class="cat-opt-feature-tag">Custom Assembled</span>
-            <p>Custom assembled gaming PCs, streaming setups, and heavy-duty 4K video editing & CAD workstations configured for your exact budget.</p>
+            <h3>Custom PCs & Rigs</h3>
+            <span class="cat-opt-feature-tag">🔥 Custom Built for Peak FPS</span>
+            <p>Precision-tuned battlestations for pro gaming, 4K video rendering & CAD workloads.</p>
           </div>
           <div class="cat-opt-actions">
-            <button class="btn-open-cat" type="button" onclick="openCatalogueSpace('pc')">Open Stock (<span data-btn-count-for="pc">4</span>) &rarr;</button>
-            <a class="btn-quick-wa" href="https://wa.me/919872010193?text=Hi%20Lally%20Computers%2C%20what%20do%20you%20have%20in%20Custom PCs and Workstations%3F" target="_blank" rel="noopener" onclick="event.stopPropagation()">Inquire on WhatsApp</a>
+            <button class="btn-open-cat" type="button" onclick="openCatalogueSpace('pc')">Explore Rigs (<span data-btn-count-for="pc">4</span>) <span class="arrow">&rarr;</span></button>
+            <a class="btn-quick-wa" href="https://wa.me/919872010193?text=Hi%20Lally%20Computers%2C%20what%20do%20you%20have%20in%20Custom%20PCs%3F" target="_blank" rel="noopener" onclick="event.stopPropagation()">Inquire on WhatsApp ↗</a>
           </div>
         </div>
+
         <div class="cat-opt-card" data-cat="pc_components" onclick="openCatalogueSpace('pc_components')">
           <div class="cat-opt-top">
             <div class="cat-opt-header-row">
@@ -2016,15 +2093,16 @@
               </div>
               <span class="cat-opt-count-badge" data-badge-for="pc_components">12 Items</span>
             </div>
-            <h3>PC Building Materials</h3>
-            <span class="cat-opt-feature-tag">All Assembly Parts</span>
-            <p>Everything required to assemble a PC: Cabinets, Graphic Cards (RTX 4060/3060), Gold PSUs, Intel/AMD Motherboards, CPUs, DDR5 RAM, Gen4 SSDs & Liquid Coolers.</p>
+            <h3>PC Components</h3>
+            <span class="cat-opt-feature-tag">⚡ RTX 40-Series & DDR5</span>
+            <p>Original GPUs, Intel/AMD CPUs, Gen4 NVMe SSDs, Gold PSUs & liquid coolers.</p>
           </div>
           <div class="cat-opt-actions">
-            <button class="btn-open-cat" type="button" onclick="openCatalogueSpace('pc_components')">Open Stock (<span data-btn-count-for="pc_components">12</span>) &rarr;</button>
-            <a class="btn-quick-wa" href="https://wa.me/919872010193?text=Hi%20Lally%20Computers%2C%20what%20do%20you%20have%20in%20PC Building Materials%3F" target="_blank" rel="noopener" onclick="event.stopPropagation()">Inquire on WhatsApp</a>
+            <button class="btn-open-cat" type="button" onclick="openCatalogueSpace('pc_components')">Explore Parts (<span data-btn-count-for="pc_components">12</span>) <span class="arrow">&rarr;</span></button>
+            <a class="btn-quick-wa" href="https://wa.me/919872010193?text=Hi%20Lally%20Computers%2C%20what%20do%20you%20have%20in%20PC%20Building%20Materials%3F" target="_blank" rel="noopener" onclick="event.stopPropagation()">Inquire on WhatsApp ↗</a>
           </div>
         </div>
+
         <div class="cat-opt-card" data-cat="pc_peripherals" onclick="openCatalogueSpace('pc_peripherals')">
           <div class="cat-opt-top">
             <div class="cat-opt-header-row">
@@ -2033,15 +2111,16 @@
               </div>
               <span class="cat-opt-count-badge" data-badge-for="pc_peripherals">8 Items</span>
             </div>
-            <h3>PC Equipments & Peripherals</h3>
-            <span class="cat-opt-feature-tag">Mice, Keys & Stands</span>
-            <p>Ergonomic gaming and productivity peripherals: Optical & Wireless Mice, Mechanical Keyboards, Extended Desk Mats, Aluminium Laptop Stands, and Headsets.</p>
+            <h3>Peripherals & Gear</h3>
+            <span class="cat-opt-feature-tag">🎮 Mechanical & Ergonomic</span>
+            <p>Tactile mechanical decks, wireless gaming mice, XXL desk mats & aluminum stands.</p>
           </div>
           <div class="cat-opt-actions">
-            <button class="btn-open-cat" type="button" onclick="openCatalogueSpace('pc_peripherals')">Open Stock (<span data-btn-count-for="pc_peripherals">8</span>) &rarr;</button>
-            <a class="btn-quick-wa" href="https://wa.me/919872010193?text=Hi%20Lally%20Computers%2C%20what%20do%20you%20have%20in%20PC Equipments and Peripherals%3F" target="_blank" rel="noopener" onclick="event.stopPropagation()">Inquire on WhatsApp</a>
+            <button class="btn-open-cat" type="button" onclick="openCatalogueSpace('pc_peripherals')">Explore Gear (<span data-btn-count-for="pc_peripherals">8</span>) <span class="arrow">&rarr;</span></button>
+            <a class="btn-quick-wa" href="https://wa.me/919872010193?text=Hi%20Lally%20Computers%2C%20what%20do%20you%20have%20in%20PC%20Equipments%3F" target="_blank" rel="noopener" onclick="event.stopPropagation()">Inquire on WhatsApp ↗</a>
           </div>
         </div>
+
         <div class="cat-opt-card" data-cat="monitors" onclick="openCatalogueSpace('monitors')">
           <div class="cat-opt-top">
             <div class="cat-opt-header-row">
@@ -2050,15 +2129,16 @@
               </div>
               <span class="cat-opt-count-badge" data-badge-for="monitors">6 Items</span>
             </div>
-            <h3>Monitors, LEDs & LCDs</h3>
-            <span class="cat-opt-feature-tag">144Hz IPS & 4K</span>
-            <p>High refresh rate 144Hz-165Hz IPS gaming monitors, 4K color-accurate editing screens, 34" curved ultrawides, and 32"/43" Smart Android LED displays.</p>
+            <h3>Monitors & Displays</h3>
+            <span class="cat-opt-feature-tag">🖥️ 165Hz IPS · 4K Color</span>
+            <p>Fast-response esports displays, curved 34" ultrawides & smart 4K HDR panels.</p>
           </div>
           <div class="cat-opt-actions">
-            <button class="btn-open-cat" type="button" onclick="openCatalogueSpace('monitors')">Open Stock (<span data-btn-count-for="monitors">6</span>) &rarr;</button>
-            <a class="btn-quick-wa" href="https://wa.me/919872010193?text=Hi%20Lally%20Computers%2C%20what%20do%20you%20have%20in%20Monitors, LEDs and LCDs%3F" target="_blank" rel="noopener" onclick="event.stopPropagation()">Inquire on WhatsApp</a>
+            <button class="btn-open-cat" type="button" onclick="openCatalogueSpace('monitors')">Explore Screens (<span data-btn-count-for="monitors">6</span>) <span class="arrow">&rarr;</span></button>
+            <a class="btn-quick-wa" href="https://wa.me/919872010193?text=Hi%20Lally%20Computers%2C%20what%20do%20you%20have%20in%20Monitors%20and%20Displays%3F" target="_blank" rel="noopener" onclick="event.stopPropagation()">Inquire on WhatsApp ↗</a>
           </div>
         </div>
+
         <div class="cat-opt-card" data-cat="watches" onclick="openCatalogueSpace('watches')">
           <div class="cat-opt-top">
             <div class="cat-opt-header-row">
@@ -2067,15 +2147,16 @@
               </div>
               <span class="cat-opt-count-badge" data-badge-for="watches">7 Items</span>
             </div>
-            <h3>Watches (Smart & Classic)</h3>
-            <span class="cat-opt-feature-tag">Display & Non-Display</span>
-            <p>Apple Watch Series 9, Ultra 2, SE alongside legendary non-display classic watches like Casio G-Shock CasiOak, Titan Classic, and Fossil Chronographs.</p>
+            <h3>Smart & Classic Watches</h3>
+            <span class="cat-opt-feature-tag">⌚ Apple Ultra & CasiOak</span>
+            <p>Apple Watch Series 9 & Ultra 2 paired with iconic Casio G-Shock & Titan classics.</p>
           </div>
           <div class="cat-opt-actions">
-            <button class="btn-open-cat" type="button" onclick="openCatalogueSpace('watches')">Open Stock (<span data-btn-count-for="watches">7</span>) &rarr;</button>
-            <a class="btn-quick-wa" href="https://wa.me/919872010193?text=Hi%20Lally%20Computers%2C%20what%20do%20you%20have%20in%20Watches (Smart and Classic)%3F" target="_blank" rel="noopener" onclick="event.stopPropagation()">Inquire on WhatsApp</a>
+            <button class="btn-open-cat" type="button" onclick="openCatalogueSpace('watches')">Explore Watches (<span data-btn-count-for="watches">7</span>) <span class="arrow">&rarr;</span></button>
+            <a class="btn-quick-wa" href="https://wa.me/919872010193?text=Hi%20Lally%20Computers%2C%20what%20do%20you%20have%20in%20Watches%3F" target="_blank" rel="noopener" onclick="event.stopPropagation()">Inquire on WhatsApp ↗</a>
           </div>
         </div>
+
         <div class="cat-opt-card" data-cat="gadgets" onclick="openCatalogueSpace('gadgets')">
           <div class="cat-opt-top">
             <div class="cat-opt-header-row">
@@ -2085,14 +2166,15 @@
               <span class="cat-opt-count-badge" data-badge-for="gadgets">6 Items</span>
             </div>
             <h3>Gadgets & Audio</h3>
-            <span class="cat-opt-feature-tag">All Gadget Categories</span>
-            <p>AirPods Pro, boAt ANC earbuds, JBL waterproof speakers, 20,000mAh PD fast powerbanks, 65W GaN multi-chargers, and Wi-Fi 6 gigabit routers.</p>
+            <span class="cat-opt-feature-tag">🎧 ANC Sound & 65W Fast GaN</span>
+            <p>AirPods Pro, JBL waterproof sound, 20,000mAh PD packs & Wi-Fi 6 gigabit routers.</p>
           </div>
           <div class="cat-opt-actions">
-            <button class="btn-open-cat" type="button" onclick="openCatalogueSpace('gadgets')">Open Stock (<span data-btn-count-for="gadgets">6</span>) &rarr;</button>
-            <a class="btn-quick-wa" href="https://wa.me/919872010193?text=Hi%20Lally%20Computers%2C%20what%20do%20you%20have%20in%20Gadgets and Audio%3F" target="_blank" rel="noopener" onclick="event.stopPropagation()">Inquire on WhatsApp</a>
+            <button class="btn-open-cat" type="button" onclick="openCatalogueSpace('gadgets')">Explore Gadgets (<span data-btn-count-for="gadgets">6</span>) <span class="arrow">&rarr;</span></button>
+            <a class="btn-quick-wa" href="https://wa.me/919872010193?text=Hi%20Lally%20Computers%2C%20what%20do%20you%20have%20in%20Gadgets%20and%20Audio%3F" target="_blank" rel="noopener" onclick="event.stopPropagation()">Inquire on WhatsApp ↗</a>
           </div>
         </div>
+
         <div class="cat-opt-card" data-cat="gym" onclick="openCatalogueSpace('gym')">
           <div class="cat-opt-top">
             <div class="cat-opt-header-row">
@@ -2101,15 +2183,16 @@
               </div>
               <span class="cat-opt-count-badge" data-badge-for="gym">5 Items</span>
             </div>
-            <h3>Gym & Fitness Equipment</h3>
-            <span class="cat-opt-feature-tag">Cardio & Strength</span>
-            <p>Motorized auto-incline treadmills, solid rubber hex dumbbell sets, magnetic studio spin bikes, multi-station workout stations, and resistance gear.</p>
+            <h3>Gym & Fitness Gear</h3>
+            <span class="cat-opt-feature-tag">💪 Heavy-Duty Commercial</span>
+            <p>Auto-incline motorized treadmills, solid rubber hex dumbbells & magnetic spin bikes.</p>
           </div>
           <div class="cat-opt-actions">
-            <button class="btn-open-cat" type="button" onclick="openCatalogueSpace('gym')">Open Stock (<span data-btn-count-for="gym">5</span>) &rarr;</button>
-            <a class="btn-quick-wa" href="https://wa.me/919872010193?text=Hi%20Lally%20Computers%2C%20what%20do%20you%20have%20in%20Gym and Fitness Equipment%3F" target="_blank" rel="noopener" onclick="event.stopPropagation()">Inquire on WhatsApp</a>
+            <button class="btn-open-cat" type="button" onclick="openCatalogueSpace('gym')">Explore Fitness (<span data-btn-count-for="gym">5</span>) <span class="arrow">&rarr;</span></button>
+            <a class="btn-quick-wa" href="https://wa.me/919872010193?text=Hi%20Lally%20Computers%2C%20what%20do%20you%20have%20in%20Gym%20Equipment%3F" target="_blank" rel="noopener" onclick="event.stopPropagation()">Inquire on WhatsApp ↗</a>
           </div>
         </div>
+
         <div class="cat-opt-card" data-cat="suitcases" onclick="openCatalogueSpace('suitcases')">
           <div class="cat-opt-top">
             <div class="cat-opt-header-row">
@@ -2118,15 +2201,16 @@
               </div>
               <span class="cat-opt-count-badge" data-badge-for="suitcases">3 Items</span>
             </div>
-            <h3>Travel Suitcases & Luggage</h3>
-            <span class="cat-opt-feature-tag">Cabin & Checked Bags</span>
-            <p>3-Piece hard-shell polycarbonate luggage sets, 20" international airline cabin bags with embedded TSA locks, and heavy-duty aluminium corner trunks.</p>
+            <h3>Luggage & Travel</h3>
+            <span class="cat-opt-feature-tag">✈️ Unbreakable Polycarbonate</span>
+            <p>TSA-lock airline cabin trolleys and rugged aluminum-corner luggage sets.</p>
           </div>
           <div class="cat-opt-actions">
-            <button class="btn-open-cat" type="button" onclick="openCatalogueSpace('suitcases')">Open Stock (<span data-btn-count-for="suitcases">3</span>) &rarr;</button>
-            <a class="btn-quick-wa" href="https://wa.me/919872010193?text=Hi%20Lally%20Computers%2C%20what%20do%20you%20have%20in%20Travel Suitcases and Luggage%3F" target="_blank" rel="noopener" onclick="event.stopPropagation()">Inquire on WhatsApp</a>
+            <button class="btn-open-cat" type="button" onclick="openCatalogueSpace('suitcases')">Explore Luggage (<span data-btn-count-for="suitcases">3</span>) <span class="arrow">&rarr;</span></button>
+            <a class="btn-quick-wa" href="https://wa.me/919872010193?text=Hi%20Lally%20Computers%2C%20what%20do%20you%20have%20in%20Travel%20Suitcases%3F" target="_blank" rel="noopener" onclick="event.stopPropagation()">Inquire on WhatsApp ↗</a>
           </div>
         </div>
+
         <div class="cat-opt-card" data-cat="appliances" onclick="openCatalogueSpace('appliances')">
           <div class="cat-opt-top">
             <div class="cat-opt-header-row">
@@ -2136,14 +2220,15 @@
               <span class="cat-opt-count-badge" data-badge-for="appliances">3 Items</span>
             </div>
             <h3>Washing Machines</h3>
-            <span class="cat-opt-feature-tag">Front & Top Load</span>
-            <p>5-Star energy-efficient Front Load washers with Direct Drive Inverter & Steam, Top Load tangle-free machines, and heavy-duty Semi-Automatic washers.</p>
+            <span class="cat-opt-feature-tag">⭐ 5-Star Steam Inverter</span>
+            <p>Direct Drive inverter front-loaders and tangle-free high-capacity top-load washers.</p>
           </div>
           <div class="cat-opt-actions">
-            <button class="btn-open-cat" type="button" onclick="openCatalogueSpace('appliances')">Open Stock (<span data-btn-count-for="appliances">3</span>) &rarr;</button>
-            <a class="btn-quick-wa" href="https://wa.me/919872010193?text=Hi%20Lally%20Computers%2C%20what%20do%20you%20have%20in%20Washing Machines%3F" target="_blank" rel="noopener" onclick="event.stopPropagation()">Inquire on WhatsApp</a>
+            <button class="btn-open-cat" type="button" onclick="openCatalogueSpace('appliances')">Explore Machines (<span data-btn-count-for="appliances">3</span>) <span class="arrow">&rarr;</span></button>
+            <a class="btn-quick-wa" href="https://wa.me/919872010193?text=Hi%20Lally%20Computers%2C%20what%20do%20you%20have%20in%20Washing%20Machines%3F" target="_blank" rel="noopener" onclick="event.stopPropagation()">Inquire on WhatsApp ↗</a>
           </div>
         </div>
+
         <div class="cat-opt-card" data-cat="repairs" onclick="openCatalogueSpace('repairs')">
           <div class="cat-opt-top">
             <div class="cat-opt-header-row">
@@ -2153,12 +2238,12 @@
               <span class="cat-opt-count-badge" data-badge-for="repairs">3 Items</span>
             </div>
             <h3>Chip-Level Repair Lab</h3>
-            <span class="cat-opt-feature-tag">Free Inspection</span>
-            <p>In-house motherboard BGA rework, micro-soldering for short-circuited & water-damaged laptops, same-day screen replacements, and thermal deep overhauls.</p>
+            <span class="cat-opt-feature-tag">🔬 Free Fault Diagnostics</span>
+            <p>In-house BGA motherboard rework, liquid recovery & instant high-res screen swaps.</p>
           </div>
           <div class="cat-opt-actions">
-            <button class="btn-open-cat" type="button" onclick="openCatalogueSpace('repairs')">Open Stock (<span data-btn-count-for="repairs">3</span>) &rarr;</button>
-            <a class="btn-quick-wa" href="https://wa.me/919872010193?text=Hi%20Lally%20Computers%2C%20what%20do%20you%20have%20in%20Chip-Level Repair Lab%3F" target="_blank" rel="noopener" onclick="event.stopPropagation()">Inquire on WhatsApp</a>
+            <button class="btn-open-cat" type="button" onclick="openCatalogueSpace('repairs')">Explore Lab (<span data-btn-count-for="repairs">3</span>) <span class="arrow">&rarr;</span></button>
+            <a class="btn-quick-wa" href="https://wa.me/919872010193?text=Hi%20Lally%20Computers%2C%20I%20need%20chip-level%20repair%20service." target="_blank" rel="noopener" onclick="event.stopPropagation()">Inquire on WhatsApp ↗</a>
           </div>
         </div>
       </div>
