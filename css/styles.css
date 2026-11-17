@@ -2136,6 +2136,29 @@
       box-shadow: 0 0 8px rgba(0, 182, 122, 0.35);
     }
 
+    /* Manual Navigation & Card Focus States */
+    .why-slider-track.is-manual-nav,
+    .reviews-slider-track.is-manual-nav {
+      animation: none !important;
+    }
+
+    .why-slide-card,
+    .review-status-card {
+      transition: transform 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease;
+    }
+
+    .why-slide-card.is-card-focused {
+      border-color: rgba(41, 151, 255, 0.85) !important;
+      box-shadow: 0 16px 36px rgba(41, 151, 255, 0.28) !important;
+      transform: translateY(-6px) !important;
+    }
+
+    .review-status-card.is-card-focused {
+      border-color: rgba(0, 182, 122, 0.85) !important;
+      box-shadow: 0 16px 36px rgba(0, 182, 122, 0.28) !important;
+      transform: translateY(-6px) !important;
+    }
+
     .quotes-grid {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));

@@ -1303,6 +1303,9 @@ function initSliderWithDots(sliderWrapperId, trackId, dotsContainerId, cardCount
   const dots = Array.from(dotsContainer.querySelectorAll('.slider-dot'));
   if (dots.length === 0) return;
 
+  const allCards = Array.from(track.children);
+  const uniqueCards = allCards.slice(0, cardCount);
+
   let isManualNav = false;
   let resumeTimeout = null;
   let lastActiveIndex = -1;
@@ -1331,14 +1334,25 @@ function initSliderWithDots(sliderWrapperId, trackId, dotsContainerId, cardCount
   let lastTimestamp = 0;
   function updateFromMarquee(timestamp) {
     if (!isManualNav) {
-      if (!lastTimestamp || timestamp - lastTimestamp > 90) {
+      if (!lastTimestamp || timestamp - lastTimestamp > 70) {
         lastTimestamp = timestamp;
+        const currentTx = Math.abs(getTranslateX());
         const halfWidth = track.scrollWidth / 2;
-        if (halfWidth > 0) {
-          const step = halfWidth / cardCount;
-          const currentX = (Math.abs(getTranslateX()) % halfWidth);
-          const activeIndex = Math.min(cardCount - 1, Math.floor((currentX + step * 0.45) / step));
-          setActiveDot(activeIndex);
+        if (halfWidth > 0 && uniqueCards.length > 0) {
+          const currentX = currentTx % halfWidth;
+          const focusPoint = currentX + (wrapper.clientWidth / 2);
+
+          let closestIdx = 0;
+          let minDiff = Infinity;
+          uniqueCards.forEach((c, idx) => {
+            const cardCenter = (c.offsetLeft - uniqueCards[0].offsetLeft) + (c.offsetWidth / 2);
+            const diff = Math.abs(focusPoint - cardCenter);
+            if (diff < minDiff) {
+              minDiff = diff;
+              closestIdx = idx;
+            }
+          });
+          setActiveDot(closestIdx);
         }
       }
     }
@@ -1346,33 +1360,91 @@ function initSliderWithDots(sliderWrapperId, trackId, dotsContainerId, cardCount
   }
   requestAnimationFrame(updateFromMarquee);
 
-  // Click handler to manually navigate to any slide
+  function navigateToSlide(targetIndex) {
+    if (targetIndex < 0 || targetIndex >= uniqueCards.length) return;
+    const targetCard = uniqueCards[targetIndex];
+    if (!targetCard) return;
+
+    // Read current position before removing animation
+    const currentTx = getTranslateX();
+
+    isManualNav = true;
+    clearTimeout(resumeTimeout);
+
+    // Compute target X to center the target card in the visible viewport
+    const wrapperWidth = wrapper.clientWidth;
+    const cardWidth = targetCard.offsetWidth;
+    const cardLeft = targetCard.offsetLeft - uniqueCards[0].offsetLeft;
+    const targetX = Math.max(0, cardLeft - Math.max(0, (wrapperWidth - cardWidth) / 2));
+
+    // Freeze at current pixel position so there is no sudden jump
+    track.classList.add('is-manual-nav');
+    track.style.transition = 'none';
+    track.style.transform = `translate3d(${currentTx}px, 0, 0)`;
+
+    // Force reflow
+    void track.offsetHeight;
+
+    // Smoothly glide to the target card
+    track.style.transition = 'transform 0.55s cubic-bezier(0.16, 1, 0.3, 1)';
+    track.style.transform = `translate3d(-${targetX}px, 0, 0)`;
+
+    // Highlight card and active dot
+    allCards.forEach(c => c.classList.remove('is-card-focused'));
+    targetCard.classList.add('is-card-focused');
+    setActiveDot(targetIndex);
+
+    // Schedule auto-resume after 6 seconds of idle
+    scheduleAutoResume(targetX);
+  }
+
+  function scheduleAutoResume(currentOffset) {
+    clearTimeout(resumeTimeout);
+    resumeTimeout = setTimeout(() => {
+      if (!isManualNav) return;
+      const halfWidth = track.scrollWidth / 2;
+      if (halfWidth <= 0) return;
+
+      const normalized = currentOffset % halfWidth;
+      const delaySeconds = (normalized / halfWidth) * durationSeconds;
+
+      allCards.forEach(c => c.classList.remove('is-card-focused'));
+
+      // Seamlessly switch back to CSS marquee from the current position
+      track.style.transition = 'none';
+      track.style.transform = '';
+      track.style.animationDelay = `-${delaySeconds.toFixed(2)}s`;
+      track.classList.remove('is-manual-nav');
+      void track.offsetHeight;
+      isManualNav = false;
+    }, 6000);
+  }
+
+  // Hovering pauses the resume countdown so the user can read comfortably
+  wrapper.addEventListener('mouseenter', () => clearTimeout(resumeTimeout));
+  wrapper.addEventListener('mouseleave', () => {
+    if (isManualNav) {
+      const currentTx = Math.abs(getTranslateX());
+      scheduleAutoResume(currentTx);
+    }
+  });
+
+  // Dots click listener
   dots.forEach(dot => {
     dot.addEventListener('click', (e) => {
       e.preventDefault();
       const targetIndex = parseInt(dot.getAttribute('data-index'), 10);
-      if (isNaN(targetIndex)) return;
+      if (!isNaN(targetIndex)) {
+        navigateToSlide(targetIndex);
+      }
+    });
+  });
 
-      const halfWidth = track.scrollWidth / 2;
-      const step = halfWidth / cardCount;
-      const targetX = targetIndex * step;
-
-      isManualNav = true;
-      clearTimeout(resumeTimeout);
-
-      track.style.animationPlayState = 'paused';
-      track.style.transition = 'transform 0.45s cubic-bezier(0.16, 1, 0.3, 1)';
-      track.style.transform = `translate3d(-${targetX}px, 0, 0)`;
-      setActiveDot(targetIndex);
-
-      resumeTimeout = setTimeout(() => {
-        const delaySeconds = (targetX / halfWidth) * durationSeconds;
-        track.style.transition = 'none';
-        track.style.transform = '';
-        track.style.animationDelay = `-${delaySeconds.toFixed(2)}s`;
-        track.style.animationPlayState = 'running';
-        isManualNav = false;
-      }, 4500);
+  // Clicking any card directly also navigates to it and selects its dot
+  allCards.forEach((card, idx) => {
+    card.style.cursor = 'pointer';
+    card.addEventListener('click', () => {
+      navigateToSlide(idx % cardCount);
     });
   });
 }
