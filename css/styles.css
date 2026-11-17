@@ -600,6 +600,7 @@
     }
 
     .section-intro--center,
+    #lineup .section-intro,
     #why .section-intro,
     #reviews .section-intro {
       margin-inline: auto !important;
@@ -607,6 +608,7 @@
     }
 
     .section-intro--center .section-desc,
+    #lineup .section-desc,
     #why .section-desc {
       margin-inline: auto;
       max-width: 650px;
