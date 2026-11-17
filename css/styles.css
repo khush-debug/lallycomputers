@@ -600,9 +600,17 @@
     }
 
     .section-intro--center,
+    #why .section-intro,
     #reviews .section-intro {
       margin-inline: auto !important;
       text-align: center !important;
+    }
+
+    .section-intro--center .section-desc,
+    #why .section-desc {
+      margin-inline: auto;
+      max-width: 650px;
+      text-align: center;
     }
 
     .trust-rating-pill {
