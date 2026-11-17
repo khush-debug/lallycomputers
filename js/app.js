@@ -99,10 +99,10 @@ function renderCategories() {
           </div>
           <div class="cat-opt-actions">
             <button class="btn-open-cat" type="button" onclick="openCatalogueSpace('${c.id}')">
-              Explore Stock (<span>${cnt}</span>) <span class="arrow">&rarr;</span>
+              Explore (${cnt}) &rarr;
             </button>
             <a class="btn-quick-wa" href="https://wa.me/919872010193?text=${waMsg}" target="_blank" rel="noopener" onclick="event.stopPropagation()">
-              Inquire on WhatsApp ↗
+              Inquire ↗
             </a>
           </div>
         </div>
