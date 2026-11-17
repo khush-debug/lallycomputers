@@ -1291,10 +1291,100 @@ function finishTopLoader() {
   }, 250);
 }
 
+/* ==========================================================================
+   CAROUSEL PAGINATION DOTS CONTROLLER
+   ========================================================================== */
+function initSliderWithDots(sliderWrapperId, trackId, dotsContainerId, cardCount, durationSeconds) {
+  const wrapper = document.getElementById(sliderWrapperId);
+  const track = document.getElementById(trackId);
+  const dotsContainer = document.getElementById(dotsContainerId);
+  if (!wrapper || !track || !dotsContainer) return;
+
+  const dots = Array.from(dotsContainer.querySelectorAll('.slider-dot'));
+  if (dots.length === 0) return;
+
+  let isManualNav = false;
+  let resumeTimeout = null;
+  let lastActiveIndex = -1;
+
+  function getTranslateX() {
+    const style = window.getComputedStyle(track);
+    const transform = style.transform || style.webkitTransform;
+    if (!transform || transform === 'none') return 0;
+    const match = transform.match(/matrix(?:3d)?\((.+)\)/);
+    if (!match) return 0;
+    const values = match[1].split(', ');
+    return parseFloat(values.length > 6 ? values[12] : values[4]) || 0;
+  }
+
+  function setActiveDot(index) {
+    if (index === lastActiveIndex) return;
+    lastActiveIndex = index;
+    dots.forEach((dot, i) => {
+      const active = i === index;
+      dot.classList.toggle('is-active', active);
+      dot.setAttribute('aria-selected', active ? 'true' : 'false');
+    });
+  }
+
+  // Animation frame loop to keep dots in sync with continuous marquee
+  let lastTimestamp = 0;
+  function updateFromMarquee(timestamp) {
+    if (!isManualNav) {
+      if (!lastTimestamp || timestamp - lastTimestamp > 90) {
+        lastTimestamp = timestamp;
+        const halfWidth = track.scrollWidth / 2;
+        if (halfWidth > 0) {
+          const step = halfWidth / cardCount;
+          const currentX = (Math.abs(getTranslateX()) % halfWidth);
+          const activeIndex = Math.min(cardCount - 1, Math.floor((currentX + step * 0.45) / step));
+          setActiveDot(activeIndex);
+        }
+      }
+    }
+    requestAnimationFrame(updateFromMarquee);
+  }
+  requestAnimationFrame(updateFromMarquee);
+
+  // Click handler to manually navigate to any slide
+  dots.forEach(dot => {
+    dot.addEventListener('click', (e) => {
+      e.preventDefault();
+      const targetIndex = parseInt(dot.getAttribute('data-index'), 10);
+      if (isNaN(targetIndex)) return;
+
+      const halfWidth = track.scrollWidth / 2;
+      const step = halfWidth / cardCount;
+      const targetX = targetIndex * step;
+
+      isManualNav = true;
+      clearTimeout(resumeTimeout);
+
+      track.style.animationPlayState = 'paused';
+      track.style.transition = 'transform 0.45s cubic-bezier(0.16, 1, 0.3, 1)';
+      track.style.transform = `translate3d(-${targetX}px, 0, 0)`;
+      setActiveDot(targetIndex);
+
+      resumeTimeout = setTimeout(() => {
+        const delaySeconds = (targetX / halfWidth) * durationSeconds;
+        track.style.transition = 'none';
+        track.style.transform = '';
+        track.style.animationDelay = `-${delaySeconds.toFixed(2)}s`;
+        track.style.animationPlayState = 'running';
+        isManualNav = false;
+      }, 4500);
+    });
+  });
+}
+
 // Global Event Delegation & Setup
 document.addEventListener('DOMContentLoaded', () => {
   // Initialize Cookie Consent Banner
   initCookieBanner();
+
+  // Initialize Carousel Pagination Dots
+  initSliderWithDots('whySliderWrap', 'whyTrack', 'whyDots', 6, 42);
+  initSliderWithDots('reviewsSliderWrap', 'reviewsTrack', 'reviewsDots', 4, 40);
 
   // Render Categories & Initial Products
   renderCategories();

@@ -2062,6 +2062,80 @@
       margin: 0;
     }
 
+    /* ==========================================================================
+       SLIDER PAGINATION DOTS (APPLE CAPSULE STYLE)
+       ========================================================================== */
+    .slider-dots-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 8px;
+      margin-top: 1.5rem;
+      padding: 4px 0;
+      user-select: none;
+    }
+
+    .slider-dot {
+      background: transparent;
+      border: none;
+      padding: 8px 4px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      outline: none;
+      touch-action: manipulation;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .slider-dot-inner {
+      display: block;
+      width: 8px;
+      height: 8px;
+      border-radius: 9999px;
+      background: rgba(255, 255, 255, 0.25);
+      transition: width 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+                  background 0.3s ease,
+                  box-shadow 0.3s ease,
+                  transform 0.25s ease;
+    }
+
+    .slider-dot:hover .slider-dot-inner {
+      background: rgba(255, 255, 255, 0.55);
+      transform: scale(1.15);
+    }
+
+    .slider-dot.is-active .slider-dot-inner {
+      width: 26px;
+      background: var(--apple-blue);
+      box-shadow: 0 0 12px rgba(41, 151, 255, 0.55);
+    }
+
+    /* Green variation for Reviews to match Trustpilot style */
+    .slider-dots--reviews .slider-dot.is-active .slider-dot-inner {
+      background: #00b67a;
+      box-shadow: 0 0 12px rgba(0, 182, 122, 0.55);
+    }
+
+    /* Light Theme support */
+    :root[data-theme="light"] .slider-dot-inner {
+      background: rgba(0, 0, 0, 0.2);
+    }
+
+    :root[data-theme="light"] .slider-dot:hover .slider-dot-inner {
+      background: rgba(0, 0, 0, 0.45);
+    }
+
+    :root[data-theme="light"] .slider-dot.is-active .slider-dot-inner {
+      background: var(--apple-blue);
+      box-shadow: 0 0 8px rgba(0, 113, 227, 0.35);
+    }
+
+    :root[data-theme="light"] .slider-dots--reviews .slider-dot.is-active .slider-dot-inner {
+      background: #00b67a;
+      box-shadow: 0 0 8px rgba(0, 182, 122, 0.35);
+    }
+
     .quotes-grid {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
