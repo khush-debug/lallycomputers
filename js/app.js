@@ -1357,15 +1357,15 @@ function updateHours() {
   if (day === 0) {
     if (dot) dot.className = 'dot-status dot-closed';
     text.textContent = 'Sunday · Closed today (Call for urgent repairs)';
-  } else if (time >= 10 && time < 19) {
+  } else if (time >= 9.5 && time < 19) {
     if (dot) dot.className = 'dot-status dot-open';
     text.textContent = 'Open Now · Closes at 7:00 PM';
-  } else if (time < 10) {
+  } else if (time < 9.5) {
     if (dot) dot.className = 'dot-status dot-closed';
-    text.textContent = 'Closed Now · Opens at 10:00 AM';
+    text.textContent = 'Closed Now · Opens at 9:30 AM';
   } else {
     if (dot) dot.className = 'dot-status dot-closed';
-    text.textContent = 'Closed for the day · Opens tomorrow at 10:00 AM';
+    text.textContent = 'Closed for the day · Opens tomorrow at 9:30 AM';
   }
 }
 
