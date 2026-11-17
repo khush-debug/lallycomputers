@@ -186,16 +186,35 @@
   </header>
 
   <!-- ========================================================================
-       HERO SECTION
+       HERO SECTION — INTERACTIVE 360° SHOWROOM VIEWER
        ======================================================================== -->
   <section class="hero-apple" id="top">
     <div class="hero-apple__bg" id="heroBannerWrap">
-      <div class="hero-banner-panorama" id="heroPanorama" role="img" aria-label="Lally Computers Supreme Infosys Store Showroom"></div>
+      <div class="hero-360-fallback" id="hero360Fallback" role="img" aria-label="Lally Computers Supreme Infosys Store Showroom"></div>
+      <canvas class="hero-360-canvas" id="hero360Canvas" tabindex="0"
+        aria-label="Interactive 360-degree view of Lally Computers Showroom in Sodhi Nagar, Moga. Drag or use arrow keys to look around."></canvas>
       <div class="hero-apple__overlay"></div>
     </div>
 
-    <div class="inner">
-      <div class="hero-apple__content">
+    <!-- Top-right Live 360° Status & Drag Prompt -->
+    <div class="hero-360-topbar">
+      <div class="inner hero-360-topbar__inner">
+        <div class="hero-360-indicator" id="hero360Indicator" aria-live="polite">
+          <svg class="hero-360-orbit-icon" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.9" aria-hidden="true">
+            <circle cx="12" cy="12" r="9" />
+            <ellipse cx="12" cy="12" rx="9" ry="3.8" />
+            <path d="M12 3a12 12 0 0 1 0 18" />
+          </svg>
+          <span class="hero-360-indicator__label">360&deg; Showroom</span>
+          <span class="hero-360-indicator__sep" aria-hidden="true">&middot;</span>
+          <span class="hero-360-indicator__hint" id="hero360Hint">Drag to look around</span>
+          <span class="hero-360-bearing" id="hero360Bearing">000&deg;</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="inner hero-apple__stage">
+      <div class="hero-apple__content" id="heroContent">
         <div class="hero-pill-badge">
           <span class="hero-live-dot"></span>
           <span class="hero-eyebrow">Supreme Infosys &middot; Sodhi Nagar, Moga</span>
@@ -228,6 +247,45 @@
             <path d="m12 2.5 2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3 6.1 20.6l1.3-6.6L2.5 9.4l6.6-.8z" />
           </svg>
           <span><b>4.2</b> rating from 709 reviews on Google &middot; GST Bill Included</span>
+        </div>
+      </div>
+
+      <!-- Interactive 360° Camera Dock -->
+      <div class="hero-360-hud" id="hero360Hud" role="region" aria-label="360-degree showroom camera controls">
+        <div class="hero-360-spots" role="group" aria-label="Showroom viewpoints">
+          <button class="hero-360-spot is-active" type="button" data-yaw="0.02" data-pitch="-0.02" data-spot="laptops">Laptop Wall</button>
+          <button class="hero-360-spot" type="button" data-yaw="1.28" data-pitch="-0.09" data-spot="accessories">ASUS &amp; Gear</button>
+          <button class="hero-360-spot" type="button" data-yaw="-2.32" data-pitch="-0.02" data-spot="lenovo">Lenovo Zone</button>
+          <button class="hero-360-spot" type="button" data-yaw="2.22" data-pitch="-0.03" data-spot="desk">Service Desk</button>
+        </div>
+
+        <div class="hero-360-controls">
+          <button class="hero-360-ctrl-btn" id="hero360ZoomOut" type="button" aria-label="Zoom out showroom view" title="Zoom Out">
+            <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.2">
+              <line x1="5" y1="12" x2="19" y2="12" />
+            </svg>
+          </button>
+          <button class="hero-360-ctrl-btn" id="hero360ZoomIn" type="button" aria-label="Zoom in showroom view" title="Zoom In">
+            <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.2">
+              <line x1="12" y1="5" x2="12" y2="19" />
+              <line x1="5" y1="12" x2="19" y2="12" />
+            </svg>
+          </button>
+          <button class="hero-360-ctrl-btn" id="hero360AutoBtn" type="button" aria-label="Pause automatic rotation" aria-pressed="true" title="Pause / Resume Auto-Tour">
+            <svg class="icon-pause" viewBox="0 0 24 24" width="14" height="14" fill="currentColor">
+              <rect x="6" y="4" width="4" height="16" rx="1" />
+              <rect x="14" y="4" width="4" height="16" rx="1" />
+            </svg>
+            <svg class="icon-play" viewBox="0 0 24 24" width="14" height="14" fill="currentColor">
+              <polygon points="6,4 20,12 6,20" />
+            </svg>
+          </button>
+          <button class="hero-360-tour-btn" id="hero360TourBtn" type="button" aria-pressed="false" title="Toggle unobstructed 360-degree view">
+            <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7" />
+            </svg>
+            <span id="hero360TourLabel">Full 360&deg;</span>
+          </button>
         </div>
       </div>
     </div>

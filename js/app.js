@@ -1790,34 +1790,435 @@ document.addEventListener('DOMContentLoaded', () => {
     fetchAndSyncGoogleSheet(savedSheet, false);
   }
 
-  // Hero Panoramic Banner Interactive Parallax
-  const heroSection = document.getElementById('top');
-  const heroPanorama = document.getElementById('heroPanorama');
-
-  if (heroSection && heroPanorama && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-    let targetX = 0, targetY = 0;
-    let currentX = 0, currentY = 0;
-
-    heroSection.addEventListener('mousemove', (e) => {
-      const rect = heroSection.getBoundingClientRect();
-      const xRatio = (e.clientX - rect.left) / rect.width - 0.5;
-      const yRatio = (e.clientY - rect.top) / rect.height - 0.5;
-      targetX = xRatio * 28;
-      targetY = yRatio * 18;
-    }, { passive: true });
-
-    heroSection.addEventListener('mouseleave', () => {
-      targetX = 0;
-      targetY = 0;
-    });
-
-    function stepParallax() {
-      currentX += (targetX - currentX) * 0.08;
-      currentY += (targetY - currentY) * 0.08;
-      heroPanorama.style.setProperty('--mouse-shift-x', `${currentX.toFixed(2)}px`);
-      heroPanorama.style.setProperty('--mouse-shift-y', `${currentY.toFixed(2)}px`);
-      requestAnimationFrame(stepParallax);
-    }
-    requestAnimationFrame(stepParallax);
-  }
+  // Interactive 360° Rectilinear Showroom Viewer (Zero-Fisheye WebGL)
+  initHero360Viewer();
 });
+
+/* ==========================================================================
+   INTERACTIVE 360° RECTILINEAR SHOWROOM VIEWER (WEBGL)
+   ========================================================================== */
+function initHero360Viewer() {
+  const heroSection = document.getElementById('top');
+  const canvas = document.getElementById('hero360Canvas');
+  if (!heroSection || !canvas) return;
+
+  const gl = canvas.getContext('webgl', {
+    antialias: false,
+    alpha: false,
+    depth: false,
+    stencil: false,
+    powerPreference: 'high-performance'
+  }) || canvas.getContext('experimental-webgl');
+
+  if (!gl) return; // Falls back cleanly to .hero-360-fallback
+
+  const vsSource = `
+    attribute vec2 a_pos;
+    void main() {
+      gl_Position = vec4(a_pos, 0.0, 1.0);
+    }
+  `;
+
+  const fsSource = `
+    precision highp float;
+    uniform sampler2D u_tex;
+    uniform vec2 u_res;
+    uniform float u_yaw;
+    uniform float u_pitch;
+    uniform float u_fov;
+
+    const float PI = 3.14159265359;
+    const float TWO_PI = 6.28318530718;
+
+    void main() {
+      vec2 ndc = (gl_FragCoord.xy / u_res) * 2.0 - 1.0;
+      float aspect = u_res.x / max(u_res.y, 1.0);
+      float tanHalf = tan(u_fov * 0.5);
+
+      // True pinhole rectilinear ray (straight walls & shelves, zero fisheye)
+      vec3 dir = normalize(vec3(ndc.x * aspect * tanHalf, ndc.y * tanHalf, 1.0));
+
+      // Pitch around X axis
+      float cp = cos(u_pitch);
+      float sp = sin(u_pitch);
+      vec3 pDir = vec3(
+        dir.x,
+        dir.y * cp + dir.z * sp,
+        -dir.y * sp + dir.z * cp
+      );
+
+      // Yaw around Y axis
+      float cy = cos(u_yaw);
+      float sy = sin(u_yaw);
+      vec3 wDir = vec3(
+        pDir.x * cy + pDir.z * sy,
+        pDir.y,
+        -pDir.x * sy + pDir.z * cy
+      );
+
+      float lon = atan(wDir.x, wDir.z);
+      float lat = asin(clamp(wDir.y, -1.0, 1.0));
+
+      float u = lon / TWO_PI + 0.5;
+      float v = 0.5 - lat / PI;
+
+      vec3 col = texture2D(u_tex, vec2(u, clamp(v, 0.002, 0.998))).rgb;
+
+      // Subtle editorial contrast & richness grading
+      col = (col - 0.5) * 1.07 + 0.5;
+      float luma = dot(col, vec3(0.2126, 0.7152, 0.0722));
+      col = mix(vec3(luma), col, 1.12);
+      col = clamp(col, 0.0, 1.0);
+
+      gl_FragColor = vec4(col, 1.0);
+    }
+  `;
+
+  function compileShader(type, source) {
+    const shader = gl.createShader(type);
+    gl.shaderSource(shader, source);
+    gl.compileShader(shader);
+    if (!gl.getShaderParameter(shader, gl.COMPILE_STATUS)) {
+      console.warn('360 shader compile error:', gl.getShaderInfoLog(shader));
+      gl.deleteShader(shader);
+      return null;
+    }
+    return shader;
+  }
+
+  const vs = compileShader(gl.VERTEX_SHADER, vsSource);
+  const fs = compileShader(gl.FRAGMENT_SHADER, fsSource);
+  if (!vs || !fs) return;
+
+  const prog = gl.createProgram();
+  gl.attachShader(prog, vs);
+  gl.attachShader(prog, fs);
+  gl.linkProgram(prog);
+  if (!gl.getProgramParameter(prog, gl.LINK_STATUS)) return;
+  gl.useProgram(prog);
+
+  const quad = gl.createBuffer();
+  gl.bindBuffer(gl.ARRAY_BUFFER, quad);
+  gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1, -1, 1, -1, -1, 1, 1, 1]), gl.STATIC_DRAW);
+  const posLoc = gl.getAttribLocation(prog, 'a_pos');
+  gl.enableVertexAttribArray(posLoc);
+  gl.vertexAttribPointer(posLoc, 2, gl.FLOAT, false, 0, 0);
+
+  const uRes = gl.getUniformLocation(prog, 'u_res');
+  const uYaw = gl.getUniformLocation(prog, 'u_yaw');
+  const uPitch = gl.getUniformLocation(prog, 'u_pitch');
+  const uFov = gl.getUniformLocation(prog, 'u_fov');
+  const uTex = gl.getUniformLocation(prog, 'u_tex');
+
+  const tex = gl.createTexture();
+  gl.bindTexture(gl.TEXTURE_2D, tex);
+  gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.REPEAT);
+  gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
+  gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR);
+  gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.LINEAR);
+  gl.uniform1i(uTex, 0);
+
+  const reducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const isMobile = () => window.innerWidth <= 768;
+
+  // Camera state
+  let yaw = 0.02;
+  let pitch = -0.02;
+  let fov = isMobile() ? 1.24 : 1.08; // vertical FOV in radians (~62° desktop, ~71° mobile)
+  let targetFov = fov;
+
+  // Smooth target transition for viewpoint chips
+  let glideYaw = null;
+  let glidePitch = null;
+
+  // Drag & inertia
+  let isDragging = false;
+  let dragIntent = null; // 'pano' | 'scroll'
+  let lastX = 0;
+  let lastY = 0;
+  let startX = 0;
+  let startY = 0;
+  let velYaw = 0;
+  let velPitch = 0;
+
+  // Auto-orbit state
+  let autoRotateEnabled = !reducedMotion;
+  let idleResumeAt = 0;
+  let textureReady = false;
+  let isVisible = true;
+
+  const PITCH_MIN = -0.34; // Avoid floor tripod seam
+  const PITCH_MAX = 0.38;  // Avoid flat bare ceiling
+  const FOV_MIN = 0.72;    // ~41° zoom-in
+  const FOV_MAX = 1.38;    // ~79° wide
+
+  const bearingEl = document.getElementById('hero360Bearing');
+  const hintEl = document.getElementById('hero360Hint');
+  const autoBtn = document.getElementById('hero360AutoBtn');
+  const tourBtn = document.getElementById('hero360TourBtn');
+  const tourLabel = document.getElementById('hero360TourLabel');
+  const zoomInBtn = document.getElementById('hero360ZoomIn');
+  const zoomOutBtn = document.getElementById('hero360ZoomOut');
+  const spotBtns = Array.from(document.querySelectorAll('.hero-360-spot'));
+
+  function syncAutoBtnUI() {
+    if (!autoBtn) return;
+    autoBtn.classList.toggle('is-paused', !autoRotateEnabled);
+    autoBtn.setAttribute('aria-pressed', autoRotateEnabled ? 'true' : 'false');
+    autoBtn.setAttribute('aria-label', autoRotateEnabled ? 'Pause automatic rotation' : 'Resume automatic rotation');
+  }
+  syncAutoBtnUI();
+
+  function shortestAngleDiff(from, to) {
+    let diff = (to - from + Math.PI) % (Math.PI * 2) - Math.PI;
+    if (diff < -Math.PI) diff += Math.PI * 2;
+    return diff;
+  }
+
+  function normalizeAngle(a) {
+    const twoPi = Math.PI * 2;
+    return ((a % twoPi) + twoPi) % twoPi;
+  }
+
+  let lastHudUpdate = 0;
+  function updateHud(now) {
+    if (now - lastHudUpdate < 110) return;
+    lastHudUpdate = now;
+
+    if (bearingEl) {
+      const deg = Math.round((normalizeAngle(yaw) * 180) / Math.PI) % 360;
+      bearingEl.textContent = `${String(deg).padStart(3, '0')}°`;
+    }
+
+    if (spotBtns.length) {
+      let closestBtn = null;
+      let minDist = Infinity;
+      spotBtns.forEach(btn => {
+        const sYaw = parseFloat(btn.getAttribute('data-yaw')) || 0;
+        const dist = Math.abs(shortestAngleDiff(yaw, sYaw));
+        if (dist < minDist) {
+          minDist = dist;
+          closestBtn = btn;
+        }
+      });
+      spotBtns.forEach(btn => btn.classList.toggle('is-active', btn === closestBtn && minDist < 0.72));
+    }
+  }
+
+  function resize() {
+    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    const w = Math.max(1, Math.floor(canvas.clientWidth * dpr));
+    const h = Math.max(1, Math.floor(canvas.clientHeight * dpr));
+    if (canvas.width !== w || canvas.height !== h) {
+      canvas.width = w;
+      canvas.height = h;
+      gl.viewport(0, 0, w, h);
+    }
+  }
+
+  // Load 360° equirectangular showroom image
+  const img = new Image();
+  img.crossOrigin = 'anonymous';
+  img.onload = () => {
+    gl.bindTexture(gl.TEXTURE_2D, tex);
+    gl.pixelStorei(gl.UNPACK_FLIP_Y_WEBGL, false);
+    gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, img);
+    textureReady = true;
+    resize();
+    heroSection.classList.add('is-webgl-ready');
+  };
+  img.src = 'images/store-banner.jpg';
+
+  // Pointer & touch drag controls
+  function onPointerDown(e) {
+    if (e.button !== undefined && e.button !== 0) return;
+    if (e.target.closest('a, button, .hero-360-hud, .hero-apple__content')) return;
+
+    isDragging = true;
+    dragIntent = e.pointerType === 'mouse' ? 'pano' : null;
+    startX = lastX = e.clientX;
+    startY = lastY = e.clientY;
+    velYaw = 0;
+    velPitch = 0;
+    glideYaw = null;
+    glidePitch = null;
+    idleResumeAt = performance.now() + 5500;
+
+    if (dragIntent === 'pano') {
+      heroSection.classList.add('is-dragging');
+      if (hintEl) hintEl.textContent = 'Exploring 360°';
+      try { canvas.setPointerCapture(e.pointerId); } catch (err) {}
+    }
+  }
+
+  function onPointerMove(e) {
+    if (!isDragging) return;
+
+    const totalDx = e.clientX - startX;
+    const totalDy = e.clientY - startY;
+
+    if (!dragIntent) {
+      if (Math.abs(totalDy) > Math.abs(totalDx) && Math.abs(totalDy) > 10) {
+        dragIntent = 'scroll';
+        isDragging = false;
+        return;
+      }
+      if (Math.abs(totalDx) > 6) {
+        dragIntent = 'pano';
+        heroSection.classList.add('is-dragging');
+        if (hintEl) hintEl.textContent = 'Exploring 360°';
+        try { canvas.setPointerCapture(e.pointerId); } catch (err) {}
+      } else {
+        return;
+      }
+    }
+
+    const dx = e.clientX - lastX;
+    const dy = e.clientY - lastY;
+    lastX = e.clientX;
+    lastY = e.clientY;
+
+    const sensitivity = (fov / Math.max(canvas.clientHeight, 320)) * 1.18;
+    const dYaw = -dx * sensitivity;
+    const dPitch = dy * sensitivity * 0.72;
+
+    yaw += dYaw;
+    pitch = Math.max(PITCH_MIN, Math.min(PITCH_MAX, pitch + dPitch));
+    velYaw = dYaw * 0.82;
+    velPitch = dPitch * 0.7;
+    idleResumeAt = performance.now() + 5500;
+  }
+
+  function onPointerUp(e) {
+    if (!isDragging) return;
+    isDragging = false;
+    dragIntent = null;
+    heroSection.classList.remove('is-dragging');
+    if (hintEl) hintEl.textContent = 'Drag to look around';
+    try { canvas.releasePointerCapture(e.pointerId); } catch (err) {}
+  }
+
+  heroSection.addEventListener('pointerdown', onPointerDown, { passive: true });
+  window.addEventListener('pointermove', onPointerMove, { passive: true });
+  window.addEventListener('pointerup', onPointerUp, { passive: true });
+  window.addEventListener('pointercancel', onPointerUp, { passive: true });
+
+  // Keyboard accessibility when canvas is focused
+  canvas.addEventListener('keydown', (e) => {
+    const step = 0.14;
+    if (e.key === 'ArrowLeft') { e.preventDefault(); glideYaw = null; velYaw = -step * 0.35; idleResumeAt = performance.now() + 5000; }
+    else if (e.key === 'ArrowRight') { e.preventDefault(); glideYaw = null; velYaw = step * 0.35; idleResumeAt = performance.now() + 5000; }
+    else if (e.key === 'ArrowUp') { e.preventDefault(); pitch = Math.min(PITCH_MAX, pitch + 0.08); }
+    else if (e.key === 'ArrowDown') { e.preventDefault(); pitch = Math.max(PITCH_MIN, pitch - 0.08); }
+    else if (e.key === '+' || e.key === '=') { targetFov = Math.max(FOV_MIN, targetFov - 0.14); }
+    else if (e.key === '-' || e.key === '_') { targetFov = Math.min(FOV_MAX, targetFov + 0.14); }
+  });
+
+  // Viewpoint chips smooth camera glide
+  spotBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      glideYaw = parseFloat(btn.getAttribute('data-yaw')) || 0;
+      glidePitch = parseFloat(btn.getAttribute('data-pitch')) || -0.02;
+      velYaw = 0;
+      velPitch = 0;
+      idleResumeAt = performance.now() + 6500;
+      spotBtns.forEach(b => b.classList.toggle('is-active', b === btn));
+    });
+  });
+
+  // Zoom controls
+  if (zoomInBtn) {
+    zoomInBtn.addEventListener('click', () => {
+      targetFov = Math.max(FOV_MIN, targetFov - 0.16);
+    });
+  }
+  if (zoomOutBtn) {
+    zoomOutBtn.addEventListener('click', () => {
+      targetFov = Math.min(FOV_MAX, targetFov + 0.16);
+    });
+  }
+
+  // Auto-orbit toggle
+  if (autoBtn) {
+    autoBtn.addEventListener('click', () => {
+      autoRotateEnabled = !autoRotateEnabled;
+      idleResumeAt = 0;
+      syncAutoBtnUI();
+    });
+  }
+
+  // Full 360° unobstructed view toggle
+  if (tourBtn) {
+    tourBtn.addEventListener('click', () => {
+      const entering = !heroSection.classList.contains('is-tour-mode');
+      heroSection.classList.toggle('is-tour-mode', entering);
+      tourBtn.setAttribute('aria-pressed', entering ? 'true' : 'false');
+      if (tourLabel) tourLabel.textContent = entering ? 'Show Info' : 'Full 360°';
+      if (hintEl) hintEl.textContent = entering ? '360° Tour Active' : 'Drag to look around';
+    });
+  }
+
+  // Pause rendering when scrolled off-screen to save battery/GPU
+  if ('IntersectionObserver' in window) {
+    const observer = new IntersectionObserver((entries) => {
+      isVisible = entries[0]?.isIntersecting !== false;
+    }, { threshold: 0.02 });
+    observer.observe(heroSection);
+  }
+
+  window.addEventListener('resize', resize, { passive: true });
+
+  // Main 60fps render loop
+  let prevTime = performance.now();
+  function render(now) {
+    requestAnimationFrame(render);
+    if (!textureReady || !isVisible) {
+      prevTime = now;
+      return;
+    }
+
+    const dt = Math.min(0.05, (now - prevTime) / 1000);
+    prevTime = now;
+
+    if (!isDragging) {
+      if (glideYaw !== null) {
+        const diffYaw = shortestAngleDiff(yaw, glideYaw);
+        const diffPitch = (glidePitch !== null ? glidePitch : -0.02) - pitch;
+        yaw += diffYaw * Math.min(1, dt * 6.5);
+        pitch += diffPitch * Math.min(1, dt * 6.5);
+        if (Math.abs(diffYaw) < 0.004 && Math.abs(diffPitch) < 0.004) {
+          yaw = glideYaw;
+          pitch = glidePitch !== null ? glidePitch : pitch;
+          glideYaw = null;
+          glidePitch = null;
+        }
+      } else {
+        // Apply silky momentum decay
+        if (Math.abs(velYaw) > 0.0001 || Math.abs(velPitch) > 0.0001) {
+          yaw += velYaw;
+          pitch = Math.max(PITCH_MIN, Math.min(PITCH_MAX, pitch + velPitch));
+          const damp = Math.pow(0.06, dt);
+          velYaw *= damp;
+          velPitch *= damp;
+        } else if (autoRotateEnabled && now >= idleResumeAt) {
+          // Gentle architectural showroom pan
+          yaw += dt * 0.055;
+          pitch += (-0.02 - pitch) * dt * 0.6;
+        }
+      }
+    }
+
+    fov += (targetFov - fov) * Math.min(1, dt * 8);
+
+    resize();
+    gl.uniform2f(uRes, canvas.width, canvas.height);
+    gl.uniform1f(uYaw, yaw);
+    gl.uniform1f(uPitch, pitch);
+    gl.uniform1f(uFov, fov);
+    gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
+
+    updateHud(now);
+  }
+
+  requestAnimationFrame(render);
+}
