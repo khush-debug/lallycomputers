@@ -1859,10 +1859,10 @@ function initHero360Viewer() {
       float lon = atan(wDir.x, wDir.z);
       float lat = asin(clamp(wDir.y, -1.0, 1.0));
 
-      float u = lon / TWO_PI + 0.5;
+      float u = fract(lon / TWO_PI + 0.5);
       float v = 0.5 - lat / PI;
 
-      vec3 col = texture2D(u_tex, vec2(u, clamp(v, 0.002, 0.998))).rgb;
+      vec3 col = texture2D(u_tex, vec2(clamp(u, 0.0005, 0.9995), clamp(v, 0.002, 0.998))).rgb;
 
       // Subtle editorial contrast & richness grading
       col = (col - 0.5) * 1.07 + 0.5;
@@ -1912,7 +1912,8 @@ function initHero360Viewer() {
 
   const tex = gl.createTexture();
   gl.bindTexture(gl.TEXTURE_2D, tex);
-  gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.REPEAT);
+  // WebGL 1.0 requires CLAMP_TO_EDGE + LINEAR (no mipmaps) for non-power-of-two textures (3072x1536)
+  gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE);
   gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
   gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR);
   gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.LINEAR);
@@ -2018,11 +2019,22 @@ function initHero360Viewer() {
 
   // Load 360° equirectangular showroom image
   const img = new Image();
-  img.crossOrigin = 'anonymous';
   img.onload = () => {
+    const maxTex = gl.getParameter(gl.MAX_TEXTURE_SIZE) || 4096;
+    let uploadSource = img;
+    if (img.naturalWidth > maxTex || img.naturalHeight > maxTex) {
+      const scale = Math.min(maxTex / img.naturalWidth, maxTex / img.naturalHeight);
+      const off = document.createElement('canvas');
+      off.width = Math.floor(img.naturalWidth * scale);
+      off.height = Math.floor(img.naturalHeight * scale);
+      off.getContext('2d').drawImage(img, 0, 0, off.width, off.height);
+      uploadSource = off;
+    }
+    gl.activeTexture(gl.TEXTURE0);
     gl.bindTexture(gl.TEXTURE_2D, tex);
     gl.pixelStorei(gl.UNPACK_FLIP_Y_WEBGL, false);
-    gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, img);
+    gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, uploadSource);
+    if (gl.getError() !== gl.NO_ERROR) return;
     textureReady = true;
     resize();
     heroSection.classList.add('is-webgl-ready');
