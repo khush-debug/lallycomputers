@@ -1720,6 +1720,15 @@
       padding: 12px 0 20px;
       mask-image: linear-gradient(90deg, transparent 0%, black 5%, black 95%, transparent 100%);
       -webkit-mask-image: linear-gradient(90deg, transparent 0%, black 5%, black 95%, transparent 100%);
+      cursor: grab;
+      touch-action: pan-y;
+      user-select: none;
+      -webkit-user-select: none;
+    }
+
+    .why-slider-wrapper:active,
+    .why-slider-track.is-dragging {
+      cursor: grabbing !important;
     }
 
     .why-slider-track {
@@ -1905,6 +1914,15 @@
       padding: 12px 0 20px;
       mask-image: linear-gradient(90deg, transparent 0%, black 5%, black 95%, transparent 100%);
       -webkit-mask-image: linear-gradient(90deg, transparent 0%, black 5%, black 95%, transparent 100%);
+      cursor: grab;
+      touch-action: pan-y;
+      user-select: none;
+      -webkit-user-select: none;
+    }
+
+    .reviews-slider-wrapper:active,
+    .reviews-slider-track.is-dragging {
+      cursor: grabbing !important;
     }
 
     .reviews-slider-track {
@@ -2134,6 +2152,79 @@
     :root[data-theme="light"] .slider-dots--reviews .slider-dot.is-active .slider-dot-inner {
       background: #00b67a;
       box-shadow: 0 0 8px rgba(0, 182, 122, 0.35);
+    }
+
+    /* Slider Navigation Controls (Arrows + Dots) */
+    .slider-nav-wrap {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 1.1rem;
+      margin-top: 1.2rem;
+      user-select: none;
+    }
+
+    .slider-nav-wrap .slider-dots-container {
+      margin-top: 0;
+      padding: 0;
+    }
+
+    .slider-arrow-btn {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: var(--bg-surface-elevated);
+      border: 1px solid var(--border-subtle);
+      color: var(--text-primary);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
+      padding: 0;
+      outline: none;
+      touch-action: manipulation;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .slider-arrow-btn:hover {
+      background: var(--apple-blue);
+      border-color: var(--apple-blue);
+      color: #ffffff;
+      transform: scale(1.1);
+      box-shadow: 0 6px 18px rgba(41, 151, 255, 0.4);
+    }
+
+    .slider-arrow-btn:active {
+      transform: scale(0.94);
+    }
+
+    .slider-nav-wrap--reviews .slider-arrow-btn:hover {
+      background: #00b67a;
+      border-color: #00b67a;
+      color: #ffffff;
+      box-shadow: 0 6px 18px rgba(0, 182, 122, 0.4);
+    }
+
+    /* Light Theme for Arrow Buttons */
+    :root[data-theme="light"] .slider-arrow-btn {
+      background: #ffffff;
+      border-color: rgba(0, 0, 0, 0.12);
+      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+      color: var(--text-primary);
+    }
+
+    :root[data-theme="light"] .slider-arrow-btn:hover {
+      background: var(--apple-blue);
+      border-color: var(--apple-blue);
+      color: #ffffff;
+    }
+
+    :root[data-theme="light"] .slider-nav-wrap--reviews .slider-arrow-btn:hover {
+      background: #00b67a;
+      border-color: #00b67a;
+      color: #ffffff;
     }
 
     /* Manual Navigation & Card Focus States */

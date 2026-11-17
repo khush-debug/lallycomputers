@@ -1294,11 +1294,14 @@ function finishTopLoader() {
 /* ==========================================================================
    CAROUSEL PAGINATION DOTS CONTROLLER
    ========================================================================== */
-function initSliderWithDots(sliderWrapperId, trackId, dotsContainerId, cardCount, durationSeconds) {
+function initSliderWithDots(sliderWrapperId, trackId, dotsContainerId, cardCount, durationSeconds, prevBtnId, nextBtnId) {
   const wrapper = document.getElementById(sliderWrapperId);
   const track = document.getElementById(trackId);
   const dotsContainer = document.getElementById(dotsContainerId);
   if (!wrapper || !track || !dotsContainer) return;
+
+  const prevBtn = prevBtnId ? document.getElementById(prevBtnId) : null;
+  const nextBtn = nextBtnId ? document.getElementById(nextBtnId) : null;
 
   const dots = Array.from(dotsContainer.querySelectorAll('.slider-dot'));
   if (dots.length === 0) return;
@@ -1308,7 +1311,7 @@ function initSliderWithDots(sliderWrapperId, trackId, dotsContainerId, cardCount
 
   let isManualNav = false;
   let resumeTimeout = null;
-  let lastActiveIndex = -1;
+  let lastActiveIndex = 0;
 
   function getTranslateX() {
     const style = window.getComputedStyle(track);
@@ -1321,7 +1324,7 @@ function initSliderWithDots(sliderWrapperId, trackId, dotsContainerId, cardCount
   }
 
   function setActiveDot(index) {
-    if (index === lastActiveIndex) return;
+    if (index === lastActiveIndex && dots[index]?.classList.contains('is-active')) return;
     lastActiveIndex = index;
     dots.forEach((dot, i) => {
       const active = i === index;
@@ -1360,7 +1363,7 @@ function initSliderWithDots(sliderWrapperId, trackId, dotsContainerId, cardCount
   }
   requestAnimationFrame(updateFromMarquee);
 
-  function navigateToSlide(targetIndex) {
+  function navigateToSlide(targetIndex, smooth = true) {
     if (targetIndex < 0 || targetIndex >= uniqueCards.length) return;
     const targetCard = uniqueCards[targetIndex];
     if (!targetCard) return;
@@ -1377,16 +1380,19 @@ function initSliderWithDots(sliderWrapperId, trackId, dotsContainerId, cardCount
     const cardLeft = targetCard.offsetLeft - uniqueCards[0].offsetLeft;
     const targetX = Math.max(0, cardLeft - Math.max(0, (wrapperWidth - cardWidth) / 2));
 
-    // Freeze at current pixel position so there is no sudden jump
-    track.classList.add('is-manual-nav');
-    track.style.transition = 'none';
-    track.style.transform = `translate3d(${currentTx}px, 0, 0)`;
+    if (!track.classList.contains('is-manual-nav')) {
+      track.classList.add('is-manual-nav');
+      track.style.transition = 'none';
+      track.style.transform = `translate3d(${currentTx}px, 0, 0)`;
+      void track.offsetHeight; // Force reflow
+    }
 
-    // Force reflow
-    void track.offsetHeight;
+    if (smooth) {
+      track.style.transition = 'transform 0.55s cubic-bezier(0.16, 1, 0.3, 1)';
+    } else {
+      track.style.transition = 'none';
+    }
 
-    // Smoothly glide to the target card
-    track.style.transition = 'transform 0.55s cubic-bezier(0.16, 1, 0.3, 1)';
     track.style.transform = `translate3d(-${targetX}px, 0, 0)`;
 
     // Highlight card and active dot
@@ -1405,12 +1411,12 @@ function initSliderWithDots(sliderWrapperId, trackId, dotsContainerId, cardCount
       const halfWidth = track.scrollWidth / 2;
       if (halfWidth <= 0) return;
 
-      const normalized = currentOffset % halfWidth;
+      const normalized = Math.abs(currentOffset) % halfWidth;
       const delaySeconds = (normalized / halfWidth) * durationSeconds;
 
       allCards.forEach(c => c.classList.remove('is-card-focused'));
 
-      // Seamlessly switch back to CSS marquee from the current position
+      // Seamlessly switch back to CSS marquee from current position
       track.style.transition = 'none';
       track.style.transform = '';
       track.style.animationDelay = `-${delaySeconds.toFixed(2)}s`;
@@ -1420,14 +1426,126 @@ function initSliderWithDots(sliderWrapperId, trackId, dotsContainerId, cardCount
     }, 6000);
   }
 
-  // Hovering pauses the resume countdown so the user can read comfortably
+  // Hovering pauses the resume countdown
   wrapper.addEventListener('mouseenter', () => clearTimeout(resumeTimeout));
   wrapper.addEventListener('mouseleave', () => {
-    if (isManualNav) {
+    if (isManualNav && !isPointerDown) {
       const currentTx = Math.abs(getTranslateX());
       scheduleAutoResume(currentTx);
     }
   });
+
+  // ==========================================
+  // POINTER & TOUCH DRAG CONTROLLER (MANUAL MOVEMENT)
+  // ==========================================
+  let isPointerDown = false;
+  let hasDragged = false;
+  let startPointerX = 0;
+  let startPointerY = 0;
+  let startTx = 0;
+  let dragCurrentTx = 0;
+  let pointerStartTime = 0;
+
+  function onPointerDown(e) {
+    if (e.button !== undefined && e.button !== 0) return;
+    isPointerDown = true;
+    hasDragged = false;
+    startPointerX = e.clientX;
+    startPointerY = e.clientY;
+    pointerStartTime = Date.now();
+
+    startTx = getTranslateX();
+    dragCurrentTx = startTx;
+    clearTimeout(resumeTimeout);
+  }
+
+  function onPointerMove(e) {
+    if (!isPointerDown) return;
+    const deltaX = e.clientX - startPointerX;
+    const deltaY = e.clientY - startPointerY;
+
+    if (!hasDragged) {
+      if (Math.abs(deltaY) > Math.abs(deltaX) && Math.abs(deltaY) > 8) {
+        isPointerDown = false;
+        return;
+      }
+      if (Math.abs(deltaX) > 6) {
+        hasDragged = true;
+        isManualNav = true;
+        track.classList.add('is-manual-nav', 'is-dragging');
+        track.style.transition = 'none';
+        if (track.setPointerCapture) {
+          try { track.setPointerCapture(e.pointerId); } catch (err) {}
+        }
+      }
+    }
+
+    if (hasDragged) {
+      e.preventDefault();
+      const halfWidth = track.scrollWidth / 2;
+      if (halfWidth <= 0) return;
+
+      let newTx = startTx + deltaX;
+      while (newTx > 0) newTx -= halfWidth;
+      while (newTx < -halfWidth) newTx += halfWidth;
+
+      dragCurrentTx = newTx;
+      track.style.transform = `translate3d(${newTx}px, 0, 0)`;
+
+      // Live update active dot
+      const currentX = Math.abs(newTx) % halfWidth;
+      const focusPoint = currentX + (wrapper.clientWidth / 2);
+      let closestIdx = 0;
+      let minDiff = Infinity;
+      uniqueCards.forEach((c, idx) => {
+        const cardCenter = (c.offsetLeft - uniqueCards[0].offsetLeft) + (c.offsetWidth / 2);
+        const diff = Math.abs(focusPoint - cardCenter);
+        if (diff < minDiff) {
+          minDiff = diff;
+          closestIdx = idx;
+        }
+      });
+      setActiveDot(closestIdx);
+    }
+  }
+
+  function onPointerUp(e) {
+    if (!isPointerDown) return;
+    isPointerDown = false;
+
+    if (hasDragged) {
+      track.classList.remove('is-dragging');
+      if (track.releasePointerCapture) {
+        try { track.releasePointerCapture(e.pointerId); } catch (err) {}
+      }
+
+      const deltaTime = Math.max(1, Date.now() - pointerStartTime);
+      const deltaX = e.clientX - startPointerX;
+      const velocity = deltaX / deltaTime; // px per ms
+
+      const halfWidth = track.scrollWidth / 2;
+      const currentX = Math.abs(dragCurrentTx) % halfWidth;
+      const projectedFocus = currentX + (wrapper.clientWidth / 2) - (velocity * 200);
+
+      let closestIdx = 0;
+      let minDiff = Infinity;
+      uniqueCards.forEach((c, idx) => {
+        const cardCenter = (c.offsetLeft - uniqueCards[0].offsetLeft) + (c.offsetWidth / 2);
+        const diff = Math.abs(projectedFocus - cardCenter);
+        if (diff < minDiff) {
+          minDiff = diff;
+          closestIdx = idx;
+        }
+      });
+
+      navigateToSlide(closestIdx);
+    }
+  }
+
+  track.addEventListener('pointerdown', onPointerDown, { passive: true });
+  track.addEventListener('pointermove', onPointerMove, { passive: false });
+  track.addEventListener('pointerup', onPointerUp, { passive: true });
+  track.addEventListener('pointercancel', onPointerUp, { passive: true });
 
   // Dots click listener
   dots.forEach(dot => {
@@ -1440,10 +1558,31 @@ function initSliderWithDots(sliderWrapperId, trackId, dotsContainerId, cardCount
     });
   });
 
-  // Clicking any card directly also navigates to it and selects its dot
+  // Previous & Next Arrow Buttons
+  if (prevBtn) {
+    prevBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      const prevIndex = (lastActiveIndex - 1 + cardCount) % cardCount;
+      navigateToSlide(prevIndex);
+    });
+  }
+
+  if (nextBtn) {
+    nextBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      const nextIndex = (lastActiveIndex + 1) % cardCount;
+      navigateToSlide(nextIndex);
+    });
+  }
+
+  // Clicking any card directly navigates to it (unless user was dragging)
   allCards.forEach((card, idx) => {
-    card.style.cursor = 'pointer';
-    card.addEventListener('click', () => {
+    card.style.cursor = 'grab';
+    card.addEventListener('click', (e) => {
+      if (hasDragged) {
+        e.preventDefault();
+        return;
+      }
       navigateToSlide(idx % cardCount);
     });
   });
@@ -1454,9 +1593,9 @@ document.addEventListener('DOMContentLoaded', () => {
   // Initialize Cookie Consent Banner
   initCookieBanner();
 
-  // Initialize Carousel Pagination Dots
-  initSliderWithDots('whySliderWrap', 'whyTrack', 'whyDots', 6, 42);
-  initSliderWithDots('reviewsSliderWrap', 'reviewsTrack', 'reviewsDots', 4, 40);
+  // Initialize Carousel Pagination Dots with Manual Movement & Arrow Controls
+  initSliderWithDots('whySliderWrap', 'whyTrack', 'whyDots', 6, 42, 'whyPrevBtn', 'whyNextBtn');
+  initSliderWithDots('reviewsSliderWrap', 'reviewsTrack', 'reviewsDots', 4, 40, 'reviewsPrevBtn', 'reviewsNextBtn');
 
   // Render Categories & Initial Products
   renderCategories();
