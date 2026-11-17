@@ -2687,8 +2687,8 @@
 
     .wa-float-apple {
       position: fixed;
-      bottom: 24px;
-      right: 24px;
+      bottom: calc(24px + env(safe-area-inset-bottom, 0px));
+      right: calc(24px + env(safe-area-inset-right, 0px));
       z-index: 800;
       display: flex;
       align-items: center;
@@ -2857,6 +2857,17 @@
   .wa-float-apple {
     padding: 12px;
     border-radius: 50%;
+    bottom: calc(18px + env(safe-area-inset-bottom, 0px));
+    right: calc(16px + env(safe-area-inset-right, 0px));
+  }
+  .modal-backdrop {
+    align-items: flex-end;
+    padding: 0;
+  }
+  .modal-sheet {
+    border-radius: 24px 24px 0 0;
+    max-height: 90vh;
+    padding: 1.5rem 1.25rem calc(1.5rem + env(safe-area-inset-bottom, 0px));
   }
 }
 
@@ -2879,7 +2890,7 @@
    ========================================================================== */
 .cookie-banner {
   position: fixed;
-  bottom: 1.5rem;
+  bottom: calc(1.5rem + env(safe-area-inset-bottom, 0px));
   left: 50%;
   transform: translateX(-50%) translateY(150%);
   max-width: 640px;
@@ -3001,9 +3012,9 @@
 
 @media (max-width: 640px) {
   .cookie-banner {
-    bottom: 1rem;
-    width: calc(100% - 1.5rem);
-    padding: 1rem;
+    bottom: calc(0.75rem + env(safe-area-inset-bottom, 0px));
+    width: calc(100% - 1.25rem);
+    padding: 0.95rem 1.1rem;
   }
   .cookie-banner__actions {
     justify-content: stretch;
