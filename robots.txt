@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://lallycomputers.vercel.app/sitemap.xml
