@@ -587,6 +587,7 @@
      ========================================================================== */
     .apple-section {
       padding-block: clamp(4.5rem, 7.5vw, 7rem);
+      scroll-margin-top: calc(var(--nav-height) + 55px);
     }
 
     .apple-section--alt {
@@ -3089,6 +3090,7 @@
 
   .apple-section {
     padding-block: 2.2rem 2.4rem;
+    scroll-margin-top: calc(var(--nav-height) + 48px);
   }
 
   /* 1. Header & Mobile Navigation Bar */
