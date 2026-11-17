@@ -954,13 +954,31 @@
         </svg>
       </button>
 
-      <div>
+      <!-- Desktop Header -->
+      <div class="cart-desktop-header">
         <p class="section-eyebrow">Store Basket</p>
-        <h3 id="cartModalTitle" style="font-size:1.6rem; font-weight:700; margin:0.3rem 0 1rem; color:var(--text-primary);">Selected Products</h3>
+        <h3 id="cartModalTitle" style="font-size:1.55rem; font-weight:700; margin:0.3rem 0 0.4rem; color:var(--text-primary);">Selected Products</h3>
+        <p style="font-size:13px; color:var(--text-secondary); margin-bottom:1rem;">
+          Selected items for pickup or in-store purchase at Supreme Infosys, Sodhi Nagar, Moga.
+        </p>
       </div>
-      <p style="font-size:13px; color:var(--text-secondary); margin-bottom:1.2rem;">
-        Selected items for pickup or in-store purchase at Supreme Infosys, Sodhi Nagar, Moga.
-      </p>
+
+      <!-- Mobile Header Bar -->
+      <div class="cart-mobile-header-bar">
+        <span class="cart-mobile-header-title">Shopping Cart</span>
+        <span class="cart-mobile-header-badge" id="cartMobileHeaderBadge">0 items</span>
+      </div>
+
+      <!-- Amazon Mobile Top Sticky Proceed CTA -->
+      <div class="cart-mobile-top-bar" id="cartMobileTopBar">
+        <div class="cart-top-subtotal-row">
+          <span>Subtotal (<span id="cartTopCount">0</span> items):</span>
+          <strong class="cart-top-total-val" id="cartTopTotalVal">₹0</strong>
+        </div>
+        <button class="amz-btn-proceed" type="button" onclick="checkoutCartWhatsApp()">
+          <span>Proceed to Buy (<span id="cartBtnCount">0</span> items)</span>
+        </button>
+      </div>
 
       <div class="cart-modal-body" id="cartModalBody" style="max-height: 50vh; overflow-y: auto; padding: 0.5rem 0;"></div>
 

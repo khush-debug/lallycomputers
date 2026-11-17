@@ -729,30 +729,58 @@ function renderSpaceProducts() {
       </button>
     ` : '';
 
+    const mobileLabOrSpecBtn = item.labReport ? `
+      <button class="amz-mobile-icon-btn" data-lab-id="${item.id}" type="button" title="View 25-Point Lab Report" aria-label="Lab Report">
+        <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+        </svg>
+      </button>
+    ` : `
+      <button class="amz-mobile-icon-btn" data-specs-id="${item.id}" type="button" title="View Specifications" aria-label="Quick Specs">
+        <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2">
+          <rect x="4" y="4" width="16" height="16" rx="2"/>
+          <line x1="8" y1="9" x2="16" y2="9"/>
+          <line x1="8" y1="13" x2="16" y2="13"/>
+        </svg>
+      </button>
+    `;
+
     return `
       <article class="amz-product-row" id="product-${item.id}">
         <div class="amz-img-col">
           <div class="amz-img-container">
             <img class="amz-product-img" src="${image}" alt="${item.title}" loading="lazy" width="180" height="150">
           </div>
+          <div class="amz-mobile-img-actions">
+            ${mobileLabOrSpecBtn}
+            <a class="amz-mobile-icon-btn" href="https://wa.me/919872010193?text=${waText}" target="_blank" rel="noopener" title="Inquire on WhatsApp" aria-label="Inquire on WhatsApp">
+              <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor">
+                <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+              </svg>
+            </a>
+          </div>
         </div>
 
         <div class="amz-info-col">
+          <div class="amz-mobile-eyebrow">
+            ${item.condition === 'service' ? '🔬 Lab Service' : (item.condition === 'used' ? '⚡ 25-Point Lab Verified' : (item.condition === 'new' ? '✨ Factory Sealed' : 'Verified Store Stock'))}
+            ${item.badge ? ` &middot; ${item.badge}` : ''}
+          </div>
           ${badgesHtml}
           <h3 class="amz-product-title" data-specs-id="${item.id}">${item.title}</h3>
           <p class="amz-product-desc">${item.desc}</p>
           ${specsHtml}
 
           <div class="amz-meta-row">
-            <div class="amz-pricing-inline">
-              <span class="amz-price-current">${item.price}</span>
-              ${mrpHtml}
-            </div>
             <div class="amz-rating-inline">
               <span class="amz-rating-num">${rating.toFixed(1)}</span>
               <div class="amz-stars">${renderStars(rating)}</div>
               <span class="amz-review-link">(${reviews.toLocaleString()})</span>
               <span class="amz-bought-tag">${bought}</span>
+            </div>
+            <div class="amz-pricing-inline">
+              <span class="amz-price-current">${item.price}</span>
+              ${mrpHtml}
             </div>
           </div>
 
@@ -801,6 +829,7 @@ function addToCart(id) {
   const existing = cart.find(x => x.id === id);
   if (existing) {
     existing.qty += 1;
+    existing.checked = true;
   } else {
     cart.push({
       id: item.id,
@@ -808,13 +837,18 @@ function addToCart(id) {
       price: item.price,
       priceNum: item.priceNum || 0,
       image: item.image || `images/products/${item.id}.svg`,
-      qty: 1
+      mrp: item.mrp || '',
+      discount: item.discount || '',
+      delivery: item.delivery || 'FREE delivery in Moga',
+      boughtPastMonth: item.boughtPastMonth || '500+ bought in past month',
+      qty: 1,
+      checked: true
     });
   }
 
   saveCart();
   updateCartUI();
-  showToast(`Added "${item.title.substring(0, 28)}..." to cart`);
+  showToast(`Added "${item.title.substring(0, 24)}..." to cart`);
 
   // Visual button feedback
   const cartBtn = document.querySelector(`button[data-cart-id="${id}"]`);
@@ -849,6 +883,29 @@ function updateCartQty(id, delta) {
   renderCartModal();
 }
 
+function toggleCartItemCheck(id) {
+  const item = cart.find(x => x.id === id);
+  if (item) {
+    item.checked = item.checked === false ? true : false;
+    saveCart();
+    renderCartModal();
+  }
+}
+
+function shareCartProduct(id, title) {
+  const url = window.location.origin + window.location.pathname + '#product-' + id;
+  if (navigator.share) {
+    navigator.share({
+      title: title,
+      text: `${title} at Lally Computers (Supreme Infosys), Moga`,
+      url: url
+    }).catch(() => {});
+  } else if (navigator.clipboard) {
+    navigator.clipboard.writeText(url);
+    showToast('Copied product link to clipboard');
+  }
+}
+
 function saveCart() {
   try { localStorage.setItem('lally_cart', JSON.stringify(cart)); } catch (e) { }
 }
@@ -874,7 +931,11 @@ function closeCartModal() {
 function renderCartModal() {
   const body = document.getElementById('cartModalBody');
   const footer = document.getElementById('cartModalFooter');
+  const topBar = document.getElementById('cartMobileTopBar');
+  const mobileHeaderBadge = document.getElementById('cartMobileHeaderBadge');
   if (!body) return;
+
+  const totalCount = cart.reduce((acc, x) => acc + x.qty, 0);
 
   if (cart.length === 0) {
     body.innerHTML = `
@@ -883,46 +944,124 @@ function renderCartModal() {
           <circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/>
           <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>
         </svg>
-        <p>Your shopping cart is currently empty.</p>
-        <button class="apple-pill-btn apple-pill-btn--primary" onclick="closeCartModal()">Browse Stock</button>
+        <p>Your shopping basket is currently empty.</p>
+        <button class="apple-pill-btn apple-pill-btn--primary" onclick="closeCartModal()">Browse Inventory</button>
       </div>
     `;
     if (footer) footer.style.display = 'none';
+    if (topBar) topBar.style.display = 'none';
+    if (mobileHeaderBadge) mobileHeaderBadge.textContent = '0 items';
     return;
   }
 
   let totalNum = 0;
+  let selectedCount = 0;
   body.innerHTML = cart.map(item => {
-    totalNum += (item.priceNum || 0) * item.qty;
+    const isChecked = item.checked !== false;
+    if (isChecked) {
+      totalNum += (item.priceNum || 0) * item.qty;
+      selectedCount += item.qty;
+    }
+    const prod = (window.PRODUCTS && window.PRODUCTS.find(p => p.id === item.id)) || {};
+    const mrp = item.mrp || prod.mrp || '';
+    const discount = item.discount || prod.discount || '';
+    const delivery = item.delivery || prod.delivery || 'FREE delivery in Moga';
+    const bought = item.boughtPastMonth || prod.boughtPastMonth || '500+ bought in past month';
+    const waItemText = encodeURIComponent(`Hi Lally Computers, I want to reserve / inquire about ${item.title} (${item.price}). Is it in stock at Sodhi Nagar?`);
+    const escapedTitle = (item.title || '').replace(/'/g, "\\'");
+
     return `
-      <div class="cart-item-row">
-        <img class="cart-item-thumb" src="${item.image}" alt="${item.title}">
-        <div class="cart-item-info">
-          <div class="cart-item-title">${item.title}</div>
-          <div class="cart-item-price">${item.price} &times; ${item.qty}</div>
-          <div class="cart-qty-ctrls">
-            <button class="cart-qty-btn" type="button" onclick="updateCartQty('${item.id}', -1)">−</button>
-            <span class="cart-qty-val">${item.qty}</span>
-            <button class="cart-qty-btn" type="button" onclick="updateCartQty('${item.id}', 1)">+</button>
-            <button class="cart-btn-del" type="button" onclick="removeFromCart('${item.id}')">Remove</button>
+      <div class="cart-item-row" id="cart-item-${item.id}">
+        <div class="cart-item-top">
+          <div class="cart-item-check-col">
+            <label class="cart-checkbox-label">
+              <input type="checkbox" class="cart-checkbox" ${isChecked ? 'checked' : ''} onchange="toggleCartItemCheck('${item.id}')" aria-label="Select ${item.title}">
+              <span class="cart-checkbox-custom ${isChecked ? 'is-checked' : ''}">
+                <svg viewBox="0 0 20 20" width="13" height="13" fill="currentColor">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                </svg>
+              </span>
+            </label>
           </div>
+
+          <div class="cart-item-thumb-box">
+            <img class="cart-item-thumb" src="${item.image}" alt="${item.title}" loading="lazy">
+          </div>
+
+          <div class="cart-item-info">
+            <h4 class="cart-item-title" onclick="openSpecSheet('${item.id}')">${item.title}</h4>
+            <div class="cart-item-bought">${bought}</div>
+
+            <div class="cart-item-price-row">
+              ${discount ? `<span class="cart-deal-badge">${discount}</span>` : ''}
+              <span class="cart-item-price">${item.price}</span>
+              ${mrp ? `<span class="cart-item-mrp">M.R.P.: <del>${mrp}</del></span>` : ''}
+            </div>
+
+            <div class="cart-item-stock">In stock</div>
+            <div class="cart-item-delivery">🚚 ${delivery}</div>
+            <div class="cart-item-warranty">🛡️ 10 days Replacement &middot; Official GST Invoice</div>
+          </div>
+        </div>
+
+        <div class="cart-item-actions-toolbar">
+          <div class="cart-stepper-pill">
+            <button class="cart-stepper-btn cart-stepper-minus" type="button" onclick="updateCartQty('${item.id}', -1)" aria-label="${item.qty === 1 ? 'Remove item' : 'Decrease quantity'}">
+              ${item.qty === 1 ? `
+                <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M3 6h18m-2 0v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/>
+                </svg>
+              ` : '−'}
+            </button>
+            <span class="cart-stepper-val">${item.qty}</span>
+            <button class="cart-stepper-btn cart-stepper-plus" type="button" onclick="updateCartQty('${item.id}', 1)" aria-label="Increase quantity">+</button>
+          </div>
+
+          <button class="cart-tool-btn" type="button" onclick="removeFromCart('${item.id}')">Delete</button>
+          <a class="cart-tool-btn" href="https://wa.me/919872010193?text=${waItemText}" target="_blank" rel="noopener">Inquire</a>
+          <button class="cart-tool-icon-btn" type="button" onclick="shareCartProduct('${item.id}', '${escapedTitle}')" title="Share" aria-label="Share">
+            <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/>
+              <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/>
+            </svg>
+          </button>
         </div>
       </div>
     `;
   }).join('');
 
+  const formattedTotal = totalNum > 0 ? `₹${totalNum.toLocaleString('en-IN')}` : 'Estimated in store';
+  const effectiveCount = selectedCount > 0 ? selectedCount : totalCount;
+
+  if (mobileHeaderBadge) {
+    mobileHeaderBadge.textContent = `${totalCount} item${totalCount === 1 ? '' : 's'}`;
+  }
+
+  if (topBar) {
+    topBar.style.display = 'block';
+    const topCount = document.getElementById('cartTopCount');
+    const btnCount = document.getElementById('cartBtnCount');
+    const topTotal = document.getElementById('cartTopTotalVal');
+    if (topCount) topCount.textContent = effectiveCount;
+    if (btnCount) btnCount.textContent = effectiveCount;
+    if (topTotal) topTotal.textContent = formattedTotal;
+  }
+
   if (footer) {
     footer.style.display = 'flex';
     const totalEl = document.getElementById('cartSubtotalVal') || document.getElementById('cartTotalDisplay');
-    if (totalEl) totalEl.textContent = totalNum > 0 ? `₹${totalNum.toLocaleString('en-IN')}` : 'Estimated in store';
+    if (totalEl) totalEl.textContent = formattedTotal;
   }
 }
 
 function checkoutCartWhatsApp() {
-  if (cart.length === 0) return;
+  const selectedItems = cart.filter(x => x.checked !== false);
+  const itemsToCheckout = selectedItems.length > 0 ? selectedItems : cart;
+  if (itemsToCheckout.length === 0) return;
+
   let text = "Hi Lally Computers, I would like to purchase / reserve the following items from your in-store stock:\n\n";
   let total = 0;
-  cart.forEach((item, idx) => {
+  itemsToCheckout.forEach((item, idx) => {
     text += `${idx + 1}. ${item.title} (Qty: ${item.qty}) - ${item.price}\n`;
     total += (item.priceNum || 0) * item.qty;
   });
