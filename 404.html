@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>404 - Machine Not Found | Lally Computers Moga</title>
+  <meta name="description"
+    content="The requested page or product on Lally Computers (Supreme Infosys) Moga could not be found.">
+  <meta name="theme-color" content="#000000">
+  <link rel="icon" type="image/png" href="favicon.png">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+  <link rel="stylesheet" href="css/styles.css">
+  <style>
+    .error-hero {
+      min-height: 80svh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 6rem 1.5rem 4rem;
+    }
+    .error-code-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 16px;
+      border-radius: 9999px;
+      font-size: 13px;
+      font-weight: 700;
+      color: #ef4444;
+      background: rgba(239, 68, 68, 0.12);
+      border: 1px solid rgba(239, 68, 68, 0.25);
+      margin-bottom: 1.5rem;
+      letter-spacing: 0.05em;
+    }
+    .error-title {
+      font-size: clamp(2.5rem, 6vw, 4.5rem);
+      font-weight: 800;
+      letter-spacing: -0.035em;
+      line-height: 1.1;
+      color: var(--text-primary);
+      margin-bottom: 1rem;
+    }
+    .error-desc {
+      font-size: clamp(1.05rem, 2vw, 1.25rem);
+      color: var(--text-secondary);
+      max-width: 540px;
+      line-height: 1.55;
+      margin: 0 auto 2.2rem;
+    }
+    .error-actions {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+    }
+    .error-card-preview {
+      margin-top: 3.5rem;
+      padding: 1.5rem 2rem;
+      border-radius: 20px;
+      background: var(--bg-surface-elevated);
+      border: 1px solid var(--border-subtle);
+      max-width: 480px;
+      font-size: 13.5px;
+      color: var(--text-secondary);
+      line-height: 1.5;
+    }
+  </style>
+  <script>
+    try {
+      var saved = localStorage.getItem('lally_apple_theme');
+      if (saved) document.documentElement.setAttribute('data-theme', saved);
+    } catch(e) {}
+  </script>
+</head>
+
+<body>
+  <header class="apple-nav" role="banner">
+    <div class="inner apple-nav__inner">
+      <a class="nav-brand" href="index.html" aria-label="Lally Computers Home">
+        <img src="images/logo.png" alt="Lally Computers Logo" class="nav-brand-logo" width="34" height="34">
+        <span>Lally Computers</span>
+      </a>
+      <a class="apple-pill-btn apple-pill-btn--primary" href="index.html" style="font-size:13px; padding:7px 16px;">
+        Browse Stock &rarr;
+      </a>
+    </div>
+  </header>
+
+  <main class="error-hero">
+    <div class="error-code-badge">
+      <span>●</span> 404 &middot; PAGE NOT FOUND
+    </div>
+    <h1 class="error-title">Machine Not Found.</h1>
+    <p class="error-desc">
+      The page, spec sheet, or category you are looking for may have been moved, updated, or is temporarily out of stock in our Moga laboratory.
+    </p>
+
+    <div class="error-actions">
+      <a class="apple-pill-btn apple-pill-btn--primary" href="index.html">
+        Return to Showroom
+      </a>
+      <a class="apple-pill-btn apple-pill-btn--secondary" href="index.html#lineup">
+        Explore 13 Departments
+      </a>
+      <a class="apple-pill-btn apple-pill-btn--whatsapp"
+        href="https://wa.me/919872010193?text=Hi%20Lally%20Computers%2C%20I%20hit%20a%20404%20error%20page%20looking%20for%20stock."
+        target="_blank" rel="noopener">
+        Ask Us on WhatsApp
+      </a>
+    </div>
+
+    <div class="error-card-preview">
+      <b>Supreme Infosys &middot; Sodhi Nagar, Moga</b><br>
+      Open Monday &ndash; Saturday, 10:00 AM &ndash; 7:00 PM<br>
+      In-store verified pre-owned laptops, custom PC rigs, gaming hardware & chip-level repairs.
+    </div>
+  </main>
+
+  <footer class="apple-footer">
+    <div class="inner">
+      <div class="apple-footer__grid">
+        <span>&copy; Supreme Infosys (Lally Computers). All rights reserved.</span>
+        <span>5-A, Sodhi Nagar, Moga, Punjab 142001 &middot; Tel: 098720 10193</span>
+      </div>
+    </div>
+  </footer>
+</body>
+
+</html>

@@ -116,9 +116,13 @@ function updateCategoryCountsUI() {
 }
 
 function openCatalogueSpace(catId) {
+  showTopLoader();
   if (catId) activeCategory = catId;
   const space = document.getElementById('catalogueSpace');
-  if (!space) return;
+  if (!space) {
+    finishTopLoader();
+    return;
+  }
 
   space.classList.add('is-open');
 
@@ -145,6 +149,7 @@ function openCatalogueSpace(catId) {
   renderSpaceProducts();
 
   space.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  setTimeout(finishTopLoader, 160);
 }
 
 function closeCatalogueSpace() {
@@ -156,6 +161,7 @@ function closeCatalogueSpace() {
 }
 
 function switchSpaceCategory(catId) {
+  showTopLoader();
   activeCategory = catId;
   const catObj = window.CATEGORIES.find(c => c.id === catId);
   if (catObj) {
@@ -177,6 +183,7 @@ function switchSpaceCategory(catId) {
   renderCategoryFilters(activeCategory);
   resetFilters();
   renderSpaceProducts();
+  setTimeout(finishTopLoader, 160);
 }
 
 /* ==========================================================================
@@ -1106,6 +1113,7 @@ function mapCsvToProducts(rows) {
 }
 
 function fetchAndSyncGoogleSheet(csvUrl, isManual) {
+  showTopLoader();
   const normUrl = normalizeGoogleSheetUrl(csvUrl);
   const statusEl = document.getElementById('sheetSyncStatus');
   const badgeEl = document.getElementById('sheetSyncBadgeText');
@@ -1137,6 +1145,7 @@ function fetchAndSyncGoogleSheet(csvUrl, isManual) {
       renderCategories();
       renderSpaceProducts();
 
+      finishTopLoader();
       if (isManual) {
         setTimeout(closeSheetSyncModal, 1200);
         showToast(`Stock synced from Google Sheets (${newProducts.length} items)`);
@@ -1144,6 +1153,7 @@ function fetchAndSyncGoogleSheet(csvUrl, isManual) {
     })
     .catch(err => {
       console.warn("Google Sheet sync error:", err);
+      finishTopLoader();
       if (statusEl) {
         statusEl.innerHTML = `<span style="color:#f87171">Sync failed. Ensure sheet is published as CSV or public viewer. (${err.message})</span>`;
       }
@@ -1220,8 +1230,72 @@ function updateHours() {
   }
 }
 
+/* ==========================================================================
+   COOKIE CONSENT & PREFERENCES
+   ========================================================================== */
+function initCookieBanner() {
+  try {
+    const consent = localStorage.getItem('lally_cookie_consent');
+    if (!consent) {
+      setTimeout(() => {
+        const banner = document.getElementById('cookieBanner');
+        if (banner) banner.classList.add('is-visible');
+      }, 1000);
+    }
+  } catch (e) {}
+}
+
+function acceptCookies() {
+  try {
+    localStorage.setItem('lally_cookie_consent', 'all');
+  } catch (e) {}
+  const banner = document.getElementById('cookieBanner');
+  if (banner) banner.classList.remove('is-visible');
+}
+
+function dismissCookies() {
+  try {
+    localStorage.setItem('lally_cookie_consent', 'essential');
+  } catch (e) {}
+  const banner = document.getElementById('cookieBanner');
+  if (banner) banner.classList.remove('is-visible');
+}
+
+function openCookieBannerAgain() {
+  const banner = document.getElementById('cookieBanner');
+  if (banner) banner.classList.add('is-visible');
+}
+
+/* ==========================================================================
+   TOP PROGRESS LOADER
+   ========================================================================== */
+function showTopLoader() {
+  const bar = document.getElementById('topLoaderBar');
+  if (!bar) return;
+  bar.classList.add('is-loading');
+  bar.style.width = '30%';
+  setTimeout(() => {
+    if (bar.classList.contains('is-loading')) bar.style.width = '70%';
+  }, 120);
+}
+
+function finishTopLoader() {
+  const bar = document.getElementById('topLoaderBar');
+  if (!bar) return;
+  bar.style.width = '100%';
+  setTimeout(() => {
+    bar.classList.remove('is-loading');
+    setTimeout(() => {
+      bar.style.width = '0%';
+    }, 200);
+  }, 250);
+}
+
 // Global Event Delegation & Setup
 document.addEventListener('DOMContentLoaded', () => {
+  // Initialize Cookie Consent Banner
+  initCookieBanner();
+
   // Render Categories & Initial Products
   renderCategories();
   renderCategoryFilters(activeCategory);
