@@ -190,7 +190,8 @@
        ======================================================================== -->
   <section class="hero-apple" id="top">
     <div class="hero-apple__bg" id="heroBannerWrap">
-      <div class="hero-360-fallback" id="hero360Fallback" role="img" aria-label="Lally Computers Supreme Infosys Store Showroom"></div>
+      <div class="hero-360-fallback" id="hero360Fallback" role="img"
+        aria-label="Lally Computers Supreme Infosys Store Showroom"></div>
       <canvas class="hero-360-canvas" id="hero360Canvas" tabindex="0"
         aria-label="Interactive 360-degree view of Lally Computers Showroom in Sodhi Nagar, Moga. Drag or use arrow keys to look around."></canvas>
       <div class="hero-apple__overlay"></div>
@@ -200,7 +201,8 @@
     <div class="hero-360-topbar">
       <div class="inner hero-360-topbar__inner">
         <div class="hero-360-indicator" id="hero360Indicator" aria-live="polite">
-          <svg class="hero-360-orbit-icon" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.9" aria-hidden="true">
+          <svg class="hero-360-orbit-icon" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor"
+            stroke-width="1.9" aria-hidden="true">
             <circle cx="12" cy="12" r="9" />
             <ellipse cx="12" cy="12" rx="9" ry="3.8" />
             <path d="M12 3a12 12 0 0 1 0 18" />
@@ -250,43 +252,15 @@
         </div>
       </div>
 
-      <!-- Interactive 360° Camera Dock -->
-      <div class="hero-360-hud" id="hero360Hud" role="region" aria-label="360-degree showroom camera controls">
-        <div class="hero-360-spots" role="group" aria-label="Showroom viewpoints">
-          <button class="hero-360-spot is-active" type="button" data-yaw="0.02" data-pitch="-0.02" data-spot="laptops">Laptop Wall</button>
-          <button class="hero-360-spot" type="button" data-yaw="1.28" data-pitch="-0.09" data-spot="accessories">ASUS &amp; Gear</button>
-          <button class="hero-360-spot" type="button" data-yaw="-2.32" data-pitch="-0.02" data-spot="lenovo">Lenovo Zone</button>
-          <button class="hero-360-spot" type="button" data-yaw="2.22" data-pitch="-0.03" data-spot="desk">Service Desk</button>
-        </div>
-
-        <div class="hero-360-controls">
-          <button class="hero-360-ctrl-btn" id="hero360ZoomOut" type="button" aria-label="Zoom out showroom view" title="Zoom Out">
-            <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.2">
-              <line x1="5" y1="12" x2="19" y2="12" />
-            </svg>
-          </button>
-          <button class="hero-360-ctrl-btn" id="hero360ZoomIn" type="button" aria-label="Zoom in showroom view" title="Zoom In">
-            <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.2">
-              <line x1="12" y1="5" x2="12" y2="19" />
-              <line x1="5" y1="12" x2="19" y2="12" />
-            </svg>
-          </button>
-          <button class="hero-360-ctrl-btn" id="hero360AutoBtn" type="button" aria-label="Pause automatic rotation" aria-pressed="true" title="Pause / Resume Auto-Tour">
-            <svg class="icon-pause" viewBox="0 0 24 24" width="14" height="14" fill="currentColor">
-              <rect x="6" y="4" width="4" height="16" rx="1" />
-              <rect x="14" y="4" width="4" height="16" rx="1" />
-            </svg>
-            <svg class="icon-play" viewBox="0 0 24 24" width="14" height="14" fill="currentColor">
-              <polygon points="6,4 20,12 6,20" />
-            </svg>
-          </button>
-          <button class="hero-360-tour-btn" id="hero360TourBtn" type="button" aria-pressed="false" title="Toggle unobstructed 360-degree view">
-            <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7" />
-            </svg>
-            <span id="hero360TourLabel">Full 360&deg;</span>
-          </button>
-        </div>
+      <!-- Interactive 360° Full View Toggle -->
+      <div class="hero-360-hud" id="hero360Hud" role="region" aria-label="360-degree showroom view toggle">
+        <button class="hero-360-tour-btn" id="hero360TourBtn" type="button" aria-pressed="false"
+          title="Toggle unobstructed 360-degree view">
+          <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7" />
+          </svg>
+          <span id="hero360TourLabel">Full 360&deg;</span>
+        </button>
       </div>
     </div>
   </section>
@@ -330,7 +304,8 @@
               <circle cx="11" cy="11" r="8" />
               <line x1="21" y1="21" x2="16.65" y2="16.65" />
             </svg>
-            <input type="text" id="spaceSearchInput" placeholder="Search by model, specs, brand..." aria-label="Search stock">
+            <input type="text" id="spaceSearchInput" placeholder="Search by model, specs, brand..."
+              aria-label="Search stock">
           </div>
 
           <select class="filter-select" id="brandFilterSelect" onchange="applyFilters()">
@@ -443,7 +418,8 @@
             </svg>
           </div>
           <h3>25-Point Lab Diagnostics</h3>
-          <p>Every pre-owned laptop undergoes a comprehensive 25-point hardware check before entering our shelves. Full battery health, thermals, SSD life & RAM reports provided.</p>
+          <p>Every pre-owned laptop undergoes a comprehensive 25-point hardware check before entering our shelves. Full
+            battery health, thermals, SSD life & RAM reports provided.</p>
         </div>
 
         <div class="why-slide-card">
@@ -455,7 +431,8 @@
             </svg>
           </div>
           <h3>Factory Sealed & Official Warranty</h3>
-          <p>Brand new laptops, monitors & smartwatches are 100% factory sealed with brand warranty cards and genuine GST invoices valid across all India service centres.</p>
+          <p>Brand new laptops, monitors & smartwatches are 100% factory sealed with brand warranty cards and genuine
+            GST invoices valid across all India service centres.</p>
         </div>
 
         <div class="why-slide-card">
@@ -463,11 +440,13 @@
           <div class="why-slide-icon">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <circle cx="12" cy="12" r="3" />
-              <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z" />
+              <path
+                d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z" />
             </svg>
           </div>
           <h3>Chip-Level Service Lab</h3>
-          <p>We don't outsource. Our in-store Sodhi Nagar laboratory performs motherboard BGA rework, IC replacement, short-circuit tracing, and cracked screen replacements same-day.</p>
+          <p>We don't outsource. Our in-store Sodhi Nagar laboratory performs motherboard BGA rework, IC replacement,
+            short-circuit tracing, and cracked screen replacements same-day.</p>
         </div>
 
         <div class="why-slide-card">
@@ -479,18 +458,21 @@
             </svg>
           </div>
           <h3>After-Sale Support</h3>
-          <p>Customers stay with us for decades because we stand behind every machine sold with prompt warranty assistance and software support.</p>
+          <p>Customers stay with us for decades because we stand behind every machine sold with prompt warranty
+            assistance and software support.</p>
         </div>
 
         <div class="why-slide-card">
           <div class="why-slide-badge"><span>⭐</span> 16+ Years in Moga</div>
           <div class="why-slide-icon">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+              <polygon
+                points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
             </svg>
           </div>
           <h3>700+ Google Reviews</h3>
-          <p>Over 16 years serving Sodhi Nagar, Moga with 4.2★ rating on Google Maps. Trusted by local families, students, and businesses.</p>
+          <p>Over 16 years serving Sodhi Nagar, Moga with 4.2★ rating on Google Maps. Trusted by local families,
+            students, and businesses.</p>
         </div>
 
         <div class="why-slide-card">
@@ -502,7 +484,8 @@
             </svg>
           </div>
           <h3>100% Genuine GST Invoices</h3>
-          <p>Transparent pricing with official GST tax invoices, no hidden charges, fair hardware valuation, and authentic brand warranty cards.</p>
+          <p>Transparent pricing with official GST tax invoices, no hidden charges, fair hardware valuation, and
+            authentic brand warranty cards.</p>
         </div>
 
         <!-- REPEAT EXACT 6 CARDS FOR INFINITE 100% SEAMLESS LOOP -->
@@ -514,7 +497,8 @@
             </svg>
           </div>
           <h3>25-Point Lab Diagnostics</h3>
-          <p>Every pre-owned laptop undergoes a comprehensive 25-point hardware check before entering our shelves. Full battery health, thermals, SSD life & RAM reports provided.</p>
+          <p>Every pre-owned laptop undergoes a comprehensive 25-point hardware check before entering our shelves. Full
+            battery health, thermals, SSD life & RAM reports provided.</p>
         </div>
 
         <div class="why-slide-card" aria-hidden="true">
@@ -526,7 +510,8 @@
             </svg>
           </div>
           <h3>Factory Sealed & Official Warranty</h3>
-          <p>Brand new laptops, monitors & smartwatches are 100% factory sealed with brand warranty cards and genuine GST invoices valid across all India service centres.</p>
+          <p>Brand new laptops, monitors & smartwatches are 100% factory sealed with brand warranty cards and genuine
+            GST invoices valid across all India service centres.</p>
         </div>
 
         <div class="why-slide-card" aria-hidden="true">
@@ -534,11 +519,13 @@
           <div class="why-slide-icon">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <circle cx="12" cy="12" r="3" />
-              <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z" />
+              <path
+                d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z" />
             </svg>
           </div>
           <h3>Chip-Level Service Lab</h3>
-          <p>We don't outsource. Our in-store Sodhi Nagar laboratory performs motherboard BGA rework, IC replacement, short-circuit tracing, and cracked screen replacements same-day.</p>
+          <p>We don't outsource. Our in-store Sodhi Nagar laboratory performs motherboard BGA rework, IC replacement,
+            short-circuit tracing, and cracked screen replacements same-day.</p>
         </div>
 
         <div class="why-slide-card" aria-hidden="true">
@@ -550,18 +537,21 @@
             </svg>
           </div>
           <h3>After-Sale Support</h3>
-          <p>Customers stay with us for decades because we stand behind every machine sold with prompt warranty assistance and software support.</p>
+          <p>Customers stay with us for decades because we stand behind every machine sold with prompt warranty
+            assistance and software support.</p>
         </div>
 
         <div class="why-slide-card" aria-hidden="true">
           <div class="why-slide-badge"><span>⭐</span> 16+ Years in Moga</div>
           <div class="why-slide-icon">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+              <polygon
+                points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
             </svg>
           </div>
           <h3>700+ Google Reviews</h3>
-          <p>Over 16 years serving Sodhi Nagar, Moga with 4.2★ rating on Google Maps. Trusted by local families, students, and businesses.</p>
+          <p>Over 16 years serving Sodhi Nagar, Moga with 4.2★ rating on Google Maps. Trusted by local families,
+            students, and businesses.</p>
         </div>
 
         <div class="why-slide-card" aria-hidden="true">
@@ -573,26 +563,38 @@
             </svg>
           </div>
           <h3>100% Genuine GST Invoices</h3>
-          <p>Transparent pricing with official GST tax invoices, no hidden charges, fair hardware valuation, and authentic brand warranty cards.</p>
+          <p>Transparent pricing with official GST tax invoices, no hidden charges, fair hardware valuation, and
+            authentic brand warranty cards.</p>
         </div>
       </div>
     </div>
 
     <!-- Why Slider Navigation Controls -->
     <div class="slider-nav-wrap" id="whyNavWrap">
-      <button class="slider-arrow-btn slider-arrow-btn--prev" id="whyPrevBtn" type="button" aria-label="Previous guarantee">
-        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg>
+      <button class="slider-arrow-btn slider-arrow-btn--prev" id="whyPrevBtn" type="button"
+        aria-label="Previous guarantee">
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5">
+          <polyline points="15 18 9 12 15 6" />
+        </svg>
       </button>
       <div class="slider-dots-container" id="whyDots" role="tablist" aria-label="Why Buy from Us pagination">
-        <button class="slider-dot is-active" type="button" role="tab" aria-selected="true" aria-label="Slide 1: Lab Diagnostics" data-index="0"><span class="slider-dot-inner"></span></button>
-        <button class="slider-dot" type="button" role="tab" aria-selected="false" aria-label="Slide 2: Factory Sealed" data-index="1"><span class="slider-dot-inner"></span></button>
-        <button class="slider-dot" type="button" role="tab" aria-selected="false" aria-label="Slide 3: Chip-Level Service Lab" data-index="2"><span class="slider-dot-inner"></span></button>
-        <button class="slider-dot" type="button" role="tab" aria-selected="false" aria-label="Slide 4: After-Sale Support" data-index="3"><span class="slider-dot-inner"></span></button>
-        <button class="slider-dot" type="button" role="tab" aria-selected="false" aria-label="Slide 5: 700+ Google Reviews" data-index="4"><span class="slider-dot-inner"></span></button>
-        <button class="slider-dot" type="button" role="tab" aria-selected="false" aria-label="Slide 6: GST Invoices" data-index="5"><span class="slider-dot-inner"></span></button>
+        <button class="slider-dot is-active" type="button" role="tab" aria-selected="true"
+          aria-label="Slide 1: Lab Diagnostics" data-index="0"><span class="slider-dot-inner"></span></button>
+        <button class="slider-dot" type="button" role="tab" aria-selected="false" aria-label="Slide 2: Factory Sealed"
+          data-index="1"><span class="slider-dot-inner"></span></button>
+        <button class="slider-dot" type="button" role="tab" aria-selected="false"
+          aria-label="Slide 3: Chip-Level Service Lab" data-index="2"><span class="slider-dot-inner"></span></button>
+        <button class="slider-dot" type="button" role="tab" aria-selected="false"
+          aria-label="Slide 4: After-Sale Support" data-index="3"><span class="slider-dot-inner"></span></button>
+        <button class="slider-dot" type="button" role="tab" aria-selected="false"
+          aria-label="Slide 5: 700+ Google Reviews" data-index="4"><span class="slider-dot-inner"></span></button>
+        <button class="slider-dot" type="button" role="tab" aria-selected="false" aria-label="Slide 6: GST Invoices"
+          data-index="5"><span class="slider-dot-inner"></span></button>
       </div>
       <button class="slider-arrow-btn slider-arrow-btn--next" id="whyNextBtn" type="button" aria-label="Next guarantee">
-        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5">
+          <polyline points="9 18 15 12 9 6" />
+        </svg>
       </button>
     </div>
   </section>
@@ -602,14 +604,16 @@
        ======================================================================== -->
   <section class="apple-section" id="reviews">
     <div class="inner">
-      <div class="section-intro section-intro--center" style="text-align: center; margin: 0 auto 2.5rem auto; max-width: 840px;">
+      <div class="section-intro section-intro--center"
+        style="text-align: center; margin: 0 auto 2.5rem auto; max-width: 840px;">
         <div class="trust-rating-pill">
           <span class="trust-stars">★★★★★</span>
           <span class="trust-score"><b>4.2</b> / 5 based on <b>709 Google Reviews</b></span>
         </div>
         <h2 class="section-headline">Verified Customer Experiences.</h2>
         <p class="section-desc" style="margin: 0 auto; max-width: 650px; text-align: center;">
-          Authentic feedback from students, businesses, and professionals who rely on Lally Computers in Sodhi Nagar, Moga.
+          Authentic feedback from students, businesses, and professionals who rely on Lally Computers in Sodhi Nagar,
+          Moga.
         </p>
       </div>
     </div>
@@ -622,7 +626,10 @@
           <div class="review-status-header">
             <div class="review-stars-box">★★★★★</div>
             <span class="review-badge-verified">
-              <svg viewBox="0 0 24 24" width="12" height="12" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+              <svg viewBox="0 0 24 24" width="12" height="12" fill="currentColor">
+                <path
+                  d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" />
+              </svg>
               Verified Customer
             </span>
           </div>
@@ -631,10 +638,14 @@
             <span class="review-time">1 day ago</span>
           </div>
           <h4 class="review-headline">THE BEST IN MOGA</h4>
-          <p class="review-body">Lally Computers is by far the best store in Moga for genuine laptops and custom builds. Transparent testing with 25-point reports and honest pricing.</p>
+          <p class="review-body">Lally Computers is by far the best store in Moga for genuine laptops and custom builds.
+            Transparent testing with 25-point reports and honest pricing.</p>
           <div class="review-reply-box">
             <div class="review-reply-header">
-              <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 14 4 9 9 4"/><path d="M20 20v-7a4 4 0 0 0-4-4H4"/></svg>
+              <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="9 14 4 9 9 4" />
+                <path d="M20 20v-7a4 4 0 0 0-4-4H4" />
+              </svg>
               <b>Reply from Supreme Infosys</b> &middot; <span>20 hours ago</span>
             </div>
             <p>Thank you Anmol! We pride ourselves on transparent testing and reliable hardware warranty.</p>
@@ -646,7 +657,10 @@
           <div class="review-status-header">
             <div class="review-stars-box">★★★★★</div>
             <span class="review-badge-verified">
-              <svg viewBox="0 0 24 24" width="12" height="12" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+              <svg viewBox="0 0 24 24" width="12" height="12" fill="currentColor">
+                <path
+                  d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" />
+              </svg>
               Verified Customer
             </span>
           </div>
@@ -655,10 +669,14 @@
             <span class="review-time">2 days ago</span>
           </div>
           <h4 class="review-headline">REGULAR CUSTOMER SINCE 2008</h4>
-          <p class="review-body">We are regular customers from 2008. Very good service, honest pricing, and they stand behind every machine sold. Best laptop experience in Punjab.</p>
+          <p class="review-body">We are regular customers from 2008. Very good service, honest pricing, and they stand
+            behind every machine sold. Best laptop experience in Punjab.</p>
           <div class="review-reply-box">
             <div class="review-reply-header">
-              <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 14 4 9 9 4"/><path d="M20 20v-7a4 4 0 0 0-4-4H4"/></svg>
+              <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="9 14 4 9 9 4" />
+                <path d="M20 20v-7a4 4 0 0 0-4-4H4" />
+              </svg>
               <b>Reply from Supreme Infosys</b> &middot; <span>1 day ago</span>
             </div>
             <p>16 years of trust means the world to us! Thank you for staying part of the Supreme Infosys family.</p>
@@ -670,7 +688,10 @@
           <div class="review-status-header">
             <div class="review-stars-box">★★★★★</div>
             <span class="review-badge-verified">
-              <svg viewBox="0 0 24 24" width="12" height="12" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+              <svg viewBox="0 0 24 24" width="12" height="12" fill="currentColor">
+                <path
+                  d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" />
+              </svg>
               Verified Customer
             </span>
           </div>
@@ -679,10 +700,14 @@
             <span class="review-time">3 days ago</span>
           </div>
           <h4 class="review-headline">BEST CHIP-LEVEL REPAIR & GST BILL</h4>
-          <p class="review-body">Best price with GST Bill. Unmatched for after-sale service and chip-level motherboard repair in Sodhi Nagar. Got my dead ThinkPad motherboard fixed same day!</p>
+          <p class="review-body">Best price with GST Bill. Unmatched for after-sale service and chip-level motherboard
+            repair in Sodhi Nagar. Got my dead ThinkPad motherboard fixed same day!</p>
           <div class="review-reply-box">
             <div class="review-reply-header">
-              <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 14 4 9 9 4"/><path d="M20 20v-7a4 4 0 0 0-4-4H4"/></svg>
+              <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="9 14 4 9 9 4" />
+                <path d="M20 20v-7a4 4 0 0 0-4-4H4" />
+              </svg>
               <b>Reply from Supreme Infosys</b> &middot; <span>2 days ago</span>
             </div>
             <p>Glad our laboratory could recover your motherboard on the spot! Always happy to assist.</p>
@@ -694,7 +719,10 @@
           <div class="review-status-header">
             <div class="review-stars-box">★★★★★</div>
             <span class="review-badge-verified">
-              <svg viewBox="0 0 24 24" width="12" height="12" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+              <svg viewBox="0 0 24 24" width="12" height="12" fill="currentColor">
+                <path
+                  d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" />
+              </svg>
               Verified Customer
             </span>
           </div>
@@ -703,10 +731,14 @@
             <span class="review-time">4 days ago</span>
           </div>
           <h4 class="review-headline">EXCELLENT CUSTOM PC BUILD</h4>
-          <p class="review-body">Got a custom liquid-cooled RTX 4070 rig built here. Flawless cable management, original warranties, stress-tested before handover. Truly professional.</p>
+          <p class="review-body">Got a custom liquid-cooled RTX 4070 rig built here. Flawless cable management, original
+            warranties, stress-tested before handover. Truly professional.</p>
           <div class="review-reply-box">
             <div class="review-reply-header">
-              <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 14 4 9 9 4"/><path d="M20 20v-7a4 4 0 0 0-4-4H4"/></svg>
+              <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="9 14 4 9 9 4" />
+                <path d="M20 20v-7a4 4 0 0 0-4-4H4" />
+              </svg>
               <b>Reply from Supreme Infosys</b> &middot; <span>3 days ago</span>
             </div>
             <p>Enjoy the peak FPS on that rig, Gurpreet! Reach out anytime for thermal repasting or upgrades.</p>
@@ -718,7 +750,10 @@
           <div class="review-status-header">
             <div class="review-stars-box">★★★★★</div>
             <span class="review-badge-verified">
-              <svg viewBox="0 0 24 24" width="12" height="12" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+              <svg viewBox="0 0 24 24" width="12" height="12" fill="currentColor">
+                <path
+                  d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" />
+              </svg>
               Verified Customer
             </span>
           </div>
@@ -727,10 +762,14 @@
             <span class="review-time">1 day ago</span>
           </div>
           <h4 class="review-headline">THE BEST IN MOGA</h4>
-          <p class="review-body">Lally Computers is by far the best store in Moga for genuine laptops and custom builds. Transparent testing with 25-point reports and honest pricing.</p>
+          <p class="review-body">Lally Computers is by far the best store in Moga for genuine laptops and custom builds.
+            Transparent testing with 25-point reports and honest pricing.</p>
           <div class="review-reply-box">
             <div class="review-reply-header">
-              <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 14 4 9 9 4"/><path d="M20 20v-7a4 4 0 0 0-4-4H4"/></svg>
+              <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="9 14 4 9 9 4" />
+                <path d="M20 20v-7a4 4 0 0 0-4-4H4" />
+              </svg>
               <b>Reply from Supreme Infosys</b> &middot; <span>20 hours ago</span>
             </div>
             <p>Thank you Anmol! We pride ourselves on transparent testing and reliable hardware warranty.</p>
@@ -741,7 +780,10 @@
           <div class="review-status-header">
             <div class="review-stars-box">★★★★★</div>
             <span class="review-badge-verified">
-              <svg viewBox="0 0 24 24" width="12" height="12" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+              <svg viewBox="0 0 24 24" width="12" height="12" fill="currentColor">
+                <path
+                  d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" />
+              </svg>
               Verified Customer
             </span>
           </div>
@@ -750,10 +792,14 @@
             <span class="review-time">2 days ago</span>
           </div>
           <h4 class="review-headline">REGULAR CUSTOMER SINCE 2008</h4>
-          <p class="review-body">We are regular customers from 2008. Very good service, honest pricing, and they stand behind every machine sold. Best laptop experience in Punjab.</p>
+          <p class="review-body">We are regular customers from 2008. Very good service, honest pricing, and they stand
+            behind every machine sold. Best laptop experience in Punjab.</p>
           <div class="review-reply-box">
             <div class="review-reply-header">
-              <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 14 4 9 9 4"/><path d="M20 20v-7a4 4 0 0 0-4-4H4"/></svg>
+              <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="9 14 4 9 9 4" />
+                <path d="M20 20v-7a4 4 0 0 0-4-4H4" />
+              </svg>
               <b>Reply from Supreme Infosys</b> &middot; <span>1 day ago</span>
             </div>
             <p>16 years of trust means the world to us! Thank you for staying part of the Supreme Infosys family.</p>
@@ -764,7 +810,10 @@
           <div class="review-status-header">
             <div class="review-stars-box">★★★★★</div>
             <span class="review-badge-verified">
-              <svg viewBox="0 0 24 24" width="12" height="12" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+              <svg viewBox="0 0 24 24" width="12" height="12" fill="currentColor">
+                <path
+                  d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" />
+              </svg>
               Verified Customer
             </span>
           </div>
@@ -773,10 +822,14 @@
             <span class="review-time">3 days ago</span>
           </div>
           <h4 class="review-headline">BEST CHIP-LEVEL REPAIR & GST BILL</h4>
-          <p class="review-body">Best price with GST Bill. Unmatched for after-sale service and chip-level motherboard repair in Sodhi Nagar. Got my dead ThinkPad motherboard fixed same day!</p>
+          <p class="review-body">Best price with GST Bill. Unmatched for after-sale service and chip-level motherboard
+            repair in Sodhi Nagar. Got my dead ThinkPad motherboard fixed same day!</p>
           <div class="review-reply-box">
             <div class="review-reply-header">
-              <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 14 4 9 9 4"/><path d="M20 20v-7a4 4 0 0 0-4-4H4"/></svg>
+              <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="9 14 4 9 9 4" />
+                <path d="M20 20v-7a4 4 0 0 0-4-4H4" />
+              </svg>
               <b>Reply from Supreme Infosys</b> &middot; <span>2 days ago</span>
             </div>
             <p>Glad our laboratory could recover your motherboard on the spot! Always happy to assist.</p>
@@ -787,7 +840,10 @@
           <div class="review-status-header">
             <div class="review-stars-box">★★★★★</div>
             <span class="review-badge-verified">
-              <svg viewBox="0 0 24 24" width="12" height="12" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+              <svg viewBox="0 0 24 24" width="12" height="12" fill="currentColor">
+                <path
+                  d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" />
+              </svg>
               Verified Customer
             </span>
           </div>
@@ -796,10 +852,14 @@
             <span class="review-time">4 days ago</span>
           </div>
           <h4 class="review-headline">EXCELLENT CUSTOM PC BUILD</h4>
-          <p class="review-body">Got a custom liquid-cooled RTX 4070 rig built here. Flawless cable management, original warranties, stress-tested before handover. Truly professional.</p>
+          <p class="review-body">Got a custom liquid-cooled RTX 4070 rig built here. Flawless cable management, original
+            warranties, stress-tested before handover. Truly professional.</p>
           <div class="review-reply-box">
             <div class="review-reply-header">
-              <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 14 4 9 9 4"/><path d="M20 20v-7a4 4 0 0 0-4-4H4"/></svg>
+              <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="9 14 4 9 9 4" />
+                <path d="M20 20v-7a4 4 0 0 0-4-4H4" />
+              </svg>
               <b>Reply from Supreme Infosys</b> &middot; <span>3 days ago</span>
             </div>
             <p>Enjoy the peak FPS on that rig, Gurpreet! Reach out anytime for thermal repasting or upgrades.</p>
@@ -810,17 +870,28 @@
 
     <!-- Reviews Slider Navigation Controls -->
     <div class="slider-nav-wrap slider-nav-wrap--reviews" id="reviewsNavWrap">
-      <button class="slider-arrow-btn slider-arrow-btn--prev" id="reviewsPrevBtn" type="button" aria-label="Previous review">
-        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg>
+      <button class="slider-arrow-btn slider-arrow-btn--prev" id="reviewsPrevBtn" type="button"
+        aria-label="Previous review">
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5">
+          <polyline points="15 18 9 12 15 6" />
+        </svg>
       </button>
-      <div class="slider-dots-container slider-dots--reviews" id="reviewsDots" role="tablist" aria-label="Customer reviews pagination">
-        <button class="slider-dot is-active" type="button" role="tab" aria-selected="true" aria-label="Review 1: Anmol Saini" data-index="0"><span class="slider-dot-inner"></span></button>
-        <button class="slider-dot" type="button" role="tab" aria-selected="false" aria-label="Review 2: Brar Balli" data-index="1"><span class="slider-dot-inner"></span></button>
-        <button class="slider-dot" type="button" role="tab" aria-selected="false" aria-label="Review 3: Lovepreet Ramghariya" data-index="2"><span class="slider-dot-inner"></span></button>
-        <button class="slider-dot" type="button" role="tab" aria-selected="false" aria-label="Review 4: Gurpreet Brar" data-index="3"><span class="slider-dot-inner"></span></button>
+      <div class="slider-dots-container slider-dots--reviews" id="reviewsDots" role="tablist"
+        aria-label="Customer reviews pagination">
+        <button class="slider-dot is-active" type="button" role="tab" aria-selected="true"
+          aria-label="Review 1: Anmol Saini" data-index="0"><span class="slider-dot-inner"></span></button>
+        <button class="slider-dot" type="button" role="tab" aria-selected="false" aria-label="Review 2: Brar Balli"
+          data-index="1"><span class="slider-dot-inner"></span></button>
+        <button class="slider-dot" type="button" role="tab" aria-selected="false"
+          aria-label="Review 3: Lovepreet Ramghariya" data-index="2"><span class="slider-dot-inner"></span></button>
+        <button class="slider-dot" type="button" role="tab" aria-selected="false" aria-label="Review 4: Gurpreet Brar"
+          data-index="3"><span class="slider-dot-inner"></span></button>
       </div>
-      <button class="slider-arrow-btn slider-arrow-btn--next" id="reviewsNextBtn" type="button" aria-label="Next review">
-        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
+      <button class="slider-arrow-btn slider-arrow-btn--next" id="reviewsNextBtn" type="button"
+        aria-label="Next review">
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5">
+          <polyline points="9 18 15 12 9 6" />
+        </svg>
       </button>
     </div>
   </section>
@@ -887,10 +958,13 @@
       <div class="apple-footer__grid">
         <span>&copy; Supreme Infosys (Lally Computers). All rights reserved.</span>
         <span>5-A, Sodhi Nagar, Moga, Punjab 142001 &middot; Tel: 098720 10193</span>
-        <button class="btn-footer-sheet" type="button" onclick="openSheetSyncModal()" title="Sync stock from Google Sheets">
-          <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" style="display:inline-block; vertical-align:middle; margin-right:5px;">
+        <button class="btn-footer-sheet" type="button" onclick="openSheetSyncModal()"
+          title="Sync stock from Google Sheets">
+          <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"
+            style="display:inline-block; vertical-align:middle; margin-right:5px;">
             <circle cx="12" cy="12" r="3" />
-            <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z" />
+            <path
+              d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z" />
           </svg>
           <span id="sheetSyncBadgeText">Live Google Sheet Stock Manager</span>
         </button>
@@ -915,14 +989,16 @@
        ======================================================================== -->
   <div class="modal-backdrop" id="appleModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
     <div class="modal-sheet">
-      <button class="modal-sheet-close" id="modalCloseBtn" type="button" onclick="closeSpecSheet()" aria-label="Close details" data-close-modal>
+      <button class="modal-sheet-close" id="modalCloseBtn" type="button" onclick="closeSpecSheet()"
+        aria-label="Close details" data-close-modal>
         <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5">
           <line x1="18" y1="6" x2="6" y2="18" />
           <line x1="6" y1="6" x2="18" y2="18" />
         </svg>
       </button>
       <p class="section-eyebrow" id="modalCategory"></p>
-      <h3 style="font-size:1.6rem; font-weight:700; margin:0.3rem 0 0.8rem; letter-spacing:-0.02em;" id="modalTitle"></h3>
+      <h3 style="font-size:1.6rem; font-weight:700; margin:0.3rem 0 0.8rem; letter-spacing:-0.02em;" id="modalTitle">
+      </h3>
       <div id="modalPrice" style="font-size:1.4rem; font-weight:800; color:#22c55e; margin-bottom:0.8rem;"></div>
       <p style="font-size:13.5px; color:var(--text-secondary); margin-bottom:1.2rem;" id="modalDesc"></p>
 
@@ -952,7 +1028,8 @@
        ======================================================================== -->
   <div class="modal-backdrop" id="labReportModal" role="dialog" aria-modal="true" aria-labelledby="labLaptopTitle">
     <div class="modal-sheet">
-      <button class="modal-sheet-close" id="labModalCloseBtn" type="button" onclick="closeLabReportModal()" aria-label="Close lab report" data-close-modal>
+      <button class="modal-sheet-close" id="labModalCloseBtn" type="button" onclick="closeLabReportModal()"
+        aria-label="Close lab report" data-close-modal>
         <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5">
           <line x1="18" y1="6" x2="6" y2="18" />
           <line x1="6" y1="6" x2="18" y2="18" />
@@ -983,7 +1060,8 @@
         <div>
           <span style="font-size:11px; text-transform:uppercase; color:var(--text-tertiary); display:block;">Audit
             Date</span>
-          <span style="font-size:13px; font-weight:600; color:var(--text-primary);" id="labTestedDate">Oct 28, 2024</span>
+          <span style="font-size:13px; font-weight:600; color:var(--text-primary);" id="labTestedDate">Oct 28,
+            2024</span>
         </div>
         <div class="lab-grade-badge" id="labGradeBadge">GRADE A+ (MINT)</div>
       </div>
@@ -997,7 +1075,8 @@
       </div>
 
       <div class="lab-inspector-box">
-        <div>Audited By: <b id="labInspector" style="color:var(--text-primary);">Harpreet Singh, Senior HW Tech</b></div>
+        <div>Audited By: <b id="labInspector" style="color:var(--text-primary);">Harpreet Singh, Senior HW Tech</b>
+        </div>
         <div>Store Seal: <b>Supreme Infosys, Moga</b></div>
       </div>
 
@@ -1015,7 +1094,8 @@
        ======================================================================== -->
   <div class="modal-backdrop" id="sheetSyncModal" role="dialog" aria-modal="true" aria-labelledby="sheetSyncTitle">
     <div class="modal-sheet">
-      <button class="modal-sheet-close" id="sheetCloseBtn" type="button" onclick="closeSheetSyncModal()" aria-label="Close sheet manager" data-close-modal>
+      <button class="modal-sheet-close" id="sheetCloseBtn" type="button" onclick="closeSheetSyncModal()"
+        aria-label="Close sheet manager" data-close-modal>
         <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5">
           <line x1="18" y1="6" x2="6" y2="18" />
           <line x1="6" y1="6" x2="18" y2="18" />
@@ -1035,7 +1115,8 @@
           Management</span>
       </div>
 
-      <h3 id="sheetSyncTitle" style="font-size:1.6rem; font-weight:700; margin:0 0 0.5rem; letter-spacing:-0.02em;">Live Google Sheets
+      <h3 id="sheetSyncTitle" style="font-size:1.6rem; font-weight:700; margin:0 0 0.5rem; letter-spacing:-0.02em;">Live
+        Google Sheets
         Sync</h3>
       <p style="font-size:13.5px; color:var(--text-secondary); margin-bottom:1.4rem;">
         Connect your store's Google Sheet to keep laptop models, prices, availability, and components synced live in
@@ -1094,7 +1175,8 @@
        ======================================================================== -->
   <div class="modal-backdrop" id="cartModal" role="dialog" aria-modal="true" aria-labelledby="cartModalTitle">
     <div class="modal-sheet cart-modal-box">
-      <button class="modal-sheet-close" id="cartModalCloseBtn" type="button" onclick="closeCartModal()" aria-label="Close Cart" data-close-modal>
+      <button class="modal-sheet-close" id="cartModalCloseBtn" type="button" onclick="closeCartModal()"
+        aria-label="Close Cart" data-close-modal>
         <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5">
           <line x1="18" y1="6" x2="6" y2="18" />
           <line x1="6" y1="6" x2="18" y2="18" />
@@ -1104,7 +1186,9 @@
       <!-- Desktop Header -->
       <div class="cart-desktop-header">
         <p class="section-eyebrow">Store Basket</p>
-        <h3 id="cartModalTitle" style="font-size:1.55rem; font-weight:700; margin:0.3rem 0 0.4rem; color:var(--text-primary);">Selected Products</h3>
+        <h3 id="cartModalTitle"
+          style="font-size:1.55rem; font-weight:700; margin:0.3rem 0 0.4rem; color:var(--text-primary);">Selected
+          Products</h3>
         <p style="font-size:13px; color:var(--text-secondary); margin-bottom:1rem;">
           Selected items for pickup or in-store purchase at Supreme Infosys, Sodhi Nagar, Moga.
         </p>
@@ -1127,7 +1211,8 @@
         </button>
       </div>
 
-      <div class="cart-modal-body" id="cartModalBody" style="max-height: 50vh; overflow-y: auto; padding: 0.5rem 0;"></div>
+      <div class="cart-modal-body" id="cartModalBody" style="max-height: 50vh; overflow-y: auto; padding: 0.5rem 0;">
+      </div>
 
       <div class="cart-modal-footer" id="cartModalFooter">
         <div class="cart-total-wrap">
@@ -1170,11 +1255,13 @@
     <div class="cookie-banner__inner">
       <div class="cookie-banner__text">
         <span class="cookie-icon">🍪</span>
-        <p>We use essential local storage to remember your cart, theme, and catalogue filters. No third-party ad tracking.</p>
+        <p>We use essential local storage to remember your cart, theme, and catalogue filters. No third-party ad
+          tracking.</p>
       </div>
       <div class="cookie-banner__actions">
         <button class="cookie-btn cookie-btn--accept" type="button" onclick="acceptCookies()">Accept All</button>
-        <button class="cookie-btn cookie-btn--essential" type="button" onclick="dismissCookies()">Essential Only</button>
+        <button class="cookie-btn cookie-btn--essential" type="button" onclick="dismissCookies()">Essential
+          Only</button>
         <a href="privacy.html" class="cookie-btn cookie-btn--link">Privacy Policy</a>
       </div>
     </div>
