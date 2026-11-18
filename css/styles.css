@@ -119,11 +119,25 @@
       -webkit-backdrop-filter: saturate(180%) blur(22px);
       border-bottom: 1px solid var(--border-subtle);
       z-index: 1000;
-      transition: background 0.3s;
+      transition: background 0.25s ease, border-color 0.25s ease;
     }
 
     :root[data-theme="light"] .apple-nav {
       background: rgba(255, 255, 255, 0.86);
+    }
+
+    .apple-nav.is-mega-open,
+    .apple-nav.is-mobile-open {
+      background: #161617;
+      border-bottom-color: transparent;
+      backdrop-filter: none;
+      -webkit-backdrop-filter: none;
+    }
+
+    :root[data-theme="light"] .apple-nav.is-mega-open,
+    :root[data-theme="light"] .apple-nav.is-mobile-open {
+      background: #fbfbfd;
+      border-bottom-color: transparent;
     }
 
     .apple-nav__inner,
@@ -175,16 +189,386 @@
       list-style: none;
     }
 
-    .nav-links a {
-      font-size: 15px;
+    .nav-links a,
+    .nav-mega-trigger {
+      appearance: none;
+      background: transparent;
+      border: none;
+      padding: 10px 2px;
+      font-family: inherit;
+      font-size: 14.5px;
       font-weight: 500;
       color: var(--text-secondary);
+      cursor: pointer;
       transition: color 0.2s ease;
       white-space: nowrap;
+      position: relative;
     }
 
-    .nav-links a:hover {
+    .nav-links a:hover,
+    .nav-mega-trigger:hover,
+    .nav-mega-trigger.is-active {
       color: var(--text-primary);
+    }
+
+    .nav-mega-trigger::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 4px;
+      height: 1.5px;
+      background: var(--text-primary);
+      opacity: 0;
+      transform: scaleX(0.4);
+      transition: opacity 0.2s ease, transform 0.24s cubic-bezier(0.28, 0.11, 0.32, 1);
+    }
+
+    .nav-mega-trigger.is-active::after {
+      opacity: 0.85;
+      transform: scaleX(1);
+    }
+
+    /* Mobile Hamburger Button */
+    .nav-mobile-menu-btn {
+      display: none;
+      align-items: center;
+      justify-content: center;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      border: 1px solid var(--border-subtle);
+      background: transparent;
+      color: var(--text-primary);
+      cursor: pointer;
+      transition: background 0.2s ease, border-color 0.2s ease;
+    }
+
+    .nav-mobile-menu-btn:hover {
+      background: var(--bg-subtle);
+    }
+
+    .nav-mobile-menu-btn .icon-menu-close {
+      display: none;
+    }
+
+    .nav-mobile-menu-btn[aria-expanded="true"] .icon-menu-open {
+      display: none;
+    }
+
+    .nav-mobile-menu-btn[aria-expanded="true"] .icon-menu-close {
+      display: block;
+    }
+
+    /* ==========================================================================
+     APPLE-STYLE FULL-WIDTH MEGA-MENU CURTAIN & BLUR BACKDROP
+     ========================================================================== */
+    .apple-mega-backdrop {
+      position: fixed;
+      inset: 0;
+      top: var(--nav-height);
+      z-index: 998;
+      background: rgba(0, 0, 0, 0.44);
+      backdrop-filter: blur(22px) saturate(140%);
+      -webkit-backdrop-filter: blur(22px) saturate(140%);
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+      transition: opacity 0.32s cubic-bezier(0.28, 0.11, 0.32, 1), visibility 0.32s;
+    }
+
+    :root[data-theme="light"] .apple-mega-backdrop {
+      background: rgba(232, 232, 237, 0.52);
+    }
+
+    .apple-mega-backdrop.is-open {
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+    }
+
+    .apple-mega-menu {
+      position: fixed;
+      top: var(--nav-height);
+      left: 0;
+      right: 0;
+      z-index: 999;
+      background: #161617;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      box-shadow: 0 28px 64px rgba(0, 0, 0, 0.55);
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(-10px);
+      pointer-events: none;
+      transition:
+        opacity 0.26s cubic-bezier(0.28, 0.11, 0.32, 1),
+        transform 0.3s cubic-bezier(0.28, 0.11, 0.32, 1),
+        visibility 0.26s;
+    }
+
+    :root[data-theme="light"] .apple-mega-menu {
+      background: #fbfbfd;
+      border-bottom-color: rgba(0, 0, 0, 0.08);
+      box-shadow: 0 24px 56px rgba(0, 0, 0, 0.12);
+    }
+
+    .apple-mega-menu.is-open {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+      pointer-events: auto;
+    }
+
+    .apple-mega-inner {
+      max-width: 1040px;
+      margin-inline: auto;
+      padding: 2.4rem clamp(24px, 4vw, 48px) 3.4rem;
+      display: grid;
+      grid-template-columns: minmax(280px, 1.45fr) minmax(180px, 1fr) minmax(190px, 1fr);
+      gap: clamp(2rem, 4vw, 4rem);
+      align-items: start;
+    }
+
+    .apple-mega-col {
+      animation: megaColReveal 0.26s cubic-bezier(0.28, 0.11, 0.32, 1) both;
+    }
+
+    .apple-mega-col:nth-child(2) {
+      animation-delay: 0.035s;
+    }
+
+    .apple-mega-col:nth-child(3) {
+      animation-delay: 0.07s;
+    }
+
+    @keyframes megaColReveal {
+      from {
+        opacity: 0;
+        transform: translateY(-6px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .apple-mega-heading {
+      font-size: 12px;
+      font-weight: 500;
+      color: #86868b;
+      letter-spacing: 0.01em;
+      margin-bottom: 0.85rem;
+    }
+
+    .apple-mega-primary-list,
+    .apple-mega-sub-list,
+    .apple-mega-secondary-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .apple-mega-primary-list li {
+      margin-bottom: 0.28rem;
+    }
+
+    .apple-mega-primary-link {
+      appearance: none;
+      background: transparent;
+      border: none;
+      padding: 2px 0;
+      font-family: inherit;
+      font-size: clamp(21px, 2.2vw, 25px);
+      font-weight: 600;
+      line-height: 1.32;
+      letter-spacing: -0.02em;
+      color: #e8e8ed;
+      text-align: left;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: baseline;
+      gap: 8px;
+      text-decoration: none;
+      transition: color 0.16s ease;
+    }
+
+    .apple-mega-primary-link:hover {
+      color: #ffffff;
+    }
+
+    :root[data-theme="light"] .apple-mega-primary-link {
+      color: #1d1d1f;
+    }
+
+    :root[data-theme="light"] .apple-mega-primary-link:hover {
+      color: var(--apple-blue);
+    }
+
+    .apple-mega-count {
+      font-size: 12px;
+      font-weight: 500;
+      color: #86868b;
+      letter-spacing: 0;
+    }
+
+    .apple-mega-sub-list {
+      margin-top: 1.35rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.45rem;
+    }
+
+    .apple-mega-sub-link {
+      appearance: none;
+      background: transparent;
+      border: none;
+      padding: 2px 0;
+      font-family: inherit;
+      font-size: 12.5px;
+      font-weight: 600;
+      color: #d2d2d7;
+      text-align: left;
+      cursor: pointer;
+      display: inline-block;
+      text-decoration: none;
+      transition: color 0.16s ease;
+    }
+
+    .apple-mega-sub-link:hover {
+      color: #ffffff;
+    }
+
+    :root[data-theme="light"] .apple-mega-sub-link {
+      color: #424245;
+    }
+
+    :root[data-theme="light"] .apple-mega-sub-link:hover {
+      color: #1d1d1f;
+    }
+
+    .apple-mega-secondary-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.48rem;
+    }
+
+    .apple-mega-secondary-link {
+      appearance: none;
+      background: transparent;
+      border: none;
+      padding: 2px 0;
+      font-family: inherit;
+      font-size: 13px;
+      font-weight: 600;
+      line-height: 1.45;
+      color: #e5e5ea;
+      text-align: left;
+      cursor: pointer;
+      display: inline-block;
+      text-decoration: none;
+      transition: color 0.16s ease;
+    }
+
+    .apple-mega-secondary-link:hover {
+      color: #ffffff;
+    }
+
+    :root[data-theme="light"] .apple-mega-secondary-link {
+      color: #1d1d1f;
+    }
+
+    :root[data-theme="light"] .apple-mega-secondary-link:hover {
+      color: var(--apple-blue);
+    }
+
+    /* Apple-Style Full-Screen Mobile Drawer */
+    .apple-mobile-drawer {
+      position: fixed;
+      inset: 0;
+      top: var(--nav-height);
+      z-index: 999;
+      background: #161617;
+      overflow-y: auto;
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(-12px);
+      pointer-events: none;
+      transition: opacity 0.25s ease, transform 0.28s cubic-bezier(0.28, 0.11, 0.32, 1), visibility 0.25s;
+    }
+
+    :root[data-theme="light"] .apple-mobile-drawer {
+      background: #fbfbfd;
+    }
+
+    .apple-mobile-drawer.is-open {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+      pointer-events: auto;
+    }
+
+    .apple-mobile-drawer__inner {
+      max-width: 640px;
+      margin-inline: auto;
+      padding: 1.25rem 1.5rem 3.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+    }
+
+    .mobile-mega-group {
+      border-bottom: 1px solid var(--border-subtle);
+    }
+
+    .mobile-mega-group-btn {
+      width: 100%;
+      appearance: none;
+      background: transparent;
+      border: none;
+      padding: 0.95rem 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-family: inherit;
+      font-size: 22px;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      color: var(--text-primary);
+      cursor: pointer;
+    }
+
+    .mobile-mega-group-btn svg {
+      transition: transform 0.22s ease;
+      color: var(--text-secondary);
+    }
+
+    .mobile-mega-group.is-expanded .mobile-mega-group-btn svg {
+      transform: rotate(180deg);
+    }
+
+    .mobile-mega-group-body {
+      display: none;
+      padding: 0 0 1.2rem;
+    }
+
+    .mobile-mega-group.is-expanded .mobile-mega-group-body {
+      display: block;
+    }
+
+    .mobile-mega-subgrid {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    @media (max-width: 980px) {
+      .nav-mobile-menu-btn {
+        display: inline-flex;
+      }
+      .apple-mega-menu,
+      .apple-mega-backdrop {
+        display: none;
+      }
     }
 
     .nav-actions {

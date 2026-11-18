@@ -140,9 +140,9 @@
   <canvas id="kineticGridCanvas" class="kinetic-grid-canvas" aria-hidden="true"></canvas>
 
   <!-- ========================================================================
-       GLOBAL FROSTED NAVIGATION BAR
+       GLOBAL FROSTED NAVIGATION BAR + APPLE-STYLE MEGA-MENU FLYOUT
        ======================================================================== -->
-  <header class="apple-nav" role="banner">
+  <header class="apple-nav" id="appleNav" role="banner">
     <div class="inner apple-nav__inner">
       <a class="nav-brand" href="#top" aria-label="Lally Computers Home">
         <img src="images/logo.png" alt="Lally Computers Logo" class="nav-brand-logo" width="34" height="34">
@@ -150,11 +150,12 @@
       </a>
 
       <nav aria-label="Main Navigation">
-        <ul class="nav-links">
-          <li><a href="#lineup">Departments</a></li>
-          <li><a href="#why">Why Supreme</a></li>
-          <li><a href="#reviews">Reviews</a></li>
-          <li><a href="#visit">Location</a></li>
+        <ul class="nav-links" id="navMegaTriggers">
+          <li><button class="nav-mega-trigger" type="button" data-mega="laptops" aria-expanded="false" aria-controls="appleMegaMenu">Laptops</button></li>
+          <li><button class="nav-mega-trigger" type="button" data-mega="pcs" aria-expanded="false" aria-controls="appleMegaMenu">PCs &amp; Parts</button></li>
+          <li><button class="nav-mega-trigger" type="button" data-mega="gadgets" aria-expanded="false" aria-controls="appleMegaMenu">Gadgets</button></li>
+          <li><button class="nav-mega-trigger" type="button" data-mega="repairs" aria-expanded="false" aria-controls="appleMegaMenu">Repairs</button></li>
+          <li><button class="nav-mega-trigger" type="button" data-mega="store" aria-expanded="false" aria-controls="appleMegaMenu">Store</button></li>
         </ul>
       </nav>
 
@@ -189,9 +190,30 @@
           </svg>
           <span>Call Us</span>
         </a>
+        <button class="nav-mobile-menu-btn" id="mobileMenuToggle" type="button" aria-label="Open navigation menu" aria-expanded="false" aria-controls="appleMobileDrawer">
+          <svg class="icon-menu-open" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+            <line x1="4" y1="8" x2="20" y2="8" />
+            <line x1="4" y1="16" x2="20" y2="16" />
+          </svg>
+          <svg class="icon-menu-close" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+            <line x1="6" y1="6" x2="18" y2="18" />
+            <line x1="18" y1="6" x2="6" y2="18" />
+          </svg>
+        </button>
       </div>
     </div>
   </header>
+
+  <!-- Apple-Style Full-Width Frosted Mega-Menu Curtain & Blurred Page Backdrop -->
+  <div class="apple-mega-backdrop" id="appleMegaBackdrop" aria-hidden="true"></div>
+  <div class="apple-mega-menu" id="appleMegaMenu" role="region" aria-label="Department quick navigation" aria-hidden="true">
+    <div class="apple-mega-inner" id="appleMegaContent"></div>
+  </div>
+
+  <!-- Apple-Style Full-Screen Mobile Navigation Drawer -->
+  <div class="apple-mobile-drawer" id="appleMobileDrawer" role="dialog" aria-modal="true" aria-label="Mobile Navigation" aria-hidden="true">
+    <div class="apple-mobile-drawer__inner" id="appleMobileDrawerContent"></div>
+  </div>
 
   <!-- ========================================================================
        HERO SECTION — CINEMATIC HERO-720 VIDEO BANNER

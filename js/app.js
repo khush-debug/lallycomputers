@@ -1994,7 +1994,437 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Cinematic Hero Video Banner (hero-720.mp4, non-interactive)
   initHeroVideo();
+
+  // Apple-Style Full-Width Mega-Menu Flyout & Mobile Drawer
+  initAppleMegaMenu();
 });
+
+/* ==========================================================================
+   APPLE-STYLE MEGA-MENU FLYOUT & FILTER HELPER
+   ========================================================================== */
+function openCatalogueWithFilter(catId, opts) {
+  openCatalogueSpace(catId);
+  if (!opts) return;
+
+  const brandSelect = document.getElementById('brandFilterSelect');
+  const budgetSelect = document.getElementById('budgetFilterSelect');
+  const sizeSelect = document.getElementById('sizeFilterSelect');
+  const panelSelect = document.getElementById('panelFilterSelect');
+  const searchInput = document.getElementById('spaceSearchInput');
+
+  if (opts.brand && brandSelect) {
+    brandSelect.value = opts.brand;
+  }
+  if (opts.budget && budgetSelect) {
+    budgetSelect.value = opts.budget;
+  }
+  if (opts.size && sizeSelect) {
+    sizeSelect.value = opts.size;
+  }
+  if (opts.panel && panelSelect) {
+    panelSelect.value = opts.panel;
+  }
+  if (opts.search && searchInput) {
+    searchInput.value = opts.search;
+  }
+  applyFilters();
+}
+
+function initAppleMegaMenu() {
+  const nav = document.getElementById('appleNav');
+  const menu = document.getElementById('appleMegaMenu');
+  const content = document.getElementById('appleMegaContent');
+  const backdrop = document.getElementById('appleMegaBackdrop');
+  const triggers = Array.from(document.querySelectorAll('.nav-mega-trigger'));
+  const mobileBtn = document.getElementById('mobileMenuToggle');
+  const mobileDrawer = document.getElementById('appleMobileDrawer');
+  const mobileContent = document.getElementById('appleMobileDrawerContent');
+
+  if (!nav || !menu || !content || !backdrop || triggers.length === 0) return;
+
+  const WA_BASE = 'https://wa.me/919872010193?text=';
+
+  function countFor(catId) {
+    return (window.PRODUCTS || []).filter(p => p.category === catId).length;
+  }
+
+  function getMenuData(key) {
+    const MAP = {
+      laptops: {
+        title: 'Laptops',
+        col1Heading: 'Explore Laptops',
+        primary: [
+          { label: 'Explore All Laptops', cat: 'laptops_used' },
+          { label: 'Pre-Owned Laptops', cat: 'laptops_used', count: countFor('laptops_used') },
+          { label: 'Brand New Laptops', cat: 'laptops_new', count: countFor('laptops_new') },
+          { label: 'Gaming Laptops', cat: 'laptops_gaming', count: countFor('laptops_gaming') },
+          { label: 'Apple MacBook Series', cat: 'laptops_used', filter: { brand: 'Apple' } },
+          { label: 'ThinkPad Corporate', cat: 'laptops_used', filter: { brand: 'Lenovo' } }
+        ],
+        sub: [
+          { label: 'Under ₹25,000 Pre-Owned', cat: 'laptops_used', filter: { budget: 'under-25k' } },
+          { label: '25-Point Lab Verification', href: '#why' }
+        ],
+        col2Heading: 'Shop by Brand',
+        col2: [
+          { label: 'Lenovo ThinkPad & IdeaPad', cat: 'laptops_used', filter: { brand: 'Lenovo' } },
+          { label: 'Dell Latitude & Inspiron', cat: 'laptops_used', filter: { brand: 'Dell' } },
+          { label: 'HP EliteBook & Victus', cat: 'laptops_used', filter: { brand: 'HP' } },
+          { label: 'Apple MacBook Air M1 / M3', cat: 'laptops_new', filter: { brand: 'Apple' } },
+          { label: 'ASUS Creator & RTX', cat: 'laptops_new', filter: { brand: 'Asus' } }
+        ],
+        col3Heading: 'More from Supreme',
+        col3: [
+          { label: '25-Point Lab Reports', href: '#why' },
+          { label: '6-Month Pre-Owned Warranty', href: '#why' },
+          { label: 'Genuine GST Tax Invoice', href: '#why' },
+          { label: '709 Verified Google Reviews', href: '#reviews' },
+          { label: 'WhatsApp Laptop Quote', external: WA_BASE + encodeURIComponent('Hi Supreme Infosys, I am looking for a laptop in Moga. Can you share current models?') }
+        ]
+      },
+      pcs: {
+        title: 'PCs & Parts',
+        col1Heading: 'Explore PCs & Hardware',
+        primary: [
+          { label: 'Custom PCs & Workstations', cat: 'pc', count: countFor('pc') },
+          { label: 'PC Components & GPUs', cat: 'pc_components', count: countFor('pc_components') },
+          { label: 'Monitors & Displays', cat: 'monitors', count: countFor('monitors') },
+          { label: 'Peripherals & Desk Gear', cat: 'pc_peripherals', count: countFor('pc_peripherals') }
+        ],
+        sub: [
+          { label: 'RTX Gaming Builds', cat: 'pc', filter: { search: 'RTX' } },
+          { label: '144Hz–180Hz Gaming Monitors', cat: 'monitors', filter: { panel: '144Hz' } }
+        ],
+        col2Heading: 'Shop Components',
+        col2: [
+          { label: 'NVIDIA RTX Graphics Cards', cat: 'pc_components', filter: { size: 'GPU' } },
+          { label: 'Intel & AMD Processors', cat: 'pc_components', filter: { size: 'CPU' } },
+          { label: 'Motherboards (DDR5 / WiFi)', cat: 'pc_components', filter: { size: 'Motherboard' } },
+          { label: 'DDR5 RAM & Gen4 NVMe SSDs', cat: 'pc_components', filter: { size: 'RAM' } },
+          { label: '80+ Gold PSUs & Cabinets', cat: 'pc_components', filter: { size: 'PSU' } },
+          { label: 'Mechanical Keyboards & Mice', cat: 'pc_peripherals', filter: { size: 'Keyboard' } }
+        ],
+        col3Heading: 'Build Services',
+        col3: [
+          { label: 'Custom Assembly in Moga', href: '#why' },
+          { label: 'Thermal & FPS Stress Testing', href: '#why' },
+          { label: 'Full Brand Component Warranty', href: '#why' },
+          { label: 'WhatsApp Custom PC Quote', external: WA_BASE + encodeURIComponent('Hi Supreme Infosys, I want to get a custom PC built. Can we discuss specs and pricing?') }
+        ]
+      },
+      gadgets: {
+        title: 'Gadgets',
+        col1Heading: 'Explore Gadgets & Lifestyle',
+        primary: [
+          { label: 'Smart & Classic Watches', cat: 'watches', count: countFor('watches') },
+          { label: 'Gadgets & Audio', cat: 'gadgets', count: countFor('gadgets') },
+          { label: 'Gym & Fitness Gear', cat: 'gym', count: countFor('gym') },
+          { label: 'Travel Suitcases & Luggage', cat: 'suitcases', count: countFor('suitcases') },
+          { label: 'Washing Machines', cat: 'appliances', count: countFor('appliances') }
+        ],
+        sub: [
+          { label: 'Browse All 13 Departments', href: '#lineup' },
+          { label: 'Same-Day Pickup in Sodhi Nagar', href: '#visit' }
+        ],
+        col2Heading: 'Popular Picks',
+        col2: [
+          { label: 'Apple Watch & Casio G-Shock', cat: 'watches' },
+          { label: 'ANC Earbuds & JBL Speakers', cat: 'gadgets', filter: { size: 'Earbuds' } },
+          { label: '65W GaN Chargers & Routers', cat: 'gadgets', filter: { size: 'Charger' } },
+          { label: 'Treadmills & Hex Dumbbells', cat: 'gym' },
+          { label: 'Polycarbonate Cabin Trolleys', cat: 'suitcases' },
+          { label: '5-Star Inverter Washers', cat: 'appliances' }
+        ],
+        col3Heading: 'Store Benefits',
+        col3: [
+          { label: '100% Factory Sealed Units', href: '#why' },
+          { label: 'Official Pan-India Warranty', href: '#why' },
+          { label: 'GST Tax Invoice Included', href: '#why' },
+          { label: 'Inquire on WhatsApp', external: WA_BASE + encodeURIComponent('Hi Supreme Infosys, I want to check stock on watches / gadgets / appliances in Sodhi Nagar.') }
+        ]
+      },
+      repairs: {
+        title: 'Repairs',
+        col1Heading: 'Chip-Level Repair Lab',
+        primary: [
+          { label: 'Explore All Repair Services', cat: 'repairs', count: countFor('repairs') },
+          { label: 'Motherboard BGA Rework', cat: 'repairs', filter: { size: 'BGA' } },
+          { label: 'Broken Display & Screen Swap', cat: 'repairs', filter: { size: 'Screen' } },
+          { label: 'Liquid Spill Recovery', cat: 'repairs', filter: { size: 'Liquid' } },
+          { label: 'Thermal Overhaul & Repaste', cat: 'repairs', filter: { size: 'Thermal' } }
+        ],
+        sub: [
+          { label: 'Free Fault Diagnostics', cat: 'repairs' },
+          { label: 'In-House Sodhi Nagar Lab', href: '#visit' }
+        ],
+        col2Heading: 'Devices We Service',
+        col2: [
+          { label: 'Apple MacBook Logic Boards', cat: 'repairs' },
+          { label: 'ThinkPad, Dell & HP Laptops', cat: 'repairs' },
+          { label: 'RTX Gaming Laptops & Cooling', cat: 'repairs' },
+          { label: 'Custom Desktop PCs & GPUs', cat: 'repairs' },
+          { label: 'SSD & RAM Speed Upgrades', cat: 'pc_components' }
+        ],
+        col3Heading: 'Lab Guarantee',
+        col3: [
+          { label: 'Zero Outsourcing — Done In-Store', href: '#why' },
+          { label: 'Same-Day Express Turnaround', href: '#why' },
+          { label: 'Call Lab: 098720 10193', href: 'tel:+919872010193' },
+          { label: 'Book Repair on WhatsApp', external: WA_BASE + encodeURIComponent('Hi Supreme Infosys Lab, I need a laptop/PC repair diagnostic in Sodhi Nagar, Moga.') }
+        ]
+      },
+      store: {
+        title: 'Store',
+        col1Heading: 'Visit Supreme Infosys',
+        primary: [
+          { label: 'All 13 Departments', href: '#lineup' },
+          { label: 'Why Buy From Us', href: '#why' },
+          { label: 'Verified Customer Reviews', href: '#reviews' },
+          { label: 'Store Location & Directions', href: '#visit' }
+        ],
+        sub: [
+          { label: '5-A, Sodhi Nagar, Moga 142001', href: '#visit' },
+          { label: 'Mon–Sat · 9:30 AM – 7:00 PM', href: '#visit' }
+        ],
+        col2Heading: 'Direct Contact',
+        col2: [
+          { label: 'Call 098720 10193', href: 'tel:+919872010193' },
+          { label: 'Chat on WhatsApp', external: WA_BASE + encodeURIComponent('Hi Supreme Infosys (Lally Computers), I have an enquiry.') },
+          { label: 'Google Maps Directions', external: 'https://www.google.com/maps/dir/?api=1&destination=Supreme%20Infosys%20(Lally%20Computers)%2C%205-A%2C%20Sodhi%20Nagar%2C%20Moga%2C%20Punjab%20142001' }
+        ],
+        col3Heading: 'Store Tools',
+        col3: [
+          { label: 'Shopping Cart', action: 'cart' },
+          { label: 'Live Google Sheet Stock', action: 'sheet' },
+          { label: 'Privacy Policy', href: 'privacy.html' }
+        ]
+      }
+    };
+    return MAP[key] || MAP.laptops;
+  }
+
+  function renderLinkItem(item, cls) {
+    const countHtml = typeof item.count === 'number' ? `<span class="apple-mega-count">${item.count}</span>` : '';
+    if (item.external) {
+      return `<li><a class="${cls}" href="${item.external}" target="_blank" rel="noopener">${item.label} ↗</a></li>`;
+    }
+    if (item.href) {
+      return `<li><a class="${cls}" href="${item.href}" data-mega-close>${item.label}</a></li>`;
+    }
+    if (item.action) {
+      return `<li><button type="button" class="${cls}" data-mega-action="${item.action}">${item.label}</button></li>`;
+    }
+    const filterAttr = item.filter ? ` data-mega-filter='${JSON.stringify(item.filter)}'` : '';
+    return `<li><button type="button" class="${cls}" data-mega-cat="${item.cat}"${filterAttr}>${item.label}${countHtml}</button></li>`;
+  }
+
+  let activeKey = null;
+  let closeTimer = null;
+
+  function renderMegaContent(key) {
+    const data = getMenuData(key);
+    content.innerHTML = `
+      <div class="apple-mega-col">
+        <p class="apple-mega-heading">${data.col1Heading}</p>
+        <ul class="apple-mega-primary-list">
+          ${data.primary.map(it => renderLinkItem(it, 'apple-mega-primary-link')).join('')}
+        </ul>
+        ${data.sub && data.sub.length ? `
+          <ul class="apple-mega-sub-list">
+            ${data.sub.map(it => renderLinkItem(it, 'apple-mega-sub-link')).join('')}
+          </ul>
+        ` : ''}
+      </div>
+      <div class="apple-mega-col">
+        <p class="apple-mega-heading">${data.col2Heading}</p>
+        <ul class="apple-mega-secondary-list">
+          ${data.col2.map(it => renderLinkItem(it, 'apple-mega-secondary-link')).join('')}
+        </ul>
+      </div>
+      <div class="apple-mega-col">
+        <p class="apple-mega-heading">${data.col3Heading}</p>
+        <ul class="apple-mega-secondary-list">
+          ${data.col3.map(it => renderLinkItem(it, 'apple-mega-secondary-link')).join('')}
+        </ul>
+      </div>
+    `;
+  }
+
+  function openMega(key) {
+    clearTimeout(closeTimer);
+    if (activeKey !== key) {
+      activeKey = key;
+      renderMegaContent(key);
+    }
+    nav.classList.add('is-mega-open');
+    menu.classList.add('is-open');
+    backdrop.classList.add('is-open');
+    menu.setAttribute('aria-hidden', 'false');
+    triggers.forEach(t => {
+      const isAct = t.getAttribute('data-mega') === key;
+      t.classList.toggle('is-active', isAct);
+      t.setAttribute('aria-expanded', isAct ? 'true' : 'false');
+    });
+  }
+
+  function closeMega() {
+    clearTimeout(closeTimer);
+    activeKey = null;
+    nav.classList.remove('is-mega-open');
+    menu.classList.remove('is-open');
+    backdrop.classList.remove('is-open');
+    menu.setAttribute('aria-hidden', 'true');
+    triggers.forEach(t => {
+      t.classList.remove('is-active');
+      t.setAttribute('aria-expanded', 'false');
+    });
+  }
+
+  function scheduleClose() {
+    clearTimeout(closeTimer);
+    closeTimer = setTimeout(closeMega, 140);
+  }
+
+  function handleMenuInteraction(e) {
+    const catBtn = e.target.closest('[data-mega-cat]');
+    if (catBtn) {
+      const cat = catBtn.getAttribute('data-mega-cat');
+      const filterStr = catBtn.getAttribute('data-mega-filter');
+      let filterObj = null;
+      if (filterStr) {
+        try { filterObj = JSON.parse(filterStr); } catch (err) { }
+      }
+      closeMega();
+      closeMobileDrawer();
+      openCatalogueWithFilter(cat, filterObj);
+      return;
+    }
+
+    const actionBtn = e.target.closest('[data-mega-action]');
+    if (actionBtn) {
+      const act = actionBtn.getAttribute('data-mega-action');
+      closeMega();
+      closeMobileDrawer();
+      if (act === 'cart') openCartModal();
+      else if (act === 'sheet') openSheetSyncModal();
+      return;
+    }
+
+    const closeLink = e.target.closest('[data-mega-close], a[target="_blank"]');
+    if (closeLink) {
+      closeMega();
+      closeMobileDrawer();
+    }
+  }
+
+  // Desktop hover + click triggers
+  triggers.forEach(btn => {
+    const key = btn.getAttribute('data-mega');
+    btn.addEventListener('mouseenter', () => {
+      if (window.innerWidth > 980) openMega(key);
+    });
+    btn.addEventListener('focus', () => {
+      if (window.innerWidth > 980) openMega(key);
+    });
+    btn.addEventListener('click', () => {
+      if (activeKey === key) closeMega();
+      else openMega(key);
+    });
+  });
+
+  nav.addEventListener('mouseenter', () => clearTimeout(closeTimer));
+  nav.addEventListener('mouseleave', scheduleClose);
+  menu.addEventListener('mouseenter', () => clearTimeout(closeTimer));
+  menu.addEventListener('mouseleave', scheduleClose);
+  backdrop.addEventListener('click', closeMega);
+  content.addEventListener('click', handleMenuInteraction);
+
+  // Mobile drawer accordion rendering
+  function renderMobileDrawer() {
+    if (!mobileContent) return;
+    const keys = ['laptops', 'pcs', 'gadgets', 'repairs', 'store'];
+    mobileContent.innerHTML = keys.map((k, idx) => {
+      const d = getMenuData(k);
+      return `
+        <div class="mobile-mega-group ${idx === 0 ? 'is-expanded' : ''}">
+          <button class="mobile-mega-group-btn" type="button" aria-expanded="${idx === 0 ? 'true' : 'false'}">
+            <span>${d.title}</span>
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+              <polyline points="6 9 12 15 18 9" />
+            </svg>
+          </button>
+          <div class="mobile-mega-group-body">
+            <div class="mobile-mega-subgrid">
+              <div>
+                <p class="apple-mega-heading">${d.col1Heading}</p>
+                <ul class="apple-mega-primary-list">
+                  ${d.primary.map(it => renderLinkItem(it, 'apple-mega-primary-link')).join('')}
+                </ul>
+              </div>
+              <div>
+                <p class="apple-mega-heading">${d.col2Heading}</p>
+                <ul class="apple-mega-secondary-list">
+                  ${d.col2.map(it => renderLinkItem(it, 'apple-mega-secondary-link')).join('')}
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      `;
+    }).join('');
+  }
+
+  function openMobileDrawer() {
+    if (!mobileDrawer || !mobileBtn) return;
+    renderMobileDrawer();
+    nav.classList.add('is-mobile-open');
+    mobileDrawer.classList.add('is-open');
+    mobileDrawer.setAttribute('aria-hidden', 'false');
+    mobileBtn.setAttribute('aria-expanded', 'true');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeMobileDrawer() {
+    if (!mobileDrawer || !mobileBtn) return;
+    nav.classList.remove('is-mobile-open');
+    mobileDrawer.classList.remove('is-open');
+    mobileDrawer.setAttribute('aria-hidden', 'true');
+    mobileBtn.setAttribute('aria-expanded', 'false');
+    if (!document.querySelector('.modal-backdrop.is-open')) {
+      document.body.style.overflow = '';
+    }
+  }
+
+  if (mobileBtn && mobileDrawer && mobileContent) {
+    mobileBtn.addEventListener('click', () => {
+      if (mobileDrawer.classList.contains('is-open')) closeMobileDrawer();
+      else openMobileDrawer();
+    });
+
+    mobileContent.addEventListener('click', (e) => {
+      const groupBtn = e.target.closest('.mobile-mega-group-btn');
+      if (groupBtn) {
+        const group = groupBtn.closest('.mobile-mega-group');
+        const expanded = group.classList.toggle('is-expanded');
+        groupBtn.setAttribute('aria-expanded', expanded ? 'true' : 'false');
+        return;
+      }
+      handleMenuInteraction(e);
+    });
+  }
+
+  window.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      if (activeKey) closeMega();
+      if (mobileDrawer && mobileDrawer.classList.contains('is-open')) closeMobileDrawer();
+    }
+  });
+
+  window.addEventListener('resize', () => {
+    if (window.innerWidth <= 980 && activeKey) closeMega();
+    if (window.innerWidth > 980 && mobileDrawer && mobileDrawer.classList.contains('is-open')) closeMobileDrawer();
+  }, { passive: true });
+}
 
 function initHeroVideo() {
   const hero = document.getElementById('top');
