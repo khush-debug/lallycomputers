@@ -1790,14 +1790,14 @@ document.addEventListener('DOMContentLoaded', () => {
     fetchAndSyncGoogleSheet(savedSheet, false);
   }
 
-  // Interactive Kinetic Grid Background (cursor warp + click ripples)
+  // Interactive Kinetic Grid Background (rest of page below hero banner)
   initKineticGrid();
 
-  // Hero Video Banner (hero-720.mp4 blended with Kinetic Grid + subtle cursor drift)
-  initHeroVideoBlend();
+  // Cinematic Hero Video Banner (hero-720.mp4, non-interactive)
+  initHeroVideo();
 });
 
-function initHeroVideoBlend() {
+function initHeroVideo() {
   const hero = document.getElementById('top');
   const video = document.getElementById('heroVideo');
   if (!hero || !video) return;
@@ -1816,13 +1816,12 @@ function initHeroVideoBlend() {
     return;
   }
 
-  // Ensure smooth muted autoplay
   const playPromise = video.play();
   if (playPromise && typeof playPromise.catch === 'function') {
     playPromise.catch(() => {});
   }
 
-  // Pause video when hero scrolls off-screen to save battery/GPU
+  // Pause video when scrolled off-screen to save battery/GPU
   if ('IntersectionObserver' in window) {
     const obs = new IntersectionObserver((entries) => {
       if (entries[0]?.isIntersecting) {
@@ -1834,30 +1833,6 @@ function initHeroVideoBlend() {
     }, { threshold: 0.05 });
     obs.observe(hero);
   }
-
-  // Subtle interactive parallax synced with Kinetic Grid cursor warp
-  let tx = 0, ty = 0, cx = 0, cy = 0;
-  hero.addEventListener('mousemove', (e) => {
-    const rect = hero.getBoundingClientRect();
-    const nx = (e.clientX - rect.left) / Math.max(rect.width, 1) - 0.5;
-    const ny = (e.clientY - rect.top) / Math.max(rect.height, 1) - 0.5;
-    tx = -nx * 22;
-    ty = -ny * 14;
-  }, { passive: true });
-
-  hero.addEventListener('mouseleave', () => {
-    tx = 0;
-    ty = 0;
-  }, { passive: true });
-
-  function tick() {
-    cx += (tx - cx) * 0.07;
-    cy += (ty - cy) * 0.07;
-    video.style.setProperty('--hero-vx', `${cx.toFixed(2)}px`);
-    video.style.setProperty('--hero-vy', `${cy.toFixed(2)}px`);
-    requestAnimationFrame(tick);
-  }
-  requestAnimationFrame(tick);
 }
 
 /* ==========================================================================
