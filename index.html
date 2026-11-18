@@ -114,7 +114,6 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet"
     href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
-  <link rel="preload" href="images/store-banner.jpg" as="image" fetchpriority="high">
   <link rel="stylesheet" href="css/styles.css">
 
   <script>
@@ -131,6 +130,9 @@
 </head>
 
 <body>
+  <!-- Fixed Interactive Kinetic Grid Background -->
+  <canvas id="kineticGridCanvas" class="kinetic-grid-canvas" aria-hidden="true"></canvas>
+
   <!-- ========================================================================
        GLOBAL FROSTED NAVIGATION BAR
        ======================================================================== -->
@@ -186,34 +188,10 @@
   </header>
 
   <!-- ========================================================================
-       HERO SECTION — INTERACTIVE 360° SHOWROOM VIEWER
+       HERO SECTION — INTERACTIVE KINETIC GRID BANNER
        ======================================================================== -->
   <section class="hero-apple" id="top">
-    <div class="hero-apple__bg" id="heroBannerWrap">
-      <div class="hero-360-fallback" id="hero360Fallback" role="img"
-        aria-label="Lally Computers Supreme Infosys Store Showroom"></div>
-      <canvas class="hero-360-canvas" id="hero360Canvas" tabindex="0"
-        aria-label="Interactive 360-degree view of Lally Computers Showroom in Sodhi Nagar, Moga. Drag or use arrow keys to look around."></canvas>
-      <div class="hero-apple__overlay"></div>
-    </div>
-
-    <!-- Top-right Live 360° Status & Drag Prompt -->
-    <div class="hero-360-topbar">
-      <div class="inner hero-360-topbar__inner">
-        <div class="hero-360-indicator" id="hero360Indicator" aria-live="polite">
-          <svg class="hero-360-orbit-icon" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor"
-            stroke-width="1.9" aria-hidden="true">
-            <circle cx="12" cy="12" r="9" />
-            <ellipse cx="12" cy="12" rx="9" ry="3.8" />
-            <path d="M12 3a12 12 0 0 1 0 18" />
-          </svg>
-          <span class="hero-360-indicator__label">360&deg; Showroom</span>
-          <span class="hero-360-indicator__sep" aria-hidden="true">&middot;</span>
-          <span class="hero-360-indicator__hint" id="hero360Hint">Drag to look around</span>
-          <span class="hero-360-bearing" id="hero360Bearing">000&deg;</span>
-        </div>
-      </div>
-    </div>
+    <div class="hero-apple__glow" aria-hidden="true"></div>
 
     <div class="inner hero-apple__stage">
       <div class="hero-apple__content" id="heroContent">
@@ -250,17 +228,6 @@
           </svg>
           <span><b>4.2</b> rating from 709 reviews on Google &middot; GST Bill Included</span>
         </div>
-      </div>
-
-      <!-- Interactive 360° Full View Toggle -->
-      <div class="hero-360-hud" id="hero360Hud" role="region" aria-label="360-degree showroom view toggle">
-        <button class="hero-360-tour-btn" id="hero360TourBtn" type="button" aria-pressed="false"
-          title="Toggle unobstructed 360-degree view">
-          <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7" />
-          </svg>
-          <span id="hero360TourLabel">Full 360&deg;</span>
-        </button>
       </div>
     </div>
   </section>

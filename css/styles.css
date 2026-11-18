@@ -2,15 +2,15 @@
      APPLE-INSPIRED DESIGN SYSTEM & VARIABLES
      ========================================================================== */
     :root {
-      --bg-main: #000000;
-      --bg-surface: #121214;
-      --bg-surface-elevated: #1c1c1e;
-      --bg-subtle: #242426;
+      --bg-main: #161618;
+      --bg-surface: rgba(20, 20, 24, 0.72);
+      --bg-surface-elevated: #1c1c20;
+      --bg-subtle: #242428;
       --border-subtle: rgba(255, 255, 255, 0.12);
       --border-strong: rgba(255, 255, 255, 0.24);
       --text-primary: #f5f5f7;
-      --text-secondary: #86868b;
-      --text-tertiary: #6e6e73;
+      --text-secondary: #a1a1aa;
+      --text-tertiary: #71717a;
       --apple-blue: #2997ff;
       --apple-blue-hover: #0077ed;
       --apple-gold: #f5c563;
@@ -25,19 +25,29 @@
     }
 
     :root[data-theme="light"] {
-      --bg-main: #fbfbfd;
-      --bg-surface: #ffffff;
-      --bg-surface-elevated: #f5f5f7;
+      --bg-main: #f5f5f7;
+      --bg-surface: rgba(255, 255, 255, 0.76);
+      --bg-surface-elevated: #ffffff;
       --bg-subtle: #e8e8ed;
       --border-subtle: rgba(0, 0, 0, 0.08);
       --border-strong: rgba(0, 0, 0, 0.16);
       --text-primary: #1d1d1f;
-      --text-secondary: #86868b;
-      --text-tertiary: #a1a1a6;
+      --text-secondary: #515154;
+      --text-tertiary: #86868b;
       --apple-blue: #0071e3;
       --apple-blue-hover: #0077ed;
       --apple-gold: #b38600;
       color-scheme: light;
+    }
+
+    .kinetic-grid-canvas {
+      position: fixed;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+      pointer-events: none;
+      display: block;
     }
 
     * {
@@ -265,179 +275,78 @@
     }
 
     /* ==========================================================================
-     HERO SECTION — INTERACTIVE 360° SHOWROOM VIEWER
+     HERO SECTION — INTERACTIVE KINETIC GRID BANNER
      ========================================================================== */
     .hero-apple {
       position: relative;
+      z-index: 1;
       overflow: hidden;
-      min-height: clamp(38rem, 88svh, 56rem);
+      min-height: clamp(34rem, 84svh, 52rem);
       display: flex;
       flex-direction: column;
-      justify-content: flex-end;
-      padding-top: calc(var(--nav-height) + 4.5rem);
-      padding-bottom: clamp(2.5rem, 5.5vw, 4.2rem);
-      color: #ffffff;
-      background: #04070e;
-      user-select: none;
-      -webkit-user-select: none;
+      align-items: center;
+      justify-content: center;
+      padding-top: clamp(3.5rem, 8vw, 5.5rem);
+      padding-bottom: clamp(3.5rem, 8vw, 5.5rem);
+      color: var(--text-primary);
+      background: transparent;
     }
 
-    .hero-apple__bg {
+    .hero-apple__glow {
       position: absolute;
       inset: 0;
       z-index: 0;
-      overflow: hidden;
-      background: #04070e;
-    }
-
-    .hero-360-fallback {
-      position: absolute;
-      inset: 0;
-      background-image: url('../images/store-banner.jpg');
-      background-position: 50% 52%;
-      background-size: 220% auto;
-      background-repeat: no-repeat;
-      filter: brightness(0.88) contrast(1.06) saturate(1.08);
-      transition: opacity 0.6s ease;
-    }
-
-    .hero-apple.is-webgl-ready .hero-360-fallback {
-      opacity: 0;
-      pointer-events: none;
-    }
-
-    .hero-360-canvas {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      display: block;
-      cursor: grab;
-      touch-action: pan-y;
-      opacity: 0;
-      transition: opacity 0.65s ease;
-    }
-
-    .hero-apple.is-webgl-ready .hero-360-canvas {
-      opacity: 1;
-    }
-
-    .hero-apple.is-dragging .hero-360-canvas {
-      cursor: grabbing;
-    }
-
-    .hero-360-canvas:focus-visible {
-      outline: 2px solid var(--apple-blue);
-      outline-offset: -3px;
-    }
-
-    .hero-apple__overlay {
-      position: absolute;
-      inset: 0;
-      z-index: 1;
       pointer-events: none;
       background:
-        radial-gradient(ellipse 72% 76% at 14% 88%, rgba(4, 7, 14, 0.9) 0%, rgba(4, 7, 14, 0.54) 48%, rgba(4, 7, 14, 0.08) 82%),
-        linear-gradient(180deg, rgba(4, 7, 14, 0.48) 0%, rgba(4, 7, 14, 0.04) 28%, rgba(4, 7, 14, 0.14) 64%, rgba(4, 7, 14, 0.78) 100%);
-      transition: opacity 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+        radial-gradient(ellipse 60% 52% at 50% 46%, rgba(74, 158, 255, 0.12) 0%, rgba(22, 22, 24, 0) 70%),
+        linear-gradient(180deg, rgba(22, 22, 24, 0) 72%, rgba(22, 22, 24, 0.65) 100%);
     }
 
-    .hero-apple.is-tour-mode .hero-apple__overlay {
-      opacity: 0.14;
+    :root[data-theme="light"] .hero-apple__glow {
+      background:
+        radial-gradient(ellipse 60% 52% at 50% 46%, rgba(0, 113, 227, 0.08) 0%, rgba(245, 245, 247, 0) 70%),
+        linear-gradient(180deg, rgba(245, 245, 247, 0) 72%, rgba(245, 245, 247, 0.65) 100%);
     }
 
-    /* Top-right Live 360° Indicator */
-    .hero-360-topbar {
-      position: absolute;
-      top: calc(var(--nav-height) + 1rem);
-      left: 0;
-      right: 0;
-      z-index: 3;
-      pointer-events: none;
-    }
-
-    .hero-360-topbar__inner {
-      display: flex;
-      justify-content: flex-end;
-    }
-
-    .hero-360-indicator {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 7px 14px;
-      border-radius: var(--radius-pill);
-      background: rgba(8, 12, 22, 0.62);
-      border: 1px solid rgba(255, 255, 255, 0.18);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-      box-shadow: 0 8px 28px rgba(0, 0, 0, 0.38);
-      color: rgba(248, 250, 252, 0.92);
-      font-size: 12.5px;
-      font-weight: 500;
-      letter-spacing: 0.01em;
-    }
-
-    .hero-360-orbit-icon {
-      color: #60a5fa;
-      flex-shrink: 0;
-      animation: orbitPulse 6s linear infinite;
-    }
-
-    @keyframes orbitPulse {
-      0%, 100% { transform: rotate(0deg); opacity: 0.95; }
-      50% { transform: rotate(180deg); opacity: 1; }
-    }
-
-    .hero-360-indicator__label {
-      font-weight: 700;
-      color: #ffffff;
-    }
-
-    .hero-360-indicator__sep {
-      opacity: 0.45;
-    }
-
-    .hero-360-indicator__hint {
-      color: rgba(226, 232, 240, 0.85);
-    }
-
-    .hero-360-bearing {
-      font-family: 'IBM Plex Mono', monospace;
-      font-size: 11.5px;
-      font-weight: 600;
-      color: #93c5fd;
-      background: rgba(59, 130, 246, 0.16);
-      border: 1px solid rgba(147, 197, 253, 0.25);
-      padding: 2px 7px;
-      border-radius: 999px;
-      min-width: 42px;
-      text-align: center;
-    }
-
-    /* Hero Stage Layout (Content Left + 360° Camera Dock Right) */
     .hero-apple__stage {
       position: relative;
       z-index: 2;
       display: flex;
-      align-items: flex-end;
-      justify-content: space-between;
-      gap: 2rem;
-      pointer-events: none;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+
+    .hero-apple__content {
+      position: relative;
+      z-index: 2;
+      max-width: 780px;
+      margin-inline: auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
     }
 
     .hero-pill-badge {
       display: inline-flex;
       align-items: center;
       gap: 9px;
-      background: rgba(8, 12, 22, 0.62);
-      border: 1px solid rgba(255, 255, 255, 0.2);
+      background: rgba(22, 22, 24, 0.68);
+      border: 1px solid rgba(255, 255, 255, 0.16);
       backdrop-filter: blur(14px);
       -webkit-backdrop-filter: blur(14px);
-      padding: 6px 14px;
+      padding: 6px 15px;
       border-radius: var(--radius-pill);
-      margin-bottom: 0.9rem;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.45);
+      margin-bottom: 1.25rem;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    }
+
+    :root[data-theme="light"] .hero-pill-badge {
+      background: rgba(255, 255, 255, 0.82);
+      border-color: rgba(0, 0, 0, 0.1);
+      box-shadow: 0 4px 18px rgba(0, 0, 0, 0.06);
     }
 
     .hero-live-dot {
@@ -458,24 +367,10 @@
 
     .hero-pill-badge .hero-eyebrow {
       margin-bottom: 0;
-      font-size: 13px;
+      font-size: 12.5px;
       font-weight: 600;
-      color: #f1f5f9;
-      letter-spacing: 0.05em;
-    }
-
-    .hero-apple__content {
-      position: relative;
-      z-index: 2;
-      max-width: 640px;
-      pointer-events: auto;
-      transition: opacity 0.38s cubic-bezier(0.22, 1, 0.36, 1), transform 0.38s cubic-bezier(0.22, 1, 0.36, 1);
-    }
-
-    .hero-apple.is-tour-mode .hero-apple__content {
-      opacity: 0;
-      transform: translateY(18px);
-      pointer-events: none;
+      color: var(--text-primary);
+      letter-spacing: 0.06em;
     }
 
     .hero-eyebrow {
@@ -488,117 +383,46 @@
     }
 
     .hero-headline {
-      font-size: clamp(2.6rem, 7vw, 4.7rem);
-      line-height: 1.04;
+      font-size: clamp(2.8rem, 7.5vw, 5.2rem);
+      line-height: 1.03;
       font-weight: 700;
-      letter-spacing: -0.035em;
+      letter-spacing: -0.04em;
       color: #ffffff;
-      text-shadow: 0 6px 28px rgba(0, 0, 0, 0.72), 0 2px 6px rgba(0, 0, 0, 0.65);
-      margin-bottom: 0.9rem;
+      text-shadow: 0 8px 34px rgba(0, 0, 0, 0.45);
+      margin-bottom: 1.05rem;
+    }
+
+    :root[data-theme="light"] .hero-headline {
+      color: #1d1d1f;
+      text-shadow: none;
     }
 
     .hero-subhead {
-      font-size: clamp(1rem, 2vw, 1.2rem);
-      line-height: 1.48;
-      color: rgba(248, 250, 252, 0.94);
-      text-shadow: 0 2px 14px rgba(0, 0, 0, 0.8), 0 1px 3px rgba(0, 0, 0, 0.7);
-      max-width: 560px;
-      margin-bottom: 1.7rem;
+      font-size: clamp(1.02rem, 2vw, 1.24rem);
+      line-height: 1.55;
+      color: rgba(245, 245, 247, 0.72);
+      max-width: 620px;
+      margin-inline: auto;
+      margin-bottom: 2rem;
+    }
+
+    :root[data-theme="light"] .hero-subhead {
+      color: #515154;
     }
 
     .hero-cta-group {
       display: flex;
       flex-wrap: wrap;
       align-items: center;
+      justify-content: center;
       gap: 0.85rem;
-    }
-
-    /* Bottom-Right 360° Full View Button */
-    .hero-360-hud {
-      position: relative;
-      z-index: 3;
-      pointer-events: auto;
-      display: flex;
-      align-items: center;
-      justify-content: flex-end;
-      flex-shrink: 0;
-    }
-
-    .hero-360-tour-btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 7px;
-      height: 38px;
-      padding: 0 16px;
-      border-radius: var(--radius-pill);
-      border: 1px solid rgba(255, 255, 255, 0.22);
-      background: rgba(8, 12, 22, 0.68);
-      backdrop-filter: blur(18px);
-      -webkit-backdrop-filter: blur(18px);
-      box-shadow: 0 10px 28px rgba(0, 0, 0, 0.42);
-      color: #ffffff;
-      font-family: inherit;
-      font-size: 13px;
-      font-weight: 600;
-      cursor: pointer;
-      transition: background 0.2s ease, border-color 0.2s ease, transform 0.15s ease;
-      white-space: nowrap;
-    }
-
-    .hero-360-tour-btn:hover {
-      background: rgba(255, 255, 255, 0.16);
-      border-color: rgba(255, 255, 255, 0.42);
-      transform: translateY(-1px);
-    }
-
-    .hero-apple.is-tour-mode .hero-360-tour-btn {
-      background: #ffffff;
-      color: #090d16;
-      border-color: #ffffff;
-    }
-
-    @media (max-width: 1024px) {
-      .hero-apple__stage {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 1.2rem;
-      }
-
-      .hero-360-hud {
-        justify-content: flex-start;
-      }
     }
 
     @media (max-width: 768px) {
       .hero-apple {
-        min-height: clamp(35rem, 86svh, 46rem);
-        padding-top: calc(var(--nav-height) + 4.2rem);
-        padding-bottom: 1.75rem;
-      }
-
-      .hero-360-topbar {
-        top: calc(var(--nav-height) + 0.75rem);
-      }
-
-      .hero-360-topbar__inner {
-        justify-content: flex-start;
-      }
-
-      .hero-360-indicator {
-        font-size: 11.5px;
-        padding: 5px 11px;
-        gap: 6px;
-      }
-
-      .hero-360-indicator__hint,
-      .hero-360-indicator__sep {
-        display: none;
-      }
-
-      .hero-360-tour-btn {
-        height: 34px;
-        padding: 0 14px;
-        font-size: 12px;
+        min-height: clamp(30rem, 78svh, 42rem);
+        padding-top: 2.5rem;
+        padding-bottom: 2.5rem;
       }
     }
 
@@ -629,18 +453,30 @@
     }
 
     .apple-pill-btn--secondary {
-      background: rgba(0, 0, 0, 0.5);
+      background: rgba(255, 255, 255, 0.08);
       backdrop-filter: blur(12px);
       -webkit-backdrop-filter: blur(12px);
       color: #ffffff !important;
-      border: 1px solid rgba(255, 255, 255, 0.3);
-      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35);
+      border: 1px solid rgba(255, 255, 255, 0.22);
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
     }
 
     .apple-pill-btn--secondary:hover {
-      background: rgba(0, 0, 0, 0.7);
-      border-color: rgba(255, 255, 255, 0.45);
+      background: rgba(255, 255, 255, 0.16);
+      border-color: rgba(255, 255, 255, 0.38);
       transform: scale(1.02);
+    }
+
+    :root[data-theme="light"] .apple-pill-btn--secondary {
+      background: rgba(255, 255, 255, 0.82);
+      color: #1d1d1f !important;
+      border-color: rgba(0, 0, 0, 0.14);
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.06);
+    }
+
+    :root[data-theme="light"] .apple-pill-btn--secondary:hover {
+      background: #ffffff;
+      border-color: rgba(0, 0, 0, 0.24);
     }
 
     .apple-pill-btn--whatsapp {
@@ -669,18 +505,28 @@
       align-items: center;
       gap: 0.8rem;
       margin-top: 1.6rem;
-      background: rgba(0, 0, 0, 0.52);
+      background: rgba(22, 22, 24, 0.68);
       backdrop-filter: blur(14px);
       -webkit-backdrop-filter: blur(14px);
       padding: 7px 16px;
       border-radius: var(--radius-pill);
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      box-shadow: 0 4px 18px rgba(0, 0, 0, 0.4);
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      box-shadow: 0 4px 18px rgba(0, 0, 0, 0.3);
     }
 
     .hero-badge-strip span {
       font-size: 13px;
       color: rgba(255, 255, 255, 0.88);
+    }
+
+    :root[data-theme="light"] .hero-badge-strip {
+      background: rgba(255, 255, 255, 0.82);
+      border-color: rgba(0, 0, 0, 0.1);
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.06);
+    }
+
+    :root[data-theme="light"] .hero-badge-strip span {
+      color: #334155;
     }
 
     .hero-badge-strip svg {
@@ -780,12 +626,18 @@
      SECTION HEADINGS
      ========================================================================== */
     .apple-section {
+      position: relative;
+      z-index: 1;
       padding-block: clamp(4.5rem, 7.5vw, 7rem);
       scroll-margin-top: calc(var(--nav-height) + 55px);
     }
 
     .apple-section--alt {
       background: var(--bg-surface);
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+      border-top: 1px solid var(--border-subtle);
+      border-bottom: 1px solid var(--border-subtle);
     }
 
     .section-intro {
@@ -1056,11 +908,18 @@
     .catalogue-space {
       display: none;
       position: relative;
-      background: var(--bg-surface);
+      z-index: 2;
+      background: rgba(20, 20, 24, 0.88);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
       border-top: 1px solid var(--border-subtle);
       border-bottom: 1px solid var(--border-subtle);
       padding-block: 2.5rem 4rem;
       animation: fadeIn 0.25s ease-out;
+    }
+
+    :root[data-theme="light"] .catalogue-space {
+      background: rgba(255, 255, 255, 0.92);
     }
 
     .catalogue-space.is-open {
@@ -2834,11 +2693,19 @@
     }
 
     .apple-footer {
-      background: var(--bg-main);
+      position: relative;
+      z-index: 1;
+      background: rgba(18, 18, 22, 0.82);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
       border-top: 1px solid var(--border-subtle);
       padding-block: 2.5rem;
       font-size: 12px;
       color: var(--text-tertiary);
+    }
+
+    :root[data-theme="light"] .apple-footer {
+      background: rgba(255, 255, 255, 0.84);
     }
 
     .apple-footer__grid {

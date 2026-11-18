@@ -1790,447 +1790,281 @@ document.addEventListener('DOMContentLoaded', () => {
     fetchAndSyncGoogleSheet(savedSheet, false);
   }
 
-  // Interactive 360° Rectilinear Showroom Viewer (Zero-Fisheye WebGL)
-  initHero360Viewer();
+  // Interactive Kinetic Grid Background (cursor warp + click ripples)
+  initKineticGrid();
 });
 
 /* ==========================================================================
-   INTERACTIVE 360° RECTILINEAR SHOWROOM VIEWER (WEBGL)
+   INTERACTIVE KINETIC GRID BACKGROUND (CANVAS 2D)
    ========================================================================== */
-function initHero360Viewer() {
-  const heroSection = document.getElementById('top');
-  const canvas = document.getElementById('hero360Canvas');
-  if (!heroSection || !canvas) return;
+function initKineticGrid() {
+  const canvas = document.getElementById('kineticGridCanvas');
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+  if (!ctx) return;
 
-  const gl = canvas.getContext('webgl', {
-    antialias: false,
-    alpha: false,
-    depth: false,
-    stencil: false,
-    powerPreference: 'high-performance'
-  }) || canvas.getContext('experimental-webgl');
+  const CELL_SIZE = 55;
+  const INFLUENCE_RADIUS = 260;
+  const MAX_WARP = 24;
+  const DOT_SPACING = 28;
+  const LERP_SPEED = 0.08;
+  const NODE_BASE_RADIUS = 1.8;
+  const NODE_ACTIVE_RADIUS = 3.2;
 
-  if (!gl) return; // Falls back cleanly to .hero-360-fallback
-
-  const vsSource = `
-    attribute vec2 a_pos;
-    void main() {
-      gl_Position = vec4(a_pos, 0.0, 1.0);
+  const THEMES = {
+    dark: {
+      bg: '#161618',
+      dot: 'rgba(255,255,255,0.05)',
+      lineBase: { r: 255, g: 255, b: 255, a: 0.13 },
+      lineActive: { r: 74, g: 158, b: 255, a: 0.9 },
+      nodeBase: { r: 255, g: 255, b: 255, a: 0.2 },
+      nodeActive: { r: 74, g: 158, b: 255, a: 1.0 },
+      glow: '74,158,255',
+      ripple: '100,180,255'
+    },
+    light: {
+      bg: '#f5f5f7',
+      dot: 'rgba(15,23,42,0.045)',
+      lineBase: { r: 15, g: 23, b: 42, a: 0.085 },
+      lineActive: { r: 0, g: 113, b: 227, a: 0.78 },
+      nodeBase: { r: 15, g: 23, b: 42, a: 0.16 },
+      nodeActive: { r: 0, g: 113, b: 227, a: 0.95 },
+      glow: '0,113,227',
+      ripple: '0,113,227'
     }
-  `;
+  };
 
-  const fsSource = `
-    precision highp float;
-    uniform sampler2D u_tex;
-    uniform vec2 u_res;
-    uniform float u_yaw;
-    uniform float u_pitch;
-    uniform float u_fov;
-
-    const float PI = 3.14159265359;
-    const float TWO_PI = 6.28318530718;
-
-    void main() {
-      vec2 ndc = (gl_FragCoord.xy / u_res) * 2.0 - 1.0;
-      float aspect = u_res.x / max(u_res.y, 1.0);
-      float tanHalf = tan(u_fov * 0.5);
-
-      // True pinhole rectilinear ray (straight walls & shelves, zero fisheye)
-      vec3 dir = normalize(vec3(ndc.x * aspect * tanHalf, ndc.y * tanHalf, 1.0));
-
-      // Pitch around X axis
-      float cp = cos(u_pitch);
-      float sp = sin(u_pitch);
-      vec3 pDir = vec3(
-        dir.x,
-        dir.y * cp + dir.z * sp,
-        -dir.y * sp + dir.z * cp
-      );
-
-      // Yaw around Y axis
-      float cy = cos(u_yaw);
-      float sy = sin(u_yaw);
-      vec3 wDir = vec3(
-        pDir.x * cy + pDir.z * sy,
-        pDir.y,
-        -pDir.x * sy + pDir.z * cy
-      );
-
-      float lon = atan(wDir.x, wDir.z);
-      float lat = asin(clamp(wDir.y, -1.0, 1.0));
-
-      float u = fract(lon / TWO_PI + 0.5);
-      float v = 0.5 - lat / PI;
-
-      vec3 col = texture2D(u_tex, vec2(clamp(u, 0.0005, 0.9995), clamp(v, 0.002, 0.998))).rgb;
-
-      // Subtle editorial contrast & richness grading
-      col = (col - 0.5) * 1.07 + 0.5;
-      float luma = dot(col, vec3(0.2126, 0.7152, 0.0722));
-      col = mix(vec3(luma), col, 1.12);
-      col = clamp(col, 0.0, 1.0);
-
-      gl_FragColor = vec4(col, 1.0);
-    }
-  `;
-
-  function compileShader(type, source) {
-    const shader = gl.createShader(type);
-    gl.shaderSource(shader, source);
-    gl.compileShader(shader);
-    if (!gl.getShaderParameter(shader, gl.COMPILE_STATUS)) {
-      console.warn('360 shader compile error:', gl.getShaderInfoLog(shader));
-      gl.deleteShader(shader);
-      return null;
-    }
-    return shader;
+  function isLightTheme() {
+    const attr = document.documentElement.getAttribute('data-theme');
+    if (attr === 'light') return true;
+    if (attr === 'dark') return false;
+    return !!(window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches);
   }
 
-  const vs = compileShader(gl.VERTEX_SHADER, vsSource);
-  const fs = compileShader(gl.FRAGMENT_SHADER, fsSource);
-  if (!vs || !fs) return;
+  function lerpN(a, b, t) {
+    return a + (b - a) * t;
+  }
 
-  const prog = gl.createProgram();
-  gl.attachShader(prog, vs);
-  gl.attachShader(prog, fs);
-  gl.linkProgram(prog);
-  if (!gl.getProgramParameter(prog, gl.LINK_STATUS)) return;
-  gl.useProgram(prog);
+  function lerpColor(base, active, t) {
+    const r = Math.round(lerpN(base.r, active.r, t));
+    const g = Math.round(lerpN(base.g, active.g, t));
+    const b = Math.round(lerpN(base.b, active.b, t));
+    const a = lerpN(base.a, active.a, t);
+    return `rgba(${r},${g},${b},${a.toFixed(3)})`;
+  }
 
-  const quad = gl.createBuffer();
-  gl.bindBuffer(gl.ARRAY_BUFFER, quad);
-  gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1, -1, 1, -1, -1, 1, 1, 1]), gl.STATIC_DRAW);
-  const posLoc = gl.getAttribLocation(prog, 'a_pos');
-  gl.enableVertexAttribArray(posLoc);
-  gl.vertexAttribPointer(posLoc, 2, gl.FLOAT, false, 0, 0);
+  const mouse = { x: -9999, y: -9999 };
+  const targetMouse = { x: -9999, y: -9999 };
+  const ripples = [];
+  let W = 0;
+  let H = 0;
+  let dpr = 1;
 
-  const uRes = gl.getUniformLocation(prog, 'u_res');
-  const uYaw = gl.getUniformLocation(prog, 'u_yaw');
-  const uPitch = gl.getUniformLocation(prog, 'u_pitch');
-  const uFov = gl.getUniformLocation(prog, 'u_fov');
-  const uTex = gl.getUniformLocation(prog, 'u_tex');
+  function setSize() {
+    dpr = Math.min(window.devicePixelRatio || 1, 2);
+    W = window.innerWidth;
+    H = window.innerHeight;
+    canvas.width = Math.floor(W * dpr);
+    canvas.height = Math.floor(H * dpr);
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  }
 
-  const tex = gl.createTexture();
-  gl.bindTexture(gl.TEXTURE_2D, tex);
-  // WebGL 1.0 requires CLAMP_TO_EDGE + LINEAR (no mipmaps) for non-power-of-two textures (3072x1536)
-  gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE);
-  gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
-  gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR);
-  gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.LINEAR);
-  gl.uniform1i(uTex, 0);
+  function getWarpedPoint(gx, gy, col, row, cols, rows) {
+    const edgeMargin = 1.5;
+    const colPin = Math.min(col / edgeMargin, (cols - 1 - col) / edgeMargin, 1);
+    const rowPin = Math.min(row / edgeMargin, (rows - 1 - row) / edgeMargin, 1);
+    const pinFactor = colPin * colPin * rowPin * rowPin;
+
+    const dx = gx - mouse.x;
+    const dy = gy - mouse.y;
+    const dist = Math.sqrt(dx * dx + dy * dy);
+    const proximity = Math.max(0, 1 - dist / INFLUENCE_RADIUS) * pinFactor;
+
+    let rx = 0;
+    let ry = 0;
+    for (let i = 0; i < ripples.length; i++) {
+      const r = ripples[i];
+      const rdx = gx - r.x;
+      const rdy = gy - r.y;
+      const rdist = Math.sqrt(rdx * rdx + rdy * rdy);
+      const waveWidth = 55;
+      const diff = rdist - r.radius;
+      if (Math.abs(diff) < waveWidth) {
+        const strength = (1 - Math.abs(diff) / waveWidth) * r.opacity * 18 * pinFactor;
+        const angle = Math.atan2(rdy, rdx);
+        const sign = diff < 0 ? -1 : 1;
+        rx += Math.cos(angle) * strength * sign * -1;
+        ry += Math.sin(angle) * strength * sign * -1;
+      }
+    }
+
+    if (dist < INFLUENCE_RADIUS && dist > 0 && pinFactor > 0) {
+      const t = dist / INFLUENCE_RADIUS;
+      const eased = t < 0.01 ? 0 : (1 - t) * (1 - t) * Math.min(1, dist / 60);
+      const warpAmt = eased * MAX_WARP * pinFactor;
+      const angle = Math.atan2(dy, dx);
+      return {
+        pt: {
+          x: gx - Math.cos(angle) * warpAmt + rx,
+          y: gy - Math.sin(angle) * warpAmt + ry
+        },
+        proximity
+      };
+    }
+
+    return { pt: { x: gx + rx, y: gy + ry }, proximity };
+  }
+
+  function draw(now) {
+    const theme = isLightTheme() ? THEMES.light : THEMES.dark;
+
+    ctx.clearRect(0, 0, W, H);
+    ctx.fillStyle = theme.bg;
+    ctx.fillRect(0, 0, W, H);
+
+    // Subtle dot matrix texture
+    ctx.fillStyle = theme.dot;
+    for (let x = DOT_SPACING / 2; x < W; x += DOT_SPACING) {
+      for (let y = DOT_SPACING / 2; y < H; y += DOT_SPACING) {
+        ctx.beginPath();
+        ctx.arc(x, y, 0.7, 0, Math.PI * 2);
+        ctx.fill();
+      }
+    }
+
+    // Update ripples
+    for (let i = ripples.length - 1; i >= 0; i--) {
+      const r = ripples[i];
+      const age = (now - r.born) / 1000;
+      r.radius = Math.max(0, age * 400);
+      r.opacity = Math.max(0, 1 - age * 1.2);
+      if (r.opacity <= 0) ripples.splice(i, 1);
+    }
+
+    // Build warped grid
+    const cols = Math.max(2, Math.ceil(W / CELL_SIZE)) + 1;
+    const rows = Math.max(2, Math.ceil(H / CELL_SIZE)) + 1;
+    const cellW = W / (cols - 1);
+    const cellH = H / (rows - 1);
+
+    const pts = [];
+    const prox = [];
+    for (let row = 0; row < rows; row++) {
+      pts[row] = [];
+      prox[row] = [];
+      for (let col = 0; col < cols; col++) {
+        const res = getWarpedPoint(col * cellW, row * cellH, col, row, cols, rows);
+        pts[row][col] = res.pt;
+        prox[row][col] = res.proximity;
+      }
+    }
+
+    // Draw grid segments
+    function drawSeg(p1, p2, pr1, pr2) {
+      const avg = (pr1 + pr2) / 2;
+      const t = avg * avg * (3 - 2 * avg);
+      ctx.beginPath();
+      ctx.moveTo(p1.x, p1.y);
+      ctx.lineTo(p2.x, p2.y);
+      ctx.strokeStyle = lerpColor(theme.lineBase, theme.lineActive, t);
+      ctx.lineWidth = lerpN(0.8, 1.5, t);
+      ctx.stroke();
+    }
+
+    ctx.lineCap = 'butt';
+    for (let row = 0; row < rows; row++) {
+      for (let col = 0; col < cols - 1; col++) {
+        drawSeg(pts[row][col], pts[row][col + 1], prox[row][col], prox[row][col + 1]);
+      }
+    }
+    for (let col = 0; col < cols; col++) {
+      for (let row = 0; row < rows - 1; row++) {
+        drawSeg(pts[row][col], pts[row + 1][col], prox[row][col], prox[row + 1][col]);
+      }
+    }
+
+    // Draw intersection nodes & active glow rings
+    for (let row = 0; row < rows; row++) {
+      for (let col = 0; col < cols; col++) {
+        const p = pts[row][col];
+        const pr = prox[row][col];
+        const t = pr * pr * (3 - 2 * pr);
+        const r = lerpN(NODE_BASE_RADIUS, NODE_ACTIVE_RADIUS, t);
+
+        if (t > 0.3) {
+          const glowR = r + lerpN(0, 6, (t - 0.3) / 0.7);
+          const grd = ctx.createRadialGradient(p.x, p.y, r * 0.5, p.x, p.y, glowR);
+          grd.addColorStop(0, `rgba(${theme.glow},${(t * 0.3).toFixed(3)})`);
+          grd.addColorStop(1, `rgba(${theme.glow},0)`);
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, glowR, 0, Math.PI * 2);
+          ctx.fillStyle = grd;
+          ctx.fill();
+        }
+
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, r, 0, Math.PI * 2);
+        ctx.fillStyle = lerpColor(theme.nodeBase, theme.nodeActive, t);
+        ctx.fill();
+      }
+    }
+
+    // Draw click ripple rings
+    for (let i = 0; i < ripples.length; i++) {
+      const r = ripples[i];
+      const safeRadius = Math.max(0, r.radius);
+      ctx.beginPath();
+      ctx.arc(r.x, r.y, safeRadius, 0, Math.PI * 2);
+      ctx.strokeStyle = `rgba(${theme.ripple},${(r.opacity * 0.28).toFixed(3)})`;
+      ctx.lineWidth = 1.5;
+      ctx.stroke();
+    }
+  }
+
+  setSize();
+  window.addEventListener('resize', setSize, { passive: true });
 
   const reducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const isMobile = () => window.innerWidth <= 768;
-
-  // Camera state
-  let yaw = 0.02;
-  let pitch = -0.02;
-  let fov = isMobile() ? 1.24 : 1.08; // vertical FOV in radians (~62° desktop, ~71° mobile)
-  let targetFov = fov;
-
-  // Smooth target transition for viewpoint chips
-  let glideYaw = null;
-  let glidePitch = null;
-
-  // Drag & inertia
-  let isDragging = false;
-  let dragIntent = null; // 'pano' | 'scroll'
-  let lastX = 0;
-  let lastY = 0;
-  let startX = 0;
-  let startY = 0;
-  let velYaw = 0;
-  let velPitch = 0;
-
-  // Auto-orbit state
-  let autoRotateEnabled = !reducedMotion;
-  let idleResumeAt = 0;
-  let textureReady = false;
-  let isVisible = true;
-
-  const PITCH_MIN = -0.34; // Avoid floor tripod seam
-  const PITCH_MAX = 0.38;  // Avoid flat bare ceiling
-  const FOV_MIN = 0.72;    // ~41° zoom-in
-  const FOV_MAX = 1.38;    // ~79° wide
-
-  const bearingEl = document.getElementById('hero360Bearing');
-  const hintEl = document.getElementById('hero360Hint');
-  const autoBtn = document.getElementById('hero360AutoBtn');
-  const tourBtn = document.getElementById('hero360TourBtn');
-  const tourLabel = document.getElementById('hero360TourLabel');
-  const zoomInBtn = document.getElementById('hero360ZoomIn');
-  const zoomOutBtn = document.getElementById('hero360ZoomOut');
-  const spotBtns = Array.from(document.querySelectorAll('.hero-360-spot'));
-
-  function syncAutoBtnUI() {
-    if (!autoBtn) return;
-    autoBtn.classList.toggle('is-paused', !autoRotateEnabled);
-    autoBtn.setAttribute('aria-pressed', autoRotateEnabled ? 'true' : 'false');
-    autoBtn.setAttribute('aria-label', autoRotateEnabled ? 'Pause automatic rotation' : 'Resume automatic rotation');
-  }
-  syncAutoBtnUI();
-
-  function shortestAngleDiff(from, to) {
-    let diff = (to - from + Math.PI) % (Math.PI * 2) - Math.PI;
-    if (diff < -Math.PI) diff += Math.PI * 2;
-    return diff;
+  if (reducedMotion) {
+    draw(performance.now());
+    const themeBtn = document.getElementById('themeToggle');
+    if (themeBtn) themeBtn.addEventListener('click', () => setTimeout(() => draw(performance.now()), 20));
+    return;
   }
 
-  function normalizeAngle(a) {
-    const twoPi = Math.PI * 2;
-    return ((a % twoPi) + twoPi) % twoPi;
-  }
+  window.addEventListener('mousemove', (e) => {
+    targetMouse.x = e.clientX;
+    targetMouse.y = e.clientY;
+  }, { passive: true });
 
-  let lastHudUpdate = 0;
-  function updateHud(now) {
-    if (now - lastHudUpdate < 110) return;
-    lastHudUpdate = now;
+  window.addEventListener('mouseleave', () => {
+    targetMouse.x = -9999;
+    targetMouse.y = -9999;
+  }, { passive: true });
 
-    if (bearingEl) {
-      const deg = Math.round((normalizeAngle(yaw) * 180) / Math.PI) % 360;
-      bearingEl.textContent = `${String(deg).padStart(3, '0')}°`;
+  window.addEventListener('touchmove', (e) => {
+    if (e.touches && e.touches[0]) {
+      targetMouse.x = e.touches[0].clientX;
+      targetMouse.y = e.touches[0].clientY;
     }
+  }, { passive: true });
 
-    if (spotBtns.length) {
-      let closestBtn = null;
-      let minDist = Infinity;
-      spotBtns.forEach(btn => {
-        const sYaw = parseFloat(btn.getAttribute('data-yaw')) || 0;
-        const dist = Math.abs(shortestAngleDiff(yaw, sYaw));
-        if (dist < minDist) {
-          minDist = dist;
-          closestBtn = btn;
-        }
-      });
-      spotBtns.forEach(btn => btn.classList.toggle('is-active', btn === closestBtn && minDist < 0.72));
-    }
-  }
-
-  function resize() {
-    const dpr = Math.min(window.devicePixelRatio || 1, 2);
-    const w = Math.max(1, Math.floor(canvas.clientWidth * dpr));
-    const h = Math.max(1, Math.floor(canvas.clientHeight * dpr));
-    if (canvas.width !== w || canvas.height !== h) {
-      canvas.width = w;
-      canvas.height = h;
-      gl.viewport(0, 0, w, h);
-    }
-  }
-
-  // Load 360° equirectangular showroom image
-  const img = new Image();
-  img.onload = () => {
-    const maxTex = gl.getParameter(gl.MAX_TEXTURE_SIZE) || 4096;
-    let uploadSource = img;
-    if (img.naturalWidth > maxTex || img.naturalHeight > maxTex) {
-      const scale = Math.min(maxTex / img.naturalWidth, maxTex / img.naturalHeight);
-      const off = document.createElement('canvas');
-      off.width = Math.floor(img.naturalWidth * scale);
-      off.height = Math.floor(img.naturalHeight * scale);
-      off.getContext('2d').drawImage(img, 0, 0, off.width, off.height);
-      uploadSource = off;
-    }
-    gl.activeTexture(gl.TEXTURE0);
-    gl.bindTexture(gl.TEXTURE_2D, tex);
-    gl.pixelStorei(gl.UNPACK_FLIP_Y_WEBGL, false);
-    gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, uploadSource);
-    if (gl.getError() !== gl.NO_ERROR) return;
-    textureReady = true;
-    resize();
-    heroSection.classList.add('is-webgl-ready');
-  };
-  img.src = 'images/store-banner.jpg';
-
-  // Pointer & touch drag controls
-  function onPointerDown(e) {
-    if (e.button !== undefined && e.button !== 0) return;
-    if (e.target.closest('a, button, .hero-360-hud, .hero-apple__content')) return;
-
-    isDragging = true;
-    dragIntent = e.pointerType === 'mouse' ? 'pano' : null;
-    startX = lastX = e.clientX;
-    startY = lastY = e.clientY;
-    velYaw = 0;
-    velPitch = 0;
-    glideYaw = null;
-    glidePitch = null;
-    idleResumeAt = performance.now() + 5500;
-
-    if (dragIntent === 'pano') {
-      heroSection.classList.add('is-dragging');
-      if (hintEl) hintEl.textContent = 'Exploring 360°';
-      try { canvas.setPointerCapture(e.pointerId); } catch (err) {}
-    }
-  }
-
-  function onPointerMove(e) {
-    if (!isDragging) return;
-
-    const totalDx = e.clientX - startX;
-    const totalDy = e.clientY - startY;
-
-    if (!dragIntent) {
-      if (Math.abs(totalDy) > Math.abs(totalDx) && Math.abs(totalDy) > 10) {
-        dragIntent = 'scroll';
-        isDragging = false;
-        return;
-      }
-      if (Math.abs(totalDx) > 6) {
-        dragIntent = 'pano';
-        heroSection.classList.add('is-dragging');
-        if (hintEl) hintEl.textContent = 'Exploring 360°';
-        try { canvas.setPointerCapture(e.pointerId); } catch (err) {}
-      } else {
-        return;
-      }
-    }
-
-    const dx = e.clientX - lastX;
-    const dy = e.clientY - lastY;
-    lastX = e.clientX;
-    lastY = e.clientY;
-
-    const sensitivity = (fov / Math.max(canvas.clientHeight, 320)) * 1.18;
-    const dYaw = -dx * sensitivity;
-    const dPitch = dy * sensitivity * 0.72;
-
-    yaw += dYaw;
-    pitch = Math.max(PITCH_MIN, Math.min(PITCH_MAX, pitch + dPitch));
-    velYaw = dYaw * 0.82;
-    velPitch = dPitch * 0.7;
-    idleResumeAt = performance.now() + 5500;
-  }
-
-  function onPointerUp(e) {
-    if (!isDragging) return;
-    isDragging = false;
-    dragIntent = null;
-    heroSection.classList.remove('is-dragging');
-    if (hintEl) hintEl.textContent = 'Drag to look around';
-    try { canvas.releasePointerCapture(e.pointerId); } catch (err) {}
-  }
-
-  heroSection.addEventListener('pointerdown', onPointerDown, { passive: true });
-  window.addEventListener('pointermove', onPointerMove, { passive: true });
-  window.addEventListener('pointerup', onPointerUp, { passive: true });
-  window.addEventListener('pointercancel', onPointerUp, { passive: true });
-
-  // Keyboard accessibility when canvas is focused
-  canvas.addEventListener('keydown', (e) => {
-    const step = 0.14;
-    if (e.key === 'ArrowLeft') { e.preventDefault(); glideYaw = null; velYaw = -step * 0.35; idleResumeAt = performance.now() + 5000; }
-    else if (e.key === 'ArrowRight') { e.preventDefault(); glideYaw = null; velYaw = step * 0.35; idleResumeAt = performance.now() + 5000; }
-    else if (e.key === 'ArrowUp') { e.preventDefault(); pitch = Math.min(PITCH_MAX, pitch + 0.08); }
-    else if (e.key === 'ArrowDown') { e.preventDefault(); pitch = Math.max(PITCH_MIN, pitch - 0.08); }
-    else if (e.key === '+' || e.key === '=') { targetFov = Math.max(FOV_MIN, targetFov - 0.14); }
-    else if (e.key === '-' || e.key === '_') { targetFov = Math.min(FOV_MAX, targetFov + 0.14); }
-  });
-
-  // Viewpoint chips smooth camera glide
-  spotBtns.forEach(btn => {
-    btn.addEventListener('click', () => {
-      glideYaw = parseFloat(btn.getAttribute('data-yaw')) || 0;
-      glidePitch = parseFloat(btn.getAttribute('data-pitch')) || -0.02;
-      velYaw = 0;
-      velPitch = 0;
-      idleResumeAt = performance.now() + 6500;
-      spotBtns.forEach(b => b.classList.toggle('is-active', b === btn));
+  window.addEventListener('click', (e) => {
+    ripples.push({
+      x: e.clientX,
+      y: e.clientY,
+      radius: 0,
+      opacity: 1,
+      born: performance.now()
     });
-  });
+  }, { passive: true });
 
-  // Zoom controls
-  if (zoomInBtn) {
-    zoomInBtn.addEventListener('click', () => {
-      targetFov = Math.max(FOV_MIN, targetFov - 0.16);
-    });
-  }
-  if (zoomOutBtn) {
-    zoomOutBtn.addEventListener('click', () => {
-      targetFov = Math.min(FOV_MAX, targetFov + 0.16);
-    });
+  function animate(now) {
+    mouse.x = lerpN(mouse.x, targetMouse.x, LERP_SPEED);
+    mouse.y = lerpN(mouse.y, targetMouse.y, LERP_SPEED);
+    draw(now);
+    requestAnimationFrame(animate);
   }
 
-  // Auto-orbit toggle
-  if (autoBtn) {
-    autoBtn.addEventListener('click', () => {
-      autoRotateEnabled = !autoRotateEnabled;
-      idleResumeAt = 0;
-      syncAutoBtnUI();
-    });
-  }
-
-  // Full 360° unobstructed view toggle
-  if (tourBtn) {
-    tourBtn.addEventListener('click', () => {
-      const entering = !heroSection.classList.contains('is-tour-mode');
-      heroSection.classList.toggle('is-tour-mode', entering);
-      tourBtn.setAttribute('aria-pressed', entering ? 'true' : 'false');
-      if (tourLabel) tourLabel.textContent = entering ? 'Show Info' : 'Full 360°';
-      if (hintEl) hintEl.textContent = entering ? '360° Tour Active' : 'Drag to look around';
-    });
-  }
-
-  // Pause rendering when scrolled off-screen to save battery/GPU
-  if ('IntersectionObserver' in window) {
-    const observer = new IntersectionObserver((entries) => {
-      isVisible = entries[0]?.isIntersecting !== false;
-    }, { threshold: 0.02 });
-    observer.observe(heroSection);
-  }
-
-  window.addEventListener('resize', resize, { passive: true });
-
-  // Main 60fps render loop
-  let prevTime = performance.now();
-  function render(now) {
-    requestAnimationFrame(render);
-    if (!textureReady || !isVisible) {
-      prevTime = now;
-      return;
-    }
-
-    const dt = Math.min(0.05, (now - prevTime) / 1000);
-    prevTime = now;
-
-    if (!isDragging) {
-      if (glideYaw !== null) {
-        const diffYaw = shortestAngleDiff(yaw, glideYaw);
-        const diffPitch = (glidePitch !== null ? glidePitch : -0.02) - pitch;
-        yaw += diffYaw * Math.min(1, dt * 6.5);
-        pitch += diffPitch * Math.min(1, dt * 6.5);
-        if (Math.abs(diffYaw) < 0.004 && Math.abs(diffPitch) < 0.004) {
-          yaw = glideYaw;
-          pitch = glidePitch !== null ? glidePitch : pitch;
-          glideYaw = null;
-          glidePitch = null;
-        }
-      } else {
-        // Apply silky momentum decay
-        if (Math.abs(velYaw) > 0.0001 || Math.abs(velPitch) > 0.0001) {
-          yaw += velYaw;
-          pitch = Math.max(PITCH_MIN, Math.min(PITCH_MAX, pitch + velPitch));
-          const damp = Math.pow(0.06, dt);
-          velYaw *= damp;
-          velPitch *= damp;
-        } else if (autoRotateEnabled && now >= idleResumeAt) {
-          // Gentle architectural showroom pan
-          yaw += dt * 0.055;
-          pitch += (-0.02 - pitch) * dt * 0.6;
-        }
-      }
-    }
-
-    fov += (targetFov - fov) * Math.min(1, dt * 8);
-
-    resize();
-    gl.uniform2f(uRes, canvas.width, canvas.height);
-    gl.uniform1f(uYaw, yaw);
-    gl.uniform1f(uPitch, pitch);
-    gl.uniform1f(uFov, fov);
-    gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
-
-    updateHud(now);
-  }
-
-  requestAnimationFrame(render);
+  requestAnimationFrame(animate);
 }
