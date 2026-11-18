@@ -677,12 +677,117 @@
     }
 
     .hero-mosaic {
+      /* Light-mode mosaic tokens (reference palette) */
+      --m-shell-bg: #081c3e;
+      --m-tile-seam: transparent;
+      --m-chassis-bg: #c4b5f6;
+      --m-chassis-s1: #35363c;
+      --m-chassis-s2: #1d1e22;
+      --m-chassis-s3: #111215;
+      --m-chassis-stroke: #484a54;
+      --m-kb-bg: #b61e7a;
+      --m-kb-key-bg: #f8f7f4;
+      --m-kb-key-color: #b61e7a;
+      --m-kb-key-glow: none;
+      --m-kb-key-shadow: 0 4px 0 #d6c8d8, 0 6px 12px rgba(70, 8, 45, 0.28);
+      --m-kb-key-shadow-down: 0 1px 0 #d6c8d8, 0 2px 5px rgba(70, 8, 45, 0.22);
+      --m-kb-gold-bg: #f7b924;
+      --m-kb-gold-shadow: 0 4px 0 #cb8c0c, 0 6px 14px rgba(70, 8, 45, 0.3);
+      --m-kb-gold-shadow-down: 0 1px 0 #cb8c0c, 0 2px 5px rgba(70, 8, 45, 0.22);
+      --m-lap-bg: #edf4fb;
+      --m-lap-stripe-a: #dce7fb;
+      --m-lap-stripe-b: #9eb2f5;
+      --m-lap-dot-bg: #4628c8;
+      --m-lap-dot-fg: #32189f;
+      --m-charger-bg: #4ea3d8;
+      --m-charger-s1: #f7f9fc;
+      --m-charger-s2: #e5e9f0;
+      --m-charger-s3: #cfd6e0;
+      --m-prong-s1: #d8dee8;
+      --m-prong-s2: #a8b2c1;
+      --m-charger-panel: #ffffff;
+      --m-led-ring: #d1fae5;
+      --m-ribbon-bg: #1d2842;
+      --m-rib-1: #c82285;
+      --m-rib-2: #1e2942;
+      --m-rib-3: #4ea3d8;
+      --m-rib-4: #f5b324;
+      --m-diag-bg: #f3b21b;
+      --m-diag-orb-bg: radial-gradient(circle at 35% 32%, #ffffff 0%, #f7f4ec 68%, #ebe4d5 100%);
+      --m-diag-orb-border: transparent;
+      --m-diag-icon: #c59b38;
+      --m-diag-icon-active: #081c3e;
+      --m-diag-orb-shadow: inset 0 -4px 10px rgba(180, 125, 10, 0.08);
+      --m-diag-orb-glow: 0 0 22px rgba(255, 255, 255, 0.72), inset 0 -2px 8px rgba(180, 125, 10, 0.12);
+      --m-center-bg: #081c3e;
+      --m-pill-bg: rgba(4, 14, 34, 0.62);
+      --m-pill-border: rgba(255, 255, 255, 0.2);
+      --m-orbit-bg: #6f53c1;
+      --m-orbit-spokes: rgba(255, 255, 255, 0.85);
+      --m-orbit-node: #f4f3fa;
+      --m-orbit-node-glow: #ffffff;
+      --m-orbit-node-stroke: transparent;
+
       position: relative;
       z-index: 2;
       width: 100%;
       overflow: hidden;
-      background: #081c3e;
+      background: var(--m-shell-bg);
       border-bottom: 1px solid var(--border-subtle);
+      transition: background-color 0.35s ease;
+    }
+
+    /* Dark-mode mosaic theme (active when site is in Dark Mode) */
+    :root:not([data-theme="light"]) .hero-mosaic {
+      --m-shell-bg: #05070e;
+      --m-tile-seam: rgba(255, 255, 255, 0.07);
+      --m-chassis-bg: #151226;
+      --m-chassis-s1: #2a2c38;
+      --m-chassis-s2: #16171f;
+      --m-chassis-s3: #0b0c10;
+      --m-chassis-stroke: #46495c;
+      --m-kb-bg: #260a1e;
+      --m-kb-key-bg: #191620;
+      --m-kb-key-color: #f472b6;
+      --m-kb-key-glow: 0 0 10px rgba(244, 114, 182, 0.45);
+      --m-kb-key-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1), 0 4px 0 #09070d, 0 6px 14px rgba(0, 0, 0, 0.55);
+      --m-kb-key-shadow-down: inset 0 1px 0 rgba(255, 255, 255, 0.08), 0 1px 0 #09070d, 0 2px 5px rgba(0, 0, 0, 0.45);
+      --m-kb-gold-bg: #d99b16;
+      --m-kb-gold-shadow: inset 0 1px 0 rgba(255, 240, 190, 0.35), 0 4px 0 #7a5204, 0 6px 16px rgba(0, 0, 0, 0.55);
+      --m-kb-gold-shadow-down: inset 0 1px 0 rgba(255, 240, 190, 0.25), 0 1px 0 #7a5204, 0 2px 5px rgba(0, 0, 0, 0.45);
+      --m-lap-bg: #0c1322;
+      --m-lap-stripe-a: #1a2847;
+      --m-lap-stripe-b: #385296;
+      --m-lap-dot-bg: #2e1d85;
+      --m-lap-dot-fg: #130a3b;
+      --m-charger-bg: #0b2238;
+      --m-charger-s1: #2b3240;
+      --m-charger-s2: #1c212b;
+      --m-charger-s3: #11151d;
+      --m-prong-s1: #7c879b;
+      --m-prong-s2: #464f61;
+      --m-charger-panel: #353e4f;
+      --m-led-ring: #14532d;
+      --m-ribbon-bg: #090d17;
+      --m-rib-1: #5c1140;
+      --m-rib-2: #0a101f;
+      --m-rib-3: #143d61;
+      --m-rib-4: #8a6110;
+      --m-diag-bg: #241905;
+      --m-diag-orb-bg: radial-gradient(circle at 35% 32%, #24211b 0%, #15130f 68%, #0b0a08 100%);
+      --m-diag-orb-border: rgba(247, 185, 36, 0.16);
+      --m-diag-icon: #d4a22a;
+      --m-diag-icon-active: #ffd666;
+      --m-diag-orb-shadow: inset 0 -4px 10px rgba(0, 0, 0, 0.55);
+      --m-diag-orb-glow: 0 0 22px rgba(247, 185, 36, 0.34), inset 0 0 10px rgba(247, 185, 36, 0.14);
+      --m-center-bg: #050914;
+      --m-pill-bg: rgba(12, 18, 34, 0.78);
+      --m-pill-border: rgba(255, 255, 255, 0.14);
+      --m-orbit-bg: #181030;
+      --m-orbit-spokes: rgba(196, 181, 253, 0.34);
+      --m-orbit-node: #2e2256;
+      --m-orbit-node-glow: #6d56b8;
+      --m-orbit-node-stroke: rgba(196, 181, 253, 0.45);
     }
 
     .mosaic-row {
@@ -694,6 +799,7 @@
     .mosaic-row--top {
       grid-template-columns: repeat(5, minmax(0, 1fr));
       height: clamp(160px, 19.5vw, 275px);
+      border-bottom: 1px solid var(--m-tile-seam);
     }
 
     .mosaic-row--bottom {
@@ -706,6 +812,12 @@
       overflow: hidden;
       width: 100%;
       height: 100%;
+      box-shadow: inset 1px 0 0 var(--m-tile-seam);
+      transition: background-color 0.35s ease;
+    }
+
+    .mosaic-tile:first-child {
+      box-shadow: none;
     }
 
     .mosaic-svg {
@@ -714,9 +826,31 @@
       display: block;
     }
 
+    /* SVG Theme Bindings */
+    .svg-chassis-bg { fill: var(--m-chassis-bg); transition: fill 0.35s ease; }
+    .svg-chassis-shell { stroke: var(--m-chassis-stroke); transition: stroke 0.35s ease; }
+    .svg-chassis-stop-1 { stop-color: var(--m-chassis-s1); }
+    .svg-chassis-stop-2 { stop-color: var(--m-chassis-s2); }
+    .svg-chassis-stop-3 { stop-color: var(--m-chassis-s3); }
+    .svg-lap-bg { fill: var(--m-lap-bg); transition: fill 0.35s ease; }
+    .svg-lap-stripe-a { fill: var(--m-lap-stripe-a); transition: fill 0.35s ease; }
+    .svg-lap-stripe-b { fill: var(--m-lap-stripe-b); transition: fill 0.35s ease; }
+    .svg-lap-dot-bg { fill: var(--m-lap-dot-bg); transition: fill 0.35s ease; }
+    .svg-lap-dot-fg { fill: var(--m-lap-dot-fg); transition: fill 0.35s ease; }
+    .svg-charger-bg { fill: var(--m-charger-bg); transition: fill 0.35s ease; }
+    .svg-charger-stop-1 { stop-color: var(--m-charger-s1); }
+    .svg-charger-stop-2 { stop-color: var(--m-charger-s2); }
+    .svg-charger-stop-3 { stop-color: var(--m-charger-s3); }
+    .svg-prong-stop-1 { stop-color: var(--m-prong-s1); }
+    .svg-prong-stop-2 { stop-color: var(--m-prong-s2); }
+    .svg-charger-panel { fill: var(--m-charger-panel); transition: fill 0.35s ease; }
+    .svg-led-ring { fill: var(--m-led-ring); transition: fill 0.35s ease; }
+    .svg-orbit-bg { fill: var(--m-orbit-bg); transition: fill 0.35s ease; }
+    .svg-orbit-spokes { stroke: var(--m-orbit-spokes); transition: stroke 0.35s ease; }
+
     /* Tile 1: Lavender Hardware Chassis Animations */
     .mosaic-tile--chassis {
-      background: #c4b5f6;
+      background: var(--m-chassis-bg);
     }
 
     .anim-chassis-float {
@@ -750,7 +884,7 @@
 
     /* Tile 2: Magenta L A L L Y Mechanical Keyboard */
     .mosaic-tile--keyboard {
-      background: #b61e7a;
+      background: var(--m-kb-bg);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -778,28 +912,29 @@
 
     .kb-key {
       aspect-ratio: 1 / 0.92;
-      background: #f8f7f4;
+      background: var(--m-kb-key-bg);
       border-radius: clamp(5px, 0.6vw, 9px);
-      box-shadow: 0 4px 0 #d6c8d8, 0 6px 12px rgba(70, 8, 45, 0.28);
+      box-shadow: var(--m-kb-key-shadow);
       display: flex;
       align-items: center;
       justify-content: center;
       font-family: var(--font-sans);
       font-size: clamp(11px, 1.25vw, 17px);
       font-weight: 700;
-      color: #b61e7a;
+      color: var(--m-kb-key-color);
+      text-shadow: var(--m-kb-key-glow);
       user-select: none;
-      transition: transform 0.14s ease, box-shadow 0.14s ease;
+      transition: transform 0.14s ease, box-shadow 0.14s ease, background-color 0.35s ease, color 0.35s ease;
     }
 
     .kb-key:hover {
       transform: translateY(3px);
-      box-shadow: 0 1px 0 #d6c8d8, 0 2px 6px rgba(70, 8, 45, 0.24);
+      box-shadow: var(--m-kb-key-shadow-down);
     }
 
     .kb-key--gold {
-      background: #f7b924;
-      box-shadow: 0 4px 0 #cb8c0c, 0 6px 14px rgba(70, 8, 45, 0.3);
+      background: var(--m-kb-gold-bg);
+      box-shadow: var(--m-kb-gold-shadow);
     }
 
     .kb-key--space {
@@ -817,28 +952,28 @@
     @keyframes keyTap {
       0%, 8%, 22%, 100% {
         transform: translateY(0);
-        box-shadow: 0 4px 0 #d6c8d8, 0 6px 12px rgba(70, 8, 45, 0.28);
+        box-shadow: var(--m-kb-key-shadow);
       }
       13% {
         transform: translateY(3.5px);
-        box-shadow: 0 1px 0 #d6c8d8, 0 2px 4px rgba(70, 8, 45, 0.22);
+        box-shadow: var(--m-kb-key-shadow-down);
       }
     }
 
     @keyframes keyTapGold {
       0%, 8%, 24%, 100% {
         transform: translateY(0);
-        box-shadow: 0 4px 0 #cb8c0c, 0 6px 14px rgba(70, 8, 45, 0.3);
+        box-shadow: var(--m-kb-gold-shadow);
       }
       14% {
         transform: translateY(3.5px);
-        box-shadow: 0 1px 0 #cb8c0c, 0 2px 5px rgba(70, 8, 45, 0.22);
+        box-shadow: var(--m-kb-gold-shadow-down);
       }
     }
 
     /* Tile 3: Ice-Blue Verified Split Laptop Animations */
     .mosaic-tile--laptop {
-      background: #edf4fb;
+      background: var(--m-lap-bg);
     }
 
     .anim-laptop-bob {
@@ -883,7 +1018,7 @@
 
     /* Tile 4: Sky-Blue GaN Charger Animations */
     .mosaic-tile--charger {
-      background: #4ea3d8;
+      background: var(--m-charger-bg);
     }
 
     .anim-charger-float {
@@ -917,7 +1052,7 @@
 
     /* Tile 5: Animated Diagonal Ribbon Weave */
     .mosaic-tile--ribbons {
-      background: #1d2842;
+      background: var(--m-ribbon-bg);
     }
 
     .mosaic-ribbon-track {
@@ -927,14 +1062,14 @@
       height: 340%;
       background: repeating-linear-gradient(
         -45deg,
-        #c82285 0px,
-        #c82285 18px,
-        #1e2942 18px,
-        #1e2942 36px,
-        #4ea3d8 36px,
-        #4ea3d8 48px,
-        #f5b324 48px,
-        #f5b324 58px
+        var(--m-rib-1) 0px,
+        var(--m-rib-1) 18px,
+        var(--m-rib-2) 18px,
+        var(--m-rib-2) 36px,
+        var(--m-rib-3) 36px,
+        var(--m-rib-3) 48px,
+        var(--m-rib-4) 48px,
+        var(--m-rib-4) 58px
       );
       animation: ribbonGlide 9s linear infinite;
       will-change: transform;
@@ -947,7 +1082,7 @@
 
     /* Tile 6: Golden Amber 25-Point Diagnostic Spheres */
     .mosaic-tile--diagnostics {
-      background: #f3b21b;
+      background: var(--m-diag-bg);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -969,13 +1104,14 @@
       width: 100%;
       aspect-ratio: 1 / 1;
       border-radius: 50%;
-      background: radial-gradient(circle at 35% 32%, #ffffff 0%, #f7f4ec 68%, #ebe4d5 100%);
+      background: var(--m-diag-orb-bg);
+      border: 1px solid var(--m-diag-orb-border);
       display: flex;
       align-items: center;
       justify-content: center;
-      color: #c59b38;
-      box-shadow: inset 0 -4px 10px rgba(180, 125, 10, 0.08);
-      transition: transform 0.3s ease;
+      color: var(--m-diag-icon);
+      box-shadow: var(--m-diag-orb-shadow);
+      transition: transform 0.3s ease, background 0.35s ease, color 0.35s ease, border-color 0.35s ease;
     }
 
     .diag-orb svg {
@@ -991,19 +1127,20 @@
     @keyframes diagPulse {
       0%, 60%, 100% {
         transform: scale(1);
-        color: #c59b38;
-        box-shadow: inset 0 -4px 10px rgba(180, 125, 10, 0.08);
+        color: var(--m-diag-icon);
+        box-shadow: var(--m-diag-orb-shadow);
       }
       20% {
         transform: scale(1.06);
-        color: #081c3e;
-        box-shadow: 0 0 22px rgba(255, 255, 255, 0.72), inset 0 -2px 8px rgba(180, 125, 10, 0.12);
+        color: var(--m-diag-icon-active);
+        box-shadow: var(--m-diag-orb-glow);
       }
     }
 
     /* Tile 7: Center Deep Midnight Navy Hero Card */
     .mosaic-hero-center {
-      background: #081c3e;
+      background: var(--m-center-bg);
+      box-shadow: inset 1px 0 0 var(--m-tile-seam), inset -1px 0 0 var(--m-tile-seam);
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -1012,20 +1149,22 @@
       padding: clamp(1.8rem, 3.2vw, 2.85rem) clamp(1.25rem, 2.6vw, 2.5rem);
       position: relative;
       z-index: 2;
+      transition: background-color 0.35s ease;
     }
 
     .hero-pill-badge {
       display: inline-flex;
       align-items: center;
       gap: 9px;
-      background: rgba(4, 14, 34, 0.62);
-      border: 1px solid rgba(255, 255, 255, 0.2);
+      background: var(--m-pill-bg);
+      border: 1px solid var(--m-pill-border);
       backdrop-filter: blur(12px);
       -webkit-backdrop-filter: blur(12px);
       padding: 6px 15px;
       border-radius: var(--radius-pill);
       margin-bottom: 1.05rem;
       box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+      transition: background-color 0.35s ease, border-color 0.35s ease;
     }
 
     .hero-live-dot {
@@ -1080,13 +1219,14 @@
       gap: 0.45rem 0.72rem;
       padding: 7px 16px;
       border-radius: var(--radius-pill);
-      background: rgba(4, 14, 34, 0.58);
-      border: 1px solid rgba(255, 255, 255, 0.16);
+      background: var(--m-pill-bg);
+      border: 1px solid var(--m-pill-border);
       backdrop-filter: blur(12px);
       -webkit-backdrop-filter: blur(12px);
       box-shadow: 0 6px 20px rgba(0, 0, 0, 0.28);
       margin-bottom: 1.35rem;
       max-width: 100%;
+      transition: background-color 0.35s ease, border-color 0.35s ease;
     }
 
     .hero-proof-item {
@@ -1168,7 +1308,7 @@
 
     /* Tile 8: Royal Violet 12-Node Orbital Ring */
     .mosaic-tile--orbit {
-      background: #6f53c1;
+      background: var(--m-orbit-bg);
     }
 
     .anim-orbit-spin {
@@ -1182,7 +1322,11 @@
     }
 
     .orbit-node {
+      fill: var(--m-orbit-node);
+      stroke: var(--m-orbit-node-stroke);
+      stroke-width: 1.5;
       animation: nodeGlowWave 3.6s ease-in-out infinite;
+      transition: fill 0.35s ease, stroke 0.35s ease;
     }
 
     .on-1 { animation-delay: 0s; }
@@ -1199,8 +1343,8 @@
     .on-12 { animation-delay: 3.3s; }
 
     @keyframes nodeGlowWave {
-      0%, 70%, 100% { fill: #f4f3fa; opacity: 0.9; }
-      35% { fill: #ffffff; opacity: 1; }
+      0%, 70%, 100% { fill: var(--m-orbit-node); opacity: 0.9; }
+      35% { fill: var(--m-orbit-node-glow); opacity: 1; }
     }
 
     /* Responsive Mosaic Breakpoints */
