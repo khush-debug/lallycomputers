@@ -697,8 +697,8 @@
     }
 
     .mosaic-row--bottom {
-      grid-template-columns: minmax(0, 1.02fr) minmax(0, 1.88fr) minmax(0, 1.02fr);
-      min-height: clamp(245px, 24.5vw, 350px);
+      grid-template-columns: minmax(0, 0.96fr) minmax(0, 2.08fr) minmax(0, 0.96fr);
+      min-height: clamp(275px, 26vw, 370px);
     }
 
     .mosaic-tile {
@@ -1009,38 +1009,111 @@
       align-items: center;
       justify-content: center;
       text-align: center;
-      padding: clamp(2rem, 3.6vw, 3.2rem) clamp(1.4rem, 3vw, 2.8rem);
+      padding: clamp(1.8rem, 3.2vw, 2.85rem) clamp(1.25rem, 2.6vw, 2.5rem);
       position: relative;
       z-index: 2;
     }
 
-    .mosaic-hero-eyebrow {
-      font-family: var(--font-mono);
-      font-size: clamp(10.5px, 0.95vw, 12px);
-      font-weight: 500;
-      letter-spacing: 0.18em;
+    .hero-pill-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      background: rgba(4, 14, 34, 0.62);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      padding: 6px 15px;
+      border-radius: var(--radius-pill);
+      margin-bottom: 1.05rem;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+    }
+
+    .hero-live-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #22c55e;
+      box-shadow: 0 0 9px #22c55e, 0 0 16px rgba(34, 197, 94, 0.58);
+      display: inline-block;
+      flex-shrink: 0;
+      animation: pulseLiveDot 2.2s ease-in-out infinite;
+    }
+
+    @keyframes pulseLiveDot {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.35; transform: scale(1.38); }
+    }
+
+    .hero-pill-badge .hero-eyebrow {
+      margin-bottom: 0;
+      font-size: clamp(10.5px, 0.88vw, 12.5px);
+      font-weight: 600;
+      color: #f8fafc;
       text-transform: uppercase;
-      color: #87a6d4;
-      margin-bottom: 0.85rem;
+      letter-spacing: 0.08em;
     }
 
     .mosaic-hero-title {
       font-family: var(--font-sans);
-      font-size: clamp(2.4rem, 4.4vw, 3.85rem);
+      font-size: clamp(2.35rem, 4.2vw, 3.75rem);
       font-weight: 700;
-      line-height: 1.06;
+      line-height: 1.05;
       letter-spacing: -0.035em;
       color: #ffffff;
-      margin-bottom: 0.95rem;
+      margin-bottom: 0.85rem;
     }
 
     .mosaic-hero-desc {
-      font-size: clamp(0.95rem, 1.25vw, 1.1rem);
-      line-height: 1.55;
-      color: rgba(226, 236, 252, 0.84);
-      max-width: 470px;
+      font-size: clamp(0.92rem, 1.18vw, 1.06rem);
+      line-height: 1.5;
+      color: rgba(226, 236, 252, 0.86);
+      max-width: 500px;
       margin-inline: auto;
-      margin-bottom: 1.7rem;
+      margin-bottom: 1.15rem;
+    }
+
+    .hero-proof-row {
+      display: inline-flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      gap: 0.45rem 0.72rem;
+      padding: 7px 16px;
+      border-radius: var(--radius-pill);
+      background: rgba(4, 14, 34, 0.58);
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.28);
+      margin-bottom: 1.35rem;
+      max-width: 100%;
+    }
+
+    .hero-proof-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-size: clamp(11.5px, 0.92vw, 13.5px);
+      font-weight: 500;
+      color: rgba(248, 250, 252, 0.94);
+      white-space: nowrap;
+    }
+
+    .hero-proof-item b {
+      color: #ffffff;
+      font-weight: 700;
+    }
+
+    .hero-proof-item svg {
+      width: 14px;
+      height: 14px;
+      color: #f7b924;
+      flex-shrink: 0;
+    }
+
+    .hero-proof-dot {
+      color: rgba(255, 255, 255, 0.38);
+      font-weight: 700;
     }
 
     .mosaic-hero-actions {
@@ -1169,8 +1242,15 @@
       }
 
       .mosaic-hero-desc {
-        font-size: 0.95rem;
-        margin-bottom: 1.4rem;
+        font-size: 0.92rem;
+        margin-bottom: 1rem;
+      }
+
+      .hero-proof-row {
+        border-radius: 16px;
+        padding: 8px 14px;
+        gap: 0.35rem 0.6rem;
+        margin-bottom: 1.2rem;
       }
 
       .mosaic-btn {
