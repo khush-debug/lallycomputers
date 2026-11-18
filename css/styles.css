@@ -16,7 +16,7 @@
       --apple-gold: #f5c563;
       --circuit-green: #25d366;
       --font-display: "Oswald", "DIN Condensed", "Arial Narrow", sans-serif;
-      --font-sans: "Barlow", -apple-system, BlinkMacSystemFont, "Helvetica Neue", sans-serif;
+      --font-sans: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Hanken Grotesk", "Helvetica Neue", sans-serif;
       --font-mono: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, monospace;
       --nav-height: 62px;
       --max-w: 1600px;
@@ -69,52 +69,9 @@
       font-size: 17px;
       line-height: 1.55;
       font-weight: 400;
-      letter-spacing: 0em;
+      letter-spacing: -0.02em;
       overflow-x: hidden;
       -webkit-font-smoothing: antialiased;
-    }
-
-    /* Condensed Grotesque Display Typography (Oswald) */
-    h1, h2, h3, h4,
-    .nav-brand,
-    .nav-links a,
-    .hero-eyebrow,
-    .section-eyebrow,
-    .section-headline,
-    .store-title,
-    .apple-pill-btn,
-    .nav-cta-btn,
-    .nav-cat-space-btn,
-    .amz-price-current,
-    .cart-total-val,
-    .review-headline {
-      font-family: var(--font-display);
-    }
-
-    .nav-brand {
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-    }
-
-    .nav-links a {
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
-      font-weight: 500;
-    }
-
-    .section-headline,
-    .store-title {
-      text-transform: uppercase;
-      letter-spacing: 0.025em !important;
-      font-weight: 600 !important;
-    }
-
-    .apple-pill-btn,
-    .nav-cta-btn,
-    .nav-cat-space-btn {
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      font-weight: 500;
     }
 
     a {
