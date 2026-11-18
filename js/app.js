@@ -694,12 +694,14 @@ function renderSpaceProducts() {
     const rating = item.rating || 4.5;
     const reviews = item.reviewsCount || 120;
     const bought = item.boughtPastMonth || '500+ bought in past month';
-    const delivery = item.delivery || 'FREE delivery Thu, 19 Nov';
-    const image = item.image || `images/products/${item.id}.svg`;
+    const delivery = item.delivery || 'In-Store Pickup · Sodhi Nagar, Moga';
+    const fallbackImg = getCategoryFallbackImage(item.category);
+    const image = normalizeProductImageUrl(item.image) || `images/products/${item.id}.svg`;
     const waText = encodeURIComponent(`Hi Lally Computers, I want to inquire about ${item.title} (${item.price}). Is this currently in stock at Sodhi Nagar?`);
 
     const badgesHtml = `
       <div class="amz-badge-strip">
+        ${item.isLowStock ? '<span class="amz-badge-tag amz-badge-tag--used">🔥 Low Stock</span>' : ''}
         ${item.condition === 'service' ? '<span class="amz-badge-tag amz-badge-tag--lab">🔬 In-Store Lab Service</span>' : ''}
         ${item.condition === 'used' ? '<span class="amz-badge-tag amz-badge-tag--used">⚡ 25-Point Lab Verified</span>' : ''}
         ${item.condition === 'new' ? '<span class="amz-badge-tag amz-badge-tag--new">✨ 100% Factory Sealed</span>' : ''}
@@ -749,7 +751,7 @@ function renderSpaceProducts() {
       <article class="amz-product-row" id="product-${item.id}">
         <div class="amz-img-col">
           <div class="amz-img-container">
-            <img class="amz-product-img" src="${image}" alt="${item.title}" loading="lazy" width="180" height="150">
+            <img class="amz-product-img" src="${image}" alt="${item.title}" loading="lazy" width="180" height="150" onerror="this.onerror=null;this.src='${fallbackImg}';">
           </div>
           <div class="amz-mobile-img-actions">
             ${mobileLabOrSpecBtn}
@@ -1097,15 +1099,33 @@ function openLabReportModal(id) {
 
   const rep = item.labReport;
   document.getElementById('labLaptopTitle').textContent = item.title;
-  document.getElementById('labReportId').textContent = rep.reportId || 'SUP-2024-LAB-001';
-  document.getElementById('labTestedDate').textContent = rep.testDate || 'Tested Recently';
-  document.getElementById('labGradeBadge').textContent = rep.grade || 'GRADE A+';
-  document.getElementById('labOverallNotes').textContent = rep.overallNotes || '';
-  document.getElementById('labInspector').textContent = rep.inspector || 'Senior Hardware Engineer';
+  document.getElementById('labReportId').textContent = rep.reportId || 'SIL-LAB-VERIFIED';
+  document.getElementById('labTestedDate').textContent = rep.testedDate || rep.testDate || 'Verified In-Store';
+  document.getElementById('labGradeBadge').textContent = rep.overallGrade || rep.grade || 'GRADE A+';
+  document.getElementById('labOverallNotes').textContent =
+    rep.overallNotes || 'Passed all 25-point physical, thermal, electrical, and component integrity benchmarks at Supreme Infosys Lab, Sodhi Nagar, Moga.';
+  document.getElementById('labInspector').textContent = rep.technician || rep.inspector || 'Senior Hardware Engineer';
 
   const tbody = document.getElementById('labChecklistTbody');
-  if (tbody && rep.checklist) {
-    tbody.innerHTML = rep.checklist.map(chk => `
+  if (tbody) {
+    let checks = Array.isArray(rep.checklist) && rep.checklist.length ? rep.checklist : [];
+    if (checks.length === 0) {
+      const fieldMap = [
+        ['Battery Health', rep.batteryHealth],
+        ['CPU & Thermal Stress', rep.cpuStress],
+        ['SSD S.M.A.R.T. Health', rep.ssdHealth],
+        ['Display Panel & Backlight', rep.screenStatus],
+        ['Keyboard & Trackpad', rep.keyboardTrackpad],
+        ['Motherboard & Power Rail', rep.motherboardPower],
+        ['Ports & I/O Interfaces', rep.portsIo],
+        ['Chassis & Hinges', rep.casingHinges]
+      ];
+      checks = fieldMap
+        .filter(([, val]) => val && String(val).trim().length > 0)
+        .map(([point, result]) => ({ point, result, status: 'PASS' }));
+    }
+
+    tbody.innerHTML = checks.map(chk => `
       <tr>
         <td class="lab-point-name">${chk.point}</td>
         <td class="lab-point-result">${chk.result} <span class="lab-pass-tag">✓ ${chk.status || 'PASS'}</span></td>
@@ -1115,7 +1135,7 @@ function openLabReportModal(id) {
 
   const waBtn = document.getElementById('labReportWaBtn');
   if (waBtn) {
-    waBtn.href = `https://wa.me/919872010193?text=${encodeURIComponent(`Hi Lally Computers, I reviewed Lab Diagnostic Report ${rep.reportId} for ${item.title}. Can I inspect it in Sodhi Nagar?`)}`;
+    waBtn.href = `https://wa.me/919872010193?text=${encodeURIComponent(`Hi Lally Computers, I reviewed Lab Diagnostic Report ${rep.reportId || ''} for ${item.title}. Can I inspect it in Sodhi Nagar?`)}`;
   }
 
   Modal.open('labReportModal');
@@ -1162,12 +1182,53 @@ function closeSpecSheet() {
 }
 
 /* ==========================================================================
-   GOOGLE SHEETS LIVE STOCK SYNC
+   GOOGLE SHEETS LIVE STOCK SYNC (GLOBAL DEFAULT + LIVE UPDATES)
    ========================================================================== */
+const DEFAULT_LIVE_SHEET_URL =
+  'https://docs.google.com/spreadsheets/d/1dPrip8jyf-zaRk_Bm0fQWb9R3P2sNTSX-FbtXQoH4V4/edit?usp=sharing';
+
+const CATEGORY_FALLBACK_IMAGES = {
+  laptops_used: 'images/products/lap-used-1.svg',
+  laptops_new: 'images/products/lap-new-1.svg',
+  laptops_gaming: 'images/products/lap-game-1.svg',
+  pc: 'images/products/pc-1.svg',
+  pc_components: 'images/products/pcc-1.svg',
+  pc_peripherals: 'images/products/per-1.svg',
+  monitors: 'images/products/mon-1.svg',
+  watches: 'images/products/wat-1.svg',
+  gadgets: 'images/products/gad-1.svg',
+  gym: 'images/products/gym-1.svg',
+  suitcases: 'images/products/suit-1.svg',
+  appliances: 'images/products/app-1.svg',
+  repairs: 'images/products/rep-1.svg'
+};
+
+function getCategoryFallbackImage(category) {
+  return CATEGORY_FALLBACK_IMAGES[category] || 'images/products/lap-used-1.svg';
+}
+
+function normalizeProductImageUrl(url) {
+  if (!url) return '';
+  const clean = url.trim();
+  if (!clean) return '';
+  // Convert Google Drive share links into direct embeddable image URLs
+  const driveFileMatch = clean.match(/drive\.google\.com\/file\/d\/([a-zA-Z0-9-_]+)/);
+  if (driveFileMatch) {
+    return `https://lh3.googleusercontent.com/d/${driveFileMatch[1]}=w800`;
+  }
+  const driveIdMatch = clean.match(/drive\.google\.com\/(?:open|uc)\?.*id=([a-zA-Z0-9-_]+)/);
+  if (driveIdMatch) {
+    return `https://lh3.googleusercontent.com/d/${driveIdMatch[1]}=w800`;
+  }
+  return clean;
+}
+
 function normalizeGoogleSheetUrl(url) {
   if (!url) return '';
   url = url.trim();
-  if (url.includes('output=csv') || url.includes('/export?format=csv')) return url;
+  if (url.includes('output=csv') || url.includes('tqx=out:csv') || url.includes('/export?format=csv')) {
+    return url;
+  }
 
   const match = url.match(/\/d\/([a-zA-Z0-9-_]+)/);
   if (!match) return url;
@@ -1177,75 +1238,156 @@ function normalizeGoogleSheetUrl(url) {
   const gidMatch = url.match(/[#&?]gid=([0-9]+)/);
   if (gidMatch) gid = gidMatch[1];
 
-  return `https://docs.google.com/spreadsheets/d/${sheetId}/export?format=csv&gid=${gid}`;
+  // gviz CSV endpoint supports browser CORS and reflects edits quickly
+  return `https://docs.google.com/spreadsheets/d/${sheetId}/gviz/tq?tqx=out:csv&gid=${gid}`;
 }
 
 function parseCSV(text) {
-  const lines = text.split(/\r?\n/).filter(l => l.trim().length > 0);
   const rows = [];
-  for (let i = 0; i < lines.length; i++) {
-    const line = lines[i];
-    const row = [];
-    let insideQuote = false;
-    let entry = '';
-    for (let c = 0; c < line.length; c++) {
-      const ch = line[c];
-      if (ch === '"') {
-        if (insideQuote && line[c + 1] === '"') { entry += '"'; c++; }
-        else { insideQuote = !insideQuote; }
-      } else if (ch === ',' && !insideQuote) {
-        row.push(entry.trim());
-        entry = '';
+  let row = [];
+  let entry = '';
+  let insideQuote = false;
+
+  for (let i = 0; i < text.length; i++) {
+    const ch = text[i];
+    if (ch === '"') {
+      if (insideQuote && text[i + 1] === '"') {
+        entry += '"';
+        i++;
       } else {
-        entry += ch;
+        insideQuote = !insideQuote;
       }
+    } else if (ch === ',' && !insideQuote) {
+      row.push(entry.trim());
+      entry = '';
+    } else if ((ch === '\n' || ch === '\r') && !insideQuote) {
+      if (ch === '\r' && text[i + 1] === '\n') i++;
+      row.push(entry.trim());
+      if (row.some(cell => cell.length > 0)) rows.push(row);
+      row = [];
+      entry = '';
+    } else {
+      entry += ch;
     }
+  }
+  if (entry.length > 0 || row.length > 0) {
     row.push(entry.trim());
-    rows.push(row);
+    if (row.some(cell => cell.length > 0)) rows.push(row);
   }
   return rows;
 }
 
+function isUnavailableStatus(statusStr) {
+  if (!statusStr) return false;
+  const s = statusStr.trim().toLowerCase();
+  return (
+    s === 'sold' ||
+    s === 'sold out' ||
+    s === 'out of stock' ||
+    s === 'unavailable' ||
+    s === 'hidden' ||
+    s === 'archived' ||
+    s === 'inactive' ||
+    s === 'no' ||
+    s === '0' ||
+    s === 'false'
+  );
+}
+
 function mapCsvToProducts(rows) {
   if (rows.length < 2) return [];
-  const headers = rows[0].map(h => h.trim().toLowerCase());
+  const headers = rows[0].map(h => h.replace(/^\uFEFF/, '').trim().toLowerCase());
+  const defaultById = {};
+  (window.DEFAULT_PRODUCTS || []).forEach(p => {
+    defaultById[p.id] = p;
+  });
+
   const products = [];
 
   for (let i = 1; i < rows.length; i++) {
     const r = rows[i];
-    if (!r || r.length === 0 || !r[0]) continue;
+    if (!r || r.length === 0) continue;
     const obj = {};
     headers.forEach((h, idx) => {
       obj[h] = (r[idx] || '').trim();
     });
 
+    if (!obj.id && !obj.title) continue;
+    if (isUnavailableStatus(obj.status)) continue;
+
     const id = obj.id || `csv-${i}`;
-    const pNum = parseFloat((obj.pricenum || obj.price || '0').replace(/[^0-9.]/g, '')) || 0;
-    const mrpNum = parseFloat((obj.mrpnum || obj.mrp || '0').replace(/[^0-9.]/g, '')) || 0;
-    const specsList = obj.specs ? obj.specs.split('|').map(s => s.trim()) : [];
+    const base = defaultById[id] || {};
+    const category = obj.category || base.category || 'laptops_used';
+
+    const rawPriceNum = parseFloat((obj.pricenum || obj.price || '').replace(/[^0-9.]/g, ''));
+    const pNum = !isNaN(rawPriceNum) ? rawPriceNum : (base.priceNum || 0);
+    const rawMrpNum = parseFloat((obj.mrpnum || obj.mrp || '').replace(/[^0-9.]/g, ''));
+    const mrpNum = !isNaN(rawMrpNum) && rawMrpNum > 0 ? rawMrpNum : (base.mrpNum || 0);
+
+    const specsList = obj.specs
+      ? obj.specs.split('|').map(s => s.trim()).filter(Boolean)
+      : (base.specs || []);
+
+    const statusLower = (obj.status || '').toLowerCase();
+    const isLowStock = statusLower.includes('low') || statusLower.includes('last');
+
+    // Rebuild 25-Point Lab Report if lab columns are present in sheet (or inherit from default)
+    const hasCsvLab =
+      obj.labreportid || obj.overallgrade || obj.batteryhealth || obj.cpustress || obj.ssdhealth || obj.screenstatus;
+    const labReport = hasCsvLab
+      ? {
+          reportId: obj.labreportid || (base.labReport && base.labReport.reportId) || `SIL-LAB-${i}`,
+          overallGrade: obj.overallgrade || (base.labReport && base.labReport.overallGrade) || 'Grade A+',
+          batteryHealth: obj.batteryhealth || '',
+          cpuStress: obj.cpustress || '',
+          ssdHealth: obj.ssdhealth || '',
+          screenStatus: obj.screenstatus || '',
+          keyboardTrackpad: obj.keyboardtrackpad || '',
+          motherboardPower: obj.motherboardpower || '',
+          portsIo: obj.portsio || '',
+          casingHinges: obj.casinghinges || '',
+          technician: obj.technician || (base.labReport && base.labReport.technician) || 'Supreme Infosys Lab Engineer',
+          testedDate: obj.testeddate || (base.labReport && base.labReport.testedDate) || 'Verified In-Store'
+        }
+      : (base.labReport || null);
+
+    const resolvedImg =
+      normalizeProductImageUrl(obj.image) ||
+      base.image ||
+      getCategoryFallbackImage(category);
+
+    const computedDiscount =
+      obj.discount ||
+      (mrpNum > pNum && pNum > 0 ? `${Math.round(((mrpNum - pNum) / mrpNum) * 100)}% off` : (base.discount || ''));
 
     products.push({
       id: id,
-      category: obj.category || 'laptops_used',
-      brand: obj.brand || 'Supreme',
-      title: obj.title || 'In-Store Product',
-      desc: obj.desc || '',
-      price: obj.price || (pNum ? `₹${pNum.toLocaleString('en-IN')}` : 'Inquire for Price'),
+      status: obj.status || 'In Stock',
+      isLowStock: isLowStock,
+      category: category,
+      brand: obj.brand || base.brand || 'Supreme',
+      title: obj.title || base.title || 'In-Store Product',
+      desc: obj.desc || base.desc || '',
+      price: obj.price || (pNum ? `₹${pNum.toLocaleString('en-IN')}` : (base.price || 'Inquire for Price')),
       priceNum: pNum,
-      mrp: obj.mrp || (mrpNum ? `₹${mrpNum.toLocaleString('en-IN')}` : ''),
+      budget: obj.budget || base.budget || '',
+      size: obj.size || base.size || '',
+      panel: obj.panel || base.panel || '',
+      mrp: obj.mrp || (mrpNum ? `₹${mrpNum.toLocaleString('en-IN')}` : (base.mrp || '')),
       mrpNum: mrpNum,
-      discount: obj.discount || (mrpNum > pNum && pNum > 0 ? `${Math.round(((mrpNum - pNum) / mrpNum) * 100)}% off` : ''),
-      badge: obj.badge || '',
-      condition: obj.condition || 'new',
-      warranty: obj.warranty || 'Warranty Included',
+      discount: computedDiscount,
+      badge: obj.badge || base.badge || '',
+      condition: obj.condition || base.condition || 'new',
+      warranty: obj.warranty || base.warranty || 'Warranty Included',
       specs: specsList,
-      details: obj.details ? { "Specifications": obj.details } : {},
-      image: obj.image || `images/products/${id}.svg`,
-      rating: parseFloat(obj.rating) || 4.5,
-      reviewsCount: parseInt(obj.reviewscount, 10) || 120,
-      boughtPastMonth: obj.boughtpastmonth || '100+ bought in past month',
-      delivery: obj.delivery || 'In-Store Available · Sodhi Nagar, Moga',
-      fastDelivery: obj.fastdelivery || 'Same-Day Pickup Available'
+      details: obj.details ? { 'Specifications': obj.details } : (base.details || {}),
+      labReport: labReport,
+      image: resolvedImg,
+      rating: parseFloat(obj.rating) || base.rating || 4.5,
+      reviewsCount: parseInt(obj.reviewscount, 10) || base.reviewsCount || 120,
+      boughtPastMonth: obj.boughtpastmonth || base.boughtPastMonth || '100+ bought in past month',
+      delivery: obj.delivery || base.delivery || 'In-Store Pickup · Sodhi Nagar, Moga',
+      fastDelivery: obj.fastdelivery || base.fastDelivery || 'Same-Day Pickup Available'
     });
   }
   return products;
@@ -1253,16 +1395,20 @@ function mapCsvToProducts(rows) {
 
 function fetchAndSyncGoogleSheet(csvUrl, isManual) {
   showTopLoader();
-  const normUrl = normalizeGoogleSheetUrl(csvUrl);
+  const baseUrl = normalizeGoogleSheetUrl(csvUrl);
+  const sep = baseUrl.includes('?') ? '&' : '?';
+  const fetchUrl = `${baseUrl}${sep}_t=${Date.now()}`;
+
   const statusEl = document.getElementById('sheetSyncStatus');
+  const currentSourceEl = document.getElementById('sheetCurrentStatus');
   const badgeEl = document.getElementById('sheetSyncBadgeText');
   const indicatorEl = document.getElementById('sheetStatusIndicator');
 
-  if (statusEl) {
+  if (statusEl && isManual) {
     statusEl.innerHTML = '<span style="color:#60a5fa">Connecting to Google Sheets...</span>';
   }
 
-  fetch(normUrl)
+  fetch(fetchUrl, { cache: 'no-store' })
     .then(res => {
       if (!res.ok) throw new Error(`HTTP ${res.status}`);
       return res.text();
@@ -1270,18 +1416,24 @@ function fetchAndSyncGoogleSheet(csvUrl, isManual) {
     .then(csvText => {
       const rows = parseCSV(csvText);
       const newProducts = mapCsvToProducts(rows);
-      if (newProducts.length === 0) throw new Error("No products found in sheet.");
+      if (newProducts.length === 0) throw new Error('No in-stock products found in sheet.');
 
       window.PRODUCTS = newProducts;
-      try { localStorage.setItem('lally_sheet_url', csvUrl); } catch (e) { }
+      if (isManual) {
+        try { localStorage.setItem('lally_sheet_url', csvUrl); } catch (e) { }
+      }
 
       if (statusEl) {
-        statusEl.innerHTML = `<span style="color:#34d399">✓ Successfully synced ${newProducts.length} live items!</span>`;
+        statusEl.innerHTML = `<span style="color:#34d399">✓ Synced ${newProducts.length} live in-stock items!</span>`;
       }
-      if (badgeEl) badgeEl.textContent = `Live Sheets (${newProducts.length} Items)`;
+      if (currentSourceEl) {
+        currentSourceEl.textContent = `Live Google Sheet (${newProducts.length} In-Stock Items)`;
+      }
+      if (badgeEl) badgeEl.textContent = `Live Stock (${newProducts.length} Items)`;
       if (indicatorEl) indicatorEl.className = 'dot-status dot-open';
 
       renderCategories();
+      renderCategoryFilters(activeCategory);
       renderSpaceProducts();
 
       finishTopLoader();
@@ -1291,20 +1443,23 @@ function fetchAndSyncGoogleSheet(csvUrl, isManual) {
       }
     })
     .catch(err => {
-      console.warn("Google Sheet sync error:", err);
+      console.warn('Google Sheet sync error:', err);
       finishTopLoader();
-      if (statusEl) {
-        statusEl.innerHTML = `<span style="color:#f87171">Sync failed. Ensure sheet is published as CSV or public viewer. (${err.message})</span>`;
+      if (statusEl && isManual) {
+        statusEl.innerHTML = `<span style="color:#f87171">Sync failed. Ensure sheet sharing is "Anyone with the link can view". (${err.message})</span>`;
       }
-      if (badgeEl) badgeEl.textContent = 'Sync Google Sheet';
+      if (currentSourceEl) {
+        currentSourceEl.textContent = 'In-Store Default Catalogue (Fallback)';
+      }
+      if (badgeEl) badgeEl.textContent = 'Live Google Sheet Stock Manager';
       if (indicatorEl) indicatorEl.className = 'dot-status dot-closed';
     });
 }
 
 function openSheetSyncModal() {
   const input = document.getElementById('sheetUrlInput');
-  const savedUrl = localStorage.getItem('lally_sheet_url');
-  if (input && savedUrl) input.value = savedUrl;
+  const activeUrl = localStorage.getItem('lally_sheet_url') || DEFAULT_LIVE_SHEET_URL;
+  if (input && activeUrl) input.value = activeUrl;
   Modal.open('sheetSyncModal');
 }
 
@@ -1323,13 +1478,15 @@ function resetToDefaultStock() {
   window.PRODUCTS = window.DEFAULT_PRODUCTS.slice(0);
 
   const input = document.getElementById('sheetUrlInput');
-  if (input) input.value = '';
+  if (input) input.value = DEFAULT_LIVE_SHEET_URL;
+  const currentSourceEl = document.getElementById('sheetCurrentStatus');
+  if (currentSourceEl) currentSourceEl.textContent = 'In-Store Default Catalogue (Offline)';
   const badgeEl = document.getElementById('sheetSyncBadgeText');
-  if (badgeEl) badgeEl.textContent = 'Sync Google Sheet';
+  if (badgeEl) badgeEl.textContent = 'Live Google Sheet Stock Manager';
   const indicatorEl = document.getElementById('sheetStatusIndicator');
   if (indicatorEl) indicatorEl.className = 'dot-status dot-closed';
   const statusEl = document.getElementById('sheetSyncStatus');
-  if (statusEl) statusEl.innerHTML = '<span style="color:#94a3b8">Default in-store inventory restored.</span>';
+  if (statusEl) statusEl.innerHTML = '<span style="color:#94a3b8">Default offline catalogue restored.</span>';
 
   renderCategories();
   renderCategoryFilters(activeCategory);
@@ -1784,10 +1941,10 @@ document.addEventListener('DOMContentLoaded', () => {
     if (e.key === 'Escape') Modal.close();
   });
 
-  // Check for saved Google Sheet URL
-  const savedSheet = localStorage.getItem('lally_sheet_url');
-  if (savedSheet) {
-    fetchAndSyncGoogleSheet(savedSheet, false);
+  // Auto-sync live Google Sheet inventory for all visitors (overrideable via localStorage)
+  const activeSheetUrl = localStorage.getItem('lally_sheet_url') || DEFAULT_LIVE_SHEET_URL;
+  if (activeSheetUrl) {
+    fetchAndSyncGoogleSheet(activeSheetUrl, false);
   }
 
   // Interactive Kinetic Grid Background (rest of page below hero banner)
