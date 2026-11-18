@@ -1854,7 +1854,7 @@ function initKineticGrid() {
 
   const THEMES = {
     dark: {
-      bg: '#161618',
+      bg: '#000000',
       dot: 'rgba(255,255,255,0.05)',
       lineBase: { r: 255, g: 255, b: 255, a: 0.13 },
       lineActive: { r: 74, g: 158, b: 255, a: 0.9 },

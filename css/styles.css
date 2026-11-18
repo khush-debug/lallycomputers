@@ -2,10 +2,10 @@
      APPLE-INSPIRED DESIGN SYSTEM & VARIABLES
      ========================================================================== */
     :root {
-      --bg-main: #161618;
-      --bg-surface: rgba(20, 20, 24, 0.72);
-      --bg-surface-elevated: #1c1c20;
-      --bg-subtle: #242428;
+      --bg-main: #000000;
+      --bg-surface: rgba(0, 0, 0, 0.72);
+      --bg-surface-elevated: #141416;
+      --bg-subtle: #1c1c1f;
       --border-subtle: rgba(255, 255, 255, 0.12);
       --border-strong: rgba(255, 255, 255, 0.24);
       --text-primary: #f5f5f7;
@@ -1009,7 +1009,7 @@
       display: none;
       position: relative;
       z-index: 2;
-      background: rgba(20, 20, 24, 0.88);
+      background: rgba(0, 0, 0, 0.88);
       backdrop-filter: blur(12px);
       -webkit-backdrop-filter: blur(12px);
       border-top: 1px solid var(--border-subtle);
@@ -2795,7 +2795,7 @@
     .apple-footer {
       position: relative;
       z-index: 1;
-      background: rgba(18, 18, 22, 0.82);
+      background: rgba(0, 0, 0, 0.82);
       backdrop-filter: blur(10px);
       -webkit-backdrop-filter: blur(10px);
       border-top: 1px solid var(--border-subtle);
