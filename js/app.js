@@ -24,6 +24,7 @@ function toggleSiteTheme() {
   const next = isLight ? 'dark' : 'light';
   document.documentElement.setAttribute('data-theme', next);
   try { localStorage.setItem('lally_apple_theme', next); } catch (e) { }
+  if (typeof window.__redrawKineticGrid === 'function') window.__redrawKineticGrid();
 }
 
 /* ==========================================================================
@@ -1393,8 +1394,31 @@ function mapCsvToProducts(rows) {
   return products;
 }
 
+const STOCK_CACHE_KEY = 'lally_stock_cache_v1';
+
+function hydrateCachedStock(activeUrl) {
+  try {
+    const raw = localStorage.getItem(STOCK_CACHE_KEY);
+    if (!raw) return false;
+    const cached = JSON.parse(raw);
+    if (!cached || cached.url !== activeUrl || !Array.isArray(cached.products) || cached.products.length === 0) {
+      return false;
+    }
+    window.PRODUCTS = cached.products;
+    const currentSourceEl = document.getElementById('sheetCurrentStatus');
+    const badgeEl = document.getElementById('sheetSyncBadgeText');
+    const indicatorEl = document.getElementById('sheetStatusIndicator');
+    if (currentSourceEl) currentSourceEl.textContent = `Live Google Sheet (${cached.products.length} In-Stock Items)`;
+    if (badgeEl) badgeEl.textContent = `Live Stock (${cached.products.length} Items)`;
+    if (indicatorEl) indicatorEl.className = 'dot-status dot-open';
+    return true;
+  } catch (e) {
+    return false;
+  }
+}
+
 function fetchAndSyncGoogleSheet(csvUrl, isManual) {
-  showTopLoader();
+  if (isManual) showTopLoader();
   const baseUrl = normalizeGoogleSheetUrl(csvUrl);
   const sep = baseUrl.includes('?') ? '&' : '?';
   const fetchUrl = `${baseUrl}${sep}_t=${Date.now()}`;
@@ -1418,10 +1442,15 @@ function fetchAndSyncGoogleSheet(csvUrl, isManual) {
       const newProducts = mapCsvToProducts(rows);
       if (newProducts.length === 0) throw new Error('No in-stock products found in sheet.');
 
+      const prevJson = JSON.stringify(window.PRODUCTS || []);
+      const nextJson = JSON.stringify(newProducts);
+      const changed = prevJson !== nextJson;
+
       window.PRODUCTS = newProducts;
-      if (isManual) {
-        try { localStorage.setItem('lally_sheet_url', csvUrl); } catch (e) { }
-      }
+      try {
+        localStorage.setItem(STOCK_CACHE_KEY, JSON.stringify({ url: csvUrl, ts: Date.now(), products: newProducts }));
+        if (isManual) localStorage.setItem('lally_sheet_url', csvUrl);
+      } catch (e) { }
 
       if (statusEl) {
         statusEl.innerHTML = `<span style="color:#34d399">✓ Synced ${newProducts.length} live in-stock items!</span>`;
@@ -1432,27 +1461,32 @@ function fetchAndSyncGoogleSheet(csvUrl, isManual) {
       if (badgeEl) badgeEl.textContent = `Live Stock (${newProducts.length} Items)`;
       if (indicatorEl) indicatorEl.className = 'dot-status dot-open';
 
-      renderCategories();
-      renderCategoryFilters(activeCategory);
-      renderSpaceProducts();
+      if (changed || isManual) {
+        renderCategories();
+        const space = document.getElementById('catalogueSpace');
+        if (space && space.classList.contains('is-open')) {
+          renderCategoryFilters(activeCategory);
+          renderSpaceProducts();
+        }
+      }
 
-      finishTopLoader();
       if (isManual) {
+        finishTopLoader();
         setTimeout(closeSheetSyncModal, 1200);
         showToast(`Stock synced from Google Sheets (${newProducts.length} items)`);
       }
     })
     .catch(err => {
       console.warn('Google Sheet sync error:', err);
-      finishTopLoader();
+      if (isManual) finishTopLoader();
       if (statusEl && isManual) {
         statusEl.innerHTML = `<span style="color:#f87171">Sync failed. Ensure sheet sharing is "Anyone with the link can view". (${err.message})</span>`;
       }
-      if (currentSourceEl) {
-        currentSourceEl.textContent = 'In-Store Default Catalogue (Fallback)';
+      if (!window.PRODUCTS || window.PRODUCTS.length === 0) {
+        if (currentSourceEl) currentSourceEl.textContent = 'In-Store Default Catalogue (Fallback)';
+        if (badgeEl) badgeEl.textContent = 'Live Google Sheet Stock Manager';
+        if (indicatorEl) indicatorEl.className = 'dot-status dot-closed';
       }
-      if (badgeEl) badgeEl.textContent = 'Live Google Sheet Stock Manager';
-      if (indicatorEl) indicatorEl.className = 'dot-status dot-closed';
     });
 }
 
@@ -1893,10 +1927,14 @@ document.addEventListener('DOMContentLoaded', () => {
   initSliderWithDots('whySliderWrap', 'whyTrack', 'whyDots', 6, 42, 'whyPrevBtn', 'whyNextBtn');
   initSliderWithDots('reviewsSliderWrap', 'reviewsTrack', 'reviewsDots', 4, 40, 'reviewsPrevBtn', 'reviewsNextBtn');
 
-  // Render Categories & Initial Products
+  // Instant hydration from cached live Google Sheet stock (0ms reload, no count jump)
+  const activeSheetUrl = localStorage.getItem('lally_sheet_url') || DEFAULT_LIVE_SHEET_URL;
+  if (activeSheetUrl) {
+    hydrateCachedStock(activeSheetUrl);
+  }
+
+  // Render Categories (defer hidden Catalogue Space DOM until user opens it)
   renderCategories();
-  renderCategoryFilters(activeCategory);
-  renderSpaceProducts();
   updateCartUI();
   updateHours();
 
@@ -1941,14 +1979,18 @@ document.addEventListener('DOMContentLoaded', () => {
     if (e.key === 'Escape') Modal.close();
   });
 
-  // Auto-sync live Google Sheet inventory for all visitors (overrideable via localStorage)
-  const activeSheetUrl = localStorage.getItem('lally_sheet_url') || DEFAULT_LIVE_SHEET_URL;
+  // Silently revalidate live Google Sheet stock in background without blocking paint
   if (activeSheetUrl) {
-    fetchAndSyncGoogleSheet(activeSheetUrl, false);
+    const startSync = () => fetchAndSyncGoogleSheet(activeSheetUrl, false);
+    if ('requestIdleCallback' in window) {
+      requestIdleCallback(startSync, { timeout: 1200 });
+    } else {
+      setTimeout(startSync, 150);
+    }
   }
 
-  // Interactive Kinetic Grid Background (rest of page below hero banner)
-  initKineticGrid();
+  // Interactive Kinetic Grid Background (start after first paint)
+  requestAnimationFrame(() => initKineticGrid());
 
   // Cinematic Hero Video Banner (hero-720.mp4, non-interactive)
   initHeroVideo();
@@ -1958,14 +2000,6 @@ function initHeroVideo() {
   const hero = document.getElementById('top');
   const video = document.getElementById('heroVideo');
   if (!hero || !video) return;
-
-  const markReady = () => video.classList.add('is-ready');
-  if (video.readyState >= 2) {
-    markReady();
-  } else {
-    video.addEventListener('loadeddata', markReady, { once: true });
-    video.addEventListener('playing', markReady, { once: true });
-  }
 
   const reducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   if (reducedMotion) {
@@ -1993,12 +2027,12 @@ function initHeroVideo() {
 }
 
 /* ==========================================================================
-   INTERACTIVE KINETIC GRID BACKGROUND (CANVAS 2D)
+   INTERACTIVE KINETIC GRID BACKGROUND (OPTIMIZED CANVAS 2D WITH IDLE SLEEP)
    ========================================================================== */
 function initKineticGrid() {
   const canvas = document.getElementById('kineticGridCanvas');
   if (!canvas) return;
-  const ctx = canvas.getContext('2d');
+  const ctx = canvas.getContext('2d', { alpha: false });
   if (!ctx) return;
 
   const CELL_SIZE = 55;
@@ -2011,8 +2045,11 @@ function initKineticGrid() {
 
   const THEMES = {
     dark: {
+      key: 'dark',
       bg: '#000000',
       dot: 'rgba(255,255,255,0.05)',
+      lineBaseStr: 'rgba(255,255,255,0.130)',
+      nodeBaseStr: 'rgba(255,255,255,0.200)',
       lineBase: { r: 255, g: 255, b: 255, a: 0.13 },
       lineActive: { r: 74, g: 158, b: 255, a: 0.9 },
       nodeBase: { r: 255, g: 255, b: 255, a: 0.2 },
@@ -2021,8 +2058,11 @@ function initKineticGrid() {
       ripple: '100,180,255'
     },
     light: {
+      key: 'light',
       bg: '#f5f5f7',
       dot: 'rgba(15,23,42,0.045)',
+      lineBaseStr: 'rgba(15,23,42,0.085)',
+      nodeBaseStr: 'rgba(15,23,42,0.160)',
       lineBase: { r: 15, g: 23, b: 42, a: 0.085 },
       lineActive: { r: 0, g: 113, b: 227, a: 0.78 },
       nodeBase: { r: 15, g: 23, b: 42, a: 0.16 },
@@ -2057,6 +2097,31 @@ function initKineticGrid() {
   let W = 0;
   let H = 0;
   let dpr = 1;
+  let rafId = 0;
+
+  // Offscreen static dot background cache (1 blit instead of ~2,000 arc() calls per frame)
+  const bgCache = document.createElement('canvas');
+  const bgCtx = bgCache.getContext('2d');
+  let bgCacheTheme = '';
+
+  function rebuildBgCache(theme) {
+    if (!bgCtx || W <= 0 || H <= 0) return;
+    bgCache.width = Math.floor(W * dpr);
+    bgCache.height = Math.floor(H * dpr);
+    bgCtx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    bgCtx.fillStyle = theme.bg;
+    bgCtx.fillRect(0, 0, W, H);
+    bgCtx.fillStyle = theme.dot;
+    bgCtx.beginPath();
+    for (let x = DOT_SPACING / 2; x < W; x += DOT_SPACING) {
+      for (let y = DOT_SPACING / 2; y < H; y += DOT_SPACING) {
+        bgCtx.moveTo(x + 0.7, y);
+        bgCtx.arc(x, y, 0.7, 0, Math.PI * 2);
+      }
+    }
+    bgCtx.fill();
+    bgCacheTheme = theme.key;
+  }
 
   function setSize() {
     dpr = Math.min(window.devicePixelRatio || 1, 2);
@@ -2065,6 +2130,8 @@ function initKineticGrid() {
     canvas.width = Math.floor(W * dpr);
     canvas.height = Math.floor(H * dpr);
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    bgCacheTheme = '';
+    wake();
   }
 
   function getWarpedPoint(gx, gy, col, row, cols, rows) {
@@ -2115,20 +2182,10 @@ function initKineticGrid() {
 
   function draw(now) {
     const theme = isLightTheme() ? THEMES.light : THEMES.dark;
+    if (bgCacheTheme !== theme.key) rebuildBgCache(theme);
 
-    ctx.clearRect(0, 0, W, H);
-    ctx.fillStyle = theme.bg;
-    ctx.fillRect(0, 0, W, H);
-
-    // Subtle dot matrix texture
-    ctx.fillStyle = theme.dot;
-    for (let x = DOT_SPACING / 2; x < W; x += DOT_SPACING) {
-      for (let y = DOT_SPACING / 2; y < H; y += DOT_SPACING) {
-        ctx.beginPath();
-        ctx.arc(x, y, 0.7, 0, Math.PI * 2);
-        ctx.fill();
-      }
-    }
+    // Blit pre-rendered background + dot matrix in 1 call
+    ctx.drawImage(bgCache, 0, 0, W, H);
 
     // Update ripples
     for (let i = ripples.length - 1; i >= 0; i--) {
@@ -2157,9 +2214,41 @@ function initKineticGrid() {
       }
     }
 
-    // Draw grid segments
-    function drawSeg(p1, p2, pr1, pr2) {
-      const avg = (pr1 + pr2) / 2;
+    // Batch all inactive grid segments into 1 path, draw active segments individually
+    ctx.lineCap = 'butt';
+    ctx.beginPath();
+    const activeSegs = [];
+
+    for (let row = 0; row < rows; row++) {
+      for (let col = 0; col < cols - 1; col++) {
+        const p1 = pts[row][col], p2 = pts[row][col + 1];
+        const avg = (prox[row][col] + prox[row][col + 1]) * 0.5;
+        if (avg < 0.005) {
+          ctx.moveTo(p1.x, p1.y);
+          ctx.lineTo(p2.x, p2.y);
+        } else {
+          activeSegs.push(p1, p2, avg);
+        }
+      }
+    }
+    for (let col = 0; col < cols; col++) {
+      for (let row = 0; row < rows - 1; row++) {
+        const p1 = pts[row][col], p2 = pts[row + 1][col];
+        const avg = (prox[row][col] + prox[row + 1][col]) * 0.5;
+        if (avg < 0.005) {
+          ctx.moveTo(p1.x, p1.y);
+          ctx.lineTo(p2.x, p2.y);
+        } else {
+          activeSegs.push(p1, p2, avg);
+        }
+      }
+    }
+    ctx.strokeStyle = theme.lineBaseStr;
+    ctx.lineWidth = 0.8;
+    ctx.stroke();
+
+    for (let i = 0; i < activeSegs.length; i += 3) {
+      const p1 = activeSegs[i], p2 = activeSegs[i + 1], avg = activeSegs[i + 2];
       const t = avg * avg * (3 - 2 * avg);
       ctx.beginPath();
       ctx.moveTo(p1.x, p1.y);
@@ -2169,42 +2258,44 @@ function initKineticGrid() {
       ctx.stroke();
     }
 
-    ctx.lineCap = 'butt';
-    for (let row = 0; row < rows; row++) {
-      for (let col = 0; col < cols - 1; col++) {
-        drawSeg(pts[row][col], pts[row][col + 1], prox[row][col], prox[row][col + 1]);
-      }
-    }
-    for (let col = 0; col < cols; col++) {
-      for (let row = 0; row < rows - 1; row++) {
-        drawSeg(pts[row][col], pts[row + 1][col], prox[row][col], prox[row + 1][col]);
-      }
-    }
-
-    // Draw intersection nodes & active glow rings
+    // Batch inactive intersection nodes into 1 path, draw active nodes + glows
+    ctx.beginPath();
+    const activeNodes = [];
     for (let row = 0; row < rows; row++) {
       for (let col = 0; col < cols; col++) {
         const p = pts[row][col];
         const pr = prox[row][col];
-        const t = pr * pr * (3 - 2 * pr);
-        const r = lerpN(NODE_BASE_RADIUS, NODE_ACTIVE_RADIUS, t);
-
-        if (t > 0.3) {
-          const glowR = r + lerpN(0, 6, (t - 0.3) / 0.7);
-          const grd = ctx.createRadialGradient(p.x, p.y, r * 0.5, p.x, p.y, glowR);
-          grd.addColorStop(0, `rgba(${theme.glow},${(t * 0.3).toFixed(3)})`);
-          grd.addColorStop(1, `rgba(${theme.glow},0)`);
-          ctx.beginPath();
-          ctx.arc(p.x, p.y, glowR, 0, Math.PI * 2);
-          ctx.fillStyle = grd;
-          ctx.fill();
+        if (pr < 0.005) {
+          ctx.moveTo(p.x + NODE_BASE_RADIUS, p.y);
+          ctx.arc(p.x, p.y, NODE_BASE_RADIUS, 0, Math.PI * 2);
+        } else {
+          activeNodes.push(p, pr);
         }
+      }
+    }
+    ctx.fillStyle = theme.nodeBaseStr;
+    ctx.fill();
 
+    for (let i = 0; i < activeNodes.length; i += 2) {
+      const p = activeNodes[i], pr = activeNodes[i + 1];
+      const t = pr * pr * (3 - 2 * pr);
+      const r = lerpN(NODE_BASE_RADIUS, NODE_ACTIVE_RADIUS, t);
+
+      if (t > 0.3) {
+        const glowR = r + lerpN(0, 6, (t - 0.3) / 0.7);
+        const grd = ctx.createRadialGradient(p.x, p.y, r * 0.5, p.x, p.y, glowR);
+        grd.addColorStop(0, `rgba(${theme.glow},${(t * 0.3).toFixed(3)})`);
+        grd.addColorStop(1, `rgba(${theme.glow},0)`);
         ctx.beginPath();
-        ctx.arc(p.x, p.y, r, 0, Math.PI * 2);
-        ctx.fillStyle = lerpColor(theme.nodeBase, theme.nodeActive, t);
+        ctx.arc(p.x, p.y, glowR, 0, Math.PI * 2);
+        ctx.fillStyle = grd;
         ctx.fill();
       }
+
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, r, 0, Math.PI * 2);
+      ctx.fillStyle = lerpColor(theme.nodeBase, theme.nodeActive, t);
+      ctx.fill();
     }
 
     // Draw click ripple rings
@@ -2219,31 +2310,61 @@ function initKineticGrid() {
     }
   }
 
+  function animate(now) {
+    rafId = 0;
+    const dx = targetMouse.x - mouse.x;
+    const dy = targetMouse.y - mouse.y;
+    const settled = Math.abs(dx) < 0.35 && Math.abs(dy) < 0.35;
+    if (settled) {
+      mouse.x = targetMouse.x;
+      mouse.y = targetMouse.y;
+    } else {
+      mouse.x += dx * LERP_SPEED;
+      mouse.y += dy * LERP_SPEED;
+    }
+
+    draw(now);
+
+    if (!settled || ripples.length > 0) {
+      rafId = requestAnimationFrame(animate);
+    }
+  }
+
+  function wake() {
+    if (!rafId) rafId = requestAnimationFrame(animate);
+  }
+
+  window.__redrawKineticGrid = () => {
+    bgCacheTheme = '';
+    wake();
+  };
+
   setSize();
   window.addEventListener('resize', setSize, { passive: true });
 
   const reducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   if (reducedMotion) {
     draw(performance.now());
-    const themeBtn = document.getElementById('themeToggle');
-    if (themeBtn) themeBtn.addEventListener('click', () => setTimeout(() => draw(performance.now()), 20));
     return;
   }
 
   window.addEventListener('mousemove', (e) => {
     targetMouse.x = e.clientX;
     targetMouse.y = e.clientY;
+    wake();
   }, { passive: true });
 
   window.addEventListener('mouseleave', () => {
     targetMouse.x = -9999;
     targetMouse.y = -9999;
+    wake();
   }, { passive: true });
 
   window.addEventListener('touchmove', (e) => {
     if (e.touches && e.touches[0]) {
       targetMouse.x = e.touches[0].clientX;
       targetMouse.y = e.touches[0].clientY;
+      wake();
     }
   }, { passive: true });
 
@@ -2255,14 +2376,6 @@ function initKineticGrid() {
       opacity: 1,
       born: performance.now()
     });
+    wake();
   }, { passive: true });
-
-  function animate(now) {
-    mouse.x = lerpN(mouse.x, targetMouse.x, LERP_SPEED);
-    mouse.y = lerpN(mouse.y, targetMouse.y, LERP_SPEED);
-    draw(now);
-    requestAnimationFrame(animate);
-  }
-
-  requestAnimationFrame(animate);
 }

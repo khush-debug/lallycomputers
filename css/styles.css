@@ -300,7 +300,7 @@
       z-index: 0;
       pointer-events: none;
       overflow: hidden;
-      background: #06080c;
+      background: radial-gradient(ellipse 80% 70% at 50% 45%, #0c1b15 0%, #06080c 72%);
     }
 
     .hero-video {
@@ -310,13 +310,8 @@
       height: 100%;
       object-fit: cover;
       object-position: center center;
-      opacity: 0;
-      filter: saturate(1.06) contrast(1.06) brightness(0.76);
-      transition: opacity 0.8s ease;
-    }
-
-    .hero-video.is-ready {
       opacity: 1;
+      filter: saturate(1.06) contrast(1.06) brightness(0.76);
     }
 
     .hero-apple__scrim {
