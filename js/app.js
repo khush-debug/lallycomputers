@@ -1792,7 +1792,73 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Interactive Kinetic Grid Background (cursor warp + click ripples)
   initKineticGrid();
+
+  // Hero Video Banner (hero-720.mp4 blended with Kinetic Grid + subtle cursor drift)
+  initHeroVideoBlend();
 });
+
+function initHeroVideoBlend() {
+  const hero = document.getElementById('top');
+  const video = document.getElementById('heroVideo');
+  if (!hero || !video) return;
+
+  const markReady = () => video.classList.add('is-ready');
+  if (video.readyState >= 2) {
+    markReady();
+  } else {
+    video.addEventListener('loadeddata', markReady, { once: true });
+    video.addEventListener('playing', markReady, { once: true });
+  }
+
+  const reducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (reducedMotion) {
+    video.pause();
+    return;
+  }
+
+  // Ensure smooth muted autoplay
+  const playPromise = video.play();
+  if (playPromise && typeof playPromise.catch === 'function') {
+    playPromise.catch(() => {});
+  }
+
+  // Pause video when hero scrolls off-screen to save battery/GPU
+  if ('IntersectionObserver' in window) {
+    const obs = new IntersectionObserver((entries) => {
+      if (entries[0]?.isIntersecting) {
+        const p = video.play();
+        if (p && typeof p.catch === 'function') p.catch(() => {});
+      } else {
+        video.pause();
+      }
+    }, { threshold: 0.05 });
+    obs.observe(hero);
+  }
+
+  // Subtle interactive parallax synced with Kinetic Grid cursor warp
+  let tx = 0, ty = 0, cx = 0, cy = 0;
+  hero.addEventListener('mousemove', (e) => {
+    const rect = hero.getBoundingClientRect();
+    const nx = (e.clientX - rect.left) / Math.max(rect.width, 1) - 0.5;
+    const ny = (e.clientY - rect.top) / Math.max(rect.height, 1) - 0.5;
+    tx = -nx * 22;
+    ty = -ny * 14;
+  }, { passive: true });
+
+  hero.addEventListener('mouseleave', () => {
+    tx = 0;
+    ty = 0;
+  }, { passive: true });
+
+  function tick() {
+    cx += (tx - cx) * 0.07;
+    cy += (ty - cy) * 0.07;
+    video.style.setProperty('--hero-vx', `${cx.toFixed(2)}px`);
+    video.style.setProperty('--hero-vy', `${cy.toFixed(2)}px`);
+    requestAnimationFrame(tick);
+  }
+  requestAnimationFrame(tick);
+}
 
 /* ==========================================================================
    INTERACTIVE KINETIC GRID BACKGROUND (CANVAS 2D)
