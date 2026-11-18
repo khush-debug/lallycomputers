@@ -60,6 +60,8 @@
     html {
       scroll-behavior: smooth;
       -webkit-text-size-adjust: 100%;
+      overflow-x: clip;
+      max-width: 100%;
     }
 
     body {
@@ -70,7 +72,9 @@
       line-height: 1.55;
       font-weight: 400;
       letter-spacing: -0.02em;
-      overflow-x: hidden;
+      width: 100%;
+      max-width: 100%;
+      overflow-x: clip;
       -webkit-font-smoothing: antialiased;
     }
 
@@ -146,8 +150,18 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: clamp(1rem, 2vw, 1.5rem);
+      gap: clamp(0.75rem, 2vw, 1.5rem);
       flex-wrap: nowrap;
+      width: 100%;
+      max-width: 100%;
+    }
+
+    .nav-left {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.65rem;
+      min-width: 0;
+      flex-shrink: 1;
     }
 
     .nav-brand {
@@ -562,8 +576,12 @@
     }
 
     @media (max-width: 980px) {
+      .nav-desktop-nav {
+        display: none !important;
+      }
       .nav-mobile-menu-btn {
         display: inline-flex;
+        flex-shrink: 0;
       }
       .apple-mega-menu,
       .apple-mega-backdrop {
@@ -4148,7 +4166,7 @@
      MOBILE-ONLY SPACING & SIZE SCALING (PRESERVES DESKTOP / PC EXACT SIZES)
      ======================================================================== */
   :root {
-    --nav-height: 52px;
+    --nav-height: 54px;
   }
 
   body {
@@ -4157,7 +4175,9 @@
   }
 
   .inner {
-    padding-inline: 1rem;
+    padding-inline: 16px;
+    width: 100%;
+    max-width: 100%;
   }
 
   .apple-section {
@@ -4167,39 +4187,111 @@
 
   /* 1. Header & Mobile Navigation Bar */
   .apple-nav {
-    height: 52px;
+    height: 54px;
+    width: 100%;
+    max-width: 100%;
   }
 
   .apple-nav__inner {
-    padding-inline: 1rem;
+    padding-inline: 14px;
+    gap: 8px;
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .nav-left {
+    gap: 8px;
+    min-width: 0;
+    flex-shrink: 1;
+  }
+
+  .nav-mobile-menu-btn {
+    width: 34px;
+    height: 34px;
+    flex-shrink: 0;
+  }
+
+  .nav-mobile-menu-btn svg {
+    width: 18px;
+    height: 18px;
+  }
+
+  .nav-brand {
+    gap: 6px;
+    min-width: 0;
+    flex-shrink: 1;
   }
 
   .nav-brand-logo {
-    width: 28px;
-    height: 28px;
+    width: 26px;
+    height: 26px;
   }
 
   .nav-brand span {
-    font-size: 14.5px;
+    font-size: 14px;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 
+  .nav-desktop-nav,
   .nav-links,
   .nav-cat-space-btn {
     display: none !important;
   }
 
-  .btn-nav-cart,
-  .theme-toggle-btn {
-    width: 34px;
-    height: 34px;
+  .nav-actions {
+    gap: 6px;
+    flex-shrink: 0;
   }
 
-  .btn-nav-cart-badge {
-    top: -3px;
-    right: -3px;
-    min-width: 17px;
-    height: 17px;
-    font-size: 10px;
+  .theme-toggle-btn {
+    width: 32px;
+    height: 32px;
+    padding: 0;
+    justify-content: center;
+  }
+
+  .nav-cart-btn {
+    padding: 5px 9px;
+    gap: 4px;
+    height: 32px;
+    font-size: 12.5px;
+  }
+
+  .nav-cart-btn svg {
+    width: 16px;
+    height: 16px;
+  }
+
+  .cart-pill-count {
+    font-size: 10.5px;
+    padding: 2px 5px;
+    min-width: 16px;
+  }
+
+  .nav-cta-btn {
+    padding: 6px 11px;
+    font-size: 12.5px;
+    gap: 5px;
+    height: 32px;
+  }
+
+  .nav-cta-btn svg {
+    width: 13.5px;
+    height: 13.5px;
+  }
+
+  .hero-mosaic {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .mosaic-hero-center {
+    padding: 2rem 16px;
+  }
+
+  .chapter-ribbon .inner {
+    padding-inline: 14px;
   }
 
   /* 2. Hero Section */
@@ -5115,6 +5207,55 @@
   .footer-legal-links a,
   .footer-legal-links button {
     font-size: 11.5px;
+  }
+}
+
+@media (max-width: 400px) {
+  .inner {
+    padding-inline: 12px;
+  }
+
+  .apple-nav__inner {
+    padding-inline: 12px;
+    gap: 6px;
+  }
+
+  .nav-left {
+    gap: 6px;
+  }
+
+  .nav-mobile-menu-btn,
+  .theme-toggle-btn {
+    width: 31px;
+    height: 31px;
+  }
+
+  .nav-brand-logo {
+    width: 24px;
+    height: 24px;
+  }
+
+  .nav-brand span {
+    font-size: 13px;
+  }
+
+  .nav-actions {
+    gap: 5px;
+  }
+
+  .nav-cart-btn {
+    padding: 4px 8px;
+    height: 31px;
+  }
+
+  .nav-cta-btn {
+    padding: 5px 9px;
+    font-size: 12px;
+    height: 31px;
+  }
+
+  .mosaic-hero-center {
+    padding: 1.85rem 12px;
   }
 }
 

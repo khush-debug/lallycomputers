@@ -144,12 +144,25 @@
        ======================================================================== -->
   <header class="apple-nav" id="appleNav" role="banner">
     <div class="inner apple-nav__inner">
-      <a class="nav-brand" href="#top" aria-label="Lally Computers Home">
-        <img src="images/logo.png" alt="Lally Computers Logo" class="nav-brand-logo" width="34" height="34">
-        <span>Lally Computers</span>
-      </a>
+      <div class="nav-left">
+        <button class="nav-mobile-menu-btn" id="mobileMenuToggle" type="button" aria-label="Open navigation menu" aria-expanded="false" aria-controls="appleMobileDrawer">
+          <svg class="icon-menu-open" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+            <line x1="4" y1="6.5" x2="20" y2="6.5" />
+            <line x1="4" y1="12" x2="20" y2="12" />
+            <line x1="4" y1="17.5" x2="20" y2="17.5" />
+          </svg>
+          <svg class="icon-menu-close" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+            <line x1="6" y1="6" x2="18" y2="18" />
+            <line x1="18" y1="6" x2="6" y2="18" />
+          </svg>
+        </button>
+        <a class="nav-brand" href="#top" aria-label="Lally Computers Home">
+          <img src="images/logo.png" alt="Lally Computers Logo" class="nav-brand-logo" width="34" height="34">
+          <span>Lally Computers</span>
+        </a>
+      </div>
 
-      <nav aria-label="Main Navigation">
+      <nav class="nav-desktop-nav" aria-label="Main Navigation">
         <ul class="nav-links" id="navMegaTriggers">
           <li><button class="nav-mega-trigger" type="button" data-mega="laptops" aria-expanded="false" aria-controls="appleMegaMenu">Laptops</button></li>
           <li><button class="nav-mega-trigger" type="button" data-mega="pcs" aria-expanded="false" aria-controls="appleMegaMenu">PCs &amp; Parts</button></li>
@@ -190,16 +203,6 @@
           </svg>
           <span>Call Us</span>
         </a>
-        <button class="nav-mobile-menu-btn" id="mobileMenuToggle" type="button" aria-label="Open navigation menu" aria-expanded="false" aria-controls="appleMobileDrawer">
-          <svg class="icon-menu-open" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
-            <line x1="4" y1="8" x2="20" y2="8" />
-            <line x1="4" y1="16" x2="20" y2="16" />
-          </svg>
-          <svg class="icon-menu-close" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
-            <line x1="6" y1="6" x2="18" y2="18" />
-            <line x1="18" y1="6" x2="6" y2="18" />
-          </svg>
-        </button>
       </div>
     </div>
   </header>
