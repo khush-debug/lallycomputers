@@ -216,62 +216,266 @@
   </div>
 
   <!-- ========================================================================
-       HERO SECTION — CINEMATIC HERO-720 VIDEO BANNER
+       HERO SECTION — ANIMATED GEOMETRIC MOSAIC BANNER
        ======================================================================== -->
-  <section class="hero-apple" id="top">
-    <div class="hero-video-layer" aria-hidden="true">
-      <video class="hero-video" id="heroVideo" autoplay muted loop playsinline preload="auto">
-        <source src="hero-720.mp4" type="video/mp4">
-        <source src="hero-720.webm" type="video/webm">
-      </video>
+  <section class="hero-mosaic" id="top" aria-label="Supreme Infosys — Lally Computers Hero">
+    <!-- TOP ROW: 5 Animated Hardware & Craft Tiles -->
+    <div class="mosaic-row mosaic-row--top">
+      <!-- Tile 1: Lavender Hardware Chassis / Camera Sensor -->
+      <div class="mosaic-tile mosaic-tile--chassis" aria-hidden="true">
+        <svg class="mosaic-svg" viewBox="0 0 260 220" preserveAspectRatio="xMidYMid slice">
+          <defs>
+            <linearGradient id="chassisBody" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stop-color="#35363c" />
+              <stop offset="55%" stop-color="#1d1e22" />
+              <stop offset="100%" stop-color="#111215" />
+            </linearGradient>
+            <linearGradient id="chassisSheen" x1="0" y1="0" x2="1" y2="0">
+              <stop offset="0%" stop-color="rgba(255,255,255,0)" />
+              <stop offset="50%" stop-color="rgba(255,255,255,0.14)" />
+              <stop offset="100%" stop-color="rgba(255,255,255,0)" />
+            </linearGradient>
+            <clipPath id="chassisClip">
+              <rect x="-46" y="20" width="212" height="178" rx="28" />
+            </clipPath>
+          </defs>
+          <rect width="260" height="220" fill="#c4b5f6" />
+          <g class="anim-chassis-float">
+            <rect x="-46" y="20" width="212" height="178" rx="28" fill="url(#chassisBody)" stroke="#484a54" stroke-width="2" />
+            <rect x="-40" y="26" width="200" height="166" rx="23" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="1.5" />
+            <g clip-path="url(#chassisClip)">
+              <rect class="anim-chassis-sheen" x="-46" y="20" width="90" height="178" fill="url(#chassisSheen)" />
+            </g>
+            <circle cx="52" cy="110" r="9" fill="#0d0e11" stroke="#3c3f49" stroke-width="2" />
+            <circle class="anim-sensor-pulse" cx="52" cy="110" r="3.5" fill="#7dd3fc" />
+          </g>
+        </svg>
+      </div>
+
+      <!-- Tile 2: Magenta LALLY Mechanical Keyboard -->
+      <div class="mosaic-tile mosaic-tile--keyboard" aria-hidden="true">
+        <div class="kb-board">
+          <div class="kb-row">
+            <span class="kb-key kb-key--letter kb-k1">L</span>
+            <span class="kb-key kb-key--letter kb-k2">A</span>
+            <span class="kb-key kb-key--letter kb-k3">L</span>
+            <span class="kb-key kb-key--letter kb-k4">L</span>
+            <span class="kb-key kb-key--letter kb-k5">Y</span>
+          </div>
+          <div class="kb-row">
+            <span class="kb-key"></span>
+            <span class="kb-key"></span>
+            <span class="kb-key"></span>
+            <span class="kb-key"></span>
+            <span class="kb-key"></span>
+          </div>
+          <div class="kb-row">
+            <span class="kb-key"></span>
+            <span class="kb-key"></span>
+            <span class="kb-key kb-key--gold kb-k6"></span>
+            <span class="kb-key"></span>
+            <span class="kb-key"></span>
+          </div>
+          <div class="kb-row kb-row--space">
+            <span class="kb-key kb-key--space"></span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tile 3: Ice-Blue Verified Split Laptop -->
+      <div class="mosaic-tile mosaic-tile--laptop" aria-hidden="true">
+        <svg class="mosaic-svg" viewBox="0 0 260 220" preserveAspectRatio="xMidYMid meet">
+          <defs>
+            <pattern id="lapStripes" width="14" height="14" patternUnits="userSpaceOnUse" patternTransform="rotate(42)">
+              <rect width="14" height="14" fill="#dce7fb" />
+              <rect width="7" height="14" fill="#9eb2f5" />
+            </pattern>
+            <linearGradient id="lapSheenGrad" x1="0" y1="0" x2="1" y2="0">
+              <stop offset="0%" stop-color="rgba(255,255,255,0)" />
+              <stop offset="50%" stop-color="rgba(255,255,255,0.42)" />
+              <stop offset="100%" stop-color="rgba(255,255,255,0)" />
+            </linearGradient>
+            <pattern id="lapDots" width="16" height="16" patternUnits="userSpaceOnUse">
+              <rect width="16" height="16" fill="#4628c8" />
+              <circle class="anim-dot-breathe" cx="8" cy="8" r="4.8" fill="#32189f" />
+            </pattern>
+            <clipPath id="lapLeftScreen">
+              <rect x="64" y="54" width="66" height="82" rx="10" />
+            </clipPath>
+            <clipPath id="lapRightScreen">
+              <rect x="130" y="54" width="66" height="82" rx="10" />
+            </clipPath>
+            <clipPath id="lapLeftBase">
+              <path d="M40 146 H130 V162 H54 C46 162 40 155 40 146 Z" />
+            </clipPath>
+            <clipPath id="lapRightBase">
+              <path d="M130 146 H220 C220 155 214 162 206 162 H130 V146 Z" />
+            </clipPath>
+          </defs>
+          <rect width="260" height="220" fill="#edf4fb" />
+          <g class="anim-laptop-bob">
+            <!-- Left Striped Half -->
+            <g clip-path="url(#lapLeftScreen)">
+              <rect x="54" y="44" width="84" height="102" fill="url(#lapStripes)" />
+              <rect class="anim-laptop-sheen" x="30" y="44" width="44" height="102" fill="url(#lapSheenGrad)" />
+            </g>
+            <!-- Right Dotted Indigo Half -->
+            <g clip-path="url(#lapRightScreen)">
+              <rect x="124" y="44" width="84" height="102" fill="url(#lapDots)" />
+            </g>
+            <!-- Base Split -->
+            <g clip-path="url(#lapLeftBase)">
+              <rect x="34" y="140" width="102" height="28" fill="url(#lapStripes)" />
+            </g>
+            <g clip-path="url(#lapRightBase)">
+              <rect x="124" y="140" width="102" height="28" fill="url(#lapDots)" />
+            </g>
+            <!-- Verified Gold Badge -->
+            <g class="anim-badge-pop">
+              <circle cx="195" cy="56" r="18" fill="#f7b924" />
+              <path d="M187 56.5 L192.5 62 L204 50.5" fill="none" stroke="#111827" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round" />
+            </g>
+          </g>
+        </svg>
+      </div>
+
+      <!-- Tile 4: Sky-Blue 65W GaN Fast Charger -->
+      <div class="mosaic-tile mosaic-tile--charger" aria-hidden="true">
+        <svg class="mosaic-svg" viewBox="0 0 260 220" preserveAspectRatio="xMidYMid slice">
+          <defs>
+            <linearGradient id="chargerBody" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stop-color="#f7f9fc" />
+              <stop offset="55%" stop-color="#e5e9f0" />
+              <stop offset="100%" stop-color="#cfd6e0" />
+            </linearGradient>
+            <linearGradient id="prongMetal" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#d8dee8" />
+              <stop offset="100%" stop-color="#a8b2c1" />
+            </linearGradient>
+          </defs>
+          <rect width="260" height="220" fill="#4ea3d8" />
+          <g class="anim-charger-float">
+            <!-- Prongs -->
+            <rect x="97" y="16" width="15" height="36" rx="4" fill="url(#prongMetal)" />
+            <rect x="148" y="16" width="15" height="36" rx="4" fill="url(#prongMetal)" />
+            <!-- Body -->
+            <rect x="52" y="42" width="156" height="196" rx="30" fill="url(#chargerBody)" />
+            <!-- Top inner glossy panel -->
+            <rect x="64" y="54" width="132" height="72" rx="18" fill="#ffffff" opacity="0.92" />
+            <!-- Breathing Emerald LED -->
+            <circle class="anim-led-halo" cx="130" cy="156" r="14" fill="rgba(74, 222, 128, 0.32)" />
+            <circle cx="130" cy="156" r="9.5" fill="#d1fae5" />
+            <circle class="anim-led-core" cx="130" cy="156" r="5" fill="#22c55e" />
+          </g>
+        </svg>
+      </div>
+
+      <!-- Tile 5: Vibrant Diagonal Ribbon Weave -->
+      <div class="mosaic-tile mosaic-tile--ribbons" aria-hidden="true">
+        <div class="mosaic-ribbon-track"></div>
+      </div>
     </div>
-    <div class="hero-apple__scrim" aria-hidden="true"></div>
 
-    <div class="inner hero-apple__stage">
-      <div class="hero-apple__content" id="heroContent">
-        <div class="hero-pill-badge">
-          <span class="hero-live-dot"></span>
-          <span class="hero-eyebrow">Lally Computers &middot; Sodhi Nagar, Moga</span>
+    <!-- BOTTOM ROW: Diagnostic Amber | Deep Navy Hero Center | Royal Violet Circuit Ring -->
+    <div class="mosaic-row mosaic-row--bottom">
+      <!-- Tile 6: Golden Amber 25-Point Diagnostic Spheres -->
+      <div class="mosaic-tile mosaic-tile--diagnostics" aria-hidden="true">
+        <div class="diag-grid">
+          <div class="diag-orb"></div>
+          <div class="diag-orb diag-orb--active diag-scan-1">
+            <svg viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="1.8">
+              <circle cx="14" cy="14" r="7.5" />
+              <line x1="14" y1="3.5" x2="14" y2="24.5" />
+              <line x1="3.5" y1="14" x2="24.5" y2="14" />
+            </svg>
+          </div>
+          <div class="diag-orb"></div>
+
+          <div class="diag-orb diag-orb--active diag-scan-2">
+            <svg viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="1.8">
+              <rect x="8" y="8" width="12" height="12" rx="2" />
+              <path d="M11 4v4M17 4v4M11 20v4M17 20v4M4 11h4M4 17h4M20 11h4M20 17h4" />
+            </svg>
+          </div>
+          <div class="diag-orb diag-orb--active diag-scan-3">
+            <svg viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="1.8">
+              <rect x="5" y="9" width="16" height="10" rx="2" />
+              <line x1="23" y1="12" x2="23" y2="16" stroke-width="2.2" stroke-linecap="round" />
+              <line x1="9" y1="12" x2="9" y2="16" />
+              <line x1="13" y1="12" x2="13" y2="16" />
+              <line x1="17" y1="12" x2="17" y2="16" />
+            </svg>
+          </div>
+          <div class="diag-orb"></div>
+
+          <div class="diag-orb diag-orb--active diag-scan-4">
+            <svg viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="1.8">
+              <path d="M8 9v10M20 9v10M5 11v6M23 11v6M8 14h12" stroke-linecap="round" />
+            </svg>
+          </div>
+          <div class="diag-orb"></div>
+          <div class="diag-orb"></div>
         </div>
+      </div>
 
-        <h1 class="hero-headline">Supreme Infosys.</h1>
-
-        <p class="hero-subhead">
-          Certified pre-owned &amp; factory-sealed laptops, custom gaming PCs, components, gadgets, gym gear, and
-          in-house chip-level repairs.
+      <!-- Tile 7: Center Deep Navy Hero Card -->
+      <div class="mosaic-hero-center" id="heroContent">
+        <p class="mosaic-hero-eyebrow">LALLY COMPUTERS &middot; SODHI NAGAR, MOGA</p>
+        <h1 class="mosaic-hero-title">Supreme Infosys.</h1>
+        <p class="mosaic-hero-desc">
+          Certified pre-owned &amp; factory-sealed laptops, custom gaming PCs, components, gadgets and in-house chip-level repairs.
         </p>
-
-        <div class="hero-proof-row" aria-label="Store highlights">
-          <span class="hero-proof-item">
-            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-              <path d="m12 2.5 2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3 6.1 20.6l1.3-6.6L2.5 9.4l6.6-.8z" />
-            </svg>
-            <b>4.2</b> on Google (709 Reviews)
-          </span>
-          <span class="hero-proof-dot" aria-hidden="true">&middot;</span>
-          <span class="hero-proof-item">25-Point Lab Reports</span>
-          <span class="hero-proof-dot" aria-hidden="true">&middot;</span>
-          <span class="hero-proof-item">Genuine GST Invoice</span>
-        </div>
-
-        <div class="hero-cta-group">
-          <button class="apple-pill-btn apple-pill-btn--primary hero-cta-btn" type="button"
-            onclick="openCatalogueSpace('laptops_used')">
-            Open Catalogue Space
+        <div class="mosaic-hero-actions">
+          <button class="mosaic-btn mosaic-btn--gold" type="button" onclick="openCatalogueSpace('laptops_used')">
+            Explore stock
           </button>
-          <a class="apple-pill-btn apple-pill-btn--secondary hero-cta-btn" href="#lineup">
-            View 13 Departments ↓
-          </a>
-          <a class="apple-pill-btn apple-pill-btn--whatsapp hero-cta-btn"
-            href="https://wa.me/919872010193?text=Hi%20Lally%20Computers%2C%20I%20have%20an%20enquiry%20regarding%20in-store%20stock."
+          <a class="mosaic-btn mosaic-btn--outline"
+            href="https://wa.me/919872010193?text=Hi%20Supreme%20Infosys%20(Lally%20Computers)%2C%20I%20have%20an%20enquiry%20regarding%20in-store%20stock."
             target="_blank" rel="noopener">
-            <svg viewBox="0 0 24 24" fill="currentColor">
-              <path
-                d="M17.472 14.382c-.301-.15-1.782-.879-2.058-.98-.276-.1-.476-.15-.677.15-.2.301-.777.98-.952 1.18-.175.201-.351.226-.652.076-.301-.15-1.27-.468-2.42-1.493-.894-.799-1.498-1.786-1.674-2.087-.175-.3-.019-.463.132-.612.136-.134.301-.351.451-.527.15-.175.2-.301.301-.501.1-.2.05-.376-.025-.526-.075-.15-.677-1.631-.928-2.233-.244-.585-.493-.506-.677-.515-.175-.009-.376-.011-.577-.011-.2 0-.526.075-.802.376-.276.301-1.053 1.028-1.053 2.508 0 1.48 1.078 2.91 1.228 3.111.15.2 2.122 3.24 5.141 4.544.718.31 1.279.496 1.716.635.722.23 1.379.197 1.898.12.579-.086 1.782-.728 2.033-1.431.251-.703.251-1.305.175-1.431-.075-.126-.276-.201-.577-.351zM12.04 2C6.516 2 2.023 6.49 2.023 12.013c0 1.942.555 3.756 1.517 5.292L2 22l4.834-1.503a10.007 10.007 0 0 0 5.206 1.516c5.524 0 10.017-4.49 10.017-10.013C22.057 6.49 17.564 2 12.04 2z" />
-            </svg>
-            <span>WhatsApp Us</span>
+            WhatsApp us
           </a>
         </div>
+      </div>
+
+      <!-- Tile 8: Royal Violet 12-Node Orbital Circuit Ring -->
+      <div class="mosaic-tile mosaic-tile--orbit" aria-hidden="true">
+        <svg class="mosaic-svg" viewBox="0 0 320 260" preserveAspectRatio="xMidYMid slice">
+          <rect width="320" height="260" fill="#6f53c1" />
+          <g transform="translate(160 130)">
+            <g class="anim-orbit-spin">
+              <!-- Radial Spokes extending outward -->
+              <g stroke="rgba(255,255,255,0.85)" stroke-width="2">
+                <line x1="0" y1="-92" x2="0" y2="-220" />
+                <line x1="46" y1="-80" x2="115" y2="-200" />
+                <line x1="80" y1="-46" x2="200" y2="-115" />
+                <line x1="92" y1="0" x2="220" y2="0" />
+                <line x1="80" y1="46" x2="200" y2="115" />
+                <line x1="46" y1="80" x2="115" y2="200" />
+                <line x1="0" y1="92" x2="0" y2="220" />
+                <line x1="-46" y1="80" x2="-115" y2="200" />
+                <line x1="-80" y1="46" x2="-200" y2="115" />
+                <line x1="-92" y1="0" x2="-220" y2="0" />
+                <line x1="-80" y1="-46" x2="-200" y2="-115" />
+                <line x1="-46" y1="-80" x2="-115" y2="-200" />
+              </g>
+              <!-- 12 Luminous Ring Nodes -->
+              <g fill="#f5f4fa">
+                <circle class="orbit-node on-1" cx="0" cy="-92" r="16" />
+                <circle class="orbit-node on-2" cx="46" cy="-80" r="16" />
+                <circle class="orbit-node on-3" cx="80" cy="-46" r="16" />
+                <circle class="orbit-node on-4" cx="92" cy="0" r="16" />
+                <circle class="orbit-node on-5" cx="80" cy="46" r="16" />
+                <circle class="orbit-node on-6" cx="46" cy="80" r="16" />
+                <circle class="orbit-node on-7" cx="0" cy="92" r="16" />
+                <circle class="orbit-node on-8" cx="-46" cy="80" r="16" />
+                <circle class="orbit-node on-9" cx="-80" cy="46" r="16" />
+                <circle class="orbit-node on-10" cx="-92" cy="0" r="16" />
+                <circle class="orbit-node on-11" cx="-80" cy="-46" r="16" />
+                <circle class="orbit-node on-12" cx="-46" cy="-80" r="16" />
+              </g>
+            </g>
+          </g>
+        </svg>
       </div>
     </div>
   </section>

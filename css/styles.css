@@ -660,138 +660,8 @@
     }
 
     /* ==========================================================================
-     HERO SECTION — CINEMATIC HERO-720 VIDEO BANNER (NON-INTERACTIVE)
+     HERO SECTION — ANIMATED GEOMETRIC MOSAIC BANNER
      ========================================================================== */
-    .hero-apple {
-      position: relative;
-      z-index: 2;
-      overflow: hidden;
-      min-height: clamp(36rem, 86svh, 54rem);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      padding-top: clamp(4rem, 8.5vw, 6.5rem);
-      padding-bottom: clamp(4rem, 8.5vw, 6.5rem);
-      color: #ffffff;
-      background: #06080c;
-      border-bottom: 1px solid var(--border-subtle);
-    }
-
-    .hero-video-layer {
-      position: absolute;
-      inset: 0;
-      z-index: 0;
-      pointer-events: none;
-      overflow: hidden;
-      background: radial-gradient(ellipse 80% 70% at 50% 45%, #0c1b15 0%, #06080c 72%);
-    }
-
-    .hero-video {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: center center;
-      opacity: 1;
-      filter: saturate(1.06) contrast(1.06) brightness(0.76);
-    }
-
-    .hero-apple__scrim {
-      position: absolute;
-      inset: 0;
-      z-index: 1;
-      pointer-events: none;
-      background:
-        radial-gradient(ellipse 68% 60% at 50% 50%, rgba(6, 8, 12, 0.72) 0%, rgba(6, 8, 12, 0.34) 58%, rgba(6, 8, 12, 0.56) 100%),
-        linear-gradient(180deg, rgba(6, 8, 12, 0.45) 0%, rgba(6, 8, 12, 0.14) 36%, rgba(6, 8, 12, 0.76) 100%);
-    }
-
-    .hero-apple__stage {
-      position: relative;
-      z-index: 2;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-    }
-
-    .hero-apple__content {
-      position: relative;
-      z-index: 2;
-      max-width: 900px;
-      margin-inline: auto;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
-    }
-
-    .hero-pill-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      background: rgba(10, 12, 18, 0.68);
-      border: 1px solid rgba(255, 255, 255, 0.22);
-      backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
-      padding: 8px 18px;
-      border-radius: var(--radius-pill);
-      margin-bottom: 1.5rem;
-      box-shadow: 0 6px 24px rgba(0, 0, 0, 0.4);
-    }
-
-    .hero-live-dot {
-      width: 9px;
-      height: 9px;
-      border-radius: 50%;
-      background: #22c55e;
-      box-shadow: 0 0 10px #22c55e, 0 0 18px rgba(34, 197, 94, 0.6);
-      display: inline-block;
-      flex-shrink: 0;
-      animation: pulseLiveDot 2.2s ease-in-out infinite;
-    }
-
-    @keyframes pulseLiveDot {
-      0%, 100% { opacity: 1; transform: scale(1); }
-      50% { opacity: 0.35; transform: scale(1.4); }
-    }
-
-    .hero-pill-badge .hero-eyebrow {
-      margin-bottom: 0;
-      font-size: clamp(13px, 1.3vw, 14.5px);
-      font-weight: 600;
-      color: #f8fafc;
-      letter-spacing: 0.08em;
-    }
-
-    .hero-eyebrow {
-      font-size: clamp(13px, 1.8vw, 15px);
-      font-weight: 600;
-      color: var(--apple-blue);
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      margin-bottom: 0.5rem;
-    }
-
-    .hero-headline {
-      position: relative;
-      font-family: var(--font-display);
-      font-size: clamp(3.6rem, 9vw, 6.8rem);
-      line-height: 0.98;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.04em;
-      color: #ffffff;
-      margin-bottom: 1.35rem;
-      text-shadow:
-        0 0 10px rgba(255, 255, 255, 0.14),
-        0 10px 36px rgba(0, 0, 0, 0.7);
-      animation: heroHeadlineWhiteGlow 4.5s ease-in-out infinite;
-    }
-
     @keyframes heroHeadlineWhiteGlow {
       0%, 100% {
         text-shadow:
@@ -806,123 +676,511 @@
       }
     }
 
-    .hero-subhead {
-      font-size: clamp(1.18rem, 2.2vw, 1.55rem);
-      line-height: 1.48;
-      font-weight: 400;
-      color: rgba(248, 250, 252, 0.9);
-      text-shadow: 0 2px 16px rgba(0, 0, 0, 0.72);
-      max-width: 780px;
-      margin-inline: auto;
-      margin-bottom: 1.85rem;
+    .hero-mosaic {
+      position: relative;
+      z-index: 2;
+      width: 100%;
+      overflow: hidden;
+      background: #081c3e;
+      border-bottom: 1px solid var(--border-subtle);
     }
 
-    .hero-proof-row {
-      display: inline-flex;
-      flex-wrap: wrap;
+    .mosaic-row {
+      display: grid;
+      width: 100%;
+      gap: 0;
+    }
+
+    .mosaic-row--top {
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      height: clamp(160px, 19.5vw, 275px);
+    }
+
+    .mosaic-row--bottom {
+      grid-template-columns: minmax(0, 1.02fr) minmax(0, 1.88fr) minmax(0, 1.02fr);
+      min-height: clamp(245px, 24.5vw, 350px);
+    }
+
+    .mosaic-tile {
+      position: relative;
+      overflow: hidden;
+      width: 100%;
+      height: 100%;
+    }
+
+    .mosaic-svg {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+
+    /* Tile 1: Lavender Hardware Chassis Animations */
+    .mosaic-tile--chassis {
+      background: #c4b5f6;
+    }
+
+    .anim-chassis-float {
+      animation: chassisBob 6.5s ease-in-out infinite;
+      transform-origin: center;
+    }
+
+    .anim-chassis-sheen {
+      animation: chassisSheen 4.8s ease-in-out infinite;
+    }
+
+    .anim-sensor-pulse {
+      animation: sensorGlow 2.8s ease-in-out infinite;
+    }
+
+    @keyframes chassisBob {
+      0%, 100% { transform: translateX(0px); }
+      50% { transform: translateX(8px); }
+    }
+
+    @keyframes chassisSheen {
+      0% { transform: translateX(-80px); opacity: 0; }
+      45% { opacity: 0.9; }
+      100% { transform: translateX(220px); opacity: 0; }
+    }
+
+    @keyframes sensorGlow {
+      0%, 100% { opacity: 0.45; }
+      50% { opacity: 1; }
+    }
+
+    /* Tile 2: Magenta L A L L Y Mechanical Keyboard */
+    .mosaic-tile--keyboard {
+      background: #b61e7a;
+      display: flex;
       align-items: center;
       justify-content: center;
-      gap: 0.65rem 0.95rem;
-      padding: 10px 22px;
-      border-radius: var(--radius-pill);
-      background: rgba(10, 12, 18, 0.64);
-      border: 1px solid rgba(255, 255, 255, 0.18);
-      backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
-      box-shadow: 0 6px 24px rgba(0, 0, 0, 0.35);
-      margin-bottom: 2.2rem;
+      padding: clamp(10px, 1.4vw, 18px);
     }
 
-    .hero-proof-item {
-      display: inline-flex;
+    .kb-board {
+      width: 100%;
+      max-width: 260px;
+      display: flex;
+      flex-direction: column;
+      gap: clamp(6px, 0.7vw, 10px);
+    }
+
+    .kb-row {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: clamp(5px, 0.65vw, 9px);
+    }
+
+    .kb-row--space {
+      grid-template-columns: 1fr;
+      padding-inline: 8%;
+    }
+
+    .kb-key {
+      aspect-ratio: 1 / 0.92;
+      background: #f8f7f4;
+      border-radius: clamp(5px, 0.6vw, 9px);
+      box-shadow: 0 4px 0 #d6c8d8, 0 6px 12px rgba(70, 8, 45, 0.28);
+      display: flex;
       align-items: center;
-      gap: 6px;
-      font-size: clamp(13.5px, 1.35vw, 15.5px);
+      justify-content: center;
+      font-family: var(--font-sans);
+      font-size: clamp(11px, 1.25vw, 17px);
+      font-weight: 700;
+      color: #b61e7a;
+      user-select: none;
+      transition: transform 0.14s ease, box-shadow 0.14s ease;
+    }
+
+    .kb-key:hover {
+      transform: translateY(3px);
+      box-shadow: 0 1px 0 #d6c8d8, 0 2px 6px rgba(70, 8, 45, 0.24);
+    }
+
+    .kb-key--gold {
+      background: #f7b924;
+      box-shadow: 0 4px 0 #cb8c0c, 0 6px 14px rgba(70, 8, 45, 0.3);
+    }
+
+    .kb-key--space {
+      aspect-ratio: auto;
+      height: clamp(22px, 2.5vw, 34px);
+    }
+
+    .kb-k1 { animation: keyTap 4.2s ease-in-out 0.1s infinite; }
+    .kb-k2 { animation: keyTap 4.2s ease-in-out 0.35s infinite; }
+    .kb-k3 { animation: keyTap 4.2s ease-in-out 0.6s infinite; }
+    .kb-k4 { animation: keyTap 4.2s ease-in-out 0.85s infinite; }
+    .kb-k5 { animation: keyTap 4.2s ease-in-out 1.1s infinite; }
+    .kb-k6 { animation: keyTapGold 4.2s ease-in-out 1.55s infinite; }
+
+    @keyframes keyTap {
+      0%, 8%, 22%, 100% {
+        transform: translateY(0);
+        box-shadow: 0 4px 0 #d6c8d8, 0 6px 12px rgba(70, 8, 45, 0.28);
+      }
+      13% {
+        transform: translateY(3.5px);
+        box-shadow: 0 1px 0 #d6c8d8, 0 2px 4px rgba(70, 8, 45, 0.22);
+      }
+    }
+
+    @keyframes keyTapGold {
+      0%, 8%, 24%, 100% {
+        transform: translateY(0);
+        box-shadow: 0 4px 0 #cb8c0c, 0 6px 14px rgba(70, 8, 45, 0.3);
+      }
+      14% {
+        transform: translateY(3.5px);
+        box-shadow: 0 1px 0 #cb8c0c, 0 2px 5px rgba(70, 8, 45, 0.22);
+      }
+    }
+
+    /* Tile 3: Ice-Blue Verified Split Laptop Animations */
+    .mosaic-tile--laptop {
+      background: #edf4fb;
+    }
+
+    .anim-laptop-bob {
+      animation: gentleFloat 5.2s ease-in-out infinite;
+    }
+
+    .anim-badge-pop {
+      transform-box: fill-box;
+      transform-origin: center;
+      animation: badgePulse 3.4s cubic-bezier(0.22, 1, 0.36, 1) infinite;
+    }
+
+    .anim-dot-breathe {
+      animation: dotShimmer 3.2s ease-in-out infinite;
+    }
+
+    .anim-laptop-sheen {
+      animation: lapSheenSweep 4.4s ease-in-out infinite;
+    }
+
+    @keyframes lapSheenSweep {
+      0% { transform: translateX(-30px); opacity: 0; }
+      35% { opacity: 1; }
+      70%, 100% { transform: translateX(135px); opacity: 0; }
+    }
+
+    @keyframes gentleFloat {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-6px); }
+    }
+
+    @keyframes badgePulse {
+      0%, 70%, 100% { transform: scale(1); }
+      82% { transform: scale(1.13); }
+      90% { transform: scale(0.96); }
+    }
+
+    @keyframes dotShimmer {
+      0%, 100% { opacity: 0.72; }
+      50% { opacity: 1; }
+    }
+
+    /* Tile 4: Sky-Blue GaN Charger Animations */
+    .mosaic-tile--charger {
+      background: #4ea3d8;
+    }
+
+    .anim-charger-float {
+      animation: chargerBob 4.8s ease-in-out infinite;
+    }
+
+    .anim-led-halo {
+      transform-box: fill-box;
+      transform-origin: center;
+      animation: ledRingPulse 2.2s ease-in-out infinite;
+    }
+
+    .anim-led-core {
+      animation: ledCorePulse 2.2s ease-in-out infinite;
+    }
+
+    @keyframes chargerBob {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-8px); }
+    }
+
+    @keyframes ledRingPulse {
+      0%, 100% { transform: scale(0.88); opacity: 0.28; }
+      50% { transform: scale(1.38); opacity: 0.72; }
+    }
+
+    @keyframes ledCorePulse {
+      0%, 100% { opacity: 0.78; }
+      50% { opacity: 1; }
+    }
+
+    /* Tile 5: Animated Diagonal Ribbon Weave */
+    .mosaic-tile--ribbons {
+      background: #1d2842;
+    }
+
+    .mosaic-ribbon-track {
+      position: absolute;
+      inset: -120%;
+      width: 340%;
+      height: 340%;
+      background: repeating-linear-gradient(
+        -45deg,
+        #c82285 0px,
+        #c82285 18px,
+        #1e2942 18px,
+        #1e2942 36px,
+        #4ea3d8 36px,
+        #4ea3d8 48px,
+        #f5b324 48px,
+        #f5b324 58px
+      );
+      animation: ribbonGlide 9s linear infinite;
+      will-change: transform;
+    }
+
+    @keyframes ribbonGlide {
+      0% { transform: translate3d(0, 0, 0); }
+      100% { transform: translate3d(82.024px, 82.024px, 0); }
+    }
+
+    /* Tile 6: Golden Amber 25-Point Diagnostic Spheres */
+    .mosaic-tile--diagnostics {
+      background: #f3b21b;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0;
+    }
+
+    .diag-grid {
+      width: 118%;
+      height: 118%;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-template-rows: repeat(3, 1fr);
+      gap: clamp(8px, 1vw, 14px);
+      align-items: center;
+      justify-items: center;
+    }
+
+    .diag-orb {
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      border-radius: 50%;
+      background: radial-gradient(circle at 35% 32%, #ffffff 0%, #f7f4ec 68%, #ebe4d5 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #c59b38;
+      box-shadow: inset 0 -4px 10px rgba(180, 125, 10, 0.08);
+      transition: transform 0.3s ease;
+    }
+
+    .diag-orb svg {
+      width: 34%;
+      height: 34%;
+    }
+
+    .diag-scan-1 { animation: diagPulse 4.8s ease-in-out 0s infinite; }
+    .diag-scan-2 { animation: diagPulse 4.8s ease-in-out 1.2s infinite; }
+    .diag-scan-3 { animation: diagPulse 4.8s ease-in-out 2.4s infinite; }
+    .diag-scan-4 { animation: diagPulse 4.8s ease-in-out 3.6s infinite; }
+
+    @keyframes diagPulse {
+      0%, 60%, 100% {
+        transform: scale(1);
+        color: #c59b38;
+        box-shadow: inset 0 -4px 10px rgba(180, 125, 10, 0.08);
+      }
+      20% {
+        transform: scale(1.06);
+        color: #081c3e;
+        box-shadow: 0 0 22px rgba(255, 255, 255, 0.72), inset 0 -2px 8px rgba(180, 125, 10, 0.12);
+      }
+    }
+
+    /* Tile 7: Center Deep Midnight Navy Hero Card */
+    .mosaic-hero-center {
+      background: #081c3e;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: clamp(2rem, 3.6vw, 3.2rem) clamp(1.4rem, 3vw, 2.8rem);
+      position: relative;
+      z-index: 2;
+    }
+
+    .mosaic-hero-eyebrow {
+      font-family: var(--font-mono);
+      font-size: clamp(10.5px, 0.95vw, 12px);
       font-weight: 500;
-      color: rgba(248, 250, 252, 0.94);
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: #87a6d4;
+      margin-bottom: 0.85rem;
     }
 
-    .hero-proof-item b {
+    .mosaic-hero-title {
+      font-family: var(--font-sans);
+      font-size: clamp(2.4rem, 4.4vw, 3.85rem);
+      font-weight: 700;
+      line-height: 1.06;
+      letter-spacing: -0.035em;
       color: #ffffff;
-      font-weight: 700;
+      margin-bottom: 0.95rem;
     }
 
-    .hero-proof-item svg {
-      width: 16px;
-      height: 16px;
-      color: var(--apple-gold);
-      flex-shrink: 0;
+    .mosaic-hero-desc {
+      font-size: clamp(0.95rem, 1.25vw, 1.1rem);
+      line-height: 1.55;
+      color: rgba(226, 236, 252, 0.84);
+      max-width: 470px;
+      margin-inline: auto;
+      margin-bottom: 1.7rem;
     }
 
-    .hero-proof-dot {
-      color: rgba(255, 255, 255, 0.38);
-      font-weight: 700;
-    }
-
-    .hero-cta-group {
+    .mosaic-hero-actions {
       display: flex;
       flex-wrap: wrap;
       align-items: center;
       justify-content: center;
-      gap: 1rem;
+      gap: 0.85rem;
     }
 
-    .hero-cta-btn {
-      padding: 14px 28px;
-      font-size: 16px;
+    .mosaic-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 12px 26px;
+      border-radius: var(--radius-pill);
+      font-family: inherit;
+      font-size: 14.5px;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      cursor: pointer;
+      text-decoration: none;
+      transition: transform 0.18s ease, background 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
+      white-space: nowrap;
     }
 
-    /* Keep hero secondary button crisp on the dark video banner in both themes */
-    .hero-apple .apple-pill-btn--secondary {
-      background: rgba(12, 15, 22, 0.62);
+    .mosaic-btn--gold {
+      background: #f7b924;
+      color: #081c3e !important;
+      border: 1.5px solid #f7b924;
+      box-shadow: 0 6px 20px rgba(247, 185, 36, 0.28);
+    }
+
+    .mosaic-btn--gold:hover {
+      background: #ffc63a;
+      border-color: #ffc63a;
+      transform: translateY(-1.5px);
+      box-shadow: 0 10px 26px rgba(247, 185, 36, 0.42);
+    }
+
+    .mosaic-btn--outline {
+      background: transparent;
       color: #ffffff !important;
-      border-color: rgba(255, 255, 255, 0.3);
-      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.35);
+      border: 1.5px solid rgba(255, 255, 255, 0.78);
     }
 
-    .hero-apple .apple-pill-btn--secondary:hover {
-      background: rgba(255, 255, 255, 0.16);
-      border-color: rgba(255, 255, 255, 0.5);
+    .mosaic-btn--outline:hover {
+      background: rgba(255, 255, 255, 0.12);
+      border-color: #ffffff;
+      transform: translateY(-1.5px);
     }
 
-    @media (max-width: 768px) {
-      .hero-apple {
-        min-height: clamp(32rem, 80svh, 44rem);
-        padding-top: 3rem;
-        padding-bottom: 3rem;
+    /* Tile 8: Royal Violet 12-Node Orbital Ring */
+    .mosaic-tile--orbit {
+      background: #6f53c1;
+    }
+
+    .anim-orbit-spin {
+      transform-origin: 0 0;
+      animation: orbitRotate 28s linear infinite;
+    }
+
+    @keyframes orbitRotate {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    .orbit-node {
+      animation: nodeGlowWave 3.6s ease-in-out infinite;
+    }
+
+    .on-1 { animation-delay: 0s; }
+    .on-2 { animation-delay: 0.3s; }
+    .on-3 { animation-delay: 0.6s; }
+    .on-4 { animation-delay: 0.9s; }
+    .on-5 { animation-delay: 1.2s; }
+    .on-6 { animation-delay: 1.5s; }
+    .on-7 { animation-delay: 1.8s; }
+    .on-8 { animation-delay: 2.1s; }
+    .on-9 { animation-delay: 2.4s; }
+    .on-10 { animation-delay: 2.7s; }
+    .on-11 { animation-delay: 3.0s; }
+    .on-12 { animation-delay: 3.3s; }
+
+    @keyframes nodeGlowWave {
+      0%, 70%, 100% { fill: #f4f3fa; opacity: 0.9; }
+      35% { fill: #ffffff; opacity: 1; }
+    }
+
+    /* Responsive Mosaic Breakpoints */
+    @media (max-width: 980px) {
+      .mosaic-row--top {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        height: clamp(145px, 24vw, 200px);
       }
 
-      .hero-pill-badge {
-        padding: 7px 14px;
-        margin-bottom: 1.1rem;
+      .mosaic-tile--chassis,
+      .mosaic-tile--ribbons {
+        display: none;
       }
 
-      .hero-headline {
-        font-size: clamp(2.55rem, 10.5vw, 3.4rem);
-        line-height: 1.05;
-        margin-bottom: 1rem;
+      .mosaic-row--bottom {
+        grid-template-columns: 1fr 1fr;
+        min-height: auto;
       }
 
-      .hero-subhead {
-        font-size: 1.08rem;
-        line-height: 1.5;
+      .mosaic-hero-center {
+        grid-column: 1 / -1;
+        order: -1;
+        padding: 2.6rem 1.5rem;
+      }
+
+      .mosaic-tile--diagnostics,
+      .mosaic-tile--orbit {
+        height: clamp(150px, 32vw, 220px);
+      }
+    }
+
+    @media (max-width: 560px) {
+      .mosaic-row--top {
+        height: 128px;
+      }
+
+      .mosaic-hero-title {
+        font-size: clamp(2.15rem, 10vw, 2.75rem);
+      }
+
+      .mosaic-hero-desc {
+        font-size: 0.95rem;
         margin-bottom: 1.4rem;
       }
 
-      .hero-proof-row {
-        padding: 9px 15px;
-        border-radius: 18px;
-        gap: 0.45rem 0.7rem;
-        margin-bottom: 1.6rem;
+      .mosaic-btn {
+        padding: 11px 22px;
+        font-size: 14px;
       }
 
-      .hero-proof-item {
-        font-size: 13px;
-      }
-
-      .hero-cta-btn {
-        padding: 12px 22px;
-        font-size: 15px;
+      .mosaic-tile--diagnostics,
+      .mosaic-tile--orbit {
+        height: 135px;
       }
     }
 
@@ -4649,7 +4907,22 @@
   .hero-headline,
   .section-headline,
   .store-title,
-  .hero-live-dot {
+  .hero-live-dot,
+  .anim-chassis-float,
+  .anim-chassis-sheen,
+  .anim-sensor-pulse,
+  .kb-key,
+  .anim-laptop-bob,
+  .anim-laptop-sheen,
+  .anim-badge-pop,
+  .anim-dot-breathe,
+  .anim-charger-float,
+  .anim-led-halo,
+  .anim-led-core,
+  .mosaic-ribbon-track,
+  .diag-orb,
+  .anim-orbit-spin,
+  .orbit-node {
     animation: none !important;
   }
   .why-slider-track,
