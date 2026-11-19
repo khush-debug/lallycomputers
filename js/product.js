@@ -616,7 +616,9 @@
           </div>
           <h4 class="cart-empty-title">Your Inquiry Cart is Empty</h4>
           <p class="cart-empty-desc">Explore laptops, custom PCs, and accessories to reserve hardware directly from our Moga showroom.</p>
-          <button class="cart-empty-btn" type="button" onclick="closeCartModal()">Browse Showroom Inventory &rarr;</button>
+          <button class="cart-empty-btn" type="button" onclick="closeCartModal(); window.location.href='index.html#catalogueSpace';">
+            <span>Browse Showroom Inventory</span> &rarr;
+          </button>
         </div>
       `;
       if (footer) footer.style.display = 'none';

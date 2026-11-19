@@ -1049,12 +1049,21 @@ function renderCartModal() {
   if (cart.length === 0) {
     body.innerHTML = `
       <div class="cart-empty-state">
-        <svg viewBox="0 0 24 24" width="48" height="48" fill="none" stroke="currentColor" stroke-width="1.5">
-          <circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/>
-          <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>
-        </svg>
-        <p>Your shopping basket is currently empty.</p>
-        <button class="apple-pill-btn apple-pill-btn--primary" onclick="closeCartModal()">Browse Inventory</button>
+        <div class="cart-empty-icon">
+          <svg viewBox="0 0 24 24" width="34" height="34" fill="none" stroke="currentColor" stroke-width="1.8">
+            <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/>
+            <line x1="3" y1="6" x2="21" y2="6"/>
+            <path d="M16 10a4 4 0 0 1-8 0"/>
+          </svg>
+        </div>
+        <h4 class="cart-empty-title">Your shopping basket is empty</h4>
+        <p class="cart-empty-desc">Explore verified laptops, gaming rigs, and components ready for instant pickup or test in Moga.</p>
+        <button class="cart-empty-btn" type="button" onclick="closeCartModal(); if (typeof openCatalogueSpace === 'function') { openCatalogueSpace('laptops_used'); } else { document.getElementById('catalogueSpace')?.scrollIntoView({behavior:'smooth'}); }">
+          <span>Browse Showroom Inventory</span>
+          <svg viewBox="0 0 20 20" width="16" height="16" fill="currentColor">
+            <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"/>
+          </svg>
+        </button>
       </div>
     `;
     if (footer) footer.style.display = 'none';
