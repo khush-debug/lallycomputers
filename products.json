@@ -2893,5 +2893,32 @@
     ],
     "delivery": "Walk-in Service Available \u00b7 5-A, Sodhi Nagar, Moga",
     "fastDelivery": "Instant Turnaround: 30 to 90 Mins"
+  },
+  {
+    "id": "lap-game-6",
+    "category": "laptops_gaming",
+    "brand": "Asus",
+    "title": "ASUS ROG Strix G16 (RTX 4060)",
+    "priceNum": 114990,
+    "price": "From \u20b91,14,990",
+    "mrp": "\u20b91,44,990",
+    "discount": "21% off",
+    "rating": 4.9,
+    "reviewsCount": 312,
+    "boughtPastMonth": "200+ bought in past month",
+    "badge": "RTX 4060 8GB \u00b7 165Hz",
+    "condition": "new",
+    "image": "images/products/lap-game-3.svg",
+    "specs": [
+      "Intel Core i7 13th Gen (14 Cores)",
+      "16GB DDR5 4800MHz",
+      "1TB PCIe 4.0 NVMe SSD",
+      "NVIDIA RTX 4060 8GB GDDR6 (140W TGP)",
+      "16.0\" 165Hz FHD+ 100% sRGB Nebula"
+    ],
+    "desc": "Pro-tier esports battlestation with 140W max TGP RTX 4060 GPU, MUX switch, liquid metal cooling, and 165Hz ROG Nebula display.",
+    "warranty": "1 Year Official ASUS India Global Warranty + Genuine GST Tax Invoice",
+    "delivery": "FREE delivery Tomorrow",
+    "fastDelivery": "Pickup available today at Sodhi Nagar"
   }
 ]
