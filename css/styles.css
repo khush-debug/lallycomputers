@@ -4962,19 +4962,21 @@
 
   .amz-actions-row {
     width: 100%;
-    margin-top: 3px;
+    margin-top: 6px;
     display: flex;
+    align-items: center;
+    gap: 8px;
   }
 
   .amz-btn-cart {
-    width: 100% !important;
+    flex: 1;
     background: #ffd814 !important;
     color: #0f1111 !important;
     border: 1px solid #fcd200 !important;
     border-radius: 9999px !important;
     font-weight: 700 !important;
     font-size: 12.5px !important;
-    padding: 7px 12px !important;
+    padding: 8px 12px !important;
     justify-content: center !important;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12) !important;
   }
@@ -4984,8 +4986,26 @@
     transform: scale(0.98);
   }
 
+  .amz-btn-view {
+    display: inline-flex !important;
+    align-items: center;
+    justify-content: center;
+    padding: 8px 12px !important;
+    font-size: 12px !important;
+    font-weight: 600 !important;
+    border-radius: 9999px !important;
+    text-decoration: none !important;
+    white-space: nowrap;
+    background: var(--bg-subtle) !important;
+    border: 1px solid var(--border-subtle) !important;
+    color: var(--text-primary) !important;
+  }
+
+  .amz-btn-view:active {
+    background: var(--border-subtle) !important;
+  }
+
   .amz-btn-wa,
-  .amz-btn-view,
   .amz-btn-lab {
     display: none !important;
   }
