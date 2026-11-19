@@ -80,7 +80,7 @@ You can add, edit, or remove store inventory at any time **without touching any 
 - **Mobile-Native UX & Android Back Button**: Full `popstate` History API integration. Tapping the phone's physical or on-screen Back button (`◁`) or back-swiping smoothly closes modals, sheets, and drawers without exiting the website.
 - **WhatsApp Commerce Cart**: Customer adds items to basket and clicks checkout to generate a structured, formatted WhatsApp inquiry with item names, quantities, and pricing.
 - **Local SEO & Rich Snippets**: Complete Schema.org `ComputerStore` JSON-LD, OpenGraph preview cards (`og.jpg`), Twitter metadata, `robots.txt`, and canonical XML sitemap.
-- **Interactive Jet-Black Kinetic Canvas**: Lightweight Canvas 2D background (`KineticGrid`) responding to cursor warp and ripples with idle power-saving sleep.
+- **Clean Apple-Grade Surfaces**: Polished solid light/dark theme backgrounds with zero noisy background canvas redraws or CPU overhead.
 
 ---
 
