@@ -23,7 +23,7 @@ Then open [http://localhost:8000](http://localhost:8000) in your browser.
 ## 📁 Project Structure
 
 ```
-lally-computers-website/
+lallycomputers/
 ├── index.html                  # Main webpage (Clean HTML5 structure)
 ├── css/
 │   └── styles.css              # Consolidated design system, themes, and responsive rules
