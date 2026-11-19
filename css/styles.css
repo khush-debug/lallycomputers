@@ -3840,6 +3840,32 @@
       box-shadow: 0 24px 60px rgba(0, 0, 0, 0.7);
     }
 
+    .modal-drag-handle {
+      display: none;
+      width: 44px;
+      height: 5px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.3);
+      margin: 0 auto 1rem;
+      cursor: pointer;
+    }
+
+    :root[data-theme="light"] .modal-drag-handle {
+      background: rgba(0, 0, 0, 0.22);
+    }
+
+    .modal-action-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.75rem;
+      margin-top: 1.25rem;
+    }
+
+    .modal-close-pill-btn {
+      cursor: pointer;
+    }
+
     .modal-sheet-close {
       position: absolute;
       right: 1.2rem;
@@ -5103,12 +5129,39 @@
   .modal-backdrop {
     align-items: flex-end;
     padding: 0;
+    overscroll-behavior: contain;
+  }
+
+  .modal-drag-handle {
+    display: block;
   }
 
   .modal-sheet {
-    border-radius: 20px 20px 0 0;
-    max-height: 85vh;
-    padding: 1.25rem 1rem calc(1.25rem + env(safe-area-inset-bottom, 0px));
+    border-radius: 24px 24px 0 0;
+    max-height: min(88vh, 88dvh);
+    padding: 0.95rem 1.1rem calc(2.4rem + env(safe-area-inset-bottom, 20px));
+    overscroll-behavior: contain;
+    will-change: transform;
+    transition: transform 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .modal-action-row {
+    gap: 0.55rem;
+    margin-top: 1.15rem;
+    width: 100%;
+  }
+
+  .modal-action-row .apple-pill-btn {
+    flex: 1 1 calc(50% - 0.4rem);
+    text-align: center;
+    justify-content: center;
+    font-size: 13.5px;
+    padding: 10px 14px;
+  }
+
+  .modal-action-row #modalWaBtn,
+  .modal-action-row #labReportWaBtn {
+    flex: 1 1 100%;
   }
 
   .modal-sheet h3 {

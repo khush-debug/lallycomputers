@@ -28,7 +28,62 @@ function toggleSiteTheme() {
 }
 
 /* ==========================================================================
-   MODAL CONTROLLER (UNIFIED)
+   MOBILE HISTORY & HARDWARE/SOFTWARE BACK BUTTON MANAGER
+   ========================================================================== */
+let isHandlingPopState = false;
+
+function pushNavigationState(type, id) {
+  try {
+    const cur = window.history.state;
+    if (!cur || cur.lallyView !== type || cur.lallyId !== id) {
+      window.history.pushState({ lallyView: type, lallyId: id || null, ts: Date.now() }, '', window.location.href);
+    }
+  } catch (e) { }
+}
+
+function popNavigationStateIfMatches(type) {
+  if (isHandlingPopState) return;
+  try {
+    const cur = window.history.state;
+    if (cur && cur.lallyView === type) {
+      window.history.back();
+    }
+  } catch (e) { }
+}
+
+// Intercept phone Back button (hardware key, on-screen triangle, or edge swipe)
+window.addEventListener('popstate', (e) => {
+  isHandlingPopState = true;
+  try {
+    // 1. Close any active modal dialog first
+    const openModal = document.querySelector('.modal-backdrop.is-open');
+    if (openModal) {
+      Modal.close(openModal.id, false);
+      return;
+    }
+
+    // 2. Close mobile navigation drawer if open
+    const mobileDrawer = document.getElementById('appleMobileDrawer');
+    if (mobileDrawer && mobileDrawer.classList.contains('is-open')) {
+      if (typeof window.closeAppleMobileDrawer === 'function') {
+        window.closeAppleMobileDrawer(false);
+      }
+      return;
+    }
+
+    // 3. Close full-screen catalogue space if open
+    const catalogueSpace = document.getElementById('catalogueSpace');
+    if (catalogueSpace && catalogueSpace.classList.contains('is-open')) {
+      closeCatalogueSpace(false);
+      return;
+    }
+  } finally {
+    setTimeout(() => { isHandlingPopState = false; }, 60);
+  }
+});
+
+/* ==========================================================================
+   MODAL CONTROLLER (UNIFIED WITH MOBILE HISTORY & SWIPE GESTURE)
    ========================================================================== */
 const Modal = {
   open(id) {
@@ -36,9 +91,10 @@ const Modal = {
     if (el) {
       el.classList.add('is-open');
       document.body.style.overflow = 'hidden';
+      pushNavigationState('modal', id);
     }
   },
-  close(id) {
+  close(id, syncHistory = true) {
     if (id) {
       const el = document.getElementById(id);
       if (el) el.classList.remove('is-open');
@@ -48,8 +104,50 @@ const Modal = {
     if (!document.querySelector('.modal-backdrop.is-open')) {
       document.body.style.overflow = '';
     }
+    if (syncHistory) {
+      popNavigationStateIfMatches('modal');
+    }
   }
 };
+
+// Touch swipe-down to dismiss modal sheets on mobile phones
+function initModalSwipeToDismiss() {
+  document.querySelectorAll('.modal-sheet').forEach(sheet => {
+    let startY = 0;
+    let currentY = 0;
+    let isSwiping = false;
+
+    sheet.addEventListener('touchstart', (e) => {
+      if (sheet.scrollTop <= 0) {
+        startY = e.touches[0].clientY;
+        currentY = startY;
+        isSwiping = true;
+      }
+    }, { passive: true });
+
+    sheet.addEventListener('touchmove', (e) => {
+      if (!isSwiping) return;
+      currentY = e.touches[0].clientY;
+      const diffY = currentY - startY;
+      if (diffY > 0 && sheet.scrollTop <= 0) {
+        sheet.style.transform = `translateY(${Math.min(diffY, 150)}px)`;
+      }
+    }, { passive: true });
+
+    sheet.addEventListener('touchend', () => {
+      if (!isSwiping) return;
+      isSwiping = false;
+      const diffY = currentY - startY;
+      sheet.style.transition = 'transform 0.22s ease';
+      if (diffY > 75 && sheet.scrollTop <= 0) {
+        const parentModal = sheet.closest('.modal-backdrop');
+        if (parentModal) Modal.close(parentModal.id);
+      }
+      sheet.style.transform = '';
+      setTimeout(() => { sheet.style.transition = ''; }, 240);
+    }, { passive: true });
+  });
+}
 
 /* ==========================================================================
    CATEGORY NAVIGATION & RENDERING
@@ -126,6 +224,7 @@ function openCatalogueSpace(catId) {
   }
 
   space.classList.add('is-open');
+  pushNavigationState('catalogueSpace', activeCategory);
 
   const catObj = window.CATEGORIES.find(c => c.id === activeCategory);
   if (catObj) {
@@ -153,12 +252,15 @@ function openCatalogueSpace(catId) {
   setTimeout(finishTopLoader, 160);
 }
 
-function closeCatalogueSpace() {
+function closeCatalogueSpace(syncHistory = true) {
   const space = document.getElementById('catalogueSpace');
   if (space) space.classList.remove('is-open');
   document.querySelectorAll('.chap-item').forEach(btn => btn.classList.remove('is-active'));
   const lineup = document.getElementById('lineup');
   if (lineup) lineup.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  if (syncHistory) {
+    popNavigationStateIfMatches('catalogueSpace');
+  }
 }
 
 function switchSpaceCategory(catId) {
@@ -1923,6 +2025,9 @@ document.addEventListener('DOMContentLoaded', () => {
   // Initialize Cookie Consent Banner
   initCookieBanner();
 
+  // Initialize Mobile Modal Swipe-Down-To-Dismiss Gestures
+  initModalSwipeToDismiss();
+
   // Initialize Carousel Pagination Dots with Manual Movement & Arrow Controls
   initSliderWithDots('whySliderWrap', 'whyTrack', 'whyDots', 6, 42, 'whyPrevBtn', 'whyNextBtn');
   initSliderWithDots('reviewsSliderWrap', 'reviewsTrack', 'reviewsDots', 4, 40, 'reviewsPrevBtn', 'reviewsNextBtn');
@@ -2382,9 +2487,10 @@ function initAppleMegaMenu() {
     mobileDrawer.setAttribute('aria-hidden', 'false');
     mobileBtn.setAttribute('aria-expanded', 'true');
     document.body.style.overflow = 'hidden';
+    pushNavigationState('mobileDrawer');
   }
 
-  function closeMobileDrawer() {
+  function closeMobileDrawer(syncHistory = true) {
     if (!mobileDrawer || !mobileBtn) return;
     nav.classList.remove('is-mobile-open');
     mobileDrawer.classList.remove('is-open');
@@ -2393,7 +2499,12 @@ function initAppleMegaMenu() {
     if (!document.querySelector('.modal-backdrop.is-open')) {
       document.body.style.overflow = '';
     }
+    if (syncHistory) {
+      popNavigationStateIfMatches('mobileDrawer');
+    }
   }
+
+  window.closeAppleMobileDrawer = closeMobileDrawer;
 
   if (mobileBtn && mobileDrawer && mobileContent) {
     mobileBtn.addEventListener('click', () => {
