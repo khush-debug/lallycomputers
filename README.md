@@ -24,30 +24,27 @@ Then open [http://localhost:8000](http://localhost:8000) in your browser.
 
 ```
 lallycomputers/
-├── index.html                  # Main webpage (Clean HTML5 structure)
+├── index.html                  # Main webpage (HTML5 semantic layout, Schema.org JSON-LD)
 ├── css/
-│   └── styles.css              # Consolidated design system, themes, and responsive rules
+│   └── styles.css              # Consolidated design system, dark/light themes, animations & responsive rules
 ├── js/
-│   ├── data.js                 # Centralized catalogue and inventory dataset
-│   └── app.js                  # Store interactivity, cart, modals, search, and Google Sheets sync
-├── categories.json             # 12 Store departments metadata
-├── products.json               # 67 In-store verified products
-├── stock-inventory-template.csv # Ready-to-use CSV template for managing stock in Google Sheets
-├── hero-1080.mp4               # High-resolution raytraced 3D circuit board video (desktop)
-├── hero-720.mp4                # Mobile-optimized circuit board video
-├── hero-1080.webm              # High-resolution WebM fallback
-├── hero-720.webm               # Mobile WebM fallback
-├── poster.jpg                  # Poster image displayed before video loads
-├── og.jpg                      # OpenGraph / social share preview image
-├── favicon.svg                 # High-resolution vector circuit favicon
-├── start.sh                    # One-click local preview launch script
-├── package.json                # Node.js project manifest & scripts
-├── vercel.json                 # 1-click Vercel deployment configuration
-├── netlify.toml                # 1-click Netlify deployment configuration
-└── hero-render-source/         # Python & WebGL2 source used to generate the 3D board
-    ├── gen_board.py            # Generates procedural circuit-board textures
-    ├── index.html              # WebGL2 raymarching renderer
-    └── gltest.py               # WebGL test script
+│   └── app.js                  # Store engine, cart, modals, search, Google Sheets sync & mobile popstate navigation
+├── categories.json             # 13 Store department definitions & metadata
+├── products.json               # 72 Curated in-store products & 25-Point Lab verification reports
+├── stock-inventory-template.csv # 72-row ready-to-use CSV template for managing stock via Google Sheets
+├── hero-720.mp4                # High-efficiency circuit board video fallback
+├── hero-720.webm               # WebM video fallback
+├── og.jpg                      # OpenGraph & social preview image (1200x630)
+├── favicon.png                 # High-resolution app icon & touch icon
+├── favicon.svg                 # Scalable vector favicon
+├── manifest.json               # PWA web app manifest
+├── privacy.html                # Privacy policy page
+├── 404.html                    # Branded 404 not found page
+├── robots.txt                  # Search engine crawl directives
+├── sitemap.xml                 # XML sitemap with canonical endpoints
+├── package.json                # Project manifest & metadata
+├── vercel.json                 # Vercel Edge caching & security headers
+└── start.sh                    # One-click local preview launch script
 ```
 
 ---
@@ -73,16 +70,17 @@ You can add, edit, or remove store inventory at any time **without touching any 
 
 ---
 
-## ✨ Features
+## ✨ Key Features & Architecture
 
-- **Raytraced 3D Hero Animation**: Procedurally rendered circuit board camera dolly with lightweight, muted looping video and poster fallbacks.
-- **Responsive Layout**: Designed for ultra-wide screens down to compact mobile phones.
-- **Theme Switcher**: Dark mode & Light mode toggle with automatic system preference detection and localStorage persistence.
-- **WhatsApp Integration**: Direct click-to-chat links for inquiries on specific laptops, Apple Watches, repairs, and general quotes.
-- **Real-Time Store Hours Badge**: Automatically calculates current Indian Standard Time (IST) to display whether the store is currently *Open* or *Closed*.
-- **Embedded Google Maps**: Interactive map embed showing the exact location in Sodhi Nagar, Moga, Punjab with 1-click directions.
-- **One-Click Phone Number Copy**: Easy contact copying with visual feedback.
-- **SEO & Social Metadata**: Rich schema.org JSON-LD for local business, OpenGraph cards, Twitter preview cards, and semantic HTML5.
+- **Animated Geometric Mosaic Banner**: 8-tile modular hero featuring an animated mechanical keyboard typing LALLY, floating hardware chassis, split laptop with sheen sweep, GaN fast charger with breathing LED, rotating 12-node circuit ring, and diagnostic spheres. Fully adaptive across both light and dark modes.
+- **Apple-Style Full-Width Frosted Mega-Menu**: Multi-column desktop flyout with backdrop blur, deep category linking, and slide-in mobile navigation drawer.
+- **Zero-Cost Headless CMS (Google Sheets Sync)**: Live real-time inventory management through a standard Google Sheet via CORS-friendly Google Visualization API (`/gviz/tq?tqx=out:csv`). Zero hosting fees, zero backend database overhead, zero tokens.
+- **25-Point Lab Diagnostic Reports**: Detailed hardware audit modal for pre-owned enterprise laptops (ThinkPads, Latitudes, EliteBooks, MacBooks) with component serial numbers, battery health, thermal testing, and grading.
+- **Amazon-Style Dedicated Catalogue Space**: In-depth filterable product launcher by department, budget, brand, screen size, and refresh rate with real-time text search.
+- **Mobile-Native UX & Android Back Button**: Full `popstate` History API integration. Tapping the phone's physical or on-screen Back button (`◁`) or back-swiping smoothly closes modals, sheets, and drawers without exiting the website.
+- **WhatsApp Commerce Cart**: Customer adds items to basket and clicks checkout to generate a structured, formatted WhatsApp inquiry with item names, quantities, and pricing.
+- **Local SEO & Rich Snippets**: Complete Schema.org `ComputerStore` JSON-LD, OpenGraph preview cards (`og.jpg`), Twitter metadata, `robots.txt`, and canonical XML sitemap.
+- **Interactive Jet-Black Kinetic Canvas**: Lightweight Canvas 2D background (`KineticGrid`) responding to cursor warp and ripples with idle power-saving sleep.
 
 ---
 
