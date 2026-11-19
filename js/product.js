@@ -93,7 +93,7 @@
     const bcCat = document.getElementById('bcCategoryLink');
     if (bcCat) {
       bcCat.textContent = catName;
-      bcCat.href = `index.html#catalogueSpace`;
+      bcCat.href = `index.html#lineup`;
     }
     const bcBrand = document.getElementById('bcBrand');
     if (bcBrand) bcBrand.textContent = brand;
@@ -150,7 +150,7 @@
     const brandLink = document.getElementById('pdpBrandLink');
     if (brandLink) {
       brandLink.textContent = `Visit the ${brand} Collection`;
-      brandLink.href = `index.html#catalogueSpace`;
+      brandLink.href = `index.html#lineup`;
     }
     const skuPill = document.getElementById('pdpSkuPill');
     if (skuPill) skuPill.textContent = `ID: ${p.id.toUpperCase()}`;
@@ -540,7 +540,7 @@
           </svg>
           <h4 style="font-size:16px; margin-bottom:6px; color:var(--pdp-text);">Your Inquiry Cart is Empty</h4>
           <p style="font-size:13px; margin-bottom:1.5rem;">Browse laptops and accessories to add them to your inquiry.</p>
-          <a class="apple-pill-btn apple-pill-btn--primary" href="index.html#catalogueSpace">Browse Catalogue</a>
+          <a class="apple-pill-btn apple-pill-btn--primary" href="index.html">Back to Showroom</a>
         </div>
       `;
       if (footer) footer.style.display = 'none';
@@ -577,7 +577,7 @@
     // WhatsApp Checkout Link
     const waCheckoutBtn = document.getElementById('cartWhatsAppCheckoutBtn');
     if (waCheckoutBtn) {
-      let msg = 'Hi Lally Computers, I would like to reserve/inquire about the following items from your catalogue:\n\n';
+      let msg = 'Hi Lally Computers, I would like to reserve/inquire about the following items:\n\n';
       cart.forEach((c, idx) => {
         msg += `${idx + 1}. *${c.title}* (${c.price}) x ${c.qty}\n`;
       });
@@ -601,12 +601,18 @@
 
   window.openCartModal = function () {
     const modal = document.getElementById('cartModal');
-    if (modal) modal.classList.add('active');
+    if (modal) {
+      modal.classList.add('is-open');
+      modal.classList.add('active');
+    }
   };
 
   window.closeCartModal = function () {
     const modal = document.getElementById('cartModal');
-    if (modal) modal.classList.remove('active');
+    if (modal) {
+      modal.classList.remove('is-open');
+      modal.classList.remove('active');
+    }
   };
 
   // Toast Notification
