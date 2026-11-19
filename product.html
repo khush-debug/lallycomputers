@@ -442,40 +442,90 @@
   </aside>
 
   <!-- =========================================================================
-       SHOPPING CART MODAL DRAWER (FULL STORE INTEGRATION)
+       SHOPPING CART SLIDE-OVER DRAWER (APPLE / SHOPIFY SPEC)
        ========================================================================= -->
-  <div class="modal-backdrop" id="cartModal" role="dialog" aria-modal="true" aria-label="Shopping Cart">
-    <div class="modal-sheet cart-drawer">
-      <div class="modal-drag-handle" aria-hidden="true"></div>
+  <div class="cart-drawer-overlay" id="cartModal" role="dialog" aria-modal="true" aria-label="Shopping Cart">
+    <!-- Backdrop Blur (Click to Close) -->
+    <div class="cart-drawer-backdrop" onclick="closeCartModal()" aria-hidden="true"></div>
+
+    <!-- Right-Hand Slide-In Panel -->
+    <aside class="cart-drawer-panel" aria-label="Inquiry Basket">
+      <!-- Header -->
       <div class="cart-drawer-header">
-        <div class="cart-title-row">
-          <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2">
-            <circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/>
-            <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>
+        <div class="cart-header-left">
+          <div class="cart-header-icon-wrap">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/>
+              <line x1="3" y1="6" x2="21" y2="6"/>
+              <path d="M16 10a4 4 0 0 1-8 0"/>
+            </svg>
+          </div>
+          <div class="cart-header-title-group">
+            <div class="cart-header-title-row">
+              <h3>Your Inquiry Cart</h3>
+              <span class="cart-count-pill" id="cartDrawerCount">0 items</span>
+            </div>
+            <p class="cart-header-subtitle">Supreme Infosys &middot; 5-A, Sodhi Nagar, Moga</p>
+          </div>
+        </div>
+        <button class="cart-drawer-close-btn" type="button" onclick="closeCartModal()" aria-label="Close cart" title="Close cart">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2">
+            <line x1="18" y1="6" x2="6" y2="18"/>
+            <line x1="6" y1="6" x2="18" y2="18"/>
           </svg>
-          <h3>Inquiry Cart</h3>
-          <span class="cart-badge-count" id="cartDrawerCount">0</span>
-        </div>
-        <button class="modal-sheet-close" type="button" onclick="closeCartModal()" aria-label="Close cart">&times;</button>
+        </button>
       </div>
 
+      <!-- Trust Sub-Banner -->
+      <div class="cart-trust-banner">
+        <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/>
+        </svg>
+        <span>Zero advance payment &middot; Test hardware hands-on before purchase</span>
+      </div>
+
+      <!-- Scrollable Cart Items List -->
       <div class="cart-drawer-body" id="cartItemsList">
-        <!-- Rendered dynamically -->
+        <!-- Rendered dynamically via JS -->
       </div>
 
+      <!-- Footer Pinned to Bottom -->
       <div class="cart-drawer-footer" id="cartDrawerFooter">
-        <div class="cart-subtotal-row">
-          <span>Estimated Total:</span>
-          <span class="cart-subtotal-val" id="cartSubtotalVal">₹0</span>
+        <div class="cart-summary-card">
+          <div class="cart-summary-row">
+            <span>Subtotal (<span id="cartFooterCount">0</span> items)</span>
+            <span class="cart-summary-price" id="cartSubtotalVal">₹0</span>
+          </div>
+          <div class="cart-summary-meta">
+            <span>GST Tax Invoice</span>
+            <span class="green-text">Included</span>
+          </div>
+          <div class="cart-summary-meta">
+            <span>In-Store Pickup &amp; Bench Test</span>
+            <span class="green-text">FREE</span>
+          </div>
         </div>
-        <div class="cart-actions-row">
-          <a class="cart-checkout-wa-btn" id="cartWhatsAppCheckoutBtn" href="#" target="_blank" rel="noopener">
-            <span>Send Cart Inquiry via WhatsApp</span>
+
+        <div class="cart-actions-column">
+          <a class="cart-whatsapp-checkout-btn" id="cartWhatsAppCheckoutBtn" href="#" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+              <path d="M17.472 14.382c-.301-.15-1.782-.879-2.058-.98-.276-.1-.476-.15-.677.15-.2.301-.777.98-.952 1.18-.175.201-.351.226-.652.076-.301-.15-1.27-.468-2.42-1.493-.894-.799-1.498-1.786-1.674-2.087-.175-.3-.019-.463.132-.612.136-.134.301-.351.451-.527.15-.175.2-.301.301-.501.1-.2.05-.376-.025-.526-.075-.15-.677-1.631-.928-2.233-.244-.585-.493-.506-.677-.515-.175-.009-.376-.011-.577-.011-.2 0-.526.075-.802.376-.276.301-1.053 1.028-1.053 2.508 0 1.48 1.078 2.91 1.228 3.111.15.2 2.122 3.24 5.141 4.544.718.31 1.279.496 1.716.635.722.23 1.379.197 1.898.12.579-.086 1.782-.728 2.033-1.431.251-.703.251-1.305.175-1.431-.075-.126-.276-.201-.577-.351zM12.04 2C6.516 2 2.023 6.49 2.023 12.013c0 1.942.555 3.756 1.517 5.292L2 22l4.834-1.503a10.007 10.007 0 0 0 5.206 1.516c5.524 0 10.017-4.49 10.017-10.013C22.057 6.49 17.564 2 12.04 2z"/>
+            </svg>
+            <span>Send Inquiry via WhatsApp</span>
           </a>
-          <button class="cart-clear-btn" type="button" onclick="clearCart()">Clear Cart</button>
+
+          <div class="cart-footer-links">
+            <button class="cart-clear-btn" type="button" onclick="clearCart()">
+              <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M3 6h18m-2 0v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/>
+              </svg>
+              <span>Clear Cart</span>
+            </button>
+            <button class="cart-continue-btn" type="button" onclick="closeCartModal()">Continue Browsing</button>
+          </div>
         </div>
       </div>
-    </div>
+    </aside>
   </div>
 
   <!-- Toast Notification Container -->

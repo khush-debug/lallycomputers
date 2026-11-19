@@ -560,6 +560,7 @@
     saveCart();
     updateCartUI();
     showToast(`Added ${currentQty} &times; "${currentProduct.title}" to Cart`);
+    openCartModal();
   };
 
   // Cart Management
@@ -569,6 +570,17 @@
     } catch (e) {}
   }
 
+  window.updateCartItemQty = function (id, delta) {
+    const item = cart.find(c => c.id === id);
+    if (!item) return;
+    item.qty = (item.qty || 1) + delta;
+    if (item.qty <= 0) {
+      cart = cart.filter(c => c.id !== id);
+    }
+    saveCart();
+    updateCartUI();
+  };
+
   function updateCartUI() {
     const totalItems = cart.reduce((sum, item) => sum + (item.qty || 1), 0);
     const badge = document.getElementById('navCartBadge');
@@ -576,8 +588,16 @@
       badge.textContent = totalItems;
       badge.style.display = totalItems > 0 ? 'inline-flex' : 'none';
     }
+
     const drawerBadge = document.getElementById('cartDrawerCount');
-    if (drawerBadge) drawerBadge.textContent = totalItems;
+    if (drawerBadge) {
+      drawerBadge.textContent = `${totalItems} ${totalItems === 1 ? 'item' : 'items'}`;
+    }
+
+    const footerCount = document.getElementById('cartFooterCount');
+    if (footerCount) {
+      footerCount.textContent = totalItems;
+    }
 
     const list = document.getElementById('cartItemsList');
     const footer = document.getElementById('cartDrawerFooter');
@@ -586,21 +606,24 @@
 
     if (cart.length === 0) {
       list.innerHTML = `
-        <div style="text-align:center; padding: 3rem 1rem; color: var(--pdp-text-muted);">
-          <svg viewBox="0 0 24 24" width="48" height="48" fill="none" stroke="currentColor" stroke-width="1.5" style="margin-bottom:1rem; opacity:0.6;">
-            <circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/>
-            <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>
-          </svg>
-          <h4 style="font-size:16px; margin-bottom:6px; color:var(--pdp-text);">Your Inquiry Cart is Empty</h4>
-          <p style="font-size:13px; margin-bottom:1.5rem;">Browse laptops and accessories to add them to your inquiry.</p>
-          <a class="apple-pill-btn apple-pill-btn--primary" href="index.html">Back to Showroom</a>
+        <div class="cart-empty-state">
+          <div class="cart-empty-icon">
+            <svg viewBox="0 0 24 24" width="32" height="32" fill="none" stroke="currentColor" stroke-width="1.8">
+              <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/>
+              <line x1="3" y1="6" x2="21" y2="6"/>
+              <path d="M16 10a4 4 0 0 1-8 0"/>
+            </svg>
+          </div>
+          <h4 class="cart-empty-title">Your Inquiry Cart is Empty</h4>
+          <p class="cart-empty-desc">Explore laptops, custom PCs, and accessories to reserve hardware directly from our Moga showroom.</p>
+          <button class="cart-empty-btn" type="button" onclick="closeCartModal()">Browse Showroom Inventory &rarr;</button>
         </div>
       `;
       if (footer) footer.style.display = 'none';
       return;
     }
 
-    if (footer) footer.style.display = 'block';
+    if (footer) footer.style.display = 'flex';
 
     let totalVal = 0;
     list.innerHTML = cart.map(item => {
@@ -608,17 +631,35 @@
       const subtotal = pNum * (item.qty || 1);
       totalVal += subtotal;
       return `
-        <div class="cart-item-row">
-          <div class="cart-item-left">
-            <img class="cart-item-img" src="${item.image}" alt="${item.title}" onerror="this.onerror=null;this.src='images/logo.png';">
-            <div class="cart-item-info">
-              <a class="cart-item-title" href="product.html?id=${item.id}">${item.title}</a>
-              <div class="cart-item-price-qty">${item.price} &times; ${item.qty}</div>
+        <div class="cart-item-card" id="cart-item-${item.id}">
+          <div class="cart-item-main">
+            <a class="cart-item-thumb-link" href="product.html?id=${item.id}" aria-label="${item.title}">
+              <img class="cart-item-img" src="${item.image}" alt="${item.title}" onerror="this.onerror=null;this.src='images/logo.png';">
+            </a>
+            <div class="cart-item-details">
+              <a class="cart-item-title" href="product.html?id=${item.id}" title="${item.title}">${item.title}</a>
+              <div class="cart-item-unit-price">${item.price} each</div>
+              <div class="cart-item-status-pill">✓ In Stock &middot; Sodhi Nagar, Moga</div>
             </div>
           </div>
-          <div class="cart-item-right">
-            <span class="cart-item-subtotal">₹${subtotal.toLocaleString('en-IN')}</span>
-            <button class="cart-item-remove-btn" type="button" onclick="removeCartItem('${item.id}')" title="Remove item">&times;</button>
+
+          <div class="cart-item-bottom-bar">
+            <div class="cart-qty-pill-stepper">
+              <button class="cart-qty-btn cart-qty-minus" type="button" onclick="updateCartItemQty('${item.id}', -1)" aria-label="Decrease quantity">
+                ${item.qty === 1 ? `
+                  <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M3 6h18m-2 0v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/>
+                  </svg>
+                ` : '&minus;'}
+              </button>
+              <span class="cart-qty-number">${item.qty}</span>
+              <button class="cart-qty-btn cart-qty-plus" type="button" onclick="updateCartItemQty('${item.id}', 1)" aria-label="Increase quantity">&plus;</button>
+            </div>
+
+            <div class="cart-item-price-col">
+              <span class="cart-item-subtotal-price">₹${subtotal.toLocaleString('en-IN')}</span>
+              <button class="cart-item-delete-btn" type="button" onclick="removeCartItem('${item.id}')">Remove</button>
+            </div>
           </div>
         </div>
       `;
@@ -630,12 +671,13 @@
     // WhatsApp Checkout Link
     const waCheckoutBtn = document.getElementById('cartWhatsAppCheckoutBtn');
     if (waCheckoutBtn) {
-      let msg = 'Hi Lally Computers, I would like to reserve/inquire about the following items:\n\n';
+      let msg = 'Hi Lally Computers, I would like to reserve/inquire about the following items from my cart:\n\n';
       cart.forEach((c, idx) => {
-        msg += `${idx + 1}. *${c.title}* (${c.price}) x ${c.qty}\n`;
+        const itemSub = (c.priceNum || 0) * (c.qty || 1);
+        msg += `${idx + 1}. *${c.title}*\n   Qty: ${c.qty} × ${c.price}${itemSub > 0 ? ` = ₹${itemSub.toLocaleString('en-IN')}` : ''}\n`;
       });
-      msg += `\n*Estimated Total: ₹${totalVal.toLocaleString('en-IN')}*\n`;
-      msg += `\nPlease let me know when I can inspect and collect these at your Sodhi Nagar, Moga showroom.`;
+      msg += `\n*Total Estimated: ₹${totalVal.toLocaleString('en-IN')}*\n`;
+      msg += `\nCan I inspect and collect these at your Sodhi Nagar, Moga showroom?`;
       waCheckoutBtn.href = `https://wa.me/919872010193?text=${encodeURIComponent(msg)}`;
     }
   }
@@ -657,6 +699,7 @@
     if (modal) {
       modal.classList.add('is-open');
       modal.classList.add('active');
+      document.body.style.overflow = 'hidden';
     }
   };
 
@@ -665,6 +708,7 @@
     if (modal) {
       modal.classList.remove('is-open');
       modal.classList.remove('active');
+      document.body.style.overflow = '';
     }
   };
 

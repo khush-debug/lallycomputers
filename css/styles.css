@@ -2689,10 +2689,72 @@
       border-color: var(--apple-blue);
     }
 
-    /* Cart Modal Specifics */
+    /* Cart Modal - Premier Slide-Over Drawer Spec */
+    #cartModal.modal-backdrop {
+      justify-content: flex-end !important;
+      align-items: stretch !important;
+      padding: 0 !important;
+      background: rgba(0, 0, 0, 0.65) !important;
+      backdrop-filter: blur(14px) !important;
+      -webkit-backdrop-filter: blur(14px) !important;
+    }
+
+    #cartModal .modal-sheet.cart-modal-box {
+      max-width: 480px !important;
+      width: 100% !important;
+      height: 100vh !important;
+      height: 100dvh !important;
+      max-height: 100vh !important;
+      border-radius: 0 !important;
+      border-left: 1px solid var(--border-subtle) !important;
+      border-right: none !important;
+      border-top: none !important;
+      border-bottom: none !important;
+      display: flex !important;
+      flex-direction: column !important;
+      padding: 0 !important;
+      transform: translateX(100%);
+      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
+      overflow: hidden !important;
+      box-shadow: -8px 0 36px rgba(0, 0, 0, 0.25) !important;
+    }
+
+    #cartModal.is-open .modal-sheet.cart-modal-box {
+      transform: translateX(0) !important;
+    }
+
+    #cartModal .cart-desktop-header {
+      padding: 1.25rem 1.5rem !important;
+      border-bottom: 1px solid var(--border-subtle) !important;
+      flex-shrink: 0 !important;
+    }
+
+    #cartModal .cart-modal-body {
+      padding: 1.25rem 1.5rem !important;
+      flex: 1 1 auto !important;
+      max-height: none !important;
+      overflow-y: auto !important;
+    }
+
+    #cartModal .cart-modal-footer {
+      padding: 1.25rem 1.5rem calc(1.25rem + env(safe-area-inset-bottom, 0px)) !important;
+      border-top: 1px solid var(--border-subtle) !important;
+      background: var(--bg-surface) !important;
+      flex-shrink: 0 !important;
+    }
+
+    #cartModal .btn-cart-checkout {
+      width: 100% !important;
+      justify-content: center !important;
+      padding: 13px 20px !important;
+      font-size: 14.5px !important;
+      border-radius: 999px !important;
+      box-shadow: 0 4px 14px rgba(37, 211, 102, 0.35) !important;
+    }
+
     .cart-modal-box {
-      max-width: 650px;
-      width: 90%;
+      max-width: 480px;
+      width: 100%;
     }
 
     .cart-mobile-header-bar {
