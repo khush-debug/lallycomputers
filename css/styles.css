@@ -2381,7 +2381,14 @@
       border-color: rgba(245, 197, 99, 0.3);
     }
 
-    /* Product Title */
+    /* Product Links & Title */
+    .amz-title-link,
+    .amz-img-link {
+      text-decoration: none;
+      color: inherit;
+      display: block;
+    }
+
     .amz-product-title {
       font-size: 1.22rem;
       font-weight: 700;
@@ -2392,7 +2399,9 @@
       transition: color 0.15s ease;
     }
 
-    .amz-product-title:hover {
+    .amz-product-title:hover,
+    .amz-title-link:hover .amz-product-title,
+    .amz-title-link:focus .amz-product-title {
       color: var(--apple-blue);
     }
 

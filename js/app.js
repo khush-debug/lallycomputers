@@ -835,27 +835,29 @@ function renderSpaceProducts() {
     ` : '';
 
     const mobileLabOrSpecBtn = item.labReport ? `
-      <button class="amz-mobile-icon-btn" data-lab-id="${item.id}" type="button" title="View 25-Point Lab Report" aria-label="Lab Report">
+      <a class="amz-mobile-icon-btn" href="product.html?id=${item.id}#labReport" title="View 25-Point Lab Report" aria-label="Lab Report">
         <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2">
           <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
         </svg>
-      </button>
+      </a>
     ` : `
-      <button class="amz-mobile-icon-btn" data-specs-id="${item.id}" type="button" title="View Specifications" aria-label="Quick Specs">
+      <a class="amz-mobile-icon-btn" href="product.html?id=${item.id}" title="View Details" aria-label="View Details">
         <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2">
           <rect x="4" y="4" width="16" height="16" rx="2"/>
           <line x1="8" y1="9" x2="16" y2="9"/>
           <line x1="8" y1="13" x2="16" y2="13"/>
         </svg>
-      </button>
+      </a>
     `;
 
     return `
       <article class="amz-product-row" id="product-${item.id}">
         <div class="amz-img-col">
-          <div class="amz-img-container">
-            <img class="amz-product-img" src="${image}" alt="${item.title}" loading="lazy" width="180" height="150" onerror="this.onerror=null;this.src='${fallbackImg}';">
-          </div>
+          <a class="amz-img-link" href="product.html?id=${item.id}" aria-label="View details for ${item.title}">
+            <div class="amz-img-container">
+              <img class="amz-product-img" src="${image}" alt="${item.title}" loading="lazy" width="180" height="150" onerror="this.onerror=null;this.src='${fallbackImg}';">
+            </div>
+          </a>
           <div class="amz-mobile-img-actions">
             ${mobileLabOrSpecBtn}
             <a class="amz-mobile-icon-btn" href="https://wa.me/919872010193?text=${waText}" target="_blank" rel="noopener" title="Inquire on WhatsApp" aria-label="Inquire on WhatsApp">
@@ -872,7 +874,9 @@ function renderSpaceProducts() {
             ${item.badge ? ` &middot; ${item.badge}` : ''}
           </div>
           ${badgesHtml}
-          <h3 class="amz-product-title" data-specs-id="${item.id}">${item.title}</h3>
+          <a class="amz-title-link" href="product.html?id=${item.id}">
+            <h3 class="amz-product-title">${item.title}</h3>
+          </a>
           <p class="amz-product-desc">${item.desc}</p>
           ${specsHtml}
 
@@ -908,7 +912,7 @@ function renderSpaceProducts() {
               </svg>
               <span>WhatsApp Inquiry</span>
             </a>
-            <button class="amz-btn-view" data-specs-id="${item.id}" type="button">Quick View</button>
+            <a class="amz-btn-view" href="product.html?id=${item.id}">View Details &rarr;</a>
             ${labBtnHtml}
           </div>
         </div>
@@ -1090,11 +1094,15 @@ function renderCartModal() {
           </div>
 
           <div class="cart-item-thumb-box">
-            <img class="cart-item-thumb" src="${item.image}" alt="${item.title}" loading="lazy">
+            <a href="product.html?id=${item.id}">
+              <img class="cart-item-thumb" src="${item.image}" alt="${item.title}" loading="lazy">
+            </a>
           </div>
 
           <div class="cart-item-info">
-            <h4 class="cart-item-title" onclick="openSpecSheet('${item.id}')">${item.title}</h4>
+            <a href="product.html?id=${item.id}" style="text-decoration:none;color:inherit;">
+              <h4 class="cart-item-title">${item.title}</h4>
+            </a>
             <div class="cart-item-bought">${bought}</div>
 
             <div class="cart-item-price-row">
@@ -1249,35 +1257,10 @@ function closeLabReportModal() {
 }
 
 function openSpecSheet(id) {
-  const item = window.PRODUCTS.find(x => x.id === id);
-  if (!item) return;
-
-  document.getElementById('modalCategory').textContent = `${item.badge || 'Product'} · In-Store Inventory`;
-  document.getElementById('modalTitle').textContent = item.title;
-  document.getElementById('modalPrice').textContent = item.price;
-  document.getElementById('modalDesc').textContent = item.desc;
-  document.getElementById('modalWarranty').textContent = item.warranty || 'Warranty Included';
-
-  const tbody = document.getElementById('modalSpecTable');
-  if (tbody) {
-    let rowsHtml = '';
-    if (item.specs && item.specs.length) {
-      rowsHtml += `<tr><th>Key Specs</th><td>${item.specs.join(' &middot; ')}</td></tr>`;
-    }
-    if (item.details) {
-      Object.keys(item.details).forEach(key => {
-        rowsHtml += `<tr><th>${key}</th><td>${item.details[key]}</td></tr>`;
-      });
-    }
-    tbody.innerHTML = rowsHtml;
+  if (id) {
+    window.location.href = `product.html?id=${encodeURIComponent(id)}`;
+    return;
   }
-
-  const waBtn = document.getElementById('modalWaBtn');
-  if (waBtn) {
-    waBtn.href = `https://wa.me/919872010193?text=${encodeURIComponent(`Hi Lally Computers, I would like to inquire about ${item.title} (${item.price}).`)}`;
-  }
-
-  Modal.open('appleModal');
 }
 
 function closeSpecSheet() {
