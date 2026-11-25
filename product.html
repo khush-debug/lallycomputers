@@ -5,29 +5,25 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Product Details | Lally Computers (Supreme Infosys)</title>
-  <meta name="description" content="View verified specifications, pricing, 25-point lab diagnostic inspection report, and in-store availability at Lally Computers, Sodhi Nagar, Moga.">
+  <meta name="description" content="View exact specifications, pricing, 25-point lab inspection report, and in-store availability at Lally Computers (Supreme Infosys), Sodhi Nagar, Moga.">
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://lallycomputers.vercel.app/product">
-  <meta name="theme-color" content="#000000">
+  <meta name="theme-color" content="#0B0D10">
   <link rel="icon" type="image/png" href="favicon.png">
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
 
-  <!-- Google Web Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
 
-  <!-- Core & PDP Stylesheets -->
   <link rel="stylesheet" href="css/styles.css">
   <link rel="stylesheet" href="css/product.css">
 
-  <!-- Zero-FOUT Theme Initializer -->
   <script>
     (function () {
       try {
         var savedTheme = localStorage.getItem('lally_apple_theme');
-        var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
-        var theme = savedTheme ? savedTheme : (prefersDark ? 'dark' : 'light');
+        var theme = savedTheme ? savedTheme : 'dark';
         document.documentElement.setAttribute('data-theme', theme);
       } catch (e) {}
     })();
@@ -35,26 +31,25 @@
 </head>
 
 <body>
-  <!-- =========================================================================
-       GLOBAL NAVIGATION HEADER (FIXATED, SINGLE ROW, NO WRAP)
-       ========================================================================= -->
   <header class="apple-nav" role="banner">
     <div class="inner apple-nav__inner">
       <div class="apple-nav__left">
-        <a class="pdp-nav-back-btn" href="index.html" aria-label="Back to Showroom" title="Back to Showroom">
+        <a class="pdp-nav-back-btn" href="index.html" aria-label="Back to Lally Computers" title="Back to Store">
           <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5">
             <path d="M19 12H5M12 19l-7-7 7-7"/>
           </svg>
-          <span class="pdp-nav-back-text">Showroom</span>
+          <span class="pdp-nav-back-text">Store</span>
         </a>
         <a class="nav-brand" href="index.html" aria-label="Lally Computers Home">
-          <img src="images/logo.png" alt="Lally Computers Logo" class="nav-brand-logo" width="32" height="32">
-          <span>Lally Computers</span>
+          <img src="images/logo.png" alt="Lally Computers Logo" class="nav-brand-logo" width="30" height="30">
+          <span class="nav-brand-stack">
+            <span class="nav-brand-main">Lally Computers</span>
+            <span class="nav-brand-sub">Supreme Infosys</span>
+          </span>
         </a>
       </div>
 
       <div class="apple-nav__right">
-        <!-- Dark / Light Mode Toggle Button -->
         <button class="apple-icon-btn" id="themeToggleBtn" type="button" aria-label="Toggle Dark/Light Mode" title="Toggle Dark/Light Mode">
           <svg class="theme-icon-sun" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
             <circle cx="12" cy="12" r="5"/>
@@ -68,8 +63,7 @@
           </svg>
         </button>
 
-        <!-- Shopping Cart Drawer Trigger -->
-        <button class="apple-icon-btn apple-nav__cart-btn" id="navCartBtn" type="button" aria-label="Open Cart" title="View Cart">
+        <button class="apple-icon-btn apple-nav__cart-btn" id="navCartBtn" type="button" aria-label="Open Basket" title="View Basket">
           <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
             <circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/>
             <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>
@@ -77,7 +71,6 @@
           <span class="cart-badge-count" id="navCartBadge">0</span>
         </button>
 
-        <!-- Direct Phone CTA -->
         <a class="apple-pill-btn apple-pill-btn--primary pdp-nav-call-btn" href="tel:+919872010193" title="Call Store">
           <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2">
             <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
@@ -88,17 +81,13 @@
     </div>
   </header>
 
-  <!-- =========================================================================
-       MAIN PRODUCT DETAIL PAGE (PDP) CONTAINER
-       ========================================================================= -->
   <main class="pdp-wrapper" id="pdpMain">
-    <!-- Breadcrumb Path -->
     <nav class="pdp-breadcrumbs-bar" aria-label="Breadcrumb">
       <div class="pdp-container">
         <ol class="pdp-breadcrumbs" id="pdpBreadcrumbs">
           <li><a href="index.html">Home</a></li>
           <li class="sep">&rsaquo;</li>
-          <li><a href="index.html" id="bcCategoryLink">Laptops</a></li>
+          <li><a href="index.html#lineup" id="bcCategoryLink">Used Laptops</a></li>
           <li class="sep">&rsaquo;</li>
           <li><span id="bcBrand">Brand</span></li>
           <li class="sep">&rsaquo;</li>
@@ -108,45 +97,45 @@
     </nav>
 
     <div class="pdp-container">
-      <!-- Top Hero Section: Gallery (Left) + Details (Center) + Buy Box (Right) -->
       <section class="pdp-hero-grid" aria-label="Product Showcase">
-        
-        <!-- Left: Image Gallery & Badges -->
+        <!-- Left: Multi-Angle Inspection Photo Gallery -->
         <div class="pdp-gallery-col">
           <div class="pdp-main-stage" id="pdpMainStage">
             <div class="pdp-badge-overlay" id="pdpBadgesOverlay"></div>
             <img id="pdpMainImage" src="" alt="Product view" width="420" height="340">
           </div>
-          <div class="pdp-thumbs-row" id="pdpThumbsRow" role="tablist" aria-label="Image angles"></div>
+          <div class="pdp-angle-caption" id="pdpAngleCaption">Viewing: Front View</div>
+          <div class="pdp-thumbs-row" id="pdpThumbsRow" role="tablist" aria-label="Inspection photo angles"></div>
+          <div class="pdp-wear-callout" id="pdpWearCallout" style="display:none;"></div>
         </div>
 
-        <!-- Center: Title, Brand, Rating, Price, Offers, Quick Specs -->
+        <!-- Center: Title, Exact Pricing, Quick Specs -->
         <div class="pdp-center-col">
           <div class="pdp-brand-header">
-            <a class="pdp-brand-link" id="pdpBrandLink" href="index.html#lineup">Visit the Store</a>
-            <span class="pdp-sku-pill" id="pdpSkuPill">SKU: --</span>
+            <a class="pdp-brand-link" id="pdpBrandLink" href="index.html#lineup">Lally Computers · Supreme Infosys</a>
+            <span class="pdp-sku-pill" id="pdpSkuPill">ID: --</span>
           </div>
 
           <h1 class="pdp-title" id="pdpTitle">Loading Product Details...</h1>
 
-          <!-- Rating & Social Proof -->
+          <!-- Verified Store Google Reviews Reference (No Fabricated Per-Product Counts) -->
           <div class="pdp-rating-row">
-            <div class="pdp-rating-stars" id="pdpStarsContainer"></div>
-            <span class="pdp-rating-score" id="pdpRatingScore">4.8</span>
+            <span class="pdp-condition-pill" id="pdpConditionPill">Condition Verified</span>
             <span class="sep">&middot;</span>
-            <a class="pdp-reviews-count" href="#reviews" id="pdpReviewsLink">342 ratings</a>
-            <span class="sep">&middot;</span>
-            <span class="pdp-bought-badge" id="pdpBoughtPastMonth">500+ bought in past month</span>
+            <a class="pdp-reviews-count"
+              href="https://www.google.com/maps/search/?api=1&amp;query=Supreme+Infosys+5-A+Sodhi+Nagar+Moga+Punjab+142001"
+              target="_blank" rel="noopener">
+              Store Rating: 4.2 <svg width="13" height="13" viewBox="0 0 24 24" fill="#FBBF24" style="vertical-align:-2px;"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg> on Google (709 reviews) &nearr;
+            </a>
           </div>
 
-          <!-- Amazon Pricing Block -->
+          <!-- Pricing Block (White Price, Clear Comparison Only When Official MRP Applies) -->
           <div class="pdp-pricing-box">
             <div class="pdp-price-row">
-              <span class="pdp-discount-pill" id="pdpDiscountPill">-65%</span>
               <span class="pdp-price-main" id="pdpPriceMain">₹--</span>
             </div>
-            <div class="pdp-mrp-row" id="pdpMrpRow">
-              M.R.P.: <span class="pdp-mrp-strike" id="pdpMrpStrike">₹--</span>
+            <div class="pdp-mrp-row" id="pdpMrpRow" style="display:none;">
+              Official Manufacturer MRP: <span class="pdp-mrp-strike" id="pdpMrpStrike">₹--</span>
             </div>
             <div class="pdp-tax-notice">
               <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2">
@@ -156,31 +145,30 @@
             </div>
           </div>
 
-          <!-- Offers / Savings Card -->
+          <!-- Store Inspection & Exchange Notes -->
           <div class="pdp-offers-card">
             <div class="pdp-offers-title">
-              <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
-                <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82zM7 7a2 2 0 1 0 0-4 2 2 0 0 0 0 4z"/>
+              <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
               </svg>
-              <span>Store Offers &amp; Exchange Discounts</span>
+              <span>In-Store Inspection &amp; Support</span>
             </div>
             <ul class="pdp-offers-list" id="pdpOffersList">
-              <li>Save extra with Old Laptop Exchange &middot; Up to ₹15,000 off on working laptops</li>
-              <li>No Cost EMI available on major credit cards &amp; Bajaj Finserv</li>
-              <li>Free 25-Point Physical &amp; Thermal Diagnostic Checkup Certificate included</li>
+              <li>Test battery, thermals, keyboard, and screen hands-on at 5-A, Sodhi Nagar, Moga before paying.</li>
+              <li>Old laptop exchange valuation available after quick physical bench check.</li>
+              <li>Dedicated after-sale warranty and in-house chip-level service support.</li>
             </ul>
           </div>
 
-          <!-- 4-Feature Trust Strip (Matches Amazon Ref) -->
+          <!-- 4-Feature Trust Strip (Consistent SVG Icons) -->
           <div class="pdp-trust-strip">
             <div class="pdp-trust-item">
               <div class="pdp-trust-icon">
                 <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
-                  <rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/>
-                  <circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/>
+                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/>
                 </svg>
               </div>
-              <span class="pdp-trust-label">Free In-Store Pickup Today</span>
+              <span class="pdp-trust-label">In-Store Pickup Moga</span>
             </div>
             <div class="pdp-trust-item">
               <div class="pdp-trust-icon">
@@ -193,49 +181,46 @@
             <div class="pdp-trust-item">
               <div class="pdp-trust-icon">
                 <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
-                  <polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/>
+                  <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                  <polyline points="14 2 14 8 20 8"/>
                 </svg>
               </div>
-              <span class="pdp-trust-label">7 Days Replacement</span>
+              <span class="pdp-trust-label">Genuine GST Invoice</span>
             </div>
             <div class="pdp-trust-item">
               <div class="pdp-trust-icon">
                 <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
-                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/>
+                  <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/>
                 </svg>
               </div>
-              <span class="pdp-trust-label">5-A, Sodhi Nagar Moga</span>
+              <span class="pdp-trust-label">Inspect Before Paying</span>
             </div>
           </div>
 
-          <!-- Quick Specifications Key Table -->
           <table class="pdp-quick-specs" id="pdpQuickSpecsTable" aria-label="Key Specifications">
-            <tbody><!-- Populated dynamically via JS --></tbody>
+            <tbody></tbody>
           </table>
         </div>
 
-        <!-- Right: Amazon Buy Box Card -->
+        <!-- Right: Enquiry & Basket Card -->
         <div class="pdp-buybox-col">
           <div class="pdp-buybox-card">
             <div class="pdp-bb-price" id="pdpBbPrice">₹--</div>
-            
+
             <div class="pdp-bb-delivery">
-              <span id="pdpBbDelivery"><b>FREE delivery Tomorrow</b> or pickup today at Sodhi Nagar, Moga</span>
+              <span id="pdpBbDelivery">In-store inspection and pickup at 5-A, Sodhi Nagar, Moga</span>
             </div>
 
             <div class="pdp-bb-stock">
-              <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
-                <circle cx="12" cy="12" r="10"/>
-              </svg>
-              <span id="pdpBbStockText">In stock.</span>
+              <span class="dot-status dot-open" aria-hidden="true"></span>
+              <span id="pdpBbStockText">In Stock</span>
             </div>
 
             <div class="pdp-bb-merchant">
-              Ships from: <span>Supreme Infosys (Lally Computers)</span><br>
-              Sold by: <span>Lally Computers Store, Moga</span>
+              Showroom: <span>Lally Computers</span><br>
+              Registered Entity: <span>Supreme Infosys, Moga</span>
             </div>
 
-            <!-- Quantity Stepper -->
             <div class="pdp-bb-qty-row">
               <span class="pdp-bb-qty-label">Quantity:</span>
               <div class="pdp-qty-stepper">
@@ -245,21 +230,20 @@
               </div>
             </div>
 
-            <!-- Buy Box Action Buttons -->
             <div class="pdp-bb-actions">
               <button class="pdp-btn-cart" id="pdpAddToCartBtn" type="button" onclick="addProductToCart()">
                 <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2">
                   <circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/>
                   <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>
                 </svg>
-                <span>Add to Cart</span>
+                <span>Add to Enquiry Basket</span>
               </button>
 
               <a class="pdp-btn-wa" id="pdpWhatsAppBtn" href="#" target="_blank" rel="noopener">
                 <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
                   <path d="M17.472 14.382c-.301-.15-1.782-.879-2.058-.98-.276-.1-.476-.15-.677.15-.2.301-.777.98-.952 1.18-.175.201-.351.226-.652.076-.301-.15-1.27-.468-2.42-1.493-.894-.799-1.498-1.786-1.674-2.087-.175-.3-.019-.463.132-.612.136-.134.301-.351.451-.527.15-.175.2-.301.301-.501.1-.2.05-.376-.025-.526-.075-.15-.677-1.631-.928-2.233-.244-.585-.493-.506-.677-.515-.175-.009-.376-.011-.577-.011-.2 0-.526.075-.802.376-.276.301-1.053 1.028-1.053 2.508 0 1.48 1.078 2.91 1.228 3.111.15.2 2.122 3.24 5.141 4.544.718.31 1.279.496 1.716.635.722.23 1.379.197 1.898.12.579-.086 1.782-.728 2.033-1.431.251-.703.251-1.305.175-1.431-.075-.126-.276-.201-.577-.351zM12.04 2C6.516 2 2.023 6.49 2.023 12.013c0 1.942.555 3.756 1.517 5.292L2 22l4.834-1.503a10.007 10.007 0 0 0 5.206 1.516c5.524 0 10.017-4.49 10.017-10.013C22.057 6.49 17.564 2 12.04 2z"/>
                 </svg>
-                <span>Inquire on WhatsApp</span>
+                <span>Enquire on WhatsApp</span>
               </a>
 
               <a class="pdp-btn-call" href="tel:+919872010193">
@@ -275,34 +259,28 @@
                 <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
                 <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
               </svg>
-              <span>Physical in-store inspection before payment</span>
+              <span>Inspect in store before purchase</span>
             </div>
           </div>
         </div>
-
       </section>
 
-      <!-- In-Page Sticky Anchor Ribbon -->
       <nav class="pdp-nav-ribbon" aria-label="Section shortcuts">
         <ul class="pdp-nav-links">
           <li><a href="#about">About This Item</a></li>
-          <li><a href="#specifications">Technical Specifications</a></li>
-          <li id="labReportNavLi"><a href="#labReport">25-Point Lab Diagnostic Report</a></li>
-          <li><a href="#reviews">Customer Reviews</a></li>
-          <li><a href="#similar">Similar Items</a></li>
-          <li><a href="#accessories">Frequently Bought Together</a></li>
+          <li><a href="#specifications">Specifications</a></li>
+          <li id="labReportNavLi"><a href="#labReport">25-Point Lab Report</a></li>
+          <li><a href="#reviews">Store Reviews</a></li>
+          <li><a href="#similar">Similar Models</a></li>
+          <li><a href="#accessories" id="accessoriesNavLink">Compatible Accessories</a></li>
         </ul>
       </nav>
 
-      <!-- Section: About This Item (Bullet Points) -->
       <section class="pdp-section" id="about">
-        <h2 class="pdp-section-title">About this item</h2>
-        <ul class="pdp-about-bullets" id="pdpAboutBullets">
-          <!-- Dynamically populated -->
-        </ul>
+        <h2 class="pdp-section-title">About this configuration</h2>
+        <ul class="pdp-about-bullets" id="pdpAboutBullets"></ul>
       </section>
 
-      <!-- Section: Technical Specifications & What's In The Box -->
       <section class="pdp-section" id="specifications">
         <h2 class="pdp-section-title">Technical Details</h2>
         <div class="pdp-tech-grid">
@@ -311,146 +289,106 @@
         </div>
 
         <div class="pdp-box-card">
-          <div class="pdp-box-title">What is in the box?</div>
+          <div class="pdp-box-title">Included at Lally Computers</div>
           <div class="pdp-box-items" id="pdpBoxItems">
-            <div class="pdp-box-item">💻 1U Laptop / Machine</div>
-            <div class="pdp-box-item">⚡ Original OEM Fast Charger &amp; AC Power Cord</div>
-            <div class="pdp-box-item">📜 25-Point Hardware Quality Lab Certificate</div>
-            <div class="pdp-box-item">🧾 Tax Invoice with Official Serial Warranty</div>
+            <div class="pdp-box-item">
+              <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M2 20h20"/></svg>
+              <span>Verified Hardware Unit</span>
+            </div>
+            <div class="pdp-box-item">
+              <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+              <span>OEM Power Adapter &amp; Cord</span>
+            </div>
+            <div class="pdp-box-item">
+              <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+              <span>Dated Lab Check Summary</span>
+            </div>
+            <div class="pdp-box-item">
+              <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+              <span>Official GST Tax Invoice</span>
+            </div>
           </div>
         </div>
       </section>
 
-      <!-- Section: 25-Point Lab Diagnostic Inspection Certificate (Only shown if lab report exists) -->
+      <!-- Section: Full 25-Point Lab Diagnostic Certificate -->
       <section class="pdp-section" id="labReport" style="display:none;">
         <h2 class="pdp-section-title">
-          <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="#0284c7" stroke-width="2">
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="#22C55E" stroke-width="2">
             <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+            <path d="m9 12 2 2 4-4"/>
           </svg>
           <span>25-Point Hardware Diagnostics Lab Certificate</span>
         </h2>
         <div class="pdp-lab-card">
           <div class="pdp-lab-header">
             <div class="pdp-lab-badge-row">
-              <span class="pdp-lab-grade" id="pdpLabGrade">GRADE A++</span>
+              <span class="pdp-lab-grade" id="pdpLabGrade">Grade A</span>
               <div class="pdp-lab-meta">
-                <div>Report ID: <strong id="pdpLabReportId">SIL-LAB-9102</strong></div>
-                <div>Diagnostician: <span id="pdpLabTech">Er. Harpreet Singh (Lead Diagnostician)</span> &middot; Tested: <span id="pdpLabDate">12-Nov-2024</span></div>
+                <div>Unit Report ID: <strong id="pdpLabReportId">LC-26-T480-01</strong></div>
+                <div>Diagnostician: <span id="pdpLabTech">Er. Harpreet Singh</span> &middot; Tested: <span id="pdpLabDate">22-Nov-2026</span></div>
               </div>
             </div>
-            <a class="apple-pill-btn apple-pill-btn--primary" id="pdpLabWhatsAppBtn" href="#" target="_blank" rel="noopener">Inquire About This Report</a>
+            <a class="apple-pill-btn apple-pill-btn--primary" id="pdpLabWhatsAppBtn" href="#" target="_blank" rel="noopener">Enquire About This Unit</a>
           </div>
 
           <table class="pdp-lab-table" id="pdpLabTable">
-            <tbody><!-- Populated dynamically --></tbody>
+            <tbody></tbody>
           </table>
         </div>
       </section>
 
-      <!-- Section: Customer Reviews & Ratings -->
+      <!-- Section: Genuine Store Google Reviews -->
       <section class="pdp-section" id="reviews">
-        <h2 class="pdp-section-title">Customer reviews</h2>
+        <h2 class="pdp-section-title">Store Reviews on Google Maps</h2>
         <div class="pdp-reviews-layout">
           <div class="pdp-rating-overview">
-            <div class="pdp-rating-big" id="pdpReviewBigNum">4.8</div>
+            <div class="pdp-rating-big">4.2</div>
             <div class="pdp-rating-stars" id="pdpReviewStars"></div>
-            <div style="font-size:13px; color:var(--pdp-text-muted);" id="pdpReviewCountText">342 global ratings</div>
-
-            <div style="margin-top: 1rem; display: flex; flex-direction: column; gap: 8px;">
-              <div class="pdp-bar-row">
-                <span class="pdp-bar-label">5 star</span>
-                <div class="pdp-bar-track"><div class="pdp-bar-fill" style="width: 82%;"></div></div>
-                <span class="pdp-bar-pct">82%</span>
-              </div>
-              <div class="pdp-bar-row">
-                <span class="pdp-bar-label">4 star</span>
-                <div class="pdp-bar-track"><div class="pdp-bar-fill" style="width: 14%;"></div></div>
-                <span class="pdp-bar-pct">14%</span>
-              </div>
-              <div class="pdp-bar-row">
-                <span class="pdp-bar-label">3 star</span>
-                <div class="pdp-bar-track"><div class="pdp-bar-fill" style="width: 4%;"></div></div>
-                <span class="pdp-bar-pct">4%</span>
-              </div>
-              <div class="pdp-bar-row">
-                <span class="pdp-bar-label">2 star</span>
-                <div class="pdp-bar-track"><div class="pdp-bar-fill" style="width: 0%;"></div></div>
-                <span class="pdp-bar-pct">0%</span>
-              </div>
-              <div class="pdp-bar-row">
-                <span class="pdp-bar-label">1 star</span>
-                <div class="pdp-bar-track"><div class="pdp-bar-fill" style="width: 0%;"></div></div>
-                <span class="pdp-bar-pct">0%</span>
-              </div>
+            <div style="font-size:13.5px; color:var(--pdp-text-secondary);">
+              Based on <strong>709 verified Google Maps reviews</strong> for Lally Computers (Supreme Infosys), Sodhi Nagar, Moga.
+            </div>
+            <div style="margin-top: 0.75rem;">
+              <a class="apple-pill-btn apple-pill-btn--primary"
+                href="https://www.google.com/maps/search/?api=1&amp;query=Supreme+Infosys+5-A+Sodhi+Nagar+Moga+Punjab+142001"
+                target="_blank" rel="noopener">
+                Read Reviews on Google Maps &nearr;
+              </a>
             </div>
           </div>
 
-          <div class="pdp-reviews-feed" id="pdpReviewsFeed">
-            <div class="pdp-review-card">
-              <div class="pdp-reviewer">
-                <div class="pdp-avatar">GS</div>
-                <span>Gurpreet Singh (Moga)</span>
-                <span class="pdp-verified-tag">&check; Verified Purchase</span>
-              </div>
-              <div class="pdp-rating-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-              <p style="margin:0; font-size:14px; line-height:1.5;">"Best place in Moga for pre-owned ThinkPads. Got this exact laptop with 92% battery health, crisp anti-glare screen and fast NVMe. Harpreet verified everything on the testing bench before handing it over."</p>
-            </div>
-            <div class="pdp-review-card">
-              <div class="pdp-reviewer">
-                <div class="pdp-avatar">RS</div>
-                <span>Raman Sharma (Kotkapura)</span>
-                <span class="pdp-verified-tag">&check; Verified Purchase</span>
-              </div>
-              <div class="pdp-rating-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-              <p style="margin:0; font-size:14px; line-height:1.5;">"Amazing condition, practically indistinguishable from brand new. Genuine charger and GST invoice provided. Highly recommend visiting their Sodhi Nagar showroom."</p>
-            </div>
-          </div>
+          <div class="pdp-reviews-feed" id="pdpReviewsFeed"></div>
         </div>
       </section>
 
-      <!-- Section: Customers Who Viewed This Item Also Viewed (Ref: Image 4, 6) -->
+      <!-- Section: Similar Models -->
       <section class="pdp-section" id="similar">
-        <h2 class="pdp-section-title">Customers who viewed this item also viewed</h2>
-        <div class="pdp-carousel-track" id="pdpSimilarTrack">
-          <!-- Populated dynamically via JS -->
-        </div>
+        <h2 class="pdp-section-title">Similar Individual Listings</h2>
+        <div class="pdp-carousel-track" id="pdpSimilarTrack"></div>
       </section>
 
-      <!-- Section: Frequently Bought Together / Essential Accessories (Ref: Image 6) -->
+      <!-- Section: Compatible Accessories & Upgrades -->
       <section class="pdp-section" id="accessories">
-        <h2 class="pdp-section-title">Best Sellers in Accessories &amp; Upgrades</h2>
-        <div class="pdp-carousel-track" id="pdpAccessoriesTrack">
-          <!-- Populated dynamically via JS -->
-        </div>
+        <h2 class="pdp-section-title" id="pdpAccessoriesTitle">Compatible Accessories &amp; Upgrades</h2>
+        <div class="pdp-carousel-track" id="pdpAccessoriesTrack"></div>
       </section>
-
     </div>
   </main>
 
-  <!-- =========================================================================
-       STICKY MOBILE BUY BAR (MOBILE BOTTOM SHEET)
-       ========================================================================= -->
   <aside class="pdp-mobile-bar" id="pdpMobileBar">
     <div class="pdp-mobile-bar-price">
       <span class="val" id="pdpMobilePrice">₹--</span>
       <span class="tax">Incl. all taxes</span>
     </div>
     <div class="pdp-mobile-bar-actions">
-      <button class="pdp-btn-cart" type="button" onclick="addProductToCart()">Add to Cart</button>
+      <button class="pdp-btn-cart" type="button" onclick="addProductToCart()">Add to Basket</button>
       <a class="pdp-btn-wa" id="pdpMobileWaBtn" href="#" target="_blank" rel="noopener">WhatsApp</a>
     </div>
   </aside>
 
-  <!-- =========================================================================
-       SHOPPING CART SLIDE-OVER DRAWER (APPLE / SHOPIFY SPEC)
-       ========================================================================= -->
-  <div class="cart-drawer-overlay" id="cartModal" role="dialog" aria-modal="true" aria-label="Shopping Cart">
-    <!-- Backdrop Blur (Click to Close) -->
+  <div class="cart-drawer-overlay" id="cartModal" role="dialog" aria-modal="true" aria-label="Inquiry Basket">
     <div class="cart-drawer-backdrop" onclick="closeCartModal()" aria-hidden="true"></div>
-
-    <!-- Right-Hand Slide-In Panel -->
     <aside class="cart-drawer-panel" aria-label="Inquiry Basket">
-      <!-- Header -->
       <div class="cart-drawer-header">
         <div class="cart-header-left">
           <div class="cart-header-icon-wrap">
@@ -462,13 +400,13 @@
           </div>
           <div class="cart-header-title-group">
             <div class="cart-header-title-row">
-              <h3>Your Inquiry Cart</h3>
+              <h3>Inquiry Basket</h3>
               <span class="cart-count-pill" id="cartDrawerCount">0 items</span>
             </div>
-            <p class="cart-header-subtitle">Supreme Infosys &middot; 5-A, Sodhi Nagar, Moga</p>
+            <p class="cart-header-subtitle">Lally Computers (Supreme Infosys) &middot; Moga</p>
           </div>
         </div>
-        <button class="cart-drawer-close-btn" type="button" onclick="closeCartModal()" aria-label="Close cart" title="Close cart">
+        <button class="cart-drawer-close-btn" type="button" onclick="closeCartModal()" aria-label="Close basket" title="Close basket">
           <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2">
             <line x1="18" y1="6" x2="6" y2="18"/>
             <line x1="6" y1="6" x2="18" y2="18"/>
@@ -476,20 +414,15 @@
         </button>
       </div>
 
-      <!-- Trust Sub-Banner -->
       <div class="cart-trust-banner">
         <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2">
           <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/>
         </svg>
-        <span>Zero advance payment &middot; Test hardware hands-on before purchase</span>
+        <span>No online payment &middot; Inspect hardware in store before purchase</span>
       </div>
 
-      <!-- Scrollable Cart Items List -->
-      <div class="cart-drawer-body" id="cartItemsList">
-        <!-- Rendered dynamically via JS -->
-      </div>
+      <div class="cart-drawer-body" id="cartItemsList"></div>
 
-      <!-- Footer Pinned to Bottom -->
       <div class="cart-drawer-footer" id="cartDrawerFooter">
         <div class="cart-summary-card">
           <div class="cart-summary-row">
@@ -501,7 +434,7 @@
             <span class="green-text">Included</span>
           </div>
           <div class="cart-summary-meta">
-            <span>In-Store Pickup &amp; Bench Test</span>
+            <span>In-Store Bench Check</span>
             <span class="green-text">FREE</span>
           </div>
         </div>
@@ -511,16 +444,11 @@
             <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
               <path d="M17.472 14.382c-.301-.15-1.782-.879-2.058-.98-.276-.1-.476-.15-.677.15-.2.301-.777.98-.952 1.18-.175.201-.351.226-.652.076-.301-.15-1.27-.468-2.42-1.493-.894-.799-1.498-1.786-1.674-2.087-.175-.3-.019-.463.132-.612.136-.134.301-.351.451-.527.15-.175.2-.301.301-.501.1-.2.05-.376-.025-.526-.075-.15-.677-1.631-.928-2.233-.244-.585-.493-.506-.677-.515-.175-.009-.376-.011-.577-.011-.2 0-.526.075-.802.376-.276.301-1.053 1.028-1.053 2.508 0 1.48 1.078 2.91 1.228 3.111.15.2 2.122 3.24 5.141 4.544.718.31 1.279.496 1.716.635.722.23 1.379.197 1.898.12.579-.086 1.782-.728 2.033-1.431.251-.703.251-1.305.175-1.431-.075-.126-.276-.201-.577-.351zM12.04 2C6.516 2 2.023 6.49 2.023 12.013c0 1.942.555 3.756 1.517 5.292L2 22l4.834-1.503a10.007 10.007 0 0 0 5.206 1.516c5.524 0 10.017-4.49 10.017-10.013C22.057 6.49 17.564 2 12.04 2z"/>
             </svg>
-            <span>Send Inquiry via WhatsApp</span>
+            <span>Send Enquiry on WhatsApp</span>
           </a>
 
           <div class="cart-footer-links">
-            <button class="cart-clear-btn" type="button" onclick="clearCart()">
-              <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M3 6h18m-2 0v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/>
-              </svg>
-              <span>Clear Cart</span>
-            </button>
+            <button class="cart-clear-btn" type="button" onclick="clearCart()">Clear Basket</button>
             <button class="cart-continue-btn" type="button" onclick="closeCartModal()">Continue Browsing</button>
           </div>
         </div>
@@ -528,49 +456,44 @@
     </aside>
   </div>
 
-  <!-- Toast Notification Container -->
   <div class="apple-toast" id="appleToast" role="status" aria-live="polite">
-    <div class="toast-content" id="toastMessage">Item added to cart</div>
+    <div class="toast-content" id="toastMessage">Added to basket</div>
   </div>
 
-  <!-- =========================================================================
-       FOOTER
-       ========================================================================= -->
   <footer class="apple-footer">
     <div class="inner">
       <div class="apple-footer__grid">
         <div class="footer-col">
-          <h4>Supreme Infosys (Lally Computers)</h4>
-          <p>Moga's trusted electronics showroom, certified pre-owned laptop laboratory, and chip-level motherboard repair centre.</p>
+          <h4>Lally Computers (Supreme Infosys)</h4>
+          <p>Tested pre-owned &amp; new laptops, custom PCs, accessories, and chip-level repairs.</p>
           <p><strong>Address:</strong> 5-A, Sodhi Nagar, Moga, Punjab 142001</p>
           <p><strong>Phone:</strong> +91 98720 10193</p>
         </div>
         <div class="footer-col">
-          <h4>Showroom Departments</h4>
+          <h4>Departments</h4>
           <ul>
-            <li><a href="index.html#lineup">Pre-Owned Laptops</a></li>
-            <li><a href="index.html#lineup">Brand New Laptops</a></li>
-            <li><a href="index.html#lineup">Gaming Battlestations</a></li>
-            <li><a href="index.html#repairs">Chip-Level Lab Repairs</a></li>
+            <li><a href="index.html#lineup">Used Laptops</a></li>
+            <li><a href="index.html#lineup">New Laptops</a></li>
+            <li><a href="index.html#lineup">Custom PCs &amp; Components</a></li>
+            <li><a href="index.html#lineup">Repairs</a></li>
           </ul>
         </div>
         <div class="footer-col">
-          <h4>Customer Protection</h4>
+          <h4>Store Info</h4>
           <ul>
             <li><a href="privacy.html">Privacy Policy</a></li>
-            <li><a href="index.html#locationHours">Visit Showroom</a></li>
+            <li><a href="index.html#visit">Visit Store</a></li>
             <li><a href="https://wa.me/919872010193">WhatsApp Support</a></li>
           </ul>
         </div>
       </div>
       <div style="border-top: 1px solid var(--border-subtle); margin-top: 2rem; padding-top: 1.5rem; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 1rem; font-size: 13px; color: var(--text-secondary);">
-        <span>&copy; Supreme Infosys (Lally Computers). All rights reserved.</span>
-        <span>Genuine GST Invoices with Certified Hardware Lab Reports.</span>
+        <span>&copy; Lally Computers (Supreme Infosys). All rights reserved.</span>
+        <span>Genuine GST Invoices with Dated Hardware Lab Reports.</span>
       </div>
     </div>
   </footer>
 
-  <!-- Scripts -->
   <script src="js/data.js"></script>
   <script src="js/product.js"></script>
 </body>

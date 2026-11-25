@@ -2,133 +2,83 @@
   "categories": [
     {
       "id": "laptops_used",
-      "name": "Pre-Owned Laptops",
-      "eyebrow": "25-Point Lab Verified",
-      "badge": "\u26a1 100% Tested \u00b7 6M Warranty",
-      "icon": "<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\"><rect x=\"3\" y=\"4\" width=\"18\" height=\"12\" rx=\"2\"/><path d=\"M2 20h20\"/><circle cx=\"12\" cy=\"10\" r=\"2.5\"/><path d=\"M12 7.5v-1M12 13.5v-1\"/></svg>",
-      "desc": "Corporate ThinkPads, Latitudes & MacBooks. Complete hardware diagnostic reports included.",
-      "count": 5,
-      "cardName": "Pre-Owned Laptops"
+      "name": "Used Laptops",
+      "cardName": "Used Laptops",
+      "eyebrow": "25-Point Lab Tested",
+      "badge": "6-Month Warranty · Lab Report",
+      "icon": "<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\"><rect x=\"3\" y=\"4\" width=\"18\" height=\"12\" rx=\"2\"/><path d=\"M2 20h20\"/><path d=\"m9 10 2 2 4-4\"/></svg>",
+      "desc": "Individual pre-owned ThinkPads, Latitudes & MacBooks with 25-point lab reports and honest condition photos.",
+      "count": 7
     },
     {
       "id": "laptops_new",
-      "name": "Brand New Laptops (Everyday & Work)",
+      "name": "New Laptops",
+      "cardName": "New Laptops",
       "eyebrow": "Factory Sealed",
-      "badge": "\ud83d\udee1\ufe0f Official 1-Yr Brand Warranty",
-      "icon": "<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\"><rect x=\"3\" y=\"4\" width=\"18\" height=\"12\" rx=\"2\"/><path d=\"M2 20h20\"/><path d=\"M8 12l2.5 2.5 5.5-5.5\"/></svg>",
-      "desc": "Factory-sealed Apple MacBook, Dell, HP & Lenovo ultrabooks with GST tax invoice.",
-      "count": 5,
-      "cardName": "Brand New Laptops"
+      "badge": "Official Brand Warranty",
+      "icon": "<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\"><rect x=\"3\" y=\"4\" width=\"18\" height=\"12\" rx=\"2\"/><path d=\"M2 20h20\"/></svg>",
+      "desc": "Sealed Apple MacBook, Dell, HP & Lenovo laptops with genuine GST tax invoice.",
+      "count": 5
     },
     {
       "id": "laptops_gaming",
-      "name": "Brand New Gaming Laptops",
-      "cardName": "Gaming Laptops",
-      "eyebrow": "High-FPS RTX Power",
-      "badge": "\ud83c\udfae Dedicated RTX & 144Hz",
+      "name": "Gaming",
+      "cardName": "Gaming",
+      "eyebrow": "High-Refresh RTX",
+      "badge": "RTX Graphics · 144Hz+",
       "icon": "<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\"><rect x=\"3\" y=\"4\" width=\"18\" height=\"12\" rx=\"2\"/><path d=\"M2 20h20\"/><path d=\"M7 10h2M8 9v2M15 10h.01M17 10h.01\"/></svg>",
-      "desc": "High-refresh 144Hz IPS displays, NVIDIA RTX GPUs & dual-fan cooling for pro esports.",
+      "desc": "NVIDIA RTX gaming laptops with 144Hz+ displays and dual-fan cooling.",
       "count": 6
     },
     {
       "id": "pc",
-      "name": "Custom PCs & Workstations",
-      "eyebrow": "Tailored Desktop Power",
-      "badge": "\ud83d\udd25 Custom Built for Peak FPS",
+      "name": "Custom PCs",
+      "cardName": "Custom PCs",
+      "eyebrow": "Built in Moga",
+      "badge": "Stress Tested · GST Bill",
       "icon": "<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\"><rect x=\"4\" y=\"2\" width=\"16\" height=\"20\" rx=\"2\"/><line x1=\"8\" y1=\"6\" x2=\"8.01\" y2=\"6\"/><line x1=\"8\" y1=\"10\" x2=\"8.01\" y2=\"10\"/><path d=\"M8 18h8\"/></svg>",
-      "desc": "Precision-tuned battlestations for pro gaming, 4K video rendering & CAD workloads.",
-      "count": 4,
-      "cardName": "Custom PCs & Rigs"
+      "desc": "Custom desktops for gaming, 4K editing, Tally billing, and workstation loads.",
+      "count": 4
     },
     {
       "id": "pc_components",
-      "name": "PC Building Materials",
-      "eyebrow": "Assemble Your Dream PC",
-      "badge": "\u26a1 RTX 40-Series & DDR5",
+      "name": "Components",
+      "cardName": "Components",
+      "eyebrow": "PC Hardware",
+      "badge": "Brand Warranty",
       "icon": "<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\"><rect x=\"4\" y=\"4\" width=\"16\" height=\"16\" rx=\"2\"/><rect x=\"9\" y=\"9\" width=\"6\" height=\"6\"/><path d=\"M9 1v3M15 1v3M9 20v3M15 20v3M20 9h3M20 15h3M1 9h3M1 15h3\"/></svg>",
-      "desc": "Original GPUs, Intel/AMD CPUs, Gen4 NVMe SSDs, Gold PSUs & liquid coolers.",
-      "count": 12,
-      "cardName": "PC Components"
+      "desc": "GPUs, Intel & AMD CPUs, motherboards, DDR5/DDR4 RAM, NVMe SSDs, PSUs & cases.",
+      "count": 13
     },
     {
-      "id": "pc_peripherals",
-      "name": "PC Equipments & Peripherals",
-      "eyebrow": "Desk Setup Gear",
-      "badge": "\ud83c\udfae Mechanical & Ergonomic",
+      "id": "accessories",
+      "name": "Accessories",
+      "cardName": "Accessories",
+      "eyebrow": "Laptop & Desk Gear",
+      "badge": "Mice · Docks · Bags · Displays",
       "icon": "<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\"><rect x=\"2\" y=\"5\" width=\"20\" height=\"14\" rx=\"2\"/><line x1=\"6\" y1=\"12\" x2=\"6.01\" y2=\"12\"/><line x1=\"10\" y1=\"12\" x2=\"10.01\" y2=\"12\"/><line x1=\"14\" y1=\"12\" x2=\"14.01\" y2=\"12\"/><line x1=\"18\" y1=\"12\" x2=\"18.01\" y2=\"12\"/></svg>",
-      "desc": "Tactile mechanical decks, wireless gaming mice, XXL desk mats & aluminum stands.",
-      "count": 8,
-      "cardName": "Peripherals & Gear"
-    },
-    {
-      "id": "monitors",
-      "name": "Monitors, LEDs & LCDs",
-      "eyebrow": "Visual Displays",
-      "badge": "\ud83d\udda5\ufe0f 165Hz IPS \u00b7 4K Color",
-      "icon": "<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\"><rect x=\"2\" y=\"3\" width=\"20\" height=\"14\" rx=\"2\"/><line x1=\"8\" y1=\"21\" x2=\"16\" y2=\"21\"/><line x1=\"12\" y1=\"17\" x2=\"12\" y2=\"21\"/></svg>",
-      "desc": "Fast-response esports displays, curved 34\" ultrawides & smart 4K HDR panels.",
-      "count": 6,
-      "cardName": "Monitors & Displays"
-    },
-    {
-      "id": "watches",
-      "name": "Watches (Smart & Classic)",
-      "eyebrow": "Wearable Timepieces",
-      "badge": "\u231a Apple Ultra & CasiOak",
-      "icon": "<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\"><rect x=\"6\" y=\"7\" width=\"12\" height=\"10\" rx=\"3\"/><path d=\"M9 3h6v4H9zM9 17h6v4H9z\"/><circle cx=\"12\" cy=\"12\" r=\"2\"/></svg>",
-      "desc": "Apple Watch Series 9 & Ultra 2 paired with iconic Casio G-Shock & Titan classics.",
-      "count": 7,
-      "cardName": "Smart & Classic Watches"
-    },
-    {
-      "id": "gadgets",
-      "name": "Gadgets & Audio",
-      "eyebrow": "Audio & Power Hub",
-      "badge": "\ud83c\udfa7 ANC Sound & 65W Fast GaN",
-      "icon": "<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\"><rect x=\"4\" y=\"2\" width=\"16\" height=\"20\" rx=\"3\"/><circle cx=\"12\" cy=\"14\" r=\"4\"/><circle cx=\"12\" cy=\"6\" r=\"1.5\"/></svg>",
-      "desc": "AirPods Pro, JBL waterproof sound, 20,000mAh PD packs & Wi-Fi 6 gigabit routers.",
-      "count": 6,
-      "cardName": "Gadgets & Audio"
-    },
-    {
-      "id": "gym",
-      "name": "Gym & Fitness Equipment",
-      "eyebrow": "Home & Commercial",
-      "badge": "\ud83d\udcaa Heavy-Duty Commercial",
-      "icon": "<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\"><path d=\"M6 5v14M18 5v14M2 9v6M22 9v6M6 12h12\"/></svg>",
-      "desc": "Auto-incline motorized treadmills, solid rubber hex dumbbells & magnetic spin bikes.",
-      "count": 5,
-      "cardName": "Gym & Fitness Gear"
-    },
-    {
-      "id": "suitcases",
-      "name": "Travel Suitcases & Luggage",
-      "eyebrow": "Unbreakable Shell",
-      "badge": "\u2708\ufe0f Unbreakable Polycarbonate",
-      "icon": "<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\"><rect x=\"5\" y=\"7\" width=\"14\" height=\"14\" rx=\"2\"/><path d=\"M9 7V4a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v3M8 21v1M16 21v1\"/></svg>",
-      "desc": "TSA-lock airline cabin trolleys and rugged aluminum-corner luggage sets.",
-      "count": 3,
-      "cardName": "Luggage & Travel"
-    },
-    {
-      "id": "appliances",
-      "name": "Washing Machines",
-      "eyebrow": "Home Appliances",
-      "badge": "\u2b50 5-Star Steam Inverter",
-      "icon": "<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\"><rect x=\"4\" y=\"2\" width=\"16\" height=\"20\" rx=\"2\"/><circle cx=\"12\" cy=\"13\" r=\"5\"/><circle cx=\"12\" cy=\"13\" r=\"2\"/><line x1=\"8\" y1=\"5\" x2=\"10\" y2=\"5\"/></svg>",
-      "desc": "Direct Drive inverter front-loaders and tangle-free high-capacity top-load washers.",
-      "count": 3,
-      "cardName": "Washing Machines"
+      "desc": "Laptop sleeves, USB-C docks, mice, keyboards, 65W chargers, monitors & routers.",
+      "count": 22
     },
     {
       "id": "repairs",
-      "name": "Chip-Level Repair Lab",
-      "eyebrow": "Specialized Lab in Moga",
-      "badge": "\ud83d\udd2c Free Fault Diagnostics",
+      "name": "Repairs",
+      "cardName": "Repairs",
+      "eyebrow": "In-House Lab",
+      "badge": "Free Fault Diagnostics",
       "icon": "<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\"><path d=\"M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z\"/></svg>",
-      "desc": "In-house BGA motherboard rework, liquid recovery & instant high-res screen swaps.",
-      "count": 3,
-      "cardName": "Chip-Level Repair Lab"
+      "desc": "Motherboard BGA rework, liquid spill recovery, screen swaps & thermal servicing.",
+      "count": 3
+    },
+    {
+      "id": "other",
+      "name": "Other Departments",
+      "cardName": "Other Departments",
+      "eyebrow": "Home & Lifestyle",
+      "badge": "Washers · Luggage · Gym",
+      "icon": "<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\"><rect x=\"3\" y=\"3\" width=\"7\" height=\"7\" rx=\"1\"/><rect x=\"14\" y=\"3\" width=\"7\" height=\"7\" rx=\"1\"/><rect x=\"3\" y=\"14\" width=\"7\" height=\"7\" rx=\"1\"/><rect x=\"14\" y=\"14\" width=\"7\" height=\"7\" rx=\"1\"/></svg>",
+      "desc": "Washing machines, travel suitcases & luggage, gym equipment, and wrist watches.",
+      "count": 18
     }
   ]
 }

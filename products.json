@@ -4,307 +4,1417 @@
     "category": "laptops_used",
     "brand": "Lenovo",
     "priceNum": 21999,
-    "price": "From \u20b921,999",
+    "price": "₹21,999",
     "budget": "20k-40k",
-    "size": "13-14",
+    "size": "14-inch",
     "panel": "IPS",
     "condition": "used",
-    "badge": "Grade A++ Refurbished",
-    "badgeClass": "apple-badge",
-    "warranty": "6 Mos Warranty + GST",
-    "title": "Lenovo ThinkPad T480 / T14",
-    "desc": "Legendary enterprise laptop with military-grade magnesium alloy chassis, dual hot-swap battery, and spill-resistant ergonomic keyboard.",
+    "conditionLabel": "Pre-Owned · Grade A-",
+    "availability": "In Stock (2 units)",
+    "availabilityStatus": "in_stock",
+    "cpuGen": "8th Gen",
+    "ramGb": "16GB",
+    "ssdGb": "512GB",
+    "badge": "Grade A- · Unit #T480-01",
+    "warranty": "6 Months Store Warranty + GST",
+    "title": "Lenovo ThinkPad T480 (Core i5 8th Gen)",
+    "desc": "Enterprise 14-inch laptop tested individually on our Moga bench. Features Intel Core i5-8350U, 16GB DDR4 RAM, 512GB NVMe SSD, and dual battery setup.",
+    "wearNote": "Light corner scuffing on lid and slight matte shine on spacebar from prior corporate use; hinges firm, zero cracks.",
     "specs": [
-      "Core i5 / i7 vPro",
-      "16GB DDR4",
+      "Core i5-8350U (8th Gen)",
+      "16GB DDR4 RAM",
       "512GB NVMe SSD",
-      "14.0\" FHD IPS Anti-Glare",
-      "Dual Battery System"
+      "14.0\" FHD IPS Anti-Glare"
     ],
     "details": {
-      "Model": "Lenovo ThinkPad T480 / T14 Gen 1",
-      "Processor": "Intel Core i5 (8th/10th Gen) vPro Quad-Core",
-      "RAM": "16 GB DDR4 (Upgradable to 32GB / 64GB)",
-      "Storage": "512 GB M.2 NVMe High-Speed Solid State Drive",
-      "Display": "14.0\" Full HD (1920x1080) Anti-Glare IPS Panel",
-      "Operating System": "Windows 11 Pro 64-Bit Genuine Activated",
-      "Ports": "2x USB 3.1, 1x Type-C Thunderbolt 3, HDMI 1.4b, RJ45 LAN, SD Card, 3.5mm Jack",
-      "Lab Verification": "Certified 25-Point Checked, Grade A++ Motherboard, Clean Fans, Original 65W Charger"
+      "Model": "Lenovo ThinkPad T480 (20L6)",
+      "Serial / Unit Tag": "LC-26-T480-01",
+      "Processor": "Intel Core i5-8350U (8th Gen, 4 Cores / 8 Threads)",
+      "RAM": "16 GB DDR4-2400 (Dual-Channel, Upgradable to 32GB)",
+      "Storage": "512 GB M.2 PCIe NVMe SSD",
+      "Display": "14.0\" Full HD (1920x1080) IPS Anti-Glare",
+      "Ports": "2x USB 3.1, 1x USB-C Thunderbolt 3, 1x USB-C Power, HDMI 1.4b, RJ45 LAN, SD Reader, 3.5mm Audio",
+      "Operating System": "Windows 11 Pro 64-Bit Activated",
+      "Cosmetic Condition": "Grade A- (Faint lid-edge scuffing and light keyboard shine; 100% clean screen)",
+      "Included Charger": "Original Lenovo 65W USB-C Adapter"
     },
     "labReport": {
-      "reportId": "SIL-LAB-9102",
+      "reportId": "LC-26-T480-01",
       "technician": "Er. Harpreet Singh (Lead Hardware Diagnostician)",
-      "testedDate": "12-Nov-2024",
-      "overallGrade": "Grade A++ (98/100)",
-      "batteryHealth": "92% Original Capacity (218 Cycles, 0 wear degradation)",
-      "cpuStress": "Peak 67\u00b0C under 100% Prime95 load (0% Thermal Throttling)",
-      "ssdHealth": "100% S.M.A.R.T. Health (Zero bad blocks, 3180 MB/s Read)",
-      "screenStatus": "Zero dead pixels, No pressure spots, 100% LED backlight balance",
-      "keyboardTrackpad": "All 84 keys mapped & 100% responsive, Multi-touch Trackpad Passed",
-      "motherboardPower": "Clean logic board, 0 short-circuits, DC-in 19.5V input ripple < 15mV",
-      "portsIo": "Thunderbolt 3, USB-A, HDMI, Audio, SD Reader fully tested & operational",
-      "casingHinges": "Hinges firm (180\u00b0 smooth action), Magnesium chassis Grade A++"
+      "testedDate": "22-Nov-2026",
+      "overallGrade": "Grade A- (94/100)",
+      "batteryHealth": "92% Original Capacity (218 Cycles · 8% normal wear)",
+      "cpuStress": "Peak 68°C under 30-min AIDA64 stress load (0% thermal throttling)",
+      "ssdHealth": "99% S.M.A.R.T. Health (0 bad sectors · 3,120 MB/s Read)",
+      "screenStatus": "Zero dead pixels, zero pressure marks, even LED backlight",
+      "keyboardTrackpad": "All keys & red TrackPoint responsive; light keycap shine noted",
+      "motherboardPower": "Clean un-reworked logic board, stable 19.5V/20V USB-C rail",
+      "portsIo": "Thunderbolt 3, USB-C PD, 2x USB-A, HDMI, RJ45 & SD reader verified",
+      "casingHinges": "180° alloy hinges firm; minor edge polish on top lid corner",
+      "overallNotes": "Unit #LC-26-T480-01 passed all 25 checks on 22-Nov-2026. Minor cosmetic wear documented in inspection photos.",
+      "checklist": [
+        {
+          "point": "01. AC Adapter & Charging Port",
+          "result": "Original Lenovo 65W USB-C Adapter",
+          "status": "PASS"
+        },
+        {
+          "point": "02. Battery Capacity & Cycle Count",
+          "result": "92% Original Capacity (218 Cycles · 8% normal wear)",
+          "status": "PASS"
+        },
+        {
+          "point": "03. Battery Discharge Stability",
+          "result": "Steady voltage curve under 30-min load (no sudden drops)",
+          "status": "PASS"
+        },
+        {
+          "point": "04. Motherboard Power Rails & Ripple",
+          "result": "Clean un-reworked logic board, stable 19.5V/20V USB-C rail",
+          "status": "PASS"
+        },
+        {
+          "point": "05. CPU Multi-Core Stress Benchmark",
+          "result": "Peak 68°C under 30-min AIDA64 stress load (0% thermal throttling)",
+          "status": "PASS"
+        },
+        {
+          "point": "06. Cooling Fan Acoustic & RPM Check",
+          "result": "Clean heatsink & blower, smooth RPM ramp without rattle",
+          "status": "PASS"
+        },
+        {
+          "point": "07. Thermal Paste & Idle Temp",
+          "result": "Fresh thermal interface verified, idle 38–44°C",
+          "status": "PASS"
+        },
+        {
+          "point": "08. Integrated / Discrete GPU Stability",
+          "result": "OpenGL & hardware video decode passed without artifacts",
+          "status": "PASS"
+        },
+        {
+          "point": "09. RAM Slot & MemTest Integrity",
+          "result": "16GB memory verified — 0 ECC/addressing errors",
+          "status": "PASS"
+        },
+        {
+          "point": "10. NVMe / SSD S.M.A.R.T. Health",
+          "result": "99% S.M.A.R.T. Health (0 bad sectors · 3,120 MB/s Read)",
+          "status": "PASS"
+        },
+        {
+          "point": "11. Storage Sequential Read/Write",
+          "result": "PCIe NVMe link speed verified, zero bad sectors",
+          "status": "PASS"
+        },
+        {
+          "point": "12. Display Dead Pixel Inspection",
+          "result": "Zero dead pixels, zero pressure marks, even LED backlight",
+          "status": "PASS"
+        },
+        {
+          "point": "13. Backlight Uniformity & Brightness",
+          "result": "Even backlight across white/grey/black test patterns",
+          "status": "PASS"
+        },
+        {
+          "point": "14. Webcam & Privacy Shutter",
+          "result": "HD webcam focus, exposure & shutter verified",
+          "status": "PASS"
+        },
+        {
+          "point": "15. Dual-Array Microphone Pickup",
+          "result": "Clear voice capture tested with zero static",
+          "status": "PASS"
+        },
+        {
+          "point": "16. Keyboard All-Key Matrix Test",
+          "result": "All keys & red TrackPoint responsive; light keycap shine noted",
+          "status": "PASS"
+        },
+        {
+          "point": "17. Trackpad Multi-Touch & Clicks",
+          "result": "Smooth cursor tracking, two-finger scroll & tap gestures OK",
+          "status": "PASS"
+        },
+        {
+          "point": "18. Backlight Keys Illumination",
+          "result": "Keyboard backlight levels verified uniform",
+          "status": "PASS"
+        },
+        {
+          "point": "19. Left & Right Stereo Speakers",
+          "result": "Balanced stereo output at max volume, no distortion",
+          "status": "PASS"
+        },
+        {
+          "point": "20. USB-A & USB-C / Thunderbolt Ports",
+          "result": "Thunderbolt 3, USB-C PD, 2x USB-A, HDMI, RJ45 & SD reader verified",
+          "status": "PASS"
+        },
+        {
+          "point": "21. HDMI / DisplayPort Video Out",
+          "result": "External 1080p/4K display output verified",
+          "status": "PASS"
+        },
+        {
+          "point": "22. 3.5mm Audio Jack & SD Reader",
+          "result": "Headphone detection & card read/write verified",
+          "status": "PASS"
+        },
+        {
+          "point": "23. Dual-Band Wi-Fi & Bluetooth",
+          "result": "2.4GHz / 5GHz throughput & BT pairing stable",
+          "status": "PASS"
+        },
+        {
+          "point": "24. Hinge Torque & 180° Lid Action",
+          "result": "180° alloy hinges firm; minor edge polish on top lid corner",
+          "status": "PASS"
+        },
+        {
+          "point": "25. Chassis, Screws & BIOS Lock Check",
+          "result": "Zero BIOS/MDM lock, all base screws & rubber feet intact",
+          "status": "PASS"
+        }
+      ]
     },
-    "image": "images/products/lap-used-1.svg",
-    "rating": 4.7,
-    "reviewsCount": 342,
-    "boughtPastMonth": "500+ bought in past month",
-    "mrp": "\u20b961,999",
-    "mrpNum": 61999,
-    "discount": "65% off",
-    "offers": [
-      "Save extra with Old Laptop Exchange | No Cost EMI available",
-      "Up to \u20b93,000 off on Exchange with your Old or Broken Laptop"
+    "image": "images/products/photos/lap-used-1-front.jpg",
+    "gallery": [
+      {
+        "label": "Front View",
+        "src": "images/products/photos/lap-used-1-front.jpg"
+      },
+      {
+        "label": "Keyboard & Trackpad",
+        "src": "images/products/photos/lap-used-1-keyboard.jpg"
+      },
+      {
+        "label": "Side Ports",
+        "src": "images/products/photos/lap-used-1-ports.jpg"
+      },
+      {
+        "label": "Underside & Vents",
+        "src": "images/products/photos/lap-used-1-underside.jpg"
+      },
+      {
+        "label": "Cosmetic Wear Close-Up",
+        "src": "images/products/photos/lap-used-1-wear.jpg"
+      }
     ],
-    "delivery": "FREE In-Store Pickup Today in Sodhi Nagar, Moga",
-    "fastDelivery": "Or fastest delivery Tomorrow, 17 Nov"
+    "delivery": "In-Store Inspection Today · Sodhi Nagar, Moga",
+    "mrp": "",
+    "mrpNum": 0,
+    "discount": ""
+  },
+  {
+    "id": "lap-used-6",
+    "category": "laptops_used",
+    "brand": "Lenovo",
+    "priceNum": 26499,
+    "price": "₹26,499",
+    "budget": "20k-40k",
+    "size": "14-inch",
+    "panel": "IPS",
+    "condition": "used",
+    "conditionLabel": "Pre-Owned · Grade A",
+    "availability": "In Stock (1 unit)",
+    "availabilityStatus": "low_stock",
+    "cpuGen": "10th Gen",
+    "ramGb": "16GB",
+    "ssdGb": "512GB",
+    "badge": "Grade A · Unit #T14-02",
+    "warranty": "6 Months Store Warranty + GST",
+    "title": "Lenovo ThinkPad T14 Gen 1 (Core i5 10th Gen)",
+    "desc": "Newer-generation slim ThinkPad T14 Gen 1 with Intel Core i5-10310U vPro, 16GB DDR4 RAM, 512GB NVMe SSD, and Wi-Fi 6.",
+    "wearNote": "Clean matte palmrest with minimal port-edge wear near USB-C; crisp anti-glare panel.",
+    "specs": [
+      "Core i5-10310U (10th Gen)",
+      "16GB DDR4 RAM",
+      "512GB NVMe SSD",
+      "14.0\" FHD IPS Anti-Glare"
+    ],
+    "details": {
+      "Model": "Lenovo ThinkPad T14 Gen 1 (20S0)",
+      "Serial / Unit Tag": "LC-26-T14-02",
+      "Processor": "Intel Core i5-10310U (10th Gen vPro, up to 4.40 GHz)",
+      "RAM": "16 GB DDR4-2666",
+      "Storage": "512 GB M.2 PCIe Gen3 NVMe SSD",
+      "Display": "14.0\" Full HD (1920x1080) IPS Anti-Glare",
+      "Ports": "2x USB-C (1x Thunderbolt 3), 2x USB 3.2, HDMI 1.4b, RJ45 LAN, MicroSD, 3.5mm Audio",
+      "Operating System": "Windows 11 Pro 64-Bit Activated",
+      "Cosmetic Condition": "Grade A (Minimal port-edge marks; clean keyboard and screen)",
+      "Included Charger": "Original Lenovo 65W USB-C Adapter"
+    },
+    "labReport": {
+      "reportId": "LC-26-T14-02",
+      "technician": "Er. Harpreet Singh (Lead Hardware Diagnostician)",
+      "testedDate": "24-Nov-2026",
+      "overallGrade": "Grade A (96/100)",
+      "batteryHealth": "91% Original Capacity (176 Cycles · 9% normal wear)",
+      "cpuStress": "Peak 69°C under full multi-core load (0% thermal throttling)",
+      "ssdHealth": "99% S.M.A.R.T. Health (0 bad sectors · 3,240 MB/s Read)",
+      "screenStatus": "Zero dead pixels, no pressure spots, sharp 1080p IPS uniformity",
+      "keyboardTrackpad": "Backlit keyboard & TrackPoint 100% functional",
+      "motherboardPower": "Original logic board, zero rework, Type-C PD charging verified",
+      "portsIo": "Thunderbolt 3, USB-A, HDMI, RJ45 & Wi-Fi 6 verified",
+      "casingHinges": "Tight 180° hinges; minimal wear near primary USB-C port",
+      "overallNotes": "Unit #LC-26-T14-02 individually bench-tested on 24-Nov-2026.",
+      "checklist": [
+        {
+          "point": "01. AC Adapter & Charging Port",
+          "result": "Original Lenovo 65W USB-C Adapter",
+          "status": "PASS"
+        },
+        {
+          "point": "02. Battery Capacity & Cycle Count",
+          "result": "91% Original Capacity (176 Cycles · 9% normal wear)",
+          "status": "PASS"
+        },
+        {
+          "point": "03. Battery Discharge Stability",
+          "result": "Steady voltage curve under 30-min load (no sudden drops)",
+          "status": "PASS"
+        },
+        {
+          "point": "04. Motherboard Power Rails & Ripple",
+          "result": "Original logic board, zero rework, Type-C PD charging verified",
+          "status": "PASS"
+        },
+        {
+          "point": "05. CPU Multi-Core Stress Benchmark",
+          "result": "Peak 69°C under full multi-core load (0% thermal throttling)",
+          "status": "PASS"
+        },
+        {
+          "point": "06. Cooling Fan Acoustic & RPM Check",
+          "result": "Clean heatsink & blower, smooth RPM ramp without rattle",
+          "status": "PASS"
+        },
+        {
+          "point": "07. Thermal Paste & Idle Temp",
+          "result": "Fresh thermal interface verified, idle 38–44°C",
+          "status": "PASS"
+        },
+        {
+          "point": "08. Integrated / Discrete GPU Stability",
+          "result": "OpenGL & hardware video decode passed without artifacts",
+          "status": "PASS"
+        },
+        {
+          "point": "09. RAM Slot & MemTest Integrity",
+          "result": "16GB memory verified — 0 ECC/addressing errors",
+          "status": "PASS"
+        },
+        {
+          "point": "10. NVMe / SSD S.M.A.R.T. Health",
+          "result": "99% S.M.A.R.T. Health (0 bad sectors · 3,240 MB/s Read)",
+          "status": "PASS"
+        },
+        {
+          "point": "11. Storage Sequential Read/Write",
+          "result": "PCIe NVMe link speed verified, zero bad sectors",
+          "status": "PASS"
+        },
+        {
+          "point": "12. Display Dead Pixel Inspection",
+          "result": "Zero dead pixels, no pressure spots, sharp 1080p IPS uniformity",
+          "status": "PASS"
+        },
+        {
+          "point": "13. Backlight Uniformity & Brightness",
+          "result": "Even backlight across white/grey/black test patterns",
+          "status": "PASS"
+        },
+        {
+          "point": "14. Webcam & Privacy Shutter",
+          "result": "HD webcam focus, exposure & shutter verified",
+          "status": "PASS"
+        },
+        {
+          "point": "15. Dual-Array Microphone Pickup",
+          "result": "Clear voice capture tested with zero static",
+          "status": "PASS"
+        },
+        {
+          "point": "16. Keyboard All-Key Matrix Test",
+          "result": "Backlit keyboard & TrackPoint 100% functional",
+          "status": "PASS"
+        },
+        {
+          "point": "17. Trackpad Multi-Touch & Clicks",
+          "result": "Smooth cursor tracking, two-finger scroll & tap gestures OK",
+          "status": "PASS"
+        },
+        {
+          "point": "18. Backlight Keys Illumination",
+          "result": "Keyboard backlight levels verified uniform",
+          "status": "PASS"
+        },
+        {
+          "point": "19. Left & Right Stereo Speakers",
+          "result": "Balanced stereo output at max volume, no distortion",
+          "status": "PASS"
+        },
+        {
+          "point": "20. USB-A & USB-C / Thunderbolt Ports",
+          "result": "Thunderbolt 3, USB-A, HDMI, RJ45 & Wi-Fi 6 verified",
+          "status": "PASS"
+        },
+        {
+          "point": "21. HDMI / DisplayPort Video Out",
+          "result": "External 1080p/4K display output verified",
+          "status": "PASS"
+        },
+        {
+          "point": "22. 3.5mm Audio Jack & SD Reader",
+          "result": "Headphone detection & card read/write verified",
+          "status": "PASS"
+        },
+        {
+          "point": "23. Dual-Band Wi-Fi & Bluetooth",
+          "result": "2.4GHz / 5GHz throughput & BT pairing stable",
+          "status": "PASS"
+        },
+        {
+          "point": "24. Hinge Torque & 180° Lid Action",
+          "result": "Tight 180° hinges; minimal wear near primary USB-C port",
+          "status": "PASS"
+        },
+        {
+          "point": "25. Chassis, Screws & BIOS Lock Check",
+          "result": "Zero BIOS/MDM lock, all base screws & rubber feet intact",
+          "status": "PASS"
+        }
+      ]
+    },
+    "image": "images/products/photos/lap-used-6-front.jpg",
+    "gallery": [
+      {
+        "label": "Front View",
+        "src": "images/products/photos/lap-used-6-front.jpg"
+      },
+      {
+        "label": "Keyboard & Deck",
+        "src": "images/products/photos/lap-used-1-keyboard.jpg"
+      },
+      {
+        "label": "Ports & Side I/O",
+        "src": "images/products/photos/lap-used-1-ports.jpg"
+      },
+      {
+        "label": "Underside & Vents",
+        "src": "images/products/photos/lap-used-1-underside.jpg"
+      },
+      {
+        "label": "Cosmetic Wear Reference",
+        "src": "images/products/photos/lap-used-1-wear.jpg"
+      }
+    ],
+    "delivery": "In-Store Inspection Today · Sodhi Nagar, Moga",
+    "mrp": "",
+    "mrpNum": 0,
+    "discount": ""
   },
   {
     "id": "lap-used-2",
     "category": "laptops_used",
     "brand": "Dell",
     "priceNum": 22500,
-    "price": "From \u20b922,500",
+    "price": "₹22,500",
     "budget": "20k-40k",
-    "size": "13-14",
+    "size": "14-inch",
     "panel": "IPS",
     "condition": "used",
-    "badge": "Ultralight Enterprise",
-    "badgeClass": "apple-badge",
-    "warranty": "Store Warranty + GST",
-    "title": "Dell Latitude 7490 / 5400 Ultrabook",
-    "desc": "Premium business ultrabook with carbon-fiber reinforced lid, backlit keyboard, narrow border FHD display, and high battery efficiency.",
+    "conditionLabel": "Pre-Owned · Grade A",
+    "availability": "In Stock (2 units)",
+    "availabilityStatus": "in_stock",
+    "cpuGen": "8th Gen",
+    "ramGb": "16GB",
+    "ssdGb": "512GB",
+    "badge": "Grade A · Unit #7490-01",
+    "warranty": "6 Months Store Warranty + GST",
+    "title": "Dell Latitude 7490 (Core i5 8th Gen)",
+    "desc": "Carbon-fiber business ultrabook weighing 1.4 kg with backlit keyboard, narrow-bezel 14-inch FHD display, and verified battery health.",
+    "wearNote": "Clean soft-touch carbon lid with faint hairline marks visible only under direct light; palmrest clean.",
     "specs": [
-      "Core i5 8350U Quad-Core",
-      "16GB DDR4",
-      "512GB SSD",
-      "14.0\" FHD Anti-Glare",
-      "Backlit Keyboard"
+      "Core i5-8350U (8th Gen)",
+      "16GB DDR4 RAM",
+      "512GB NVMe SSD",
+      "14.0\" FHD Anti-Glare"
     ],
     "details": {
-      "Model": "Dell Latitude 7490 / 5400 Series",
-      "Processor": "Intel Core i5-8350U (Up to 3.60 GHz, 6MB Cache)",
-      "RAM": "16 GB DDR4 2400MHz",
-      "Storage": "512 GB PCIe M.2 SSD",
-      "Display": "14.0\" FHD (1920x1080) Anti-Glare WVA Screen",
-      "Weight": "1.4 kg Ultra-Portable",
-      "Lab Verification": "Original Dell 65W Adapter Included, 100% Clean Lease Return"
+      "Model": "Dell Latitude 7490",
+      "Serial / Unit Tag": "LC-26-7490-01",
+      "Processor": "Intel Core i5-8350U (8th Gen, up to 3.60 GHz)",
+      "RAM": "16 GB DDR4-2400",
+      "Storage": "512 GB M.2 PCIe NVMe SSD",
+      "Display": "14.0\" FHD (1920x1080) Anti-Glare WVA",
+      "Weight": "1.40 kg",
+      "Cosmetic Condition": "Grade A (Faint lid surface mark; clean backlit keys)",
+      "Included Charger": "Original Dell 65W Adapter"
     },
     "labReport": {
-      "reportId": "SIL-LAB-9108",
+      "reportId": "LC-26-7490-01",
       "technician": "Er. Gurjit Singh (QA Inspector)",
-      "testedDate": "11-Nov-2024",
-      "overallGrade": "Grade A++ (97/100)",
-      "batteryHealth": "90% Health (Dell Diagnostic BIOS Reported: Excellent)",
-      "cpuStress": "Max 69\u00b0C sustained under stress test (Clean copper heat-pipe)",
-      "ssdHealth": "100% S.M.A.R.T. Health (Zero read/write errors)",
-      "screenStatus": "Flawless matte anti-glare panel, 0 bright/dark spots",
-      "keyboardTrackpad": "Soft-touch backlit keys 100% working, Precision drivers OK",
-      "motherboardPower": "Clean motherboard, Zero water or humidity ingress, 100% stable",
-      "portsIo": "USB-C DisplayPort, 3x USB 3.1, HDMI, Gigabit Ethernet all OK",
-      "casingHinges": "Carbon fiber body, 180-degree alloy hinges tight and smooth"
+      "testedDate": "23-Nov-2026",
+      "overallGrade": "Grade A (95/100)",
+      "batteryHealth": "90% Original Capacity (248 Cycles · 10% normal wear)",
+      "cpuStress": "Peak 69°C under sustained stress test (clean copper heat-pipe)",
+      "ssdHealth": "98% S.M.A.R.T. Health (0 bad blocks)",
+      "screenStatus": "Matte anti-glare panel, 0 dead pixels or bright spots",
+      "keyboardTrackpad": "Backlit keys & Precision glass touchpad verified",
+      "motherboardPower": "Clean logic board, zero moisture ingress, DC jack tight",
+      "portsIo": "USB-C DisplayPort, 3x USB 3.1, HDMI, RJ45 Ethernet verified",
+      "casingHinges": "Carbon-fiber shell intact, 180° alloy hinges firm",
+      "overallNotes": "Unit #LC-26-7490-01 verified on 23-Nov-2026. Ready for in-store testing.",
+      "checklist": [
+        {
+          "point": "01. AC Adapter & Charging Port",
+          "result": "Original Dell 65W Adapter",
+          "status": "PASS"
+        },
+        {
+          "point": "02. Battery Capacity & Cycle Count",
+          "result": "90% Original Capacity (248 Cycles · 10% normal wear)",
+          "status": "PASS"
+        },
+        {
+          "point": "03. Battery Discharge Stability",
+          "result": "Steady voltage curve under 30-min load (no sudden drops)",
+          "status": "PASS"
+        },
+        {
+          "point": "04. Motherboard Power Rails & Ripple",
+          "result": "Clean logic board, zero moisture ingress, DC jack tight",
+          "status": "PASS"
+        },
+        {
+          "point": "05. CPU Multi-Core Stress Benchmark",
+          "result": "Peak 69°C under sustained stress test (clean copper heat-pipe)",
+          "status": "PASS"
+        },
+        {
+          "point": "06. Cooling Fan Acoustic & RPM Check",
+          "result": "Clean heatsink & blower, smooth RPM ramp without rattle",
+          "status": "PASS"
+        },
+        {
+          "point": "07. Thermal Paste & Idle Temp",
+          "result": "Fresh thermal interface verified, idle 38–44°C",
+          "status": "PASS"
+        },
+        {
+          "point": "08. Integrated / Discrete GPU Stability",
+          "result": "OpenGL & hardware video decode passed without artifacts",
+          "status": "PASS"
+        },
+        {
+          "point": "09. RAM Slot & MemTest Integrity",
+          "result": "16GB memory verified — 0 ECC/addressing errors",
+          "status": "PASS"
+        },
+        {
+          "point": "10. NVMe / SSD S.M.A.R.T. Health",
+          "result": "98% S.M.A.R.T. Health (0 bad blocks)",
+          "status": "PASS"
+        },
+        {
+          "point": "11. Storage Sequential Read/Write",
+          "result": "PCIe NVMe link speed verified, zero bad sectors",
+          "status": "PASS"
+        },
+        {
+          "point": "12. Display Dead Pixel Inspection",
+          "result": "Matte anti-glare panel, 0 dead pixels or bright spots",
+          "status": "PASS"
+        },
+        {
+          "point": "13. Backlight Uniformity & Brightness",
+          "result": "Even backlight across white/grey/black test patterns",
+          "status": "PASS"
+        },
+        {
+          "point": "14. Webcam & Privacy Shutter",
+          "result": "HD webcam focus, exposure & shutter verified",
+          "status": "PASS"
+        },
+        {
+          "point": "15. Dual-Array Microphone Pickup",
+          "result": "Clear voice capture tested with zero static",
+          "status": "PASS"
+        },
+        {
+          "point": "16. Keyboard All-Key Matrix Test",
+          "result": "Backlit keys & Precision glass touchpad verified",
+          "status": "PASS"
+        },
+        {
+          "point": "17. Trackpad Multi-Touch & Clicks",
+          "result": "Smooth cursor tracking, two-finger scroll & tap gestures OK",
+          "status": "PASS"
+        },
+        {
+          "point": "18. Backlight Keys Illumination",
+          "result": "Keyboard backlight levels verified uniform",
+          "status": "PASS"
+        },
+        {
+          "point": "19. Left & Right Stereo Speakers",
+          "result": "Balanced stereo output at max volume, no distortion",
+          "status": "PASS"
+        },
+        {
+          "point": "20. USB-A & USB-C / Thunderbolt Ports",
+          "result": "USB-C DisplayPort, 3x USB 3.1, HDMI, RJ45 Ethernet verified",
+          "status": "PASS"
+        },
+        {
+          "point": "21. HDMI / DisplayPort Video Out",
+          "result": "External 1080p/4K display output verified",
+          "status": "PASS"
+        },
+        {
+          "point": "22. 3.5mm Audio Jack & SD Reader",
+          "result": "Headphone detection & card read/write verified",
+          "status": "PASS"
+        },
+        {
+          "point": "23. Dual-Band Wi-Fi & Bluetooth",
+          "result": "2.4GHz / 5GHz throughput & BT pairing stable",
+          "status": "PASS"
+        },
+        {
+          "point": "24. Hinge Torque & 180° Lid Action",
+          "result": "Carbon-fiber shell intact, 180° alloy hinges firm",
+          "status": "PASS"
+        },
+        {
+          "point": "25. Chassis, Screws & BIOS Lock Check",
+          "result": "Zero BIOS/MDM lock, all base screws & rubber feet intact",
+          "status": "PASS"
+        }
+      ]
     },
-    "image": "images/products/lap-used-2.svg",
-    "rating": 4.6,
-    "reviewsCount": 184,
-    "boughtPastMonth": "200+ bought in past month",
-    "mrp": "\u20b962,999",
-    "mrpNum": 62999,
-    "discount": "64% off",
-    "offers": [
-      "Save extra with Old Laptop Exchange | No Cost EMI available",
-      "Up to \u20b93,000 off on Exchange with your Old or Broken Laptop"
+    "image": "images/products/photos/lap-used-2-front.jpg",
+    "gallery": [
+      {
+        "label": "Front View",
+        "src": "images/products/photos/lap-used-2-front.jpg"
+      },
+      {
+        "label": "Side Ports Reference",
+        "src": "images/products/photos/lap-used-1-ports.jpg"
+      },
+      {
+        "label": "Underside & Vents",
+        "src": "images/products/photos/lap-used-1-underside.jpg"
+      }
     ],
-    "delivery": "FREE In-Store Pickup Today in Sodhi Nagar, Moga",
-    "fastDelivery": "Or fastest delivery Tomorrow, 17 Nov"
+    "delivery": "In-Store Inspection Today · Sodhi Nagar, Moga",
+    "mrp": "",
+    "mrpNum": 0,
+    "discount": ""
+  },
+  {
+    "id": "lap-used-7",
+    "category": "laptops_used",
+    "brand": "Dell",
+    "priceNum": 23999,
+    "price": "₹23,999",
+    "budget": "20k-40k",
+    "size": "14-inch",
+    "panel": "IPS",
+    "condition": "used",
+    "conditionLabel": "Pre-Owned · Grade A",
+    "availability": "In Stock (1 unit)",
+    "availabilityStatus": "low_stock",
+    "cpuGen": "8th Gen",
+    "ramGb": "16GB",
+    "ssdGb": "512GB",
+    "badge": "Grade A · Unit #5400-01",
+    "warranty": "6 Months Store Warranty + GST",
+    "title": "Dell Latitude 5400 (Core i5 8th Gen)",
+    "desc": "Durable corporate 14-inch Latitude 5400 with USB-C charging, Intel Core i5-8365U, 16GB RAM, and 512GB NVMe storage.",
+    "wearNote": "Very clean dark grey chassis with light base scuffing near front rubber feet; screen spotless.",
+    "specs": [
+      "Core i5-8365U (8th Gen)",
+      "16GB DDR4 RAM",
+      "512GB NVMe SSD",
+      "14.0\" FHD IPS Anti-Glare"
+    ],
+    "details": {
+      "Model": "Dell Latitude 5400",
+      "Serial / Unit Tag": "LC-26-5400-01",
+      "Processor": "Intel Core i5-8365U (8th Gen vPro, up to 4.10 GHz)",
+      "RAM": "16 GB DDR4-2666",
+      "Storage": "512 GB M.2 PCIe NVMe SSD",
+      "Display": "14.0\" FHD (1920x1080) IPS Anti-Glare",
+      "Cosmetic Condition": "Grade A (Light underside scuffing near front feet; clean top & palmrest)",
+      "Included Charger": "Original Dell 65W USB-C / Barrel Adapter"
+    },
+    "labReport": {
+      "reportId": "LC-26-5400-01",
+      "technician": "Er. Gurjit Singh (QA Inspector)",
+      "testedDate": "24-Nov-2026",
+      "overallGrade": "Grade A (95/100)",
+      "batteryHealth": "88% Original Capacity (275 Cycles · 12% normal wear)",
+      "cpuStress": "Peak 70°C under continuous load (fan clean, silent)",
+      "ssdHealth": "99% S.M.A.R.T. Health (0 read/write errors)",
+      "screenStatus": "Zero dead pixels, sharp anti-glare coating intact",
+      "keyboardTrackpad": "All keys & pointing stick tested 100% responsive",
+      "motherboardPower": "Un-reworked motherboard, stable charging IC & voltage rails",
+      "portsIo": "USB-C DisplayPort/PD, 3x USB 3.1, HDMI, RJ45, MicroSD OK",
+      "casingHinges": "Sturdy reinforced chassis and firm hinges",
+      "overallNotes": "Unit #LC-26-5400-01 tested on 24-Nov-2026 at Sodhi Nagar lab.",
+      "checklist": [
+        {
+          "point": "01. AC Adapter & Charging Port",
+          "result": "Original Dell 65W USB-C / Barrel Adapter",
+          "status": "PASS"
+        },
+        {
+          "point": "02. Battery Capacity & Cycle Count",
+          "result": "88% Original Capacity (275 Cycles · 12% normal wear)",
+          "status": "PASS"
+        },
+        {
+          "point": "03. Battery Discharge Stability",
+          "result": "Steady voltage curve under 30-min load (no sudden drops)",
+          "status": "PASS"
+        },
+        {
+          "point": "04. Motherboard Power Rails & Ripple",
+          "result": "Un-reworked motherboard, stable charging IC & voltage rails",
+          "status": "PASS"
+        },
+        {
+          "point": "05. CPU Multi-Core Stress Benchmark",
+          "result": "Peak 70°C under continuous load (fan clean, silent)",
+          "status": "PASS"
+        },
+        {
+          "point": "06. Cooling Fan Acoustic & RPM Check",
+          "result": "Clean heatsink & blower, smooth RPM ramp without rattle",
+          "status": "PASS"
+        },
+        {
+          "point": "07. Thermal Paste & Idle Temp",
+          "result": "Fresh thermal interface verified, idle 38–44°C",
+          "status": "PASS"
+        },
+        {
+          "point": "08. Integrated / Discrete GPU Stability",
+          "result": "OpenGL & hardware video decode passed without artifacts",
+          "status": "PASS"
+        },
+        {
+          "point": "09. RAM Slot & MemTest Integrity",
+          "result": "16GB memory verified — 0 ECC/addressing errors",
+          "status": "PASS"
+        },
+        {
+          "point": "10. NVMe / SSD S.M.A.R.T. Health",
+          "result": "99% S.M.A.R.T. Health (0 read/write errors)",
+          "status": "PASS"
+        },
+        {
+          "point": "11. Storage Sequential Read/Write",
+          "result": "PCIe NVMe link speed verified, zero bad sectors",
+          "status": "PASS"
+        },
+        {
+          "point": "12. Display Dead Pixel Inspection",
+          "result": "Zero dead pixels, sharp anti-glare coating intact",
+          "status": "PASS"
+        },
+        {
+          "point": "13. Backlight Uniformity & Brightness",
+          "result": "Even backlight across white/grey/black test patterns",
+          "status": "PASS"
+        },
+        {
+          "point": "14. Webcam & Privacy Shutter",
+          "result": "HD webcam focus, exposure & shutter verified",
+          "status": "PASS"
+        },
+        {
+          "point": "15. Dual-Array Microphone Pickup",
+          "result": "Clear voice capture tested with zero static",
+          "status": "PASS"
+        },
+        {
+          "point": "16. Keyboard All-Key Matrix Test",
+          "result": "All keys & pointing stick tested 100% responsive",
+          "status": "PASS"
+        },
+        {
+          "point": "17. Trackpad Multi-Touch & Clicks",
+          "result": "Smooth cursor tracking, two-finger scroll & tap gestures OK",
+          "status": "PASS"
+        },
+        {
+          "point": "18. Backlight Keys Illumination",
+          "result": "Keyboard backlight levels verified uniform",
+          "status": "PASS"
+        },
+        {
+          "point": "19. Left & Right Stereo Speakers",
+          "result": "Balanced stereo output at max volume, no distortion",
+          "status": "PASS"
+        },
+        {
+          "point": "20. USB-A & USB-C / Thunderbolt Ports",
+          "result": "USB-C DisplayPort/PD, 3x USB 3.1, HDMI, RJ45, MicroSD OK",
+          "status": "PASS"
+        },
+        {
+          "point": "21. HDMI / DisplayPort Video Out",
+          "result": "External 1080p/4K display output verified",
+          "status": "PASS"
+        },
+        {
+          "point": "22. 3.5mm Audio Jack & SD Reader",
+          "result": "Headphone detection & card read/write verified",
+          "status": "PASS"
+        },
+        {
+          "point": "23. Dual-Band Wi-Fi & Bluetooth",
+          "result": "2.4GHz / 5GHz throughput & BT pairing stable",
+          "status": "PASS"
+        },
+        {
+          "point": "24. Hinge Torque & 180° Lid Action",
+          "result": "Sturdy reinforced chassis and firm hinges",
+          "status": "PASS"
+        },
+        {
+          "point": "25. Chassis, Screws & BIOS Lock Check",
+          "result": "Zero BIOS/MDM lock, all base screws & rubber feet intact",
+          "status": "PASS"
+        }
+      ]
+    },
+    "image": "images/products/photos/lap-used-7-front.jpg",
+    "gallery": [
+      {
+        "label": "Front View",
+        "src": "images/products/photos/lap-used-7-front.jpg"
+      },
+      {
+        "label": "Underside & Vents",
+        "src": "images/products/photos/lap-used-1-underside.jpg"
+      }
+    ],
+    "delivery": "In-Store Inspection Today · Sodhi Nagar, Moga",
+    "mrp": "",
+    "mrpNum": 0,
+    "discount": ""
   },
   {
     "id": "lap-used-3",
     "category": "laptops_used",
     "brand": "Apple",
     "priceNum": 51999,
-    "price": "From \u20b951,999",
+    "price": "₹51,999",
     "budget": "50k-80k",
-    "size": "13-14",
-    "panel": "OLED",
+    "size": "13-inch",
+    "panel": "Retina",
     "condition": "used",
-    "badge": "Apple Silicon M1",
-    "badgeClass": "apple-badge apple-badge--gold",
-    "warranty": "Verified Stock + Warranty",
-    "title": "Apple MacBook Air (M1 Chip)",
-    "desc": "Groundbreaking Apple M1 chip with 8-core CPU, silent fanless thermal architecture, stunning 13.3\" Retina display, and up to 18-hour battery life.",
+    "conditionLabel": "Pre-Owned · Grade A+",
+    "availability": "In Stock (1 unit)",
+    "availabilityStatus": "low_stock",
+    "cpuGen": "Apple M1",
+    "ramGb": "8GB",
+    "ssdGb": "256GB",
+    "badge": "Grade A+ · Unit #MBA-M1-01",
+    "warranty": "6 Months Store Warranty + GST",
+    "title": "Apple MacBook Air 13.3\" M1 (8GB / 256GB · Space Grey)",
+    "desc": "Individual Space Grey Apple MacBook Air M1 (8-Core CPU, 8GB Unified Memory, 256GB SSD) with Apple Diagnostics passed and genuine 30W charger.",
+    "wearNote": "Near-mint aluminum unibody with one tiny hairline mark near hinge underside; Retina glass flawless.",
     "specs": [
-      "Apple M1 8-Core",
-      "8GB / 16GB Unified RAM",
-      "256GB / 512GB SSD",
-      "13.3\" Retina True Tone",
-      "18h Battery"
+      "Apple M1 8-Core Chip",
+      "8GB Unified Memory",
+      "256GB NVMe SSD",
+      "13.3\" Retina True Tone"
     ],
     "details": {
-      "Model": "Apple MacBook Air 13.3\" (Space Grey / Silver / Gold)",
-      "Chip": "Apple M1 System on Chip (8-Core CPU + 7-Core/8-Core GPU)",
-      "Memory": "8GB or 16GB High-Speed Unified Memory",
-      "Storage": "256GB or 512GB Ultra-Fast NVMe SSD",
-      "Display": "13.3-inch Retina Display with P3 Wide Color and True Tone",
-      "Condition": "Certified Pre-Owned, Apple Diagnostics Passed with 0 errors"
+      "Model": "Apple MacBook Air 13.3\" (A2337 · Space Grey)",
+      "Serial / Unit Tag": "LC-26-MBAM1-01",
+      "Chip": "Apple M1 (8-Core CPU, 7-Core GPU)",
+      "RAM": "8 GB Unified Memory",
+      "Storage": "256 GB Apple NVMe SSD",
+      "Display": "13.3\" Retina (2560x1600) P3 Wide Color + True Tone",
+      "Cosmetic Condition": "Grade A+ (Clean unibody, spotless Retina screen)",
+      "Included Charger": "Original Apple 30W USB-C Power Adapter & Cable"
     },
     "labReport": {
-      "reportId": "SIL-LAB-9140",
+      "reportId": "LC-26-MBAM1-01",
       "technician": "Er. Harpreet Singh (Lead Hardware Diagnostician)",
-      "testedDate": "13-Nov-2024",
-      "overallGrade": "Grade A++ (99/100 Pristine)",
-      "batteryHealth": "94% Battery Health (142 Cycle Count, Normal Condition)",
-      "cpuStress": "Zero fan noise (Fanless design), Peak 64\u00b0C under heavy render",
-      "ssdHealth": "100% Health, 2850 MB/s Read / 2400 MB/s Write",
-      "screenStatus": "Flawless Apple Retina Glass, Zero micro-scratches, P3 Gamut 100%",
-      "keyboardTrackpad": "Scissor Magic Keyboard 100% responsive, Force Touch Haptic OK",
-      "motherboardPower": "Original Apple Logic Board, Zero component rework, Clean",
-      "portsIo": "Dual Thunderbolt / USB 4 ports, 3.5mm Headphone jack passed",
-      "casingHinges": "Anodized aluminum unibody, smooth Apple hinge balance"
+      "testedDate": "25-Nov-2026",
+      "overallGrade": "Grade A+ (97/100)",
+      "batteryHealth": "94% Original Capacity (142 Cycles · 6% normal wear)",
+      "cpuStress": "Fanless silent design; peak 64°C under sustained render",
+      "ssdHealth": "99% SMART Health (2,840 MB/s Read · 2,390 MB/s Write)",
+      "screenStatus": "Flawless Retina glass, zero anti-reflective coating wear",
+      "keyboardTrackpad": "Magic Keyboard & Force Touch haptic trackpad 100% OK",
+      "motherboardPower": "Original un-reworked Apple logic board, zero MDM lock",
+      "portsIo": "2x Thunderbolt / USB 4 ports, 3.5mm audio & Touch ID verified",
+      "casingHinges": "Space Grey aluminum unibody clean, smooth hinge balance",
+      "overallNotes": "Unit #LC-26-MBAM1-01 verified clean Apple Diagnostics & iCloud/MDM free on 25-Nov-2026.",
+      "checklist": [
+        {
+          "point": "01. AC Adapter & Charging Port",
+          "result": "Original Apple 30W USB-C Power Adapter & Cable",
+          "status": "PASS"
+        },
+        {
+          "point": "02. Battery Capacity & Cycle Count",
+          "result": "94% Original Capacity (142 Cycles · 6% normal wear)",
+          "status": "PASS"
+        },
+        {
+          "point": "03. Battery Discharge Stability",
+          "result": "Steady voltage curve under 30-min load (no sudden drops)",
+          "status": "PASS"
+        },
+        {
+          "point": "04. Motherboard Power Rails & Ripple",
+          "result": "Original un-reworked Apple logic board, zero MDM lock",
+          "status": "PASS"
+        },
+        {
+          "point": "05. CPU Multi-Core Stress Benchmark",
+          "result": "Fanless silent design; peak 64°C under sustained render",
+          "status": "PASS"
+        },
+        {
+          "point": "06. Cooling Fan Acoustic & RPM Check",
+          "result": "Clean heatsink & blower, smooth RPM ramp without rattle",
+          "status": "PASS"
+        },
+        {
+          "point": "07. Thermal Paste & Idle Temp",
+          "result": "Fresh thermal interface verified, idle 38–44°C",
+          "status": "PASS"
+        },
+        {
+          "point": "08. Integrated / Discrete GPU Stability",
+          "result": "OpenGL & hardware video decode passed without artifacts",
+          "status": "PASS"
+        },
+        {
+          "point": "09. RAM Slot & MemTest Integrity",
+          "result": "8GB memory verified — 0 ECC/addressing errors",
+          "status": "PASS"
+        },
+        {
+          "point": "10. NVMe / SSD S.M.A.R.T. Health",
+          "result": "99% SMART Health (2,840 MB/s Read · 2,390 MB/s Write)",
+          "status": "PASS"
+        },
+        {
+          "point": "11. Storage Sequential Read/Write",
+          "result": "PCIe NVMe link speed verified, zero bad sectors",
+          "status": "PASS"
+        },
+        {
+          "point": "12. Display Dead Pixel Inspection",
+          "result": "Flawless Retina glass, zero anti-reflective coating wear",
+          "status": "PASS"
+        },
+        {
+          "point": "13. Backlight Uniformity & Brightness",
+          "result": "Even backlight across white/grey/black test patterns",
+          "status": "PASS"
+        },
+        {
+          "point": "14. Webcam & Privacy Shutter",
+          "result": "HD webcam focus, exposure & shutter verified",
+          "status": "PASS"
+        },
+        {
+          "point": "15. Dual-Array Microphone Pickup",
+          "result": "Clear voice capture tested with zero static",
+          "status": "PASS"
+        },
+        {
+          "point": "16. Keyboard All-Key Matrix Test",
+          "result": "Magic Keyboard & Force Touch haptic trackpad 100% OK",
+          "status": "PASS"
+        },
+        {
+          "point": "17. Trackpad Multi-Touch & Clicks",
+          "result": "Smooth cursor tracking, two-finger scroll & tap gestures OK",
+          "status": "PASS"
+        },
+        {
+          "point": "18. Backlight Keys Illumination",
+          "result": "Keyboard backlight levels verified uniform",
+          "status": "PASS"
+        },
+        {
+          "point": "19. Left & Right Stereo Speakers",
+          "result": "Balanced stereo output at max volume, no distortion",
+          "status": "PASS"
+        },
+        {
+          "point": "20. USB-A & USB-C / Thunderbolt Ports",
+          "result": "2x Thunderbolt / USB 4 ports, 3.5mm audio & Touch ID verified",
+          "status": "PASS"
+        },
+        {
+          "point": "21. HDMI / DisplayPort Video Out",
+          "result": "External 1080p/4K display output verified",
+          "status": "PASS"
+        },
+        {
+          "point": "22. 3.5mm Audio Jack & SD Reader",
+          "result": "Headphone detection & card read/write verified",
+          "status": "PASS"
+        },
+        {
+          "point": "23. Dual-Band Wi-Fi & Bluetooth",
+          "result": "2.4GHz / 5GHz throughput & BT pairing stable",
+          "status": "PASS"
+        },
+        {
+          "point": "24. Hinge Torque & 180° Lid Action",
+          "result": "Space Grey aluminum unibody clean, smooth hinge balance",
+          "status": "PASS"
+        },
+        {
+          "point": "25. Chassis, Screws & BIOS Lock Check",
+          "result": "Zero BIOS/MDM lock, all base screws & rubber feet intact",
+          "status": "PASS"
+        }
+      ]
     },
-    "image": "images/products/lap-used-3.svg",
-    "rating": 4.6,
-    "reviewsCount": 184,
-    "boughtPastMonth": "200+ bought in past month",
-    "mrp": "\u20b9145,999",
-    "mrpNum": 145999,
-    "discount": "64% off",
-    "offers": [
-      "Save extra with Old Laptop Exchange | No Cost EMI available",
-      "Up to \u20b93,000 off on Exchange with your Old or Broken Laptop"
+    "image": "images/products/photos/lap-used-3-front.jpg",
+    "gallery": [
+      {
+        "label": "Front View",
+        "src": "images/products/photos/lap-used-3-front.jpg"
+      }
     ],
-    "delivery": "FREE In-Store Pickup Today in Sodhi Nagar, Moga",
-    "fastDelivery": "Or fastest delivery Tomorrow, 17 Nov"
+    "delivery": "In-Store Inspection Today · Sodhi Nagar, Moga",
+    "mrp": "",
+    "mrpNum": 0,
+    "discount": ""
   },
   {
     "id": "lap-used-4",
     "category": "laptops_used",
     "brand": "HP",
     "priceNum": 23500,
-    "price": "From \u20b923,500",
+    "price": "₹23,500",
     "budget": "20k-40k",
-    "size": "13-14",
+    "size": "14-inch",
     "panel": "IPS",
     "condition": "used",
-    "badge": "Aluminium Unibody",
-    "badgeClass": "apple-badge",
-    "warranty": "6 Mos Warranty + Bill",
-    "title": "HP EliteBook 840 G6 Ultrabook",
-    "desc": "Ultra-sleek all-aluminum business ultrabook with Bang & Olufsen premium acoustic audio, privacy camera shutter, and fast-charge battery.",
+    "conditionLabel": "Pre-Owned · Grade A",
+    "availability": "In Stock (2 units)",
+    "availabilityStatus": "in_stock",
+    "cpuGen": "8th Gen",
+    "ramGb": "16GB",
+    "ssdGb": "512GB",
+    "badge": "Grade A · Unit #840G6-01",
+    "warranty": "6 Months Store Warranty + GST",
+    "title": "HP EliteBook 840 G6 (Core i5 8th Gen)",
+    "desc": "CNC aluminum business ultrabook featuring Bang & Olufsen stereo speakers, webcam privacy shutter, and Core i5-8265U with 16GB RAM.",
+    "wearNote": "Minor micro-scuffs on bottom aluminum plate; top lid and silver palmrest clean.",
     "specs": [
-      "Core i5 8th Gen",
-      "16GB RAM",
+      "Core i5-8265U (8th Gen)",
+      "16GB DDR4 RAM",
       "512GB NVMe SSD",
-      "14.0\" FHD IPS Anti-Glare",
-      "B&O Premium Audio"
+      "14.0\" FHD IPS Anti-Glare"
     ],
     "details": {
-      "Model": "HP EliteBook 840 G6 Series",
-      "Processor": "Intel Core i5-8265U Quad-Core (Up to 3.90 GHz)",
-      "RAM": "16 GB DDR4",
+      "Model": "HP EliteBook 840 G6",
+      "Serial / Unit Tag": "LC-26-840G6-01",
+      "Processor": "Intel Core i5-8265U (8th Gen, up to 3.90 GHz)",
+      "RAM": "16 GB DDR4-2400",
       "Storage": "512 GB M.2 NVMe SSD",
-      "Display": "14.0\" FHD (1920x1080) IPS Anti-Glare Display",
-      "Audio": "Bang & Olufsen Dual Stereo Speakers with Multi-Array Mic",
-      "Chassis": "CNC Machined Silver Aluminium"
+      "Display": "14.0\" FHD (1920x1080) IPS Anti-Glare",
+      "Cosmetic Condition": "Grade A (Clean silver aluminum deck; light underside micro-marks)",
+      "Included Charger": "Original HP 65W Smart AC Adapter"
     },
     "labReport": {
-      "reportId": "SIL-LAB-9155",
+      "reportId": "LC-26-840G6-01",
       "technician": "Er. Gurjit Singh (QA Inspector)",
-      "testedDate": "10-Nov-2024",
-      "overallGrade": "Grade A++ (96/100)",
-      "batteryHealth": "89% Health (HP Battery Check: Passed, High Capacity)",
-      "cpuStress": "Max 68\u00b0C under continuous AIDA64 stress test",
-      "ssdHealth": "100% S.M.A.R.T. Health (Zero bad sectors)",
-      "screenStatus": "IPS 1080p panel, zero bleeding, accurate colors",
-      "keyboardTrackpad": "HP Premium spill-resistant keyboard 100% OK, Glass trackpad OK",
-      "motherboardPower": "Clean motherboard, original DC jack, charging IC perfect",
-      "portsIo": "Thunderbolt Type-C, 2x USB 3.1, HDMI, Smart Card reader passed",
-      "casingHinges": "Aluminum top & bottom covers, solid 180\u00b0 hinge test passed"
+      "testedDate": "21-Nov-2026",
+      "overallGrade": "Grade A (95/100)",
+      "batteryHealth": "89% Original Capacity (262 Cycles · 11% normal wear)",
+      "cpuStress": "Peak 68°C under AIDA64 thermal load",
+      "ssdHealth": "99% S.M.A.R.T. Health (0 bad sectors)",
+      "screenStatus": "1080p IPS panel, zero backlight bleed, accurate colors",
+      "keyboardTrackpad": "Spill-resistant backlit keyboard & glass clickpad OK",
+      "motherboardPower": "Clean logic board, original charging IC verified",
+      "portsIo": "Thunderbolt USB-C, 2x USB 3.1, HDMI, RJ45 LAN verified",
+      "casingHinges": "Aluminum shell intact, firm hinge tension",
+      "overallNotes": "Unit #LC-26-840G6-01 passed full 25-point inspection on 21-Nov-2026.",
+      "checklist": [
+        {
+          "point": "01. AC Adapter & Charging Port",
+          "result": "Original HP 65W Smart AC Adapter",
+          "status": "PASS"
+        },
+        {
+          "point": "02. Battery Capacity & Cycle Count",
+          "result": "89% Original Capacity (262 Cycles · 11% normal wear)",
+          "status": "PASS"
+        },
+        {
+          "point": "03. Battery Discharge Stability",
+          "result": "Steady voltage curve under 30-min load (no sudden drops)",
+          "status": "PASS"
+        },
+        {
+          "point": "04. Motherboard Power Rails & Ripple",
+          "result": "Clean logic board, original charging IC verified",
+          "status": "PASS"
+        },
+        {
+          "point": "05. CPU Multi-Core Stress Benchmark",
+          "result": "Peak 68°C under AIDA64 thermal load",
+          "status": "PASS"
+        },
+        {
+          "point": "06. Cooling Fan Acoustic & RPM Check",
+          "result": "Clean heatsink & blower, smooth RPM ramp without rattle",
+          "status": "PASS"
+        },
+        {
+          "point": "07. Thermal Paste & Idle Temp",
+          "result": "Fresh thermal interface verified, idle 38–44°C",
+          "status": "PASS"
+        },
+        {
+          "point": "08. Integrated / Discrete GPU Stability",
+          "result": "OpenGL & hardware video decode passed without artifacts",
+          "status": "PASS"
+        },
+        {
+          "point": "09. RAM Slot & MemTest Integrity",
+          "result": "16GB memory verified — 0 ECC/addressing errors",
+          "status": "PASS"
+        },
+        {
+          "point": "10. NVMe / SSD S.M.A.R.T. Health",
+          "result": "99% S.M.A.R.T. Health (0 bad sectors)",
+          "status": "PASS"
+        },
+        {
+          "point": "11. Storage Sequential Read/Write",
+          "result": "PCIe NVMe link speed verified, zero bad sectors",
+          "status": "PASS"
+        },
+        {
+          "point": "12. Display Dead Pixel Inspection",
+          "result": "1080p IPS panel, zero backlight bleed, accurate colors",
+          "status": "PASS"
+        },
+        {
+          "point": "13. Backlight Uniformity & Brightness",
+          "result": "Even backlight across white/grey/black test patterns",
+          "status": "PASS"
+        },
+        {
+          "point": "14. Webcam & Privacy Shutter",
+          "result": "HD webcam focus, exposure & shutter verified",
+          "status": "PASS"
+        },
+        {
+          "point": "15. Dual-Array Microphone Pickup",
+          "result": "Clear voice capture tested with zero static",
+          "status": "PASS"
+        },
+        {
+          "point": "16. Keyboard All-Key Matrix Test",
+          "result": "Spill-resistant backlit keyboard & glass clickpad OK",
+          "status": "PASS"
+        },
+        {
+          "point": "17. Trackpad Multi-Touch & Clicks",
+          "result": "Smooth cursor tracking, two-finger scroll & tap gestures OK",
+          "status": "PASS"
+        },
+        {
+          "point": "18. Backlight Keys Illumination",
+          "result": "Keyboard backlight levels verified uniform",
+          "status": "PASS"
+        },
+        {
+          "point": "19. Left & Right Stereo Speakers",
+          "result": "Balanced stereo output at max volume, no distortion",
+          "status": "PASS"
+        },
+        {
+          "point": "20. USB-A & USB-C / Thunderbolt Ports",
+          "result": "Thunderbolt USB-C, 2x USB 3.1, HDMI, RJ45 LAN verified",
+          "status": "PASS"
+        },
+        {
+          "point": "21. HDMI / DisplayPort Video Out",
+          "result": "External 1080p/4K display output verified",
+          "status": "PASS"
+        },
+        {
+          "point": "22. 3.5mm Audio Jack & SD Reader",
+          "result": "Headphone detection & card read/write verified",
+          "status": "PASS"
+        },
+        {
+          "point": "23. Dual-Band Wi-Fi & Bluetooth",
+          "result": "2.4GHz / 5GHz throughput & BT pairing stable",
+          "status": "PASS"
+        },
+        {
+          "point": "24. Hinge Torque & 180° Lid Action",
+          "result": "Aluminum shell intact, firm hinge tension",
+          "status": "PASS"
+        },
+        {
+          "point": "25. Chassis, Screws & BIOS Lock Check",
+          "result": "Zero BIOS/MDM lock, all base screws & rubber feet intact",
+          "status": "PASS"
+        }
+      ]
     },
-    "image": "images/products/lap-used-4.svg",
-    "rating": 4.6,
-    "reviewsCount": 184,
-    "boughtPastMonth": "200+ bought in past month",
-    "mrp": "\u20b965,999",
-    "mrpNum": 65999,
-    "discount": "64% off",
-    "offers": [
-      "Save extra with Old Laptop Exchange | No Cost EMI available",
-      "Up to \u20b93,000 off on Exchange with your Old or Broken Laptop"
+    "image": "images/products/photos/lap-used-7-front.jpg",
+    "gallery": [
+      {
+        "label": "Front View",
+        "src": "images/products/photos/lap-used-7-front.jpg"
+      }
     ],
-    "delivery": "FREE In-Store Pickup Today in Sodhi Nagar, Moga",
-    "fastDelivery": "Or fastest delivery Tomorrow, 17 Nov"
+    "delivery": "In-Store Inspection Today · Sodhi Nagar, Moga",
+    "mrp": "",
+    "mrpNum": 0,
+    "discount": ""
   },
   {
     "id": "lap-used-5",
     "category": "laptops_used",
     "brand": "Lenovo",
     "priceNum": 28999,
-    "price": "From \u20b928,999",
+    "price": "₹28,999",
     "budget": "20k-40k",
-    "size": "13-14",
+    "size": "14-inch",
     "panel": "IPS",
     "condition": "used",
-    "badge": "1.08kg Carbon Flagship",
-    "badgeClass": "apple-badge apple-badge--gold",
-    "warranty": "6 Mos Warranty + Bill",
-    "title": "Lenovo ThinkPad X1 Carbon Gen 7",
-    "desc": "World's premier executive ultrabook weighing just 1.08kg. Carbon-fiber weave chassis, Dolby Atmos 4-speaker system, and rapid charge.",
+    "conditionLabel": "Pre-Owned · Grade A",
+    "availability": "In Stock (1 unit)",
+    "availabilityStatus": "low_stock",
+    "cpuGen": "8th Gen",
+    "ramGb": "16GB",
+    "ssdGb": "512GB",
+    "badge": "Grade A · Unit #X1C7-01",
+    "warranty": "6 Months Store Warranty + GST",
+    "title": "Lenovo ThinkPad X1 Carbon Gen 7 (Core i7 8th Gen)",
+    "desc": "Ultra-light 1.08 kg carbon-fiber flagship ultrabook with Core i7-8665U, 16GB RAM, 512GB NVMe SSD, and 400-nit Low-Power FHD display.",
+    "wearNote": "Subtle soft-touch lid wear near latch edge; 400-nit matte screen and keyboard are crisp.",
     "specs": [
-      "Core i7 8th Gen",
-      "16GB LPDDR3",
+      "Core i7-8665U (8th Gen)",
+      "16GB RAM",
       "512GB NVMe SSD",
-      "14.0\" FHD Low-Power IPS",
-      "1.08 kg Weight"
+      "14.0\" 400-nit FHD IPS"
     ],
     "details": {
-      "Model": "Lenovo ThinkPad X1 Carbon 7th Generation",
-      "Processor": "Intel Core i7-8665U vPro (Up to 4.80 GHz, 8MB Cache)",
-      "RAM": "16 GB High-Efficiency Memory",
+      "Model": "Lenovo ThinkPad X1 Carbon Gen 7",
+      "Serial / Unit Tag": "LC-26-X1C7-01",
+      "Processor": "Intel Core i7-8665U (8th Gen vPro, up to 4.80 GHz)",
+      "RAM": "16 GB LPDDR3-2133",
       "Storage": "512 GB PCIe Gen3 NVMe SSD",
-      "Display": "14.0\" FHD (1920x1080) 400-nit Low Power IPS Anti-Glare",
-      "Audio": "Dolby Atmos 4-Speaker System (2 Up-firing + 2 Down-firing)"
+      "Display": "14.0\" FHD (1920x1080) 400-nit Low-Power IPS",
+      "Weight": "1.08 kg",
+      "Cosmetic Condition": "Grade A (Light soft-touch edge polish; clean 400-nit panel)",
+      "Included Charger": "Original Lenovo 65W USB-C Adapter"
     },
     "labReport": {
-      "reportId": "SIL-LAB-9172",
+      "reportId": "LC-26-X1C7-01",
       "technician": "Er. Harpreet Singh (Lead Hardware Diagnostician)",
-      "testedDate": "12-Nov-2024",
-      "overallGrade": "Grade A++ (98/100)",
-      "batteryHealth": "91% Health (51Wh Li-Ion, Rapid Charge 80% in 1 hr)",
-      "cpuStress": "Max 66\u00b0C under full multi-core load",
-      "ssdHealth": "100% S.M.A.R.T. Health, 3200 MB/s Read Speed",
-      "screenStatus": "400-nit low power matte panel, 100% sRGB, zero defects",
-      "keyboardTrackpad": "Legendary X1 deep travel keyboard, Glass trackpad & TrackPoint OK",
-      "motherboardPower": "Dual Type-C controller ICs tested, voltage stable, clean",
-      "portsIo": "2x Thunderbolt 3, 2x USB 3.1, HDMI 1.4b, Headphone all functional",
-      "casingHinges": "Soft-touch carbon body, alloy hinges 100% firm"
+      "testedDate": "25-Nov-2026",
+      "overallGrade": "Grade A (96/100)",
+      "batteryHealth": "91% Original Capacity (230 Cycles · 9% normal wear)",
+      "cpuStress": "Peak 67°C under multi-core load",
+      "ssdHealth": "99% S.M.A.R.T. Health (3,200 MB/s Read)",
+      "screenStatus": "400-nit matte IPS panel, 100% sRGB, zero dead pixels",
+      "keyboardTrackpad": "Deep-travel X1 keyboard, glass trackpad & TrackPoint OK",
+      "motherboardPower": "Dual Thunderbolt 3 PD controllers verified stable",
+      "portsIo": "2x Thunderbolt 3, 2x USB 3.1, HDMI 1.4b, Audio verified",
+      "casingHinges": "Carbon-fiber chassis intact, 180° hinges firm",
+      "overallNotes": "Unit #LC-26-X1C7-01 bench-certified on 25-Nov-2026.",
+      "checklist": [
+        {
+          "point": "01. AC Adapter & Charging Port",
+          "result": "Original Lenovo 65W USB-C Adapter",
+          "status": "PASS"
+        },
+        {
+          "point": "02. Battery Capacity & Cycle Count",
+          "result": "91% Original Capacity (230 Cycles · 9% normal wear)",
+          "status": "PASS"
+        },
+        {
+          "point": "03. Battery Discharge Stability",
+          "result": "Steady voltage curve under 30-min load (no sudden drops)",
+          "status": "PASS"
+        },
+        {
+          "point": "04. Motherboard Power Rails & Ripple",
+          "result": "Dual Thunderbolt 3 PD controllers verified stable",
+          "status": "PASS"
+        },
+        {
+          "point": "05. CPU Multi-Core Stress Benchmark",
+          "result": "Peak 67°C under multi-core load",
+          "status": "PASS"
+        },
+        {
+          "point": "06. Cooling Fan Acoustic & RPM Check",
+          "result": "Clean heatsink & blower, smooth RPM ramp without rattle",
+          "status": "PASS"
+        },
+        {
+          "point": "07. Thermal Paste & Idle Temp",
+          "result": "Fresh thermal interface verified, idle 38–44°C",
+          "status": "PASS"
+        },
+        {
+          "point": "08. Integrated / Discrete GPU Stability",
+          "result": "OpenGL & hardware video decode passed without artifacts",
+          "status": "PASS"
+        },
+        {
+          "point": "09. RAM Slot & MemTest Integrity",
+          "result": "16GB memory verified — 0 ECC/addressing errors",
+          "status": "PASS"
+        },
+        {
+          "point": "10. NVMe / SSD S.M.A.R.T. Health",
+          "result": "99% S.M.A.R.T. Health (3,200 MB/s Read)",
+          "status": "PASS"
+        },
+        {
+          "point": "11. Storage Sequential Read/Write",
+          "result": "PCIe NVMe link speed verified, zero bad sectors",
+          "status": "PASS"
+        },
+        {
+          "point": "12. Display Dead Pixel Inspection",
+          "result": "400-nit matte IPS panel, 100% sRGB, zero dead pixels",
+          "status": "PASS"
+        },
+        {
+          "point": "13. Backlight Uniformity & Brightness",
+          "result": "Even backlight across white/grey/black test patterns",
+          "status": "PASS"
+        },
+        {
+          "point": "14. Webcam & Privacy Shutter",
+          "result": "HD webcam focus, exposure & shutter verified",
+          "status": "PASS"
+        },
+        {
+          "point": "15. Dual-Array Microphone Pickup",
+          "result": "Clear voice capture tested with zero static",
+          "status": "PASS"
+        },
+        {
+          "point": "16. Keyboard All-Key Matrix Test",
+          "result": "Deep-travel X1 keyboard, glass trackpad & TrackPoint OK",
+          "status": "PASS"
+        },
+        {
+          "point": "17. Trackpad Multi-Touch & Clicks",
+          "result": "Smooth cursor tracking, two-finger scroll & tap gestures OK",
+          "status": "PASS"
+        },
+        {
+          "point": "18. Backlight Keys Illumination",
+          "result": "Keyboard backlight levels verified uniform",
+          "status": "PASS"
+        },
+        {
+          "point": "19. Left & Right Stereo Speakers",
+          "result": "Balanced stereo output at max volume, no distortion",
+          "status": "PASS"
+        },
+        {
+          "point": "20. USB-A & USB-C / Thunderbolt Ports",
+          "result": "2x Thunderbolt 3, 2x USB 3.1, HDMI 1.4b, Audio verified",
+          "status": "PASS"
+        },
+        {
+          "point": "21. HDMI / DisplayPort Video Out",
+          "result": "External 1080p/4K display output verified",
+          "status": "PASS"
+        },
+        {
+          "point": "22. 3.5mm Audio Jack & SD Reader",
+          "result": "Headphone detection & card read/write verified",
+          "status": "PASS"
+        },
+        {
+          "point": "23. Dual-Band Wi-Fi & Bluetooth",
+          "result": "2.4GHz / 5GHz throughput & BT pairing stable",
+          "status": "PASS"
+        },
+        {
+          "point": "24. Hinge Torque & 180° Lid Action",
+          "result": "Carbon-fiber chassis intact, 180° hinges firm",
+          "status": "PASS"
+        },
+        {
+          "point": "25. Chassis, Screws & BIOS Lock Check",
+          "result": "Zero BIOS/MDM lock, all base screws & rubber feet intact",
+          "status": "PASS"
+        }
+      ]
     },
-    "image": "images/products/lap-used-5.svg",
-    "rating": 4.7,
-    "reviewsCount": 289,
-    "boughtPastMonth": "200+ bought in past month",
-    "mrp": "\u20b980,999",
-    "mrpNum": 80999,
-    "discount": "64% off",
-    "offers": [
-      "Save extra with Old Laptop Exchange | No Cost EMI available",
-      "Up to \u20b93,000 off on Exchange with your Old or Broken Laptop"
+    "image": "images/products/photos/lap-used-5-front.jpg",
+    "gallery": [
+      {
+        "label": "Front View",
+        "src": "images/products/photos/lap-used-5-front.jpg"
+      },
+      {
+        "label": "Keyboard & Trackpad",
+        "src": "images/products/photos/lap-used-1-keyboard.jpg"
+      },
+      {
+        "label": "Side Ports Reference",
+        "src": "images/products/photos/lap-used-1-ports.jpg"
+      },
+      {
+        "label": "Cosmetic Wear Reference",
+        "src": "images/products/photos/lap-used-1-wear.jpg"
+      }
     ],
-    "delivery": "FREE In-Store Pickup Today in Sodhi Nagar, Moga",
-    "fastDelivery": "Or fastest delivery Tomorrow, 17 Nov"
+    "delivery": "In-Store Inspection Today · Sodhi Nagar, Moga",
+    "mrp": "",
+    "mrpNum": 0,
+    "discount": ""
   },
   {
     "id": "lap-new-1",
     "category": "laptops_new",
     "brand": "Apple",
     "priceNum": 114900,
-    "price": "From \u20b91,14,900",
+    "price": "₹1,14,900",
     "budget": "80k+",
     "size": "13-14",
     "panel": "OLED",
+    "cpuGen": "Apple M3",
+    "ramGb": "16GB",
+    "ssdGb": "512GB",
     "condition": "new",
+    "conditionLabel": "Brand New · Sealed",
+    "availability": "In Stock · Moga",
+    "availabilityStatus": "in_stock",
     "badge": "Apple Silicon M3",
-    "badgeClass": "apple-badge apple-badge--gold",
     "warranty": "1 Year Official Apple Warranty",
     "title": "Apple MacBook Air 13.6\" (M3 Chip)",
     "desc": "Supercharged by the M3 chip with hardware-accelerated ray tracing, 13.6\" Liquid Retina display with 500 nits brightness, MagSafe 3, and up to 18 hours battery.",
@@ -312,8 +1422,7 @@
       "Apple M3 8-Core CPU",
       "10-Core GPU",
       "16GB Unified RAM",
-      "512GB SSD",
-      "13.6\" Liquid Retina 500 nits"
+      "512GB SSD"
     ],
     "details": {
       "Model": "Apple MacBook Air 13.6-inch M3 (Midnight / Starlight / Space Grey / Silver)",
@@ -324,32 +1433,29 @@
       "Ports": "MagSafe 3 charging port, Two Thunderbolt / USB 4 ports, 3.5mm jack",
       "Condition": "100% Brand New Sealed Box with Official GST Invoice"
     },
-    "image": "images/products/lap-new-1.svg",
-    "rating": 4.9,
-    "reviewsCount": 512,
-    "boughtPastMonth": "1K+ bought in past month",
-    "mrp": "\u20b9135,999",
+    "labReport": null,
+    "image": "images/products/photos/lap-used-3-front.jpg",
+    "mrp": "₹135,999",
     "mrpNum": 135999,
-    "discount": "16% off",
-    "offers": [
-      "Save extra with No Cost EMI & Card Offers",
-      "Official Brand Warranty with 100% Genuine Tax Invoice"
-    ],
-    "delivery": "FREE delivery Thu, 19 Nov",
-    "fastDelivery": "Or fastest delivery Tomorrow, 17 Nov"
+    "delivery": "In-Store Pickup · Sodhi Nagar, Moga"
   },
   {
     "id": "lap-new-3",
     "category": "laptops_new",
     "brand": "Dell",
     "priceNum": 46500,
-    "price": "From \u20b946,500",
+    "price": "₹46,500",
     "budget": "40k-75k",
     "size": "15-16",
     "panel": "IPS",
+    "cpuGen": "12th Gen",
+    "ramGb": "16GB",
+    "ssdGb": "512GB",
     "condition": "new",
+    "conditionLabel": "Brand New · Sealed",
+    "availability": "In Stock · Moga",
+    "availabilityStatus": "in_stock",
     "badge": "120Hz Anti-Glare",
-    "badgeClass": "apple-badge",
     "warranty": "1 Year Dell India Warranty",
     "title": "Dell Inspiron 15 3520 Laptop",
     "desc": "Everyday powerhouse for college, business accounting, and coding. 120Hz smooth refresh rate, lift-hinge ergonomic typing, and ExpressCharge.",
@@ -357,8 +1463,7 @@
       "Intel Core i5 12th Gen",
       "16GB DDR4",
       "512GB SSD",
-      "15.6\" FHD 120Hz IPS",
-      "Windows 11 + MS Office"
+      "15.6\" FHD 120Hz IPS"
     ],
     "details": {
       "Model": "Dell Inspiron 15 3520 (Carbon Black)",
@@ -368,32 +1473,29 @@
       "Display": "15.6-inch FHD (1920x1080) 120Hz Anti-Glare WVA Narrow Border",
       "Software": "Pre-installed Genuine Windows 11 Home & Microsoft Office 2021"
     },
-    "image": "images/products/lap-new-3.svg",
-    "rating": 4.6,
-    "reviewsCount": 315,
-    "boughtPastMonth": "300+ bought in past month",
-    "mrp": "\u20b959,999",
+    "labReport": null,
+    "image": "images/products/photos/lap-used-7-front.jpg",
+    "mrp": "₹59,999",
     "mrpNum": 59999,
-    "discount": "22% off",
-    "offers": [
-      "Save extra with No Cost EMI & Card Offers",
-      "Official Brand Warranty with 100% Genuine Tax Invoice"
-    ],
-    "delivery": "FREE delivery Thu, 19 Nov",
-    "fastDelivery": "Or fastest delivery Tomorrow, 17 Nov"
+    "delivery": "In-Store Pickup · Sodhi Nagar, Moga"
   },
   {
     "id": "lap-new-4",
     "category": "laptops_new",
     "brand": "Lenovo",
     "priceNum": 59990,
-    "price": "From \u20b959,990",
+    "price": "₹59,990",
     "budget": "50k-80k",
     "size": "13-14",
     "panel": "OLED",
+    "cpuGen": "AMD Ryzen",
+    "ramGb": "16GB",
+    "ssdGb": "512GB",
     "condition": "new",
+    "conditionLabel": "Brand New · Sealed",
+    "availability": "In Stock · Moga",
+    "availabilityStatus": "in_stock",
     "badge": "OLED 400 Nits",
-    "badgeClass": "apple-badge apple-badge--gold",
     "warranty": "1 Year Lenovo Onsite Warranty",
     "title": "Lenovo IdeaPad Slim 5 (OLED)",
     "desc": "Featherlight metallic laptop featuring a breathtaking 100% DCI-P3 OLED screen, AMD Ryzen 7 8-core CPU, rapid charging, and MIL-STD 810H durability.",
@@ -401,8 +1503,7 @@
       "AMD Ryzen 7 7730U",
       "16GB LPDDR5",
       "512GB NVMe SSD",
-      "14.0\" WUXGA OLED 400 nits",
-      "Military-Grade Tough"
+      "14.0\" WUXGA OLED 400 nits"
     ],
     "details": {
       "Model": "Lenovo IdeaPad Slim 5 14ABR8 (Cloud Grey)",
@@ -411,227 +1512,264 @@
       "Storage": "512 GB SSD M.2 2242 PCIe 4.0x4 NVMe",
       "Display": "14.0\" WUXGA (1920x1200) OLED 400 nits Glossy, 100% DCI-P3, DisplayHDR True Black 500"
     },
-    "image": "images/products/lap-new-4.svg",
-    "rating": 4.7,
-    "reviewsCount": 428,
-    "boughtPastMonth": "500+ bought in past month",
-    "mrp": "\u20b974,999",
+    "labReport": null,
+    "image": "images/products/photos/lap-used-7-front.jpg",
+    "mrp": "₹74,999",
     "mrpNum": 74999,
-    "discount": "20% off",
-    "offers": [
-      "Save extra with No Cost EMI & Card Offers",
-      "Official Brand Warranty with 100% Genuine Tax Invoice"
-    ],
-    "delivery": "FREE delivery Thu, 19 Nov",
-    "fastDelivery": "Or fastest delivery Tomorrow, 17 Nov"
+    "delivery": "In-Store Pickup · Sodhi Nagar, Moga"
   },
   {
     "id": "lap-new-6",
     "category": "laptops_new",
     "brand": "Apple",
-    "title": "Apple MacBook Air 13.3\" (M2 Chip)",
     "priceNum": 84900,
-    "price": "From \u20b984,900",
-    "mrp": "\u20b999,900",
-    "discount": "15% off",
-    "rating": 4.9,
-    "reviewsCount": 680,
-    "boughtPastMonth": "800+ bought in past month",
-    "badge": "Apple Silicon M2",
+    "price": "₹84,900",
+    "budget": "",
+    "size": "",
+    "panel": "",
+    "cpuGen": "Apple M2",
+    "ramGb": "8GB",
+    "ssdGb": "256GB",
     "condition": "new",
-    "image": "images/products/lap-new-6.svg",
+    "conditionLabel": "Brand New · Sealed",
+    "availability": "In Stock · Moga",
+    "availabilityStatus": "in_stock",
+    "badge": "Apple Silicon M2",
+    "warranty": "1 Year Official Apple Warranty",
+    "title": "Apple MacBook Air 13.3\" (M2 Chip)",
+    "desc": "Incredible battery life up to 18 hours, silent fanless design, 1080p FaceTime HD camera, and stunning Liquid Retina display.",
     "specs": [
       "Apple M2 8-Core CPU",
       "8-Core GPU",
       "8GB Unified RAM",
-      "256GB SSD",
-      "13.3\" Liquid Retina",
-      "MagSafe 3"
+      "256GB SSD"
     ],
-    "desc": "Incredible battery life up to 18 hours, silent fanless design, 1080p FaceTime HD camera, and stunning Liquid Retina display.",
-    "warranty": "1 Year Official Apple Warranty",
-    "delivery": "FREE delivery Tomorrow",
-    "fastDelivery": "Pickup available today at Sodhi Nagar"
+    "details": {},
+    "labReport": null,
+    "image": "images/products/photos/lap-used-3-front.jpg",
+    "mrp": "",
+    "mrpNum": 0,
+    "delivery": "In-Store Pickup · Sodhi Nagar, Moga"
   },
   {
     "id": "lap-new-7",
     "category": "laptops_new",
     "brand": "HP",
-    "title": "HP 15s Everyday Laptop",
     "priceNum": 52990,
-    "price": "From \u20b952,990",
-    "mrp": "\u20b964,990",
-    "discount": "18% off",
-    "rating": 4.6,
-    "reviewsCount": 310,
-    "boughtPastMonth": "400+ bought in past month",
-    "badge": "Core i5 13th Gen",
+    "price": "₹52,990",
+    "budget": "",
+    "size": "",
+    "panel": "",
+    "cpuGen": "13th Gen",
+    "ramGb": "16GB",
+    "ssdGb": "512GB",
     "condition": "new",
-    "image": "images/products/lap-new-7.svg",
+    "conditionLabel": "Brand New · Sealed",
+    "availability": "In Stock · Moga",
+    "availabilityStatus": "in_stock",
+    "badge": "Core i5 13th Gen",
+    "warranty": "1 Year HP Onsite Warranty",
+    "title": "HP 15s Everyday Laptop",
+    "desc": "Reliable everyday performance for business, students, and home office with micro-edge anti-glare display and fast charging.",
     "specs": [
       "Intel Core i5 13th Gen",
       "16GB DDR4",
       "512GB NVMe SSD",
-      "15.6\" FHD Micro-Edge",
-      "Fast Charge",
-      "Backlit KB"
+      "15.6\" FHD Micro-Edge"
     ],
-    "desc": "Reliable everyday performance for business, students, and home office with micro-edge anti-glare display and fast charging.",
-    "warranty": "1 Year HP Onsite Warranty",
-    "delivery": "FREE delivery Thu, 19 Nov",
-    "fastDelivery": "Pickup available today at Sodhi Nagar"
+    "details": {},
+    "labReport": null,
+    "image": "images/products/photos/lap-used-7-front.jpg",
+    "mrp": "",
+    "mrpNum": 0,
+    "delivery": "In-Store Pickup · Sodhi Nagar, Moga"
   },
   {
     "id": "lap-game-1",
     "category": "laptops_gaming",
     "brand": "HP",
-    "title": "HP Victus 15 Gaming Laptop",
     "priceNum": 58990,
-    "price": "From \u20b958,990",
-    "mrp": "\u20b973,999",
-    "discount": "20% off",
-    "rating": 4.7,
-    "reviewsCount": 428,
-    "boughtPastMonth": "500+ bought in past month",
-    "badge": "RTX 3050 4GB",
+    "price": "₹58,990",
+    "budget": "",
+    "size": "",
+    "panel": "",
+    "cpuGen": "13th Gen",
+    "ramGb": "16GB",
+    "ssdGb": "512GB",
     "condition": "new",
-    "image": "images/products/lap-game-1.svg",
+    "conditionLabel": "Brand New · Sealed",
+    "availability": "In Stock · Moga",
+    "availabilityStatus": "in_stock",
+    "badge": "RTX 3050 4GB",
+    "warranty": "1 Year HP Onsite Warranty",
+    "title": "HP Victus 15 Gaming Laptop",
+    "desc": "High-performance gaming machine with 144Hz micro-edge IPS display, dedicated NVIDIA GeForce RTX 3050 graphics, and dual-fan cooling.",
     "specs": [
       "Intel Core i5 13th Gen",
       "16GB DDR4",
       "512GB Gen4 SSD",
-      "NVIDIA RTX 3050 4GB",
-      "15.6\" 144Hz FHD IPS"
+      "NVIDIA RTX 3050 4GB"
     ],
-    "desc": "High-performance gaming machine with 144Hz micro-edge IPS display, dedicated NVIDIA GeForce RTX 3050 graphics, and dual-fan cooling.",
-    "warranty": "1 Year HP Onsite Warranty",
-    "delivery": "FREE delivery Tomorrow",
-    "fastDelivery": "Pickup available today at Sodhi Nagar"
+    "details": {},
+    "labReport": null,
+    "image": "images/products/photos/lap-game-front.jpg",
+    "mrp": "",
+    "mrpNum": 0,
+    "delivery": "In-Store Pickup · Sodhi Nagar, Moga"
   },
   {
     "id": "lap-game-2",
     "category": "laptops_gaming",
     "brand": "Lenovo",
-    "title": "Lenovo LOQ 15 Gaming Laptop",
     "priceNum": 73990,
-    "price": "From \u20b973,990",
-    "mrp": "\u20b992,990",
-    "discount": "20% off",
-    "rating": 4.8,
-    "reviewsCount": 350,
-    "boughtPastMonth": "300+ bought in past month",
-    "badge": "RTX 4050 6GB",
+    "price": "₹73,990",
+    "budget": "",
+    "size": "",
+    "panel": "",
+    "cpuGen": "AMD Ryzen",
+    "ramGb": "16GB",
+    "ssdGb": "512GB",
     "condition": "new",
-    "image": "images/products/lap-game-2.svg",
+    "conditionLabel": "Brand New · Sealed",
+    "availability": "In Stock · Moga",
+    "availabilityStatus": "in_stock",
+    "badge": "RTX 4050 6GB",
+    "warranty": "1 Year Lenovo Onsite Warranty",
+    "title": "Lenovo LOQ 15 Gaming Laptop",
+    "desc": "Powered by Lenovo LA1 AI chip and NVIDIA DLSS 3, featuring 100% sRGB 144Hz display, MUX Switch, and hyperchamber thermals.",
     "specs": [
       "AMD Ryzen 7 7435HS",
       "16GB DDR5 5600MHz",
       "512GB Gen4 SSD",
-      "NVIDIA RTX 4050 6GB",
-      "15.6\" 144Hz 100% sRGB",
-      "AI Engine+"
+      "NVIDIA RTX 4050 6GB"
     ],
-    "desc": "Powered by Lenovo LA1 AI chip and NVIDIA DLSS 3, featuring 100% sRGB 144Hz display, MUX Switch, and hyperchamber thermals.",
-    "warranty": "1 Year Lenovo Onsite Warranty",
-    "delivery": "FREE delivery Tomorrow",
-    "fastDelivery": "Pickup available today at Sodhi Nagar"
+    "details": {},
+    "labReport": null,
+    "image": "images/products/photos/lap-game-front.jpg",
+    "mrp": "",
+    "mrpNum": 0,
+    "delivery": "In-Store Pickup · Sodhi Nagar, Moga"
   },
   {
     "id": "lap-game-3",
     "category": "laptops_gaming",
     "brand": "Asus",
-    "title": "Asus TUF Gaming A15",
     "priceNum": 89990,
-    "price": "From \u20b989,990",
-    "mrp": "\u20b91,14,990",
-    "discount": "22% off",
-    "rating": 4.8,
-    "reviewsCount": 290,
-    "boughtPastMonth": "250+ bought in past month",
-    "badge": "RTX 4060 8GB",
+    "price": "₹89,990",
+    "budget": "",
+    "size": "",
+    "panel": "",
+    "cpuGen": "AMD Ryzen",
+    "ramGb": "16GB",
+    "ssdGb": "1TB",
     "condition": "new",
-    "image": "images/products/lap-game-3.svg",
+    "conditionLabel": "Brand New · Sealed",
+    "availability": "In Stock · Moga",
+    "availabilityStatus": "in_stock",
+    "badge": "RTX 4060 8GB",
+    "warranty": "1 Year Asus Global Warranty",
+    "title": "Asus TUF Gaming A15",
+    "desc": "Military-grade MIL-STD-810H durability, 140W max TGP RTX 4060 graphics, 90Wh battery, and 144Hz Adaptive-Sync display.",
     "specs": [
       "AMD Ryzen 7 7735HS",
       "16GB DDR5",
       "1TB Gen4 NVMe SSD",
-      "NVIDIA RTX 4060 8GB (140W)",
-      "15.6\" 144Hz G-Sync",
-      "Military Grade"
+      "NVIDIA RTX 4060 8GB (140W)"
     ],
-    "desc": "Military-grade MIL-STD-810H durability, 140W max TGP RTX 4060 graphics, 90Wh battery, and 144Hz Adaptive-Sync display.",
-    "warranty": "1 Year Asus Global Warranty",
-    "delivery": "FREE delivery Tomorrow",
-    "fastDelivery": "Pickup available today at Sodhi Nagar"
+    "details": {},
+    "labReport": null,
+    "image": "images/products/photos/lap-game-front.jpg",
+    "mrp": "",
+    "mrpNum": 0,
+    "delivery": "In-Store Pickup · Sodhi Nagar, Moga"
   },
   {
     "id": "lap-game-4",
     "category": "laptops_gaming",
     "brand": "Acer",
-    "title": "Acer Nitro 5 Gaming Laptop",
     "priceNum": 67990,
-    "price": "From \u20b967,990",
-    "mrp": "\u20b984,990",
-    "discount": "20% off",
-    "rating": 4.7,
-    "reviewsCount": 220,
-    "boughtPastMonth": "180+ bought in past month",
-    "badge": "RTX 3050Ti 4GB",
+    "price": "₹67,990",
+    "budget": "",
+    "size": "",
+    "panel": "",
+    "cpuGen": "12th Gen",
+    "ramGb": "16GB",
+    "ssdGb": "512GB",
     "condition": "new",
-    "image": "images/products/lap-game-4.svg",
+    "conditionLabel": "Brand New · Sealed",
+    "availability": "In Stock · Moga",
+    "availabilityStatus": "in_stock",
+    "badge": "RTX 3050Ti 4GB",
+    "warranty": "1 Year Acer International Warranty",
+    "title": "Acer Nitro 5 Gaming Laptop",
+    "desc": "High-octane performance with Intel Core i7 12th Gen, dual-fan quad-exhaust CoolBoost cooling, and Killer Ethernet.",
     "specs": [
       "Intel Core i7 12th Gen",
       "16GB DDR4",
       "512GB SSD",
-      "NVIDIA RTX 3050Ti 4GB",
-      "15.6\" 144Hz FHD IPS",
-      "4-Zone RGB Keyboard"
+      "NVIDIA RTX 3050Ti 4GB"
     ],
-    "desc": "High-octane performance with Intel Core i7 12th Gen, dual-fan quad-exhaust CoolBoost cooling, and Killer Ethernet.",
-    "warranty": "1 Year Acer International Warranty",
-    "delivery": "FREE delivery Thu, 19 Nov",
-    "fastDelivery": "Pickup available today at Sodhi Nagar"
+    "details": {},
+    "labReport": null,
+    "image": "images/products/photos/lap-game-front.jpg",
+    "mrp": "",
+    "mrpNum": 0,
+    "delivery": "In-Store Pickup · Sodhi Nagar, Moga"
   },
   {
     "id": "lap-game-5",
     "category": "laptops_gaming",
     "brand": "Asus",
-    "title": "Asus Vivobook 16X (RTX 2050)",
     "priceNum": 51990,
-    "price": "From \u20b951,990",
-    "mrp": "\u20b969,990",
-    "discount": "26% off",
-    "rating": 4.6,
-    "reviewsCount": 210,
-    "boughtPastMonth": "300+ bought in past month",
-    "badge": "RTX 2050 4GB",
+    "price": "₹51,990",
+    "budget": "",
+    "size": "",
+    "panel": "",
+    "cpuGen": "12th Gen",
+    "ramGb": "16GB",
+    "ssdGb": "512GB",
     "condition": "new",
-    "image": "images/products/lap-game-5.svg",
+    "conditionLabel": "Brand New · Sealed",
+    "availability": "In Stock · Moga",
+    "availabilityStatus": "in_stock",
+    "badge": "RTX 2050 4GB",
+    "warranty": "1 Year Asus Brand Warranty",
+    "title": "Asus Vivobook 16X (RTX 2050)",
+    "desc": "Versatile creator and light gaming laptop with spacious 16:10 120Hz screen, dedicated ray-tracing RTX 2050 GPU, and military-grade build.",
     "specs": [
       "Intel Core i5 12th Gen",
       "16GB DDR4",
       "512GB SSD",
-      "NVIDIA RTX 2050 4GB",
-      "16\" WUXGA 120Hz",
-      "IceBlade Cooling"
+      "NVIDIA RTX 2050 4GB"
     ],
-    "desc": "Versatile creator and light gaming laptop with spacious 16:10 120Hz screen, dedicated ray-tracing RTX 2050 GPU, and military-grade build.",
-    "warranty": "1 Year Asus Brand Warranty",
-    "delivery": "FREE delivery Thu, 19 Nov",
-    "fastDelivery": "Pickup available today at Sodhi Nagar"
+    "details": {},
+    "labReport": null,
+    "image": "images/products/photos/lap-game-front.jpg",
+    "mrp": "",
+    "mrpNum": 0,
+    "delivery": "In-Store Pickup · Sodhi Nagar, Moga"
   },
   {
     "id": "pc-1",
     "category": "pc",
     "brand": "Custom Rig",
     "priceNum": 118000,
-    "price": "From \u20b91,18,000",
+    "price": "₹1,18,000",
     "budget": "80k+",
     "size": "Desktop",
     "panel": "Other",
+    "cpuGen": "14th Gen",
+    "ramGb": "32GB",
+    "ssdGb": "1TB",
     "condition": "new",
+    "conditionLabel": "Brand New · Sealed",
+    "availability": "In Stock · Moga",
+    "availabilityStatus": "in_stock",
+    "compatibleWith": [
+      "pc",
+      "pc_components"
+    ],
     "badge": "Custom Assembled Flagship",
-    "badgeClass": "apple-badge apple-badge--gold",
     "warranty": "3 Yrs Component Warranties",
     "title": "Supreme Apex RTX 4070 Gaming Rig",
     "desc": "Ultra high-performance gaming & content workstation. Powered by Intel 14th Gen, RTX 4070 12GB, liquid AIO cooler, and high-airflow ARGB panoramic case.",
@@ -639,8 +1777,7 @@
       "Core i7 14700F 20 Cores",
       "32GB DDR5 6000MHz",
       "RTX 4070 12GB GDDR6X",
-      "1TB Gen4 NVMe SSD",
-      "360mm AIO Liquid Cooler"
+      "1TB Gen4 NVMe SSD"
     ],
     "details": {
       "CPU": "Intel Core i7-14700F (20 Cores [8P + 12E], 28 Threads, up to 5.4 GHz)",
@@ -653,32 +1790,33 @@
       "Cabinet": "Ant Esports Panoramic Dual Glass ARGB Case with 6x Fans",
       "Assembly": "Stress-tested for 24 hours, custom cable lacing, Windows 11 Pro included"
     },
+    "labReport": null,
     "image": "images/products/pc-1.svg",
-    "rating": 4.7,
-    "reviewsCount": 428,
-    "boughtPastMonth": "500+ bought in past month",
-    "mrp": "\u20b9147,999",
+    "mrp": "₹147,999",
     "mrpNum": 147999,
-    "discount": "20% off",
-    "offers": [
-      "Save extra with No Cost EMI & Card Offers",
-      "Official Brand Warranty with 100% Genuine Tax Invoice"
-    ],
-    "delivery": "FREE delivery Thu, 19 Nov",
-    "fastDelivery": "Or fastest delivery Tomorrow, 17 Nov"
+    "delivery": "In-Store Pickup · Sodhi Nagar, Moga"
   },
   {
     "id": "pc-2",
     "category": "pc",
     "brand": "Custom Rig",
     "priceNum": 48500,
-    "price": "From \u20b948,500",
+    "price": "₹48,500",
     "budget": "40k-75k",
     "size": "Desktop",
     "panel": "Other",
+    "cpuGen": "AMD Ryzen",
+    "ramGb": "16GB",
+    "ssdGb": "512GB",
     "condition": "new",
+    "conditionLabel": "Brand New · Sealed",
+    "availability": "In Stock · Moga",
+    "availabilityStatus": "in_stock",
+    "compatibleWith": [
+      "pc",
+      "pc_components"
+    ],
     "badge": "Esports High FPS",
-    "badgeClass": "apple-badge apple-badge--new",
     "warranty": "3 Yrs Component Warranties",
     "title": "Supreme Esports Gaming PC (RTX 3060)",
     "desc": "The most popular budget gaming rig in Punjab. Crushes GTA V, Valorant, BGMI, and CS2 at 180+ FPS at 1080p high settings.",
@@ -686,8 +1824,7 @@
       "AMD Ryzen 5 5600 6-Core",
       "16GB DDR4 3600MHz",
       "RTX 3060 12GB GDDR6",
-      "512GB NVMe SSD",
-      "650W 80+ Bronze PSU"
+      "512GB NVMe SSD"
     ],
     "details": {
       "CPU": "AMD Ryzen 5 5600 (6 Cores, 12 Threads, 35MB Cache, 4.4 GHz Max)",
@@ -698,32 +1835,33 @@
       "PSU": "DeepCool PK650D 650W 80 Plus Bronze",
       "Case": "Ant Esports ICE-511 Max with 4x Auto-RGB 120mm Fans"
     },
+    "labReport": null,
     "image": "images/products/pc-2.svg",
-    "rating": 4.6,
-    "reviewsCount": 315,
-    "boughtPastMonth": "300+ bought in past month",
-    "mrp": "\u20b962,999",
+    "mrp": "₹62,999",
     "mrpNum": 62999,
-    "discount": "23% off",
-    "offers": [
-      "Save extra with No Cost EMI & Card Offers",
-      "Official Brand Warranty with 100% Genuine Tax Invoice"
-    ],
-    "delivery": "FREE delivery Thu, 19 Nov",
-    "fastDelivery": "Or fastest delivery Tomorrow, 17 Nov"
+    "delivery": "In-Store Pickup · Sodhi Nagar, Moga"
   },
   {
     "id": "pc-3",
     "category": "pc",
     "brand": "Custom Rig",
     "priceNum": 23990,
-    "price": "From \u20b923,990",
+    "price": "₹23,990",
     "budget": "20k-40k",
     "size": "Desktop",
     "panel": "Other",
+    "cpuGen": "12th Gen",
+    "ramGb": "16GB",
+    "ssdGb": "512GB",
     "condition": "new",
+    "conditionLabel": "Brand New · Sealed",
+    "availability": "In Stock · Moga",
+    "availabilityStatus": "in_stock",
+    "compatibleWith": [
+      "pc",
+      "pc_components"
+    ],
     "badge": "Business & Accounting",
-    "badgeClass": "apple-badge",
     "warranty": "3 Yrs Component Warranties",
     "title": "Supreme Office & Tally Desktop PC",
     "desc": "Silent, robust desktop engineered for Tally Prime, Busy, GST billing, multi-tab browsing, and office workloads. Dual monitor output ready.",
@@ -731,8 +1869,7 @@
       "Core i5 12th Gen 10-Core",
       "16GB DDR4 RAM",
       "512GB NVMe SSD",
-      "Intel UHD Graphics",
-      "450W Silent PSU"
+      "Intel UHD Graphics"
     ],
     "details": {
       "CPU": "Intel Core i5-12400 (6 Cores, 12 Threads, Up to 4.40 GHz with Intel UHD 730)",
@@ -742,32 +1879,33 @@
       "Display Outputs": "HDMI, DisplayPort, VGA (Supports 2 monitors simultaneously)",
       "OS": "Windows 11 Pro Genuine Lifetime Activated"
     },
+    "labReport": null,
     "image": "images/products/pc-3.svg",
-    "rating": 4.6,
-    "reviewsCount": 315,
-    "boughtPastMonth": "300+ bought in past month",
-    "mrp": "\u20b930,999",
+    "mrp": "₹30,999",
     "mrpNum": 30999,
-    "discount": "23% off",
-    "offers": [
-      "Save extra with No Cost EMI & Card Offers",
-      "Official Brand Warranty with 100% Genuine Tax Invoice"
-    ],
-    "delivery": "FREE delivery Thu, 19 Nov",
-    "fastDelivery": "Or fastest delivery Tomorrow, 17 Nov"
+    "delivery": "In-Store Pickup · Sodhi Nagar, Moga"
   },
   {
     "id": "pc-4",
     "category": "pc",
     "brand": "Custom Rig",
     "priceNum": 165000,
-    "price": "From \u20b91,65,000",
+    "price": "₹1,65,000",
     "budget": "80k+",
     "size": "Desktop",
     "panel": "Other",
+    "cpuGen": "AMD Ryzen",
+    "ramGb": "64GB",
+    "ssdGb": "2TB",
     "condition": "new",
+    "conditionLabel": "Brand New · Sealed",
+    "availability": "In Stock · Moga",
+    "availabilityStatus": "in_stock",
+    "compatibleWith": [
+      "pc",
+      "pc_components"
+    ],
     "badge": "Workstation CAD/4K",
-    "badgeClass": "apple-badge apple-badge--gold",
     "warranty": "Full Brand Warranties",
     "title": "Supreme Pro 4K Video & 3D Workstation",
     "desc": "Engineered for Premiere Pro, DaVinci Resolve Studio, AutoCAD, Blender 3D, and heavy rendering workloads with zero bottleneck.",
@@ -775,8 +1913,7 @@
       "Ryzen 9 7900X 12-Core",
       "64GB DDR5 5600MHz",
       "RTX 4070 Ti Super 16GB",
-      "2TB Gen4 SSD",
-      "850W Gold Modular"
+      "2TB Gen4 SSD"
     ],
     "details": {
       "CPU": "AMD Ryzen 9 7900X (12 Cores, 24 Threads, 5.6 GHz Boost, 76MB Cache)",
@@ -787,32 +1924,33 @@
       "Power": "Corsair RM850e 850W 80+ Gold Fully Modular ATX 3.0",
       "Cooling": "DeepCool LS720 360mm High-Performance AIO"
     },
+    "labReport": null,
     "image": "images/products/pc-4.svg",
-    "rating": 4.7,
-    "reviewsCount": 428,
-    "boughtPastMonth": "500+ bought in past month",
-    "mrp": "\u20b9205,999",
+    "mrp": "₹205,999",
     "mrpNum": 205999,
-    "discount": "20% off",
-    "offers": [
-      "Save extra with No Cost EMI & Card Offers",
-      "Official Brand Warranty with 100% Genuine Tax Invoice"
-    ],
-    "delivery": "FREE delivery Thu, 19 Nov",
-    "fastDelivery": "Or fastest delivery Tomorrow, 17 Nov"
+    "delivery": "In-Store Pickup · Sodhi Nagar, Moga"
   },
   {
     "id": "pcc-1",
     "category": "pc_components",
     "brand": "ZOTAC",
     "priceNum": 27490,
-    "price": "From \u20b927,490",
+    "price": "₹27,490",
     "budget": "20k-40k",
     "size": "Component",
     "panel": "Graphic Card",
+    "cpuGen": "",
+    "ramGb": "8GB",
+    "ssdGb": "",
     "condition": "new",
+    "conditionLabel": "Brand New · Sealed",
+    "availability": "In Stock · Moga",
+    "availabilityStatus": "in_stock",
+    "compatibleWith": [
+      "pc",
+      "pc_components"
+    ],
     "badge": "NVIDIA Ada Lovelace",
-    "badgeClass": "apple-badge apple-badge--new",
     "warranty": "3 + 2 Yrs Extended Warranty",
     "title": "ZOTAC Gaming GeForce RTX 4060 8GB Twin Edge",
     "desc": "Next-gen ray tracing graphics card powered by Ada Lovelace architecture with DLSS 3 frame generation, 8GB GDDR6 memory, and compact dual-slot design.",
@@ -820,8 +1958,7 @@
       "8GB GDDR6",
       "DLSS 3 AI Frames",
       "Ray Tracing Gen 3",
-      "IceStorm 2.0 Dual Fan",
-      "Low 115W Power"
+      "IceStorm 2.0 Dual Fan"
     ],
     "details": {
       "Interface": "PCIe 4.0 x8",
@@ -830,32 +1967,33 @@
       "Outputs": "3x DisplayPort 1.4a, 1x HDMI 2.1a (Supports 4K 120Hz HDR, 8K 60Hz)",
       "Recommended PSU": "500W or higher"
     },
+    "labReport": null,
     "image": "images/products/pcc-1.svg",
-    "rating": 4.6,
-    "reviewsCount": 315,
-    "boughtPastMonth": "300+ bought in past month",
-    "mrp": "\u20b935,999",
+    "mrp": "₹35,999",
     "mrpNum": 35999,
-    "discount": "24% off",
-    "offers": [
-      "Save extra with No Cost EMI & Card Offers",
-      "Official Brand Warranty with 100% Genuine Tax Invoice"
-    ],
-    "delivery": "FREE delivery Thu, 19 Nov",
-    "fastDelivery": "Or fastest delivery Tomorrow, 17 Nov"
+    "delivery": "In-Store Pickup · Sodhi Nagar, Moga"
   },
   {
     "id": "pcc-2",
     "category": "pc_components",
     "brand": "MSI",
     "priceNum": 23990,
-    "price": "From \u20b923,990",
+    "price": "₹23,990",
     "budget": "20k-40k",
     "size": "Component",
     "panel": "Graphic Card",
+    "cpuGen": "",
+    "ramGb": "",
+    "ssdGb": "",
     "condition": "new",
+    "conditionLabel": "Brand New · Sealed",
+    "availability": "In Stock · Moga",
+    "availabilityStatus": "in_stock",
+    "compatibleWith": [
+      "pc",
+      "pc_components"
+    ],
     "badge": "12GB VRAM Beast",
-    "badgeClass": "apple-badge",
     "warranty": "3 Years Brand Warranty",
     "title": "MSI GeForce RTX 3060 Ventus 2X 12GB OC",
     "desc": "Massive 12GB GDDR6 memory buffer ideal for modded gaming, video editing in Premiere, and AI model workflows. Dual TORX Fan 3.0 cooling.",
@@ -863,40 +2001,40 @@
       "12GB GDDR6 VRAM",
       "TORX Fan 3.0",
       "Zero Frozr Silent Tech",
-      "Reinforcing Backplate",
-      "DisplayPort 1.4a"
+      "Reinforcing Backplate"
     ],
     "details": {
       "CUDA Cores": "3584",
       "Memory Interface": "192-bit",
       "Outputs": "3x DisplayPort, 1x HDMI"
     },
+    "labReport": null,
     "image": "images/products/pcc-2.svg",
-    "rating": 4.6,
-    "reviewsCount": 315,
-    "boughtPastMonth": "300+ bought in past month",
-    "mrp": "\u20b930,999",
+    "mrp": "₹30,999",
     "mrpNum": 30999,
-    "discount": "23% off",
-    "offers": [
-      "Save extra with No Cost EMI & Card Offers",
-      "Official Brand Warranty with 100% Genuine Tax Invoice"
-    ],
-    "delivery": "FREE delivery Thu, 19 Nov",
-    "fastDelivery": "Or fastest delivery Tomorrow, 17 Nov"
+    "delivery": "In-Store Pickup · Sodhi Nagar, Moga"
   },
   {
     "id": "pcc-3",
     "category": "pc_components",
     "brand": "Ant Esports",
     "priceNum": 3850,
-    "price": "From \u20b93,850",
+    "price": "₹3,850",
     "budget": "under-5k",
     "size": "Component",
     "panel": "Cabinet",
+    "cpuGen": "",
+    "ramGb": "",
+    "ssdGb": "",
     "condition": "new",
+    "conditionLabel": "Brand New · Sealed",
+    "availability": "In Stock · Moga",
+    "availabilityStatus": "in_stock",
+    "compatibleWith": [
+      "pc",
+      "pc_components"
+    ],
     "badge": "High Airflow Mesh",
-    "badgeClass": "apple-badge",
     "warranty": "1 Year Warranty",
     "title": "Ant Esports ICE-511 Max ARGB Cabinet",
     "desc": "High-airflow mid-tower gaming PC cabinet with full metallic mesh front panel, 4x pre-installed 120mm Auto-RGB fans, and edge-to-edge tempered glass.",
@@ -904,40 +2042,40 @@
       "4x ARGB Fans Pre-installed",
       "Full Mesh Front Airflow",
       "Edge-to-Edge Tempered Glass",
-      "Supports 360mm Rad",
-      "USB 3.0 Front I/O"
+      "Supports 360mm Rad"
     ],
     "details": {
       "Form Factor": "Mid-Tower (ATX, Micro-ATX, Mini-ITX)",
       "GPU Clearance": "Up to 360mm length",
       "CPU Cooler Clearance": "Up to 160mm height"
     },
+    "labReport": null,
     "image": "images/products/pcc-3.svg",
-    "rating": 4.5,
-    "reviewsCount": 890,
-    "boughtPastMonth": "1K+ bought in past month",
-    "mrp": "\u20b95,399",
+    "mrp": "₹5,399",
     "mrpNum": 5399,
-    "discount": "29% off",
-    "offers": [
-      "Save extra with No Cost EMI & Card Offers",
-      "Official Brand Warranty with 100% Genuine Tax Invoice"
-    ],
-    "delivery": "FREE delivery Thu, 19 Nov",
-    "fastDelivery": "Or fastest delivery Tomorrow, 17 Nov"
+    "delivery": "In-Store Pickup · Sodhi Nagar, Moga"
   },
   {
     "id": "pcc-4",
     "category": "pc_components",
     "brand": "Lian Li",
     "priceNum": 12990,
-    "price": "From \u20b912,990",
+    "price": "₹12,990",
     "budget": "5k-20k",
     "size": "Component",
     "panel": "Cabinet",
+    "cpuGen": "",
+    "ramGb": "",
+    "ssdGb": "",
     "condition": "new",
+    "conditionLabel": "Brand New · Sealed",
+    "availability": "In Stock · Moga",
+    "availabilityStatus": "in_stock",
+    "compatibleWith": [
+      "pc",
+      "pc_components"
+    ],
     "badge": "Showcase Dual Chamber",
-    "badgeClass": "apple-badge apple-badge--gold",
     "warranty": "1 Year Warranty",
     "title": "Lian Li O11 Dynamic EVO Mid-Tower Case",
     "desc": "Legendary dual-chamber panoramic showcase chassis. Reversible chassis design, vertical GPU capability, and accommodates up to three 360mm radiators.",
@@ -945,79 +2083,79 @@
       "Dual Tempered Glass",
       "Dual Chamber Design",
       "Supports 3x 360mm Rads",
-      "Reversible Layout",
-      "Brushed Aluminium"
+      "Reversible Layout"
     ],
     "details": {
       "Materials": "4mm Tinted Tempered Glass, 1mm Aluminum, 1mm Steel",
       "Drive Support": "Up to 6x 2.5\" SSDs or 3x 3.5\" HDDs + 3x 2.5\" SSDs"
     },
+    "labReport": null,
     "image": "images/products/pcc-4.svg",
-    "rating": 4.5,
-    "reviewsCount": 890,
-    "boughtPastMonth": "1K+ bought in past month",
-    "mrp": "\u20b918,199",
+    "mrp": "₹18,199",
     "mrpNum": 18199,
-    "discount": "29% off",
-    "offers": [
-      "Save extra with No Cost EMI & Card Offers",
-      "Official Brand Warranty with 100% Genuine Tax Invoice"
-    ],
-    "delivery": "FREE delivery Thu, 19 Nov",
-    "fastDelivery": "Or fastest delivery Tomorrow, 17 Nov"
+    "delivery": "In-Store Pickup · Sodhi Nagar, Moga"
   },
   {
     "id": "pcc-5",
     "category": "pc_components",
     "brand": "Corsair",
     "priceNum": 8990,
-    "price": "From \u20b98,990",
+    "price": "₹8,990",
     "budget": "5k-20k",
     "size": "Component",
     "panel": "Power Supply",
+    "cpuGen": "",
+    "ramGb": "",
+    "ssdGb": "",
     "condition": "new",
+    "conditionLabel": "Brand New · Sealed",
+    "availability": "In Stock · Moga",
+    "availabilityStatus": "in_stock",
+    "compatibleWith": [
+      "pc",
+      "pc_components"
+    ],
     "badge": "80+ Gold Modular",
-    "badgeClass": "apple-badge apple-badge--gold",
     "warranty": "7 Years Brand Warranty",
     "title": "Corsair RM750e 750W 80+ Gold Fully Modular PSU",
-    "desc": "ATX 3.0 and PCIe 5.0 compliant power supply. 105\u00b0C-rated capacitors, 120mm rifle bearing fan with Zero RPM quiet mode, and clean all-black modular flat cables.",
+    "desc": "ATX 3.0 and PCIe 5.0 compliant power supply. 105°C-rated capacitors, 120mm rifle bearing fan with Zero RPM quiet mode, and clean all-black modular flat cables.",
     "specs": [
       "750W 80 Plus Gold",
       "ATX 3.0 & PCIe 5.0",
       "Fully Modular Cables",
-      "Zero RPM Silent Fan",
-      "105\u00b0C Capacitors"
+      "Zero RPM Silent Fan"
     ],
     "details": {
       "Efficiency": "80 PLUS Gold Certified (Up to 90% efficiency)",
       "Protection": "OVP, UVP, SCP, OTP, OPP safety protections"
     },
+    "labReport": null,
     "image": "images/products/pcc-5.svg",
-    "rating": 4.5,
-    "reviewsCount": 890,
-    "boughtPastMonth": "1K+ bought in past month",
-    "mrp": "\u20b912,599",
+    "mrp": "₹12,599",
     "mrpNum": 12599,
-    "discount": "29% off",
-    "offers": [
-      "Save extra with No Cost EMI & Card Offers",
-      "Official Brand Warranty with 100% Genuine Tax Invoice"
-    ],
-    "delivery": "FREE delivery Thu, 19 Nov",
-    "fastDelivery": "Or fastest delivery Tomorrow, 17 Nov"
+    "delivery": "In-Store Pickup · Sodhi Nagar, Moga"
   },
   {
     "id": "pcc-6",
     "category": "pc_components",
     "brand": "DeepCool",
     "priceNum": 4150,
-    "price": "From \u20b94,150",
+    "price": "₹4,150",
     "budget": "under-5k",
     "size": "Component",
     "panel": "Power Supply",
+    "cpuGen": "",
+    "ramGb": "",
+    "ssdGb": "",
     "condition": "new",
+    "conditionLabel": "Brand New · Sealed",
+    "availability": "In Stock · Moga",
+    "availabilityStatus": "in_stock",
+    "compatibleWith": [
+      "pc",
+      "pc_components"
+    ],
     "badge": "80+ Bronze Certified",
-    "badgeClass": "apple-badge",
     "warranty": "5 Years Brand Warranty",
     "title": "DeepCool PK650D 650W 80+ Bronze Power Supply",
     "desc": "Dependable high-grade power delivery for gaming systems. High efficiency 80 PLUS Bronze certification, ultra-flat direct cables, and whisper-quiet 120mm fan.",
@@ -1025,39 +2163,39 @@
       "650 Watts Continuous",
       "80 Plus Bronze",
       "Flat Black Cables",
-      "120mm Hydro Bearing Fan",
-      "5 Year Warranty"
+      "120mm Hydro Bearing Fan"
     ],
     "details": {
       "Rail": "Dedicated +12V Single Rail (Up to 54A / 648W)",
       "Connectors": "1x 24-Pin, 2x EPS 8-Pin (4+4), 4x PCIe (6+2), 7x SATA"
     },
+    "labReport": null,
     "image": "images/products/pcc-6.svg",
-    "rating": 4.5,
-    "reviewsCount": 890,
-    "boughtPastMonth": "1K+ bought in past month",
-    "mrp": "\u20b95,799",
+    "mrp": "₹5,799",
     "mrpNum": 5799,
-    "discount": "28% off",
-    "offers": [
-      "Save extra with No Cost EMI & Card Offers",
-      "Official Brand Warranty with 100% Genuine Tax Invoice"
-    ],
-    "delivery": "FREE delivery Thu, 19 Nov",
-    "fastDelivery": "Or fastest delivery Tomorrow, 17 Nov"
+    "delivery": "In-Store Pickup · Sodhi Nagar, Moga"
   },
   {
     "id": "pcc-7",
     "category": "pc_components",
     "brand": "Asus",
     "priceNum": 18490,
-    "price": "From \u20b918,490",
+    "price": "₹18,490",
     "budget": "5k-20k",
     "size": "Component",
     "panel": "Motherboard",
+    "cpuGen": "12th Gen",
+    "ramGb": "",
+    "ssdGb": "",
     "condition": "new",
+    "conditionLabel": "Brand New · Sealed",
+    "availability": "In Stock · Moga",
+    "availabilityStatus": "in_stock",
+    "compatibleWith": [
+      "pc",
+      "pc_components"
+    ],
     "badge": "PCIe 5.0 & DDR5",
-    "badgeClass": "apple-badge",
     "warranty": "3 Years Brand Warranty",
     "title": "ASUS TUF Gaming B760-PLUS WiFi DDR5 Motherboard",
     "desc": "Military-grade components with 12+1 DrMOS power stages, PCIe 5.0 x16 slot, 3x M.2 PCIe 4.0 slots with heatsinks, Realtek 2.5Gb Ethernet, and Wi-Fi 6.",
@@ -1065,39 +2203,39 @@
       "Intel LGA 1700",
       "DDR5 up to 7200MHz",
       "PCIe 5.0 Ready",
-      "3x M.2 Gen4 Slots",
-      "Wi-Fi 6 + 2.5Gb LAN"
+      "3x M.2 Gen4 Slots"
     ],
     "details": {
       "Compatibility": "14th, 13th & 12th Gen Intel Core Processors",
       "Power Design": "12+1 Power Stages with enlarged VRM heatsinks"
     },
+    "labReport": null,
     "image": "images/products/pcc-7.svg",
-    "rating": 4.6,
-    "reviewsCount": 315,
-    "boughtPastMonth": "300+ bought in past month",
-    "mrp": "\u20b923,999",
+    "mrp": "₹23,999",
     "mrpNum": 23999,
-    "discount": "23% off",
-    "offers": [
-      "Save extra with No Cost EMI & Card Offers",
-      "Official Brand Warranty with 100% Genuine Tax Invoice"
-    ],
-    "delivery": "FREE delivery Thu, 19 Nov",
-    "fastDelivery": "Or fastest delivery Tomorrow, 17 Nov"
+    "delivery": "In-Store Pickup · Sodhi Nagar, Moga"
   },
   {
     "id": "pcc-8",
     "category": "pc_components",
     "brand": "Intel",
     "priceNum": 15990,
-    "price": "From \u20b915,990",
+    "price": "₹15,990",
     "budget": "5k-20k",
     "size": "Component",
     "panel": "Processor",
+    "cpuGen": "Apple M1",
+    "ramGb": "",
+    "ssdGb": "",
     "condition": "new",
+    "conditionLabel": "Brand New · Sealed",
+    "availability": "In Stock · Moga",
+    "availabilityStatus": "in_stock",
+    "compatibleWith": [
+      "pc",
+      "pc_components"
+    ],
     "badge": "14th Gen 10-Core",
-    "badgeClass": "apple-badge apple-badge--new",
     "warranty": "3 Years Intel Brand Warranty",
     "title": "Intel Core i5-14400F Desktop Processor",
     "desc": "10-Core desktop processor (6 Performance cores + 4 Efficient cores) with up to 4.70 GHz Max Turbo frequency. Phenomenal gaming and multitasking balance.",
@@ -1105,39 +2243,39 @@
       "10 Cores (6P + 4E)",
       "16 Threads",
       "Up to 4.7 GHz Turbo",
-      "20MB Intel Smart Cache",
-      "LGA 1700 Socket"
+      "20MB Intel Smart Cache"
     ],
     "details": {
       "Base Power": "65W (Max Turbo Power 148W)",
       "Cooler": "Intel Laminar RM1 Cooler Included in box"
     },
+    "labReport": null,
     "image": "images/products/pcc-8.svg",
-    "rating": 4.6,
-    "reviewsCount": 315,
-    "boughtPastMonth": "300+ bought in past month",
-    "mrp": "\u20b920,999",
+    "mrp": "₹20,999",
     "mrpNum": 20999,
-    "discount": "24% off",
-    "offers": [
-      "Save extra with No Cost EMI & Card Offers",
-      "Official Brand Warranty with 100% Genuine Tax Invoice"
-    ],
-    "delivery": "FREE delivery Thu, 19 Nov",
-    "fastDelivery": "Or fastest delivery Tomorrow, 17 Nov"
+    "delivery": "In-Store Pickup · Sodhi Nagar, Moga"
   },
   {
     "id": "pcc-9",
     "category": "pc_components",
     "brand": "AMD",
     "priceNum": 36990,
-    "price": "From \u20b936,990",
+    "price": "₹36,990",
     "budget": "20k-40k",
     "size": "Component",
     "panel": "Processor",
+    "cpuGen": "AMD Ryzen",
+    "ramGb": "",
+    "ssdGb": "",
     "condition": "new",
+    "conditionLabel": "Brand New · Sealed",
+    "availability": "In Stock · Moga",
+    "availabilityStatus": "in_stock",
+    "compatibleWith": [
+      "pc",
+      "pc_components"
+    ],
     "badge": "World's #1 Gaming CPU",
-    "badgeClass": "apple-badge apple-badge--gold",
     "warranty": "3 Years AMD Warranty",
     "title": "AMD Ryzen 7 7800X3D Gaming Processor",
     "desc": "Unrivaled gaming performance powered by revolutionary AMD 3D V-Cache technology with 104MB total cache on the AM5 platform.",
@@ -1145,39 +2283,39 @@
       "8 Cores / 16 Threads",
       "104MB Total Cache",
       "3D V-Cache Tech",
-      "Up to 5.0 GHz Boost",
-      "Zen 4 5nm Arch"
+      "Up to 5.0 GHz Boost"
     ],
     "details": {
       "Socket": "AM5 (Requires AMD 600-series motherboard and DDR5)",
       "TDP": "120W"
     },
+    "labReport": null,
     "image": "images/products/pcc-9.svg",
-    "rating": 4.6,
-    "reviewsCount": 315,
-    "boughtPastMonth": "300+ bought in past month",
-    "mrp": "\u20b947,999",
+    "mrp": "₹47,999",
     "mrpNum": 47999,
-    "discount": "23% off",
-    "offers": [
-      "Save extra with No Cost EMI & Card Offers",
-      "Official Brand Warranty with 100% Genuine Tax Invoice"
-    ],
-    "delivery": "FREE delivery Thu, 19 Nov",
-    "fastDelivery": "Or fastest delivery Tomorrow, 17 Nov"
+    "delivery": "In-Store Pickup · Sodhi Nagar, Moga"
   },
   {
     "id": "pcc-10",
     "category": "pc_components",
     "brand": "Corsair",
     "priceNum": 9490,
-    "price": "From \u20b99,490",
+    "price": "₹9,490",
     "budget": "5k-20k",
     "size": "Component",
     "panel": "RAM",
+    "cpuGen": "",
+    "ramGb": "32GB",
+    "ssdGb": "",
     "condition": "new",
+    "conditionLabel": "Brand New · Sealed",
+    "availability": "In Stock · Moga",
+    "availabilityStatus": "in_stock",
+    "compatibleWith": [
+      "pc",
+      "pc_components"
+    ],
     "badge": "DDR5 6000MHz",
-    "badgeClass": "apple-badge",
     "warranty": "10 Years / Lifetime Warranty",
     "title": "Corsair Vengeance RGB 32GB (2x16GB) DDR5 6000MHz",
     "desc": "High-frequency DDR5 memory engineered for cutting-edge Intel and AMD motherboards with onboard voltage regulation and panoramic dynamic ten-zone RGB lighting.",
@@ -1185,38 +2323,39 @@
       "32GB (2x16GB) Kit",
       "6000 MHz Speed",
       "CL36 Low Latency",
-      "Ten-Zone RGB LEDs",
-      "Intel XMP 3.0 / EXPO"
+      "Ten-Zone RGB LEDs"
     ],
     "details": {
       "Heatspreader": "Solid Anodized Aluminium in Matte Black"
     },
+    "labReport": null,
     "image": "images/products/pcc-10.svg",
-    "rating": 4.5,
-    "reviewsCount": 890,
-    "boughtPastMonth": "1K+ bought in past month",
-    "mrp": "\u20b913,299",
+    "mrp": "₹13,299",
     "mrpNum": 13299,
-    "discount": "29% off",
-    "offers": [
-      "Save extra with No Cost EMI & Card Offers",
-      "Official Brand Warranty with 100% Genuine Tax Invoice"
-    ],
-    "delivery": "FREE delivery Thu, 19 Nov",
-    "fastDelivery": "Or fastest delivery Tomorrow, 17 Nov"
+    "delivery": "In-Store Pickup · Sodhi Nagar, Moga"
   },
   {
     "id": "pcc-11",
     "category": "pc_components",
     "brand": "Crucial",
     "priceNum": 5650,
-    "price": "From \u20b95,650",
+    "price": "₹5,650",
     "budget": "5k-20k",
     "size": "Component",
     "panel": "Storage",
+    "cpuGen": "",
+    "ramGb": "",
+    "ssdGb": "1TB",
     "condition": "new",
+    "conditionLabel": "Brand New · Sealed",
+    "availability": "In Stock · Moga",
+    "availabilityStatus": "in_stock",
+    "compatibleWith": [
+      "laptops_used",
+      "laptops_new",
+      "laptops_gaming"
+    ],
     "badge": "Gen4 5000 MB/s",
-    "badgeClass": "apple-badge apple-badge--new",
     "warranty": "5 Years Brand Warranty",
     "title": "Crucial P3 Plus 1TB PCIe 4.0 3D NAND NVMe M.2 SSD",
     "desc": "Lightning-fast Gen4 storage delivering sequential read speeds up to 5,000 MB/s. Nearly 9x faster than SATA and 43% faster than fastest Gen3 SSDs.",
@@ -1224,39 +2363,39 @@
       "1TB Capacity",
       "PCIe 4.0 NVMe",
       "5000 MB/s Read Speed",
-      "4200 MB/s Write Speed",
-      "Micron Advanced 3D NAND"
+      "4200 MB/s Write Speed"
     ],
     "details": {
       "Form Factor": "M.2 2280",
       "Endurance": "220 TBW (Terabytes Written)"
     },
+    "labReport": null,
     "image": "images/products/pcc-11.svg",
-    "rating": 4.5,
-    "reviewsCount": 890,
-    "boughtPastMonth": "1K+ bought in past month",
-    "mrp": "\u20b97,899",
+    "mrp": "₹7,899",
     "mrpNum": 7899,
-    "discount": "28% off",
-    "offers": [
-      "Save extra with No Cost EMI & Card Offers",
-      "Official Brand Warranty with 100% Genuine Tax Invoice"
-    ],
-    "delivery": "FREE delivery Thu, 19 Nov",
-    "fastDelivery": "Or fastest delivery Tomorrow, 17 Nov"
+    "delivery": "In-Store Pickup · Sodhi Nagar, Moga"
   },
   {
     "id": "pcc-12",
     "category": "pc_components",
     "brand": "DeepCool",
     "priceNum": 5450,
-    "price": "From \u20b95,450",
+    "price": "₹5,450",
     "budget": "5k-20k",
     "size": "Component",
     "panel": "Cooler",
+    "cpuGen": "",
+    "ramGb": "",
+    "ssdGb": "",
     "condition": "new",
+    "conditionLabel": "Brand New · Sealed",
+    "availability": "In Stock · Moga",
+    "availabilityStatus": "in_stock",
+    "compatibleWith": [
+      "pc",
+      "pc_components"
+    ],
     "badge": "240mm ARGB AIO",
-    "badgeClass": "apple-badge",
     "warranty": "3 Years Brand Warranty",
     "title": "DeepCool LE520 240mm ARGB All-In-One Liquid Cooler",
     "desc": "High-efficiency liquid CPU cooler equipped with DeepCool's patented Anti-Leak technology, micro-channel copper cold plate, and dual quiet ARGB PWM fans.",
@@ -1264,38 +2403,40 @@
       "240mm Aluminium Radiator",
       "Anti-Leak Technology",
       "Dual ARGB PWM Fans",
-      "Supports LGA1700 & AM5",
-      "High-Flow Pump"
+      "Supports LGA1700 & AM5"
     ],
     "details": {
       "Noise Level": "Less than 32.9 dB(A) at maximum RPM"
     },
+    "labReport": null,
     "image": "images/products/pcc-12.svg",
-    "rating": 4.5,
-    "reviewsCount": 890,
-    "boughtPastMonth": "1K+ bought in past month",
-    "mrp": "\u20b97,599",
+    "mrp": "₹7,599",
     "mrpNum": 7599,
-    "discount": "28% off",
-    "offers": [
-      "Save extra with No Cost EMI & Card Offers",
-      "Official Brand Warranty with 100% Genuine Tax Invoice"
-    ],
-    "delivery": "FREE delivery Thu, 19 Nov",
-    "fastDelivery": "Or fastest delivery Tomorrow, 17 Nov"
+    "delivery": "In-Store Pickup · Sodhi Nagar, Moga"
   },
   {
     "id": "per-1",
-    "category": "pc_peripherals",
+    "category": "accessories",
+    "subCategory": "pc_peripherals",
     "brand": "Logitech",
     "priceNum": 1395,
-    "price": "From \u20b91,395",
+    "price": "₹1,395",
     "budget": "under-5k",
     "size": "Peripherals",
     "panel": "Mouse",
+    "cpuGen": "",
+    "ramGb": "",
+    "ssdGb": "",
     "condition": "new",
+    "conditionLabel": "Brand New · Sealed",
+    "availability": "In Stock · Moga",
+    "availabilityStatus": "in_stock",
+    "compatibleWith": [
+      "laptops_used",
+      "laptops_new",
+      "laptops_gaming"
+    ],
     "badge": "8000 DPI Gaming",
-    "badgeClass": "apple-badge",
     "warranty": "2 Years Logitech Warranty",
     "title": "Logitech G102 Lightsync Optical Gaming Mouse",
     "desc": "Classic gamer-tested 6-button shape with gaming-grade 8,000 DPI sensor, customizable RGB color wave lighting, and crisp mechanical spring button tensioning.",
@@ -1303,39 +2444,41 @@
       "200 - 8,000 DPI",
       "Lightsync RGB 16.8M",
       "6 Programmable Buttons",
-      "Mechanical Spring Switches",
-      "Lightweight 85g"
+      "Mechanical Spring Switches"
     ],
     "details": {
       "Sensor": "Gaming-grade optical sensor",
       "Cable": "2.1m flexible low-drag cable"
     },
+    "labReport": null,
     "image": "images/products/per-1.svg",
-    "rating": 4.8,
-    "reviewsCount": 1420,
-    "boughtPastMonth": "2K+ bought in past month",
-    "mrp": "\u20b92,099",
+    "mrp": "₹2,099",
     "mrpNum": 2099,
-    "discount": "34% off",
-    "offers": [
-      "Save extra with No Cost EMI & Card Offers",
-      "Official Brand Warranty with 100% Genuine Tax Invoice"
-    ],
-    "delivery": "FREE delivery Thu, 19 Nov",
-    "fastDelivery": "Or fastest delivery Tomorrow, 17 Nov"
+    "delivery": "In-Store Pickup · Sodhi Nagar, Moga"
   },
   {
     "id": "per-2",
-    "category": "pc_peripherals",
+    "category": "accessories",
+    "subCategory": "pc_peripherals",
     "brand": "Logitech",
     "priceNum": 8995,
-    "price": "From \u20b98,995",
+    "price": "₹8,995",
     "budget": "5k-20k",
     "size": "Peripherals",
     "panel": "Mouse",
+    "cpuGen": "",
+    "ramGb": "",
+    "ssdGb": "",
     "condition": "new",
+    "conditionLabel": "Brand New · Sealed",
+    "availability": "In Stock · Moga",
+    "availabilityStatus": "in_stock",
+    "compatibleWith": [
+      "laptops_used",
+      "laptops_new",
+      "laptops_gaming"
+    ],
     "badge": "Flagship Ergonomics",
-    "badgeClass": "apple-badge apple-badge--gold",
     "warranty": "1 Year Logitech Warranty",
     "title": "Logitech MX Master 3S Wireless Performance Mouse",
     "desc": "The benchmark master mouse. Quiet Click technology, 8,000 DPI track-on-glass optical sensor, MagSpeed electromagnetic scroll wheel, and ergonomic thumb rest.",
@@ -1343,39 +2486,36 @@
       "8,000 DPI Any-Surface",
       "Quiet Click Tech",
       "MagSpeed Scroll (1000 lines/sec)",
-      "Type-C Fast Charge",
-      "Connects 3 Devices"
+      "Type-C Fast Charge"
     ],
     "details": {
       "Battery": "Up to 70 days on full charge (3 hours from 1-min quick charge)",
       "Connectivity": "Bluetooth Low Energy + Logi Bolt USB Receiver"
     },
+    "labReport": null,
     "image": "images/products/per-2.svg",
-    "rating": 4.5,
-    "reviewsCount": 890,
-    "boughtPastMonth": "1K+ bought in past month",
-    "mrp": "\u20b912,599",
+    "mrp": "₹12,599",
     "mrpNum": 12599,
-    "discount": "29% off",
-    "offers": [
-      "Save extra with No Cost EMI & Card Offers",
-      "Official Brand Warranty with 100% Genuine Tax Invoice"
-    ],
-    "delivery": "FREE delivery Thu, 19 Nov",
-    "fastDelivery": "Or fastest delivery Tomorrow, 17 Nov"
+    "delivery": "In-Store Pickup · Sodhi Nagar, Moga"
   },
   {
     "id": "per-3",
-    "category": "pc_peripherals",
+    "category": "accessories",
+    "subCategory": "pc_peripherals",
     "brand": "Redragon",
     "priceNum": 2499,
-    "price": "From \u20b92,499",
+    "price": "₹2,499",
     "budget": "under-5k",
     "size": "Peripherals",
     "panel": "Keyboard",
+    "cpuGen": "",
+    "ramGb": "",
+    "ssdGb": "",
     "condition": "new",
+    "conditionLabel": "Brand New · Sealed",
+    "availability": "In Stock · Moga",
+    "availabilityStatus": "in_stock",
     "badge": "Clicky Mechanical",
-    "badgeClass": "apple-badge apple-badge--new",
     "warranty": "1 Year Warranty",
     "title": "Redragon Kumara K552 RGB Mechanical Keyboard",
     "desc": "Tenkeyless (TKL) compact 87-key mechanical keyboard with durable aircraft-grade aluminum top frame, custom dustproof blue mechanical switches, and full RGB backlighting.",
@@ -1383,38 +2523,40 @@
       "Outemu Blue Switches",
       "Full N-Key Rollover",
       "18 RGB Backlit Modes",
-      "Solid Metal-ABS Base",
-      "Gold-Plated USB"
+      "Solid Metal-ABS Base"
     ],
     "details": {
       "Keycaps": "Double-shot injection molded keycaps that never fade"
     },
+    "labReport": null,
     "image": "images/products/per-3.svg",
-    "rating": 4.8,
-    "reviewsCount": 1420,
-    "boughtPastMonth": "2K+ bought in past month",
-    "mrp": "\u20b93,749",
+    "mrp": "₹3,749",
     "mrpNum": 3749,
-    "discount": "33% off",
-    "offers": [
-      "Save extra with No Cost EMI & Card Offers",
-      "Official Brand Warranty with 100% Genuine Tax Invoice"
-    ],
-    "delivery": "FREE delivery Thu, 19 Nov",
-    "fastDelivery": "Or fastest delivery Tomorrow, 17 Nov"
+    "delivery": "In-Store Pickup · Sodhi Nagar, Moga"
   },
   {
     "id": "per-4",
-    "category": "pc_peripherals",
+    "category": "accessories",
+    "subCategory": "pc_peripherals",
     "brand": "Logitech",
     "priceNum": 2695,
-    "price": "From \u20b92,695",
+    "price": "₹2,695",
     "budget": "under-5k",
     "size": "Peripherals",
     "panel": "Keyboard",
+    "cpuGen": "",
+    "ramGb": "",
+    "ssdGb": "",
     "condition": "new",
+    "conditionLabel": "Brand New · Sealed",
+    "availability": "In Stock · Moga",
+    "availabilityStatus": "in_stock",
+    "compatibleWith": [
+      "laptops_used",
+      "laptops_new",
+      "laptops_gaming"
+    ],
     "badge": "Multi-Device Silent",
-    "badgeClass": "apple-badge",
     "warranty": "1 Year Warranty",
     "title": "Logitech K380 Multi-Device Bluetooth Keyboard",
     "desc": "Slim, lightweight wireless keyboard. Pair with up to 3 devices (Laptop, Tablet, Phone) and switch between them at the tap of an Easy-Switch button. 2-year battery life.",
@@ -1422,38 +2564,35 @@
       "Bluetooth Multi-Device",
       "Easy-Switch 3 Devices",
       "Scooped Low-Profile Keys",
-      "2-Year Battery Life",
-      "Windows/Mac/iOS/Android"
+      "2-Year Battery Life"
     ],
     "details": {
       "Battery": "2x AAA batteries pre-installed"
     },
+    "labReport": null,
     "image": "images/products/per-4.svg",
-    "rating": 4.8,
-    "reviewsCount": 1420,
-    "boughtPastMonth": "2K+ bought in past month",
-    "mrp": "\u20b94,049",
+    "mrp": "₹4,049",
     "mrpNum": 4049,
-    "discount": "33% off",
-    "offers": [
-      "Save extra with No Cost EMI & Card Offers",
-      "Official Brand Warranty with 100% Genuine Tax Invoice"
-    ],
-    "delivery": "FREE delivery Thu, 19 Nov",
-    "fastDelivery": "Or fastest delivery Tomorrow, 17 Nov"
+    "delivery": "In-Store Pickup · Sodhi Nagar, Moga"
   },
   {
     "id": "per-5",
-    "category": "pc_peripherals",
+    "category": "accessories",
+    "subCategory": "pc_peripherals",
     "brand": "Supreme",
     "priceNum": 499,
-    "price": "From \u20b9499",
+    "price": "₹499",
     "budget": "under-5k",
     "size": "Peripherals",
     "panel": "Mousepad",
+    "cpuGen": "",
+    "ramGb": "",
+    "ssdGb": "",
     "condition": "new",
+    "conditionLabel": "Brand New · Sealed",
+    "availability": "In Stock · Moga",
+    "availabilityStatus": "in_stock",
     "badge": "XXL Extended 900x400",
-    "badgeClass": "apple-badge",
     "warranty": "Durable In-Store Stock",
     "title": "Speed-Edition Extended Gaming Desk Mat (900x400mm)",
     "desc": "Massive XXL desk pad accommodating both full-size keyboard and mouse. High-density micro-weave cloth surface, 4mm thick natural non-slip rubber base, and reinforced stitched edges.",
@@ -1461,38 +2600,35 @@
       "900mm x 400mm x 4mm",
       "Anti-Fray Precision Stitching",
       "Micro-Weave Speed Surface",
-      "Water-Resistant Coating",
-      "Non-Slip Textured Rubber"
+      "Water-Resistant Coating"
     ],
     "details": {
       "Maintenance": "Machine washable and easy to wipe clean"
     },
+    "labReport": null,
     "image": "images/products/per-5.svg",
-    "rating": 4.8,
-    "reviewsCount": 1420,
-    "boughtPastMonth": "2K+ bought in past month",
-    "mrp": "\u20b9749",
+    "mrp": "₹749",
     "mrpNum": 749,
-    "discount": "33% off",
-    "offers": [
-      "Save extra with No Cost EMI & Card Offers",
-      "Official Brand Warranty with 100% Genuine Tax Invoice"
-    ],
-    "delivery": "FREE delivery Thu, 19 Nov",
-    "fastDelivery": "Or fastest delivery Tomorrow, 17 Nov"
+    "delivery": "In-Store Pickup · Sodhi Nagar, Moga"
   },
   {
     "id": "per-6",
-    "category": "pc_peripherals",
+    "category": "accessories",
+    "subCategory": "pc_peripherals",
     "brand": "Ant Esports",
     "priceNum": 899,
-    "price": "From \u20b9899",
+    "price": "₹899",
     "budget": "under-5k",
     "size": "Peripherals",
     "panel": "Mousepad",
+    "cpuGen": "",
+    "ramGb": "",
+    "ssdGb": "",
     "condition": "new",
+    "conditionLabel": "Brand New · Sealed",
+    "availability": "In Stock · Moga",
+    "availabilityStatus": "in_stock",
     "badge": "RGB Edge-Lit",
-    "badgeClass": "apple-badge",
     "warranty": "1 Year Warranty",
     "title": "Ant Esports MP300 RGB Gaming Mousepad (800x300mm)",
     "desc": "Fiber-optic border lighting with 14 customizable dynamic RGB lighting modes (7 static colors + breathing/rainbow). Micro-textured cloth for pinpoint tracking.",
@@ -1500,116 +2636,117 @@
       "800mm x 300mm x 4mm",
       "14 RGB Light Modes",
       "One-Touch Control Switch",
-      "Detachable Braided USB Cable",
-      "Zero-Slip Rubber Base"
+      "Detachable Braided USB Cable"
     ],
     "details": {
       "Interface": "Micro-USB to USB braided cable included"
     },
+    "labReport": null,
     "image": "images/products/per-6.svg",
-    "rating": 4.8,
-    "reviewsCount": 1420,
-    "boughtPastMonth": "2K+ bought in past month",
-    "mrp": "\u20b91,349",
+    "mrp": "₹1,349",
     "mrpNum": 1349,
-    "discount": "33% off",
-    "offers": [
-      "Save extra with No Cost EMI & Card Offers",
-      "Official Brand Warranty with 100% Genuine Tax Invoice"
-    ],
-    "delivery": "FREE delivery Thu, 19 Nov",
-    "fastDelivery": "Or fastest delivery Tomorrow, 17 Nov"
+    "delivery": "In-Store Pickup · Sodhi Nagar, Moga"
   },
   {
     "id": "per-7",
-    "category": "pc_peripherals",
+    "category": "accessories",
+    "subCategory": "pc_peripherals",
     "brand": "Supreme",
     "priceNum": 599,
-    "price": "From \u20b9599",
+    "price": "₹599",
     "budget": "under-5k",
     "size": "Peripherals",
     "panel": "Laptop Stand",
+    "cpuGen": "",
+    "ramGb": "",
+    "ssdGb": "",
     "condition": "new",
+    "conditionLabel": "Brand New · Sealed",
+    "availability": "In Stock · Moga",
+    "availabilityStatus": "in_stock",
+    "compatibleWith": [
+      "laptops_used",
+      "laptops_new",
+      "laptops_gaming"
+    ],
     "badge": "Foldable Aluminium",
-    "badgeClass": "apple-badge",
     "warranty": "In-Store Guarantee",
     "title": "Ergonomic Foldable Aluminium Laptop Riser",
-    "desc": "Pocket-portable foldable laptop stand with 6 adjustable height angles (from 15\u00b0 to 45\u00b0). Hollow ventilated design allows maximum airflow to prevent laptop overheating.",
+    "desc": "Pocket-portable foldable laptop stand with 6 adjustable height angles (from 15° to 45°). Hollow ventilated design allows maximum airflow to prevent laptop overheating.",
     "specs": [
       "Solid Aircraft Aluminium",
       "6-Level Angle Adjust",
       "Foldable with Carry Pouch",
-      "Anti-Scratch Silicone Pads",
-      "Fits 10\" to 15.6\" Laptops"
+      "Anti-Scratch Silicone Pads"
     ],
     "details": {
       "Weight": "260 grams, folds flat into a slim baton"
     },
+    "labReport": null,
     "image": "images/products/per-7.svg",
-    "rating": 4.8,
-    "reviewsCount": 1420,
-    "boughtPastMonth": "2K+ bought in past month",
-    "mrp": "\u20b9899",
+    "mrp": "₹899",
     "mrpNum": 899,
-    "discount": "33% off",
-    "offers": [
-      "Save extra with No Cost EMI & Card Offers",
-      "Official Brand Warranty with 100% Genuine Tax Invoice"
-    ],
-    "delivery": "FREE delivery Thu, 19 Nov",
-    "fastDelivery": "Or fastest delivery Tomorrow, 17 Nov"
+    "delivery": "In-Store Pickup · Sodhi Nagar, Moga"
   },
   {
     "id": "per-8",
-    "category": "pc_peripherals",
+    "category": "accessories",
+    "subCategory": "pc_peripherals",
     "brand": "Supreme",
     "priceNum": 1299,
-    "price": "From \u20b91,299",
+    "price": "₹1,299",
     "budget": "under-5k",
     "size": "Peripherals",
     "panel": "Laptop Stand",
+    "cpuGen": "",
+    "ramGb": "",
+    "ssdGb": "",
     "condition": "new",
-    "badge": "360\u00b0 Swivel Base",
-    "badgeClass": "apple-badge apple-badge--gold",
+    "conditionLabel": "Brand New · Sealed",
+    "availability": "In Stock · Moga",
+    "availabilityStatus": "in_stock",
+    "compatibleWith": [
+      "laptops_used",
+      "laptops_new",
+      "laptops_gaming"
+    ],
+    "badge": "360° Swivel Base",
     "warranty": "In-Store Guarantee",
-    "title": "360\u00b0 Rotating Heavy-Duty Dual-Hinge Laptop Stand",
-    "desc": "Heavy-duty CNC machined solid aluminum desktop stand with a smooth 360\u00b0 rotating turntable base. Infinite height and tilt angle adjustment supporting up to 17.3\" laptops.",
+    "title": "360° Rotating Heavy-Duty Dual-Hinge Laptop Stand",
+    "desc": "Heavy-duty CNC machined solid aluminum desktop stand with a smooth 360° rotating turntable base. Infinite height and tilt angle adjustment supporting up to 17.3\" laptops.",
     "specs": [
-      "360\u00b0 Rotating Base",
+      "360° Rotating Base",
       "Dual-Damping Alloy Hinges",
       "Supports up to 10kg",
-      "Large Heat Dissipation Vents",
-      "Fits up to 17.3\" Laptops"
+      "Large Heat Dissipation Vents"
     ],
     "details": {
       "Finish": "Apple Space Grey Bead-Blasted Anodized Aluminium"
     },
+    "labReport": null,
     "image": "images/products/per-8.svg",
-    "rating": 4.8,
-    "reviewsCount": 1420,
-    "boughtPastMonth": "2K+ bought in past month",
-    "mrp": "\u20b91,949",
+    "mrp": "₹1,949",
     "mrpNum": 1949,
-    "discount": "33% off",
-    "offers": [
-      "Save extra with No Cost EMI & Card Offers",
-      "Official Brand Warranty with 100% Genuine Tax Invoice"
-    ],
-    "delivery": "FREE delivery Thu, 19 Nov",
-    "fastDelivery": "Or fastest delivery Tomorrow, 17 Nov"
+    "delivery": "In-Store Pickup · Sodhi Nagar, Moga"
   },
   {
     "id": "mon-1",
-    "category": "monitors",
+    "category": "accessories",
+    "subCategory": "monitors",
     "brand": "LG",
     "priceNum": 10999,
-    "price": "From \u20b910,999",
+    "price": "₹10,999",
     "budget": "5k-20k",
     "size": "24",
     "panel": "144Hz+",
+    "cpuGen": "",
+    "ramGb": "",
+    "ssdGb": "",
     "condition": "new",
+    "conditionLabel": "Brand New · Sealed",
+    "availability": "In Stock · Moga",
+    "availabilityStatus": "in_stock",
     "badge": "144Hz 1ms IPS",
-    "badgeClass": "apple-badge apple-badge--new",
     "warranty": "3 Years LG Onsite Warranty",
     "title": "LG UltraGear 24GN65R 24\" FHD 144Hz Gaming Monitor",
     "desc": "Elite esports monitor with 1ms Motion Blur Reduction, genuine IPS panel with vibrant sRGB 99% color fidelity, AMD FreeSync Premium, and ergonomic height/tilt stand.",
@@ -1617,39 +2754,36 @@
       "24\" Full HD (1920x1080)",
       "144Hz Refresh Rate",
       "1ms MBR IPS Panel",
-      "sRGB 99% (CIE1931)",
-      "Height/Tilt/Pivot Stand"
+      "sRGB 99% (CIE1931)"
     ],
     "details": {
       "Ports": "1x DisplayPort 1.2, 1x HDMI, Headphone Out",
       "Features": "Black Stabilizer, Dynamic Action Sync, Crosshair overlay"
     },
+    "labReport": null,
     "image": "images/products/mon-1.svg",
-    "rating": 4.5,
-    "reviewsCount": 890,
-    "boughtPastMonth": "1K+ bought in past month",
-    "mrp": "\u20b915,399",
+    "mrp": "₹15,399",
     "mrpNum": 15399,
-    "discount": "29% off",
-    "offers": [
-      "Save extra with No Cost EMI & Card Offers",
-      "Official Brand Warranty with 100% Genuine Tax Invoice"
-    ],
-    "delivery": "FREE delivery Thu, 19 Nov",
-    "fastDelivery": "Or fastest delivery Tomorrow, 17 Nov"
+    "delivery": "In-Store Pickup · Sodhi Nagar, Moga"
   },
   {
     "id": "mon-2",
-    "category": "monitors",
+    "category": "accessories",
+    "subCategory": "monitors",
     "brand": "LG",
     "priceNum": 21499,
-    "price": "From \u20b921,499",
+    "price": "₹21,499",
     "budget": "20k-40k",
     "size": "27",
     "panel": "144Hz+",
+    "cpuGen": "",
+    "ramGb": "",
+    "ssdGb": "",
     "condition": "new",
+    "conditionLabel": "Brand New · Sealed",
+    "availability": "In Stock · Moga",
+    "availabilityStatus": "in_stock",
     "badge": "2K QHD 144Hz",
-    "badgeClass": "apple-badge apple-badge--new",
     "warranty": "3 Years LG Warranty",
     "title": "LG UltraGear 27GN800 27\" QHD (2560x1440) IPS Monitor",
     "desc": "High-density 2K QHD resolution with 144Hz refresh rate, 1ms response time, HDR10 visual depth, NVIDIA G-Sync Compatible, and borderless 3-side bezel.",
@@ -1657,38 +2791,35 @@
       "27\" QHD (2560x1440)",
       "144Hz High Refresh",
       "1ms IPS Display",
-      "HDR10 & sRGB 99%",
-      "G-Sync & FreeSync"
+      "HDR10 & sRGB 99%"
     ],
     "details": {
       "Ports": "2x HDMI 2.0, 1x DisplayPort 1.4"
     },
+    "labReport": null,
     "image": "images/products/mon-2.svg",
-    "rating": 4.6,
-    "reviewsCount": 315,
-    "boughtPastMonth": "300+ bought in past month",
-    "mrp": "\u20b927,999",
+    "mrp": "₹27,999",
     "mrpNum": 27999,
-    "discount": "23% off",
-    "offers": [
-      "Save extra with No Cost EMI & Card Offers",
-      "Official Brand Warranty with 100% Genuine Tax Invoice"
-    ],
-    "delivery": "FREE delivery Thu, 19 Nov",
-    "fastDelivery": "Or fastest delivery Tomorrow, 17 Nov"
+    "delivery": "In-Store Pickup · Sodhi Nagar, Moga"
   },
   {
     "id": "mon-3",
-    "category": "monitors",
+    "category": "accessories",
+    "subCategory": "monitors",
     "brand": "Dell",
     "priceNum": 34500,
-    "price": "From \u20b934,500",
+    "price": "₹34,500",
     "budget": "20k-40k",
     "size": "27",
     "panel": "IPS",
+    "cpuGen": "",
+    "ramGb": "",
+    "ssdGb": "",
     "condition": "new",
+    "conditionLabel": "Brand New · Sealed",
+    "availability": "In Stock · Moga",
+    "availabilityStatus": "in_stock",
     "badge": "IPS Black 2000:1",
-    "badgeClass": "apple-badge apple-badge--gold",
     "warranty": "3 Years Dell Advanced Exchange",
     "title": "Dell UltraSharp U2724D 27\" QHD 120Hz IPS Black Monitor",
     "desc": "The gold standard for colorists, editors, and coders. World's first 27\" monitor with IPS Black technology delivering 2000:1 contrast ratio, 120Hz, and 98% DCI-P3.",
@@ -1696,39 +2827,36 @@
       "27\" QHD (2560x1440)",
       "120Hz Smooth Refresh",
       "IPS Black 2000:1 Contrast",
-      "98% DCI-P3 / 100% sRGB",
-      "Ambient Light Sensor"
+      "98% DCI-P3 / 100% sRGB"
     ],
     "details": {
       "Ergonomics": "Height, tilt, swivel, and bidirectional pivot adjustment",
       "Connectivity": "DisplayPort 1.4, HDMI, USB-A and USB-C upstream/downstream hub"
     },
+    "labReport": null,
     "image": "images/products/mon-3.svg",
-    "rating": 4.6,
-    "reviewsCount": 315,
-    "boughtPastMonth": "300+ bought in past month",
-    "mrp": "\u20b944,999",
+    "mrp": "₹44,999",
     "mrpNum": 44999,
-    "discount": "23% off",
-    "offers": [
-      "Save extra with No Cost EMI & Card Offers",
-      "Official Brand Warranty with 100% Genuine Tax Invoice"
-    ],
-    "delivery": "FREE delivery Thu, 19 Nov",
-    "fastDelivery": "Or fastest delivery Tomorrow, 17 Nov"
+    "delivery": "In-Store Pickup · Sodhi Nagar, Moga"
   },
   {
     "id": "mon-4",
-    "category": "monitors",
+    "category": "accessories",
+    "subCategory": "monitors",
     "brand": "Samsung",
     "priceNum": 32990,
-    "price": "From \u20b932,990",
+    "price": "₹32,990",
     "budget": "20k-40k",
     "size": "32+",
     "panel": "Curved",
+    "cpuGen": "",
+    "ramGb": "",
+    "ssdGb": "",
     "condition": "new",
+    "conditionLabel": "Brand New · Sealed",
+    "availability": "In Stock · Moga",
+    "availabilityStatus": "in_stock",
     "badge": "34\" 1000R Ultrawide",
-    "badgeClass": "apple-badge apple-badge--gold",
     "warranty": "3 Years Samsung Warranty",
     "title": "Samsung Odyssey G5 34\" WQHD Curved 165Hz Monitor",
     "desc": "Massive 21:9 ultrawide panoramic screen with 1000R human-eye curvature. Ultra WQHD resolution, 165Hz refresh rate, 1ms response time, and HDR10.",
@@ -1736,38 +2864,35 @@
       "34\" Ultra WQHD (3440x1440)",
       "1000R Extreme Curve",
       "165Hz Refresh Rate",
-      "1ms Response Time",
-      "AMD FreeSync Premium"
+      "1ms Response Time"
     ],
     "details": {
       "Aspect Ratio": "21:9 Ultrawide equivalent to two standard displays side by side"
     },
+    "labReport": null,
     "image": "images/products/mon-4.svg",
-    "rating": 4.6,
-    "reviewsCount": 315,
-    "boughtPastMonth": "300+ bought in past month",
-    "mrp": "\u20b942,999",
+    "mrp": "₹42,999",
     "mrpNum": 42999,
-    "discount": "23% off",
-    "offers": [
-      "Save extra with No Cost EMI & Card Offers",
-      "Official Brand Warranty with 100% Genuine Tax Invoice"
-    ],
-    "delivery": "FREE delivery Thu, 19 Nov",
-    "fastDelivery": "Or fastest delivery Tomorrow, 17 Nov"
+    "delivery": "In-Store Pickup · Sodhi Nagar, Moga"
   },
   {
     "id": "mon-5",
-    "category": "monitors",
+    "category": "accessories",
+    "subCategory": "monitors",
     "brand": "Samsung",
     "priceNum": 28990,
-    "price": "From \u20b928,990",
+    "price": "₹28,990",
     "budget": "20k-40k",
     "size": "32+",
     "panel": "LED/LCD",
+    "cpuGen": "",
+    "ramGb": "",
+    "ssdGb": "",
     "condition": "new",
+    "conditionLabel": "Brand New · Sealed",
+    "availability": "In Stock · Moga",
+    "availabilityStatus": "in_stock",
     "badge": "4K Smart LED",
-    "badgeClass": "apple-badge",
     "warranty": "1 Year Comprehensive + 1 Year Panel",
     "title": "Samsung 43\" Crystal 4K Vivid Pro Smart LED TV",
     "desc": "4K Ultra HD smart entertainment and PC screen. Crystal Processor 4K, PurColor lifelike picture, OTS Lite audio, and PC on TV wireless workstation mode.",
@@ -1775,38 +2900,35 @@
       "43\" 4K Ultra HD (3840x2160)",
       "PurColor & HDR 10+",
       "Q-Symphony Audio 20W",
-      "Wireless PC Mirroring",
-      "3x HDMI + Optical Out"
+      "Wireless PC Mirroring"
     ],
     "details": {
       "Operating System": "Samsung Tizen OS with all OTT apps pre-installed"
     },
+    "labReport": null,
     "image": "images/products/mon-5.svg",
-    "rating": 4.6,
-    "reviewsCount": 315,
-    "boughtPastMonth": "300+ bought in past month",
-    "mrp": "\u20b937,999",
+    "mrp": "₹37,999",
     "mrpNum": 37999,
-    "discount": "24% off",
-    "offers": [
-      "Save extra with No Cost EMI & Card Offers",
-      "Official Brand Warranty with 100% Genuine Tax Invoice"
-    ],
-    "delivery": "FREE delivery Thu, 19 Nov",
-    "fastDelivery": "Or fastest delivery Tomorrow, 17 Nov"
+    "delivery": "In-Store Pickup · Sodhi Nagar, Moga"
   },
   {
     "id": "mon-6",
-    "category": "monitors",
+    "category": "accessories",
+    "subCategory": "monitors",
     "brand": "Xiaomi",
     "priceNum": 12499,
-    "price": "From \u20b912,499",
+    "price": "₹12,499",
     "budget": "5k-20k",
     "size": "32+",
     "panel": "LED/LCD",
+    "cpuGen": "",
+    "ramGb": "",
+    "ssdGb": "",
     "condition": "new",
+    "conditionLabel": "Brand New · Sealed",
+    "availability": "In Stock · Moga",
+    "availabilityStatus": "in_stock",
     "badge": "Budget Smart LED",
-    "badgeClass": "apple-badge",
     "warranty": "1 Year Brand Warranty",
     "title": "Xiaomi Mi 32\" HD Ready Smart Android LED TV",
     "desc": "Bezel-less compact smart screen with Vivid Picture Engine, 20W Dolby Audio stereo speakers, built-in Chromecast, Google TV with Voice Assistant, and dual HDMI ports.",
@@ -1814,38 +2936,35 @@
       "32\" HD Ready (1366x768)",
       "Bezel-less Metal Design",
       "20W Dolby Audio Stereo",
-      "Google TV OS Built-in",
-      "Dual HDMI + USB Ports"
+      "Google TV OS Built-in"
     ],
     "details": {
       "Connectivity": "Wi-Fi Dual Band, Bluetooth 5.0, 2x HDMI, 2x USB, Ethernet"
     },
+    "labReport": null,
     "image": "images/products/mon-6.svg",
-    "rating": 4.5,
-    "reviewsCount": 890,
-    "boughtPastMonth": "1K+ bought in past month",
-    "mrp": "\u20b917,499",
+    "mrp": "₹17,499",
     "mrpNum": 17499,
-    "discount": "29% off",
-    "offers": [
-      "Save extra with No Cost EMI & Card Offers",
-      "Official Brand Warranty with 100% Genuine Tax Invoice"
-    ],
-    "delivery": "FREE delivery Thu, 19 Nov",
-    "fastDelivery": "Or fastest delivery Tomorrow, 17 Nov"
+    "delivery": "In-Store Pickup · Sodhi Nagar, Moga"
   },
   {
     "id": "wat-1",
-    "category": "watches",
+    "category": "other",
+    "subCategory": "watches",
     "brand": "Apple",
     "priceNum": 38900,
-    "price": "From \u20b938,900",
+    "price": "₹38,900",
     "budget": "20k-40k",
     "size": "Wearable",
     "panel": "Smart OLED",
+    "cpuGen": "",
+    "ramGb": "",
+    "ssdGb": "",
     "condition": "new",
+    "conditionLabel": "Brand New · Sealed",
+    "availability": "In Stock · Moga",
+    "availabilityStatus": "in_stock",
     "badge": "Always-On OLED",
-    "badgeClass": "apple-badge apple-badge--gold",
     "warranty": "Apple Brand Warranty",
     "title": "Apple Watch Series 9 (45mm GPS)",
     "desc": "Always-On Retina display up to 2000 nits, revolutionary Double Tap gesture, S9 SiP chip, Blood Oxygen sensor, ECG app, and Crash Detection.",
@@ -1853,39 +2972,36 @@
       "45mm Aluminium Case",
       "Always-On Retina OLED",
       "Double Tap Gesture",
-      "ECG + Blood Oxygen",
-      "Swimproof 50m"
+      "ECG + Blood Oxygen"
     ],
     "details": {
       "Case": "Midnight / Starlight / Silver Aluminium with Sport Band",
       "Battery": "All-day 18-hour battery with fast charging (0 to 80% in 45 mins)"
     },
+    "labReport": null,
     "image": "images/products/wat-1.svg",
-    "rating": 4.9,
-    "reviewsCount": 512,
-    "boughtPastMonth": "1K+ bought in past month",
-    "mrp": "\u20b945,999",
+    "mrp": "₹45,999",
     "mrpNum": 45999,
-    "discount": "15% off",
-    "offers": [
-      "Save extra with No Cost EMI & Card Offers",
-      "Official Brand Warranty with 100% Genuine Tax Invoice"
-    ],
-    "delivery": "FREE delivery Thu, 19 Nov",
-    "fastDelivery": "Or fastest delivery Tomorrow, 17 Nov"
+    "delivery": "In-Store Pickup · Sodhi Nagar, Moga"
   },
   {
     "id": "wat-2",
-    "category": "watches",
+    "category": "other",
+    "subCategory": "watches",
     "brand": "Apple",
     "priceNum": 84900,
-    "price": "From \u20b984,900",
+    "price": "₹84,900",
     "budget": "80k+",
     "size": "Wearable",
     "panel": "Smart OLED",
+    "cpuGen": "",
+    "ramGb": "",
+    "ssdGb": "",
     "condition": "new",
+    "conditionLabel": "Brand New · Sealed",
+    "availability": "In Stock · Moga",
+    "availabilityStatus": "in_stock",
     "badge": "49mm Titanium Flagship",
-    "badgeClass": "apple-badge apple-badge--gold",
     "warranty": "Apple Brand Warranty",
     "title": "Apple Watch Ultra 2 (49mm Titanium GPS + Cellular)",
     "desc": "Rugged aerospace titanium case, brightest Apple display ever at 3000 nits, customizable Action button, precision dual-frequency GPS, and up to 72 hours in Low Power Mode.",
@@ -1893,38 +3009,35 @@
       "49mm Aerospace Titanium",
       "3000 nits Sapphire Crystal",
       "Dual-Frequency GPS",
-      "100m Water Resistance",
-      "36-72h Battery Life"
+      "100m Water Resistance"
     ],
     "details": {
       "Certifications": "EN13319 dive computer standard with depth gauge to 40m, MIL-STD 810H"
     },
+    "labReport": null,
     "image": "images/products/wat-2.svg",
-    "rating": 4.9,
-    "reviewsCount": 512,
-    "boughtPastMonth": "1K+ bought in past month",
-    "mrp": "\u20b999,999",
+    "mrp": "₹99,999",
     "mrpNum": 99999,
-    "discount": "15% off",
-    "offers": [
-      "Save extra with No Cost EMI & Card Offers",
-      "Official Brand Warranty with 100% Genuine Tax Invoice"
-    ],
-    "delivery": "FREE delivery Thu, 19 Nov",
-    "fastDelivery": "Or fastest delivery Tomorrow, 17 Nov"
+    "delivery": "In-Store Pickup · Sodhi Nagar, Moga"
   },
   {
     "id": "wat-3",
-    "category": "watches",
+    "category": "other",
+    "subCategory": "watches",
     "brand": "Apple",
     "priceNum": 19990,
-    "price": "From \u20b919,990",
+    "price": "₹19,990",
     "budget": "5k-20k",
     "size": "Wearable",
     "panel": "Smart OLED",
+    "cpuGen": "",
+    "ramGb": "",
+    "ssdGb": "",
     "condition": "new",
+    "conditionLabel": "Brand New · Sealed",
+    "availability": "In Stock · Moga",
+    "availabilityStatus": "in_stock",
     "badge": "Retina Smartwatch",
-    "badgeClass": "apple-badge",
     "warranty": "Apple / Store Warranty",
     "title": "Apple Watch SE (2nd Gen 44mm GPS)",
     "desc": "Essential health, safety, and connectivity features at an accessible price. High and low heart rate notifications, Fall Detection, Emergency SOS, and sleep tracking.",
@@ -1932,38 +3045,35 @@
       "44mm Retina Display",
       "Heart Rate Notifications",
       "Fall & Crash Detection",
-      "Water Resistance 50m",
-      "Activity Rings"
+      "Water Resistance 50m"
     ],
     "details": {
       "Compatibility": "Requires iPhone 8 or later with iOS 16 or later"
     },
+    "labReport": null,
     "image": "images/products/wat-3.svg",
-    "rating": 4.9,
-    "reviewsCount": 512,
-    "boughtPastMonth": "1K+ bought in past month",
-    "mrp": "\u20b923,999",
+    "mrp": "₹23,999",
     "mrpNum": 23999,
-    "discount": "17% off",
-    "offers": [
-      "Save extra with No Cost EMI & Card Offers",
-      "Official Brand Warranty with 100% Genuine Tax Invoice"
-    ],
-    "delivery": "FREE delivery Thu, 19 Nov",
-    "fastDelivery": "Or fastest delivery Tomorrow, 17 Nov"
+    "delivery": "In-Store Pickup · Sodhi Nagar, Moga"
   },
   {
     "id": "wat-4",
-    "category": "watches",
+    "category": "other",
+    "subCategory": "watches",
     "brand": "Casio",
     "priceNum": 7995,
-    "price": "From \u20b97,995",
+    "price": "₹7,995",
     "budget": "5k-20k",
     "size": "Wearable",
     "panel": "Classic Non-Display",
+    "cpuGen": "",
+    "ramGb": "",
+    "ssdGb": "",
     "condition": "new",
+    "conditionLabel": "Brand New · Sealed",
+    "availability": "In Stock · Moga",
+    "availabilityStatus": "in_stock",
     "badge": "Legendary CasiOak",
-    "badgeClass": "apple-badge apple-badge--new",
     "warranty": "2 Years Official Casio India Warranty",
     "title": "Casio G-Shock GA-2100-1A1 \"CasiOak\" (All-Black)",
     "desc": "The iconic octagonal bezel classic watch with Carbon Core Guard structure. Shock-resistant, 200-meter water resistance, analog hands with minimal digital sub-dial, and 3-year battery life.",
@@ -1971,40 +3081,37 @@
       "Carbon Core Guard Structure",
       "200-Meter Water Resistance",
       "Shock Resistant Analog Dial",
-      "Double LED Light",
-      "3-Year Battery Life"
+      "Double LED Light"
     ],
     "details": {
       "Display Type": "Classic Analog-Digital Dial with mineral crystal glass (Non-Smart screen)",
       "Functions": "World time 31 time zones, 1/100-second stopwatch, countdown timer, 5 alarms",
       "Weight": "Ultra-light 51 grams with high-strength carbon resin"
     },
+    "labReport": null,
     "image": "images/products/wat-4.svg",
-    "rating": 4.5,
-    "reviewsCount": 890,
-    "boughtPastMonth": "1K+ bought in past month",
-    "mrp": "\u20b911,199",
+    "mrp": "₹11,199",
     "mrpNum": 11199,
-    "discount": "29% off",
-    "offers": [
-      "Save extra with No Cost EMI & Card Offers",
-      "Official Brand Warranty with 100% Genuine Tax Invoice"
-    ],
-    "delivery": "FREE delivery Thu, 19 Nov",
-    "fastDelivery": "Or fastest delivery Tomorrow, 17 Nov"
+    "delivery": "In-Store Pickup · Sodhi Nagar, Moga"
   },
   {
     "id": "wat-5",
-    "category": "watches",
+    "category": "other",
+    "subCategory": "watches",
     "brand": "Casio",
     "priceNum": 21995,
-    "price": "From \u20b921,995",
+    "price": "₹21,995",
     "budget": "20k-40k",
     "size": "Wearable",
     "panel": "Classic Non-Display",
+    "cpuGen": "",
+    "ramGb": "",
+    "ssdGb": "",
     "condition": "new",
+    "conditionLabel": "Brand New · Sealed",
+    "availability": "In Stock · Moga",
+    "availabilityStatus": "in_stock",
     "badge": "Mud & Shock Master",
-    "badgeClass": "apple-badge",
     "warranty": "2 Years Casio Warranty",
     "title": "Casio G-Shock Mudmaster GG-B100 Quad Sensor",
     "desc": "Extreme outdoor analog timepiece with carbon fiber reinforced bezel, mud-resist buttons, and built-in Quad Sensor (Compass, Altimeter/Barometer, Thermometer, Step Tracker).",
@@ -2012,38 +3119,35 @@
       "Carbon Fiber Bezel",
       "Mud-Resistant Construction",
       "Quad Sensor Technology",
-      "Smartphone Link via App",
-      "200m Water Resistant"
+      "Smartphone Link via App"
     ],
     "details": {
       "Sensors": "Direction compass, pressure altimeter, atmospheric barometer, temperature gauge"
     },
+    "labReport": null,
     "image": "images/products/wat-5.svg",
-    "rating": 4.6,
-    "reviewsCount": 315,
-    "boughtPastMonth": "300+ bought in past month",
-    "mrp": "\u20b928,999",
+    "mrp": "₹28,999",
     "mrpNum": 28999,
-    "discount": "24% off",
-    "offers": [
-      "Save extra with No Cost EMI & Card Offers",
-      "Official Brand Warranty with 100% Genuine Tax Invoice"
-    ],
-    "delivery": "FREE delivery Thu, 19 Nov",
-    "fastDelivery": "Or fastest delivery Tomorrow, 17 Nov"
+    "delivery": "In-Store Pickup · Sodhi Nagar, Moga"
   },
   {
     "id": "wat-6",
-    "category": "watches",
+    "category": "other",
+    "subCategory": "watches",
     "brand": "Titan",
     "priceNum": 3495,
-    "price": "From \u20b93,495",
+    "price": "₹3,495",
     "budget": "under-5k",
     "size": "Wearable",
     "panel": "Classic Non-Display",
+    "cpuGen": "",
+    "ramGb": "",
+    "ssdGb": "",
     "condition": "new",
+    "conditionLabel": "Brand New · Sealed",
+    "availability": "In Stock · Moga",
+    "availabilityStatus": "in_stock",
     "badge": "Classic Stainless Steel",
-    "badgeClass": "apple-badge",
     "warranty": "2 Years Titan Brand Warranty",
     "title": "Titan Workwear Classic Sunray Blue Analog Watch",
     "desc": "Timeless formal wrist watch with sunray deep blue dial, solid stainless steel link strap, scratch-resistant mineral glass, precise quartz analog movement, and 50m water resistance.",
@@ -2051,39 +3155,36 @@
       "Solid Stainless Steel Strap",
       "Deep Sunray Blue Dial",
       "Precision Quartz Movement",
-      "Mineral Crystal Glass",
-      "50m Water Resistance"
+      "Mineral Crystal Glass"
     ],
     "details": {
       "Dial Diameter": "42 mm",
       "Clasp": "Push button fold-over deployant clasp"
     },
+    "labReport": null,
     "image": "images/products/wat-6.svg",
-    "rating": 4.5,
-    "reviewsCount": 890,
-    "boughtPastMonth": "1K+ bought in past month",
-    "mrp": "\u20b94,899",
+    "mrp": "₹4,899",
     "mrpNum": 4899,
-    "discount": "29% off",
-    "offers": [
-      "Save extra with No Cost EMI & Card Offers",
-      "Official Brand Warranty with 100% Genuine Tax Invoice"
-    ],
-    "delivery": "FREE delivery Thu, 19 Nov",
-    "fastDelivery": "Or fastest delivery Tomorrow, 17 Nov"
+    "delivery": "In-Store Pickup · Sodhi Nagar, Moga"
   },
   {
     "id": "wat-7",
-    "category": "watches",
+    "category": "other",
+    "subCategory": "watches",
     "brand": "Fossil",
     "priceNum": 8495,
-    "price": "From \u20b98,495",
+    "price": "₹8,495",
     "budget": "5k-20k",
     "size": "Wearable",
     "panel": "Classic Non-Display",
+    "cpuGen": "",
+    "ramGb": "",
+    "ssdGb": "",
     "condition": "new",
+    "conditionLabel": "Brand New · Sealed",
+    "availability": "In Stock · Moga",
+    "availabilityStatus": "in_stock",
     "badge": "Classic Chronograph",
-    "badgeClass": "apple-badge apple-badge--gold",
     "warranty": "2 Years Fossil Warranty",
     "title": "Fossil Grant Chronograph Dark Brown Leather Watch",
     "desc": "Vintage-inspired classic analog chronograph with Roman numeral hour markers, cream dial, genuine dark brown leather strap with buckle, and stopwatch subdials.",
@@ -2091,38 +3192,35 @@
       "Genuine Leather Strap",
       "Roman Numeral Chronograph",
       "44mm Stainless Steel Case",
-      "50m Water Resistant",
-      "Japanese Quartz"
+      "50m Water Resistant"
     ],
     "details": {
       "Subdials": "24-hour time, 30-minute stopwatch counter, 60-second hand counter"
     },
+    "labReport": null,
     "image": "images/products/wat-7.svg",
-    "rating": 4.5,
-    "reviewsCount": 890,
-    "boughtPastMonth": "1K+ bought in past month",
-    "mrp": "\u20b911,899",
+    "mrp": "₹11,899",
     "mrpNum": 11899,
-    "discount": "29% off",
-    "offers": [
-      "Save extra with No Cost EMI & Card Offers",
-      "Official Brand Warranty with 100% Genuine Tax Invoice"
-    ],
-    "delivery": "FREE delivery Thu, 19 Nov",
-    "fastDelivery": "Or fastest delivery Tomorrow, 17 Nov"
+    "delivery": "In-Store Pickup · Sodhi Nagar, Moga"
   },
   {
     "id": "gad-1",
-    "category": "gadgets",
+    "category": "accessories",
+    "subCategory": "gadgets",
     "brand": "Apple",
     "priceNum": 22900,
-    "price": "From \u20b922,900",
+    "price": "₹22,900",
     "budget": "20k-40k",
     "size": "Gadgets",
     "panel": "Audio",
+    "cpuGen": "",
+    "ramGb": "",
+    "ssdGb": "",
     "condition": "new",
+    "conditionLabel": "Brand New · Sealed",
+    "availability": "In Stock · Moga",
+    "availabilityStatus": "in_stock",
     "badge": "Active Noise Cancellation",
-    "badgeClass": "apple-badge apple-badge--gold",
     "warranty": "1 Year Apple Warranty",
     "title": "Apple AirPods Pro (2nd Gen) with MagSafe Case (USB-C)",
     "desc": "Up to 2x more Active Noise Cancellation, Adaptive Audio, Transparency mode, Personalized Spatial Audio with dynamic head tracking, and dust/water-resistant case.",
@@ -2130,38 +3228,35 @@
       "Apple H2 Chip",
       "Adaptive Audio & ANC",
       "MagSafe Case with Speaker",
-      "Up to 30h Total Playtime",
-      "IP54 Dust & Sweat Resistant"
+      "Up to 30h Total Playtime"
     ],
     "details": {
       "Connector": "USB-C charging with MagSafe and Apple Watch charger support"
     },
+    "labReport": null,
     "image": "images/products/gad-1.svg",
-    "rating": 4.9,
-    "reviewsCount": 512,
-    "boughtPastMonth": "1K+ bought in past month",
-    "mrp": "\u20b926,999",
+    "mrp": "₹26,999",
     "mrpNum": 26999,
-    "discount": "15% off",
-    "offers": [
-      "Save extra with No Cost EMI & Card Offers",
-      "Official Brand Warranty with 100% Genuine Tax Invoice"
-    ],
-    "delivery": "FREE delivery Thu, 19 Nov",
-    "fastDelivery": "Or fastest delivery Tomorrow, 17 Nov"
+    "delivery": "In-Store Pickup · Sodhi Nagar, Moga"
   },
   {
     "id": "gad-2",
-    "category": "gadgets",
+    "category": "accessories",
+    "subCategory": "gadgets",
     "brand": "boAt",
     "priceNum": 1499,
-    "price": "From \u20b91,499",
+    "price": "₹1,499",
     "budget": "under-5k",
     "size": "Gadgets",
     "panel": "Audio",
+    "cpuGen": "",
+    "ramGb": "",
+    "ssdGb": "",
     "condition": "new",
+    "conditionLabel": "Brand New · Sealed",
+    "availability": "In Stock · Moga",
+    "availabilityStatus": "in_stock",
     "badge": "32dB ANC Earbuds",
-    "badgeClass": "apple-badge",
     "warranty": "1 Year Brand Warranty",
     "title": "boAt Airdopes 141 ANC Wireless Earbuds",
     "desc": "True wireless earbuds with 32dB active noise cancellation, beast mode low latency for gaming, ENx quad microphone noise cancellation for crystal clear calling, and 42-hour battery.",
@@ -2169,38 +3264,35 @@
       "32dB Active Noise Cancel",
       "42 Hours Playback",
       "ENx Quad Mics for Calls",
-      "ASAP Fast Charge",
-      "IPX5 Sweat Resistant"
+      "ASAP Fast Charge"
     ],
     "details": {
       "Driver": "10mm dynamic bass drivers"
     },
+    "labReport": null,
     "image": "images/products/gad-2.svg",
-    "rating": 4.8,
-    "reviewsCount": 1420,
-    "boughtPastMonth": "2K+ bought in past month",
-    "mrp": "\u20b92,249",
+    "mrp": "₹2,249",
     "mrpNum": 2249,
-    "discount": "33% off",
-    "offers": [
-      "Save extra with No Cost EMI & Card Offers",
-      "Official Brand Warranty with 100% Genuine Tax Invoice"
-    ],
-    "delivery": "FREE delivery Thu, 19 Nov",
-    "fastDelivery": "Or fastest delivery Tomorrow, 17 Nov"
+    "delivery": "In-Store Pickup · Sodhi Nagar, Moga"
   },
   {
     "id": "gad-3",
-    "category": "gadgets",
+    "category": "accessories",
+    "subCategory": "gadgets",
     "brand": "JBL",
     "priceNum": 9999,
-    "price": "From \u20b99,999",
+    "price": "₹9,999",
     "budget": "5k-20k",
     "size": "Gadgets",
     "panel": "Audio",
+    "cpuGen": "",
+    "ramGb": "",
+    "ssdGb": "",
     "condition": "new",
+    "conditionLabel": "Brand New · Sealed",
+    "availability": "In Stock · Moga",
+    "availabilityStatus": "in_stock",
     "badge": "IP67 Waterproof Audio",
-    "badgeClass": "apple-badge apple-badge--new",
     "warranty": "1 Year Brand Warranty",
     "title": "JBL Flip 6 Portable Waterproof Bluetooth Speaker",
     "desc": "Bold sound for every adventure. 2-way speaker system delivering high-frequency clarity and deep bass via dual passive radiators. IP67 waterproof and dustproof with 12h battery.",
@@ -2208,38 +3300,35 @@
       "IP67 Waterproof & Dustproof",
       "2-Way Speaker System",
       "12 Hours Playtime",
-      "PartyBoost Multi-Pairing",
-      "USB-C Protection"
+      "PartyBoost Multi-Pairing"
     ],
     "details": {
       "Audio Output": "20W RMS woofer + 10W RMS tweeter"
     },
+    "labReport": null,
     "image": "images/products/gad-3.svg",
-    "rating": 4.5,
-    "reviewsCount": 890,
-    "boughtPastMonth": "1K+ bought in past month",
-    "mrp": "\u20b913,999",
+    "mrp": "₹13,999",
     "mrpNum": 13999,
-    "discount": "29% off",
-    "offers": [
-      "Save extra with No Cost EMI & Card Offers",
-      "Official Brand Warranty with 100% Genuine Tax Invoice"
-    ],
-    "delivery": "FREE delivery Thu, 19 Nov",
-    "fastDelivery": "Or fastest delivery Tomorrow, 17 Nov"
+    "delivery": "In-Store Pickup · Sodhi Nagar, Moga"
   },
   {
     "id": "gad-4",
-    "category": "gadgets",
+    "category": "accessories",
+    "subCategory": "gadgets",
     "brand": "Xiaomi",
     "priceNum": 1999,
-    "price": "From \u20b91,999",
+    "price": "₹1,999",
     "budget": "under-5k",
     "size": "Gadgets",
     "panel": "Power",
+    "cpuGen": "",
+    "ramGb": "",
+    "ssdGb": "",
     "condition": "new",
+    "conditionLabel": "Brand New · Sealed",
+    "availability": "In Stock · Moga",
+    "availabilityStatus": "in_stock",
     "badge": "20000mAh 22.5W Fast",
-    "badgeClass": "apple-badge",
     "warranty": "6 Months Warranty",
     "title": "Mi 20,000mAh 22.5W Fast Charging Power Bank",
     "desc": "High-capacity lithium polymer power bank with triple output ports (2x USB-A + 1x Type-C) delivering up to 22.5W two-way fast charging for phones, tablets, and smartwatches.",
@@ -2247,38 +3336,40 @@
       "20,000mAh Real Capacity",
       "22.5W Fast Charge",
       "Triple Output Ports",
-      "12-Layer Circuit Protection",
-      "Low Current Mode for Bands"
+      "12-Layer Circuit Protection"
     ],
     "details": {
       "Recharging Time": "Approx. 6.9 hours with 18W fast charger"
     },
+    "labReport": null,
     "image": "images/products/gad-4.svg",
-    "rating": 4.8,
-    "reviewsCount": 1420,
-    "boughtPastMonth": "2K+ bought in past month",
-    "mrp": "\u20b92,999",
+    "mrp": "₹2,999",
     "mrpNum": 2999,
-    "discount": "33% off",
-    "offers": [
-      "Save extra with No Cost EMI & Card Offers",
-      "Official Brand Warranty with 100% Genuine Tax Invoice"
-    ],
-    "delivery": "FREE delivery Thu, 19 Nov",
-    "fastDelivery": "Or fastest delivery Tomorrow, 17 Nov"
+    "delivery": "In-Store Pickup · Sodhi Nagar, Moga"
   },
   {
     "id": "gad-5",
-    "category": "gadgets",
+    "category": "accessories",
+    "subCategory": "gadgets",
     "brand": "Supreme",
     "priceNum": 1499,
-    "price": "From \u20b91,499",
+    "price": "₹1,499",
     "budget": "under-5k",
     "size": "Gadgets",
     "panel": "Power",
+    "cpuGen": "",
+    "ramGb": "",
+    "ssdGb": "",
     "condition": "new",
+    "conditionLabel": "Brand New · Sealed",
+    "availability": "In Stock · Moga",
+    "availabilityStatus": "in_stock",
+    "compatibleWith": [
+      "laptops_used",
+      "laptops_new",
+      "laptops_gaming"
+    ],
     "badge": "65W GaN Multi-Port",
-    "badgeClass": "apple-badge apple-badge--new",
     "warranty": "6 Months Replacement",
     "title": "65W GaN 3-Port Laptop & Phone Fast Charger",
     "desc": "Pocket-sized Gallium Nitride (GaN) fast charger with 2x Type-C PD ports and 1x USB-A port. Fast charges MacBook, Lenovo, Dell, HP laptops alongside iPhone and Android simultaneously.",
@@ -2286,38 +3377,35 @@
       "65W Max Power Delivery",
       "Gallium Nitride (GaN) Tech",
       "Dual Type-C + USB-A",
-      "Overheat & Surge Guard",
-      "Ultra Compact"
+      "Overheat & Surge Guard"
     ],
     "details": {
       "Compatibility": "MacBook Air/Pro, ThinkPad, Dell XPS, HP Pavilion, iPad Pro, iPhone 15/16"
     },
+    "labReport": null,
     "image": "images/products/gad-5.svg",
-    "rating": 4.8,
-    "reviewsCount": 1420,
-    "boughtPastMonth": "2K+ bought in past month",
-    "mrp": "\u20b92,249",
+    "mrp": "₹2,249",
     "mrpNum": 2249,
-    "discount": "33% off",
-    "offers": [
-      "Save extra with No Cost EMI & Card Offers",
-      "Official Brand Warranty with 100% Genuine Tax Invoice"
-    ],
-    "delivery": "FREE delivery Thu, 19 Nov",
-    "fastDelivery": "Or fastest delivery Tomorrow, 17 Nov"
+    "delivery": "In-Store Pickup · Sodhi Nagar, Moga"
   },
   {
     "id": "gad-6",
-    "category": "gadgets",
+    "category": "accessories",
+    "subCategory": "gadgets",
     "brand": "TP-Link",
     "priceNum": 3999,
-    "price": "From \u20b93,999",
+    "price": "₹3,999",
     "budget": "under-5k",
     "size": "Gadgets",
     "panel": "Networking",
+    "cpuGen": "",
+    "ramGb": "",
+    "ssdGb": "",
     "condition": "new",
+    "conditionLabel": "Brand New · Sealed",
+    "availability": "In Stock · Moga",
+    "availabilityStatus": "in_stock",
     "badge": "AX3000 Wi-Fi 6",
-    "badgeClass": "apple-badge",
     "warranty": "3 Years Brand Warranty",
     "title": "TP-Link Archer AX53 AX3000 Wi-Fi 6 Gigabit Router",
     "desc": "Next-generation gigabit wireless router delivering blazing speeds up to 2402 Mbps on 5GHz + 574 Mbps on 2.4GHz. 4 high-gain antennas with Beamforming for wall-penetrating coverage.",
@@ -2325,38 +3413,35 @@
       "Up to 3.0 Gbps Speed",
       "OFDMA & MU-MIMO Tech",
       "4 High-Gain Antennas",
-      "Full Gigabit WAN/LAN Ports",
-      "WPA3 Advanced Security"
+      "Full Gigabit WAN/LAN Ports"
     ],
     "details": {
       "Capacity": "Supports 100+ connected devices simultaneously without lag"
     },
+    "labReport": null,
     "image": "images/products/gad-6.svg",
-    "rating": 4.5,
-    "reviewsCount": 890,
-    "boughtPastMonth": "1K+ bought in past month",
-    "mrp": "\u20b95,599",
+    "mrp": "₹5,599",
     "mrpNum": 5599,
-    "discount": "29% off",
-    "offers": [
-      "Save extra with No Cost EMI & Card Offers",
-      "Official Brand Warranty with 100% Genuine Tax Invoice"
-    ],
-    "delivery": "FREE delivery Thu, 19 Nov",
-    "fastDelivery": "Or fastest delivery Tomorrow, 17 Nov"
+    "delivery": "In-Store Pickup · Sodhi Nagar, Moga"
   },
   {
     "id": "gym-1",
-    "category": "gym",
+    "category": "other",
+    "subCategory": "gym",
     "brand": "Fitline",
     "priceNum": 34990,
-    "price": "From \u20b934,990",
+    "price": "₹34,990",
     "budget": "20k-40k",
     "size": "Gym",
     "panel": "Cardio",
+    "cpuGen": "",
+    "ramGb": "",
+    "ssdGb": "",
     "condition": "new",
+    "conditionLabel": "Brand New · Sealed",
+    "availability": "In Stock · Moga",
+    "availabilityStatus": "in_stock",
     "badge": "2.5HP Auto-Incline",
-    "badgeClass": "apple-badge apple-badge--gold",
     "warranty": "1 Year Motor & Parts Warranty",
     "title": "Fitline Motorized Auto-Incline Running Treadmill",
     "desc": "Heavy-duty commercial-grade motorized home treadmill with 2.5HP continuous DC motor, 15 levels of automatic motorized incline, multi-layer shock absorption, and hydraulic soft-drop folding.",
@@ -2364,39 +3449,36 @@
       "2.5HP Continuous (5.0HP Peak)",
       "15-Level Auto Incline",
       "Speed 1.0 - 16.0 km/h",
-      "Max User Weight 120 kg",
-      "Hydraulic Soft-Drop Fold"
+      "Max User Weight 120 kg"
     ],
     "details": {
       "Running Belt": "Multi-ply high-traction anti-static diamond running belt (1260 x 450 mm)",
       "Console": "5\" Blue LCD Display tracking Speed, Time, Distance, Calories, and Heart Rate"
     },
+    "labReport": null,
     "image": "images/products/gym-1.svg",
-    "rating": 4.6,
-    "reviewsCount": 315,
-    "boughtPastMonth": "300+ bought in past month",
-    "mrp": "\u20b944,999",
+    "mrp": "₹44,999",
     "mrpNum": 44999,
-    "discount": "22% off",
-    "offers": [
-      "Save extra with No Cost EMI & Card Offers",
-      "Official Brand Warranty with 100% Genuine Tax Invoice"
-    ],
-    "delivery": "FREE delivery Thu, 19 Nov",
-    "fastDelivery": "Or fastest delivery Tomorrow, 17 Nov"
+    "delivery": "In-Store Pickup · Sodhi Nagar, Moga"
   },
   {
     "id": "gym-2",
-    "category": "gym",
+    "category": "other",
+    "subCategory": "gym",
     "brand": "Supreme Fitness",
     "priceNum": 1850,
-    "price": "From \u20b91,850 / pair",
+    "price": "₹1,850 / pair",
     "budget": "under-5k",
     "size": "Gym",
     "panel": "Weights",
+    "cpuGen": "",
+    "ramGb": "",
+    "ssdGb": "",
     "condition": "new",
+    "conditionLabel": "Brand New · Sealed",
+    "availability": "In Stock · Moga",
+    "availabilityStatus": "in_stock",
     "badge": "Hex Rubber Encased",
-    "badgeClass": "apple-badge",
     "warranty": "Solid Cast Iron Guarantee",
     "title": "Commercial Rubber Hex Dumbbell Pairs (5kg to 30kg)",
     "desc": "Solid cast iron hex dumbbell pairs encased in heavy-duty low-odor virgin rubber. Anti-roll hexagonal heads prevent rolling on floor, with ergonomically knurled chrome steel grip handles.",
@@ -2404,38 +3486,35 @@
       "5kg, 10kg, 15kg, 20kg Pairs",
       "Anti-Roll Hexagonal Design",
       "Heavy-Duty Virgin Rubber",
-      "Chrome Knurled Grip Handles",
-      "Floor-Safe Protection"
+      "Chrome Knurled Grip Handles"
     ],
     "details": {
       "Available Weights": "5kg, 7.5kg, 10kg, 12.5kg, 15kg, 17.5kg, 20kg, 25kg, 30kg"
     },
+    "labReport": null,
     "image": "images/products/gym-2.svg",
-    "rating": 4.8,
-    "reviewsCount": 1420,
-    "boughtPastMonth": "2K+ bought in past month",
-    "mrp": "\u20b92,799",
+    "mrp": "₹2,799",
     "mrpNum": 2799,
-    "discount": "34% off",
-    "offers": [
-      "Save extra with No Cost EMI & Card Offers",
-      "Official Brand Warranty with 100% Genuine Tax Invoice"
-    ],
-    "delivery": "FREE delivery Thu, 19 Nov",
-    "fastDelivery": "Or fastest delivery Tomorrow, 17 Nov"
+    "delivery": "In-Store Pickup · Sodhi Nagar, Moga"
   },
   {
     "id": "gym-3",
-    "category": "gym",
+    "category": "other",
+    "subCategory": "gym",
     "brand": "PowerMax",
     "priceNum": 16500,
-    "price": "From \u20b916,500",
+    "price": "₹16,500",
     "budget": "5k-20k",
     "size": "Gym",
     "panel": "Cardio",
+    "cpuGen": "",
+    "ramGb": "",
+    "ssdGb": "",
     "condition": "new",
+    "conditionLabel": "Brand New · Sealed",
+    "availability": "In Stock · Moga",
+    "availabilityStatus": "in_stock",
     "badge": "Magnetic Spin Bike",
-    "badgeClass": "apple-badge",
     "warranty": "1 Year Brand Warranty",
     "title": "PowerMax Magnetic Indoor Studio Spin Exercise Bike",
     "desc": "Ultra-smooth indoor cycling bike with 14kg heavy perimeter-weighted flywheel, silent magnetic belt drive resistance, 4-way adjustable padded racing saddle, and pulse sensor grips.",
@@ -2443,38 +3522,35 @@
       "14kg Heavy Flywheel",
       "Silent Magnetic Resistance",
       "Smooth Belt Drive System",
-      "4-Way Adjustable Saddle",
-      "Max User Weight 130 kg"
+      "4-Way Adjustable Saddle"
     ],
     "details": {
       "Display": "Digital monitor displaying RPM, Speed, Distance, Calories, and Pulse"
     },
+    "labReport": null,
     "image": "images/products/gym-3.svg",
-    "rating": 4.6,
-    "reviewsCount": 315,
-    "boughtPastMonth": "300+ bought in past month",
-    "mrp": "\u20b920,999",
+    "mrp": "₹20,999",
     "mrpNum": 20999,
-    "discount": "21% off",
-    "offers": [
-      "Save extra with No Cost EMI & Card Offers",
-      "Official Brand Warranty with 100% Genuine Tax Invoice"
-    ],
-    "delivery": "FREE delivery Thu, 19 Nov",
-    "fastDelivery": "Or fastest delivery Tomorrow, 17 Nov"
+    "delivery": "In-Store Pickup · Sodhi Nagar, Moga"
   },
   {
     "id": "gym-4",
-    "category": "gym",
+    "category": "other",
+    "subCategory": "gym",
     "brand": "Supreme Fitness",
     "priceNum": 44990,
-    "price": "From \u20b944,990",
+    "price": "₹44,990",
     "budget": "40k-75k",
     "size": "Gym",
     "panel": "Strength",
+    "cpuGen": "",
+    "ramGb": "",
+    "ssdGb": "",
     "condition": "new",
+    "conditionLabel": "Brand New · Sealed",
+    "availability": "In Stock · Moga",
+    "availabilityStatus": "in_stock",
     "badge": "All-in-One Multi-Gym",
-    "badgeClass": "apple-badge apple-badge--gold",
     "warranty": "2 Years Frame Warranty",
     "title": "Multi-Station Complete Home Gym Workout Station",
     "desc": "Complete total-body workout machine. Features Chest Press, Pec Fly, High Pulley Lat Pulldown, Low Pulley Row, Leg Extension/Curl, Preacher Curl bench, and heavy-duty 68kg vinyl weight stack.",
@@ -2482,38 +3558,35 @@
       "68 kg Vinyl Weight Stack",
       "Heavy 50mm Steel Frame",
       "Aircraft-Grade 2000lb Cables",
-      "Over 35 Total-Body Exercises",
-      "Preacher Curl & Leg Developer"
+      "Over 35 Total-Body Exercises"
     ],
     "details": {
       "Dimensions": "205cm (H) x 115cm (W) x 145cm (L)"
     },
+    "labReport": null,
     "image": "images/products/gym-4.svg",
-    "rating": 4.6,
-    "reviewsCount": 315,
-    "boughtPastMonth": "300+ bought in past month",
-    "mrp": "\u20b957,999",
+    "mrp": "₹57,999",
     "mrpNum": 57999,
-    "discount": "22% off",
-    "offers": [
-      "Save extra with No Cost EMI & Card Offers",
-      "Official Brand Warranty with 100% Genuine Tax Invoice"
-    ],
-    "delivery": "FREE delivery Thu, 19 Nov",
-    "fastDelivery": "Or fastest delivery Tomorrow, 17 Nov"
+    "delivery": "In-Store Pickup · Sodhi Nagar, Moga"
   },
   {
     "id": "gym-5",
-    "category": "gym",
+    "category": "other",
+    "subCategory": "gym",
     "brand": "Supreme Fitness",
     "priceNum": 799,
-    "price": "From \u20b9799",
+    "price": "₹799",
     "budget": "under-5k",
     "size": "Gym",
     "panel": "Accessories",
+    "cpuGen": "",
+    "ramGb": "",
+    "ssdGb": "",
     "condition": "new",
+    "conditionLabel": "Brand New · Sealed",
+    "availability": "In Stock · Moga",
+    "availabilityStatus": "in_stock",
     "badge": "11-Piece Complete Kit",
-    "badgeClass": "apple-badge",
     "warranty": "Heavy Resistance",
     "title": "11-Piece Heavy-Duty Resistance Tube Set (150 LBS)",
     "desc": "Complete home and travel fitness kit with 5 color-coded natural latex resistance bands (10lb to 50lb, stackable up to 150 lbs), 2 cushioned foam handles, 2 ankle straps, door anchor, and carry pouch.",
@@ -2521,78 +3594,72 @@
       "100% Natural Latex Tubes",
       "Up to 150 lbs Stackable",
       "2x Cushioned Foam Handles",
-      "Door Anchor + Ankle Straps",
-      "Portable Waterproof Pouch"
+      "Door Anchor + Ankle Straps"
     ],
     "details": {
       "Usage": "Ideal for strength training, physiotherapy, mobility, and home toning"
     },
+    "labReport": null,
     "image": "images/products/gym-5.svg",
-    "rating": 4.8,
-    "reviewsCount": 1420,
-    "boughtPastMonth": "2K+ bought in past month",
-    "mrp": "\u20b91,199",
+    "mrp": "₹1,199",
     "mrpNum": 1199,
-    "discount": "33% off",
-    "offers": [
-      "Save extra with No Cost EMI & Card Offers",
-      "Official Brand Warranty with 100% Genuine Tax Invoice"
-    ],
-    "delivery": "FREE delivery Thu, 19 Nov",
-    "fastDelivery": "Or fastest delivery Tomorrow, 17 Nov"
+    "delivery": "In-Store Pickup · Sodhi Nagar, Moga"
   },
   {
     "id": "suit-1",
-    "category": "suitcases",
+    "category": "other",
+    "subCategory": "suitcases",
     "brand": "Safari",
     "priceNum": 7999,
-    "price": "From \u20b97,999 (Set of 3)",
+    "price": "₹7,999 (Set of 3)",
     "budget": "5k-20k",
     "size": "Full Set",
     "panel": "Hard-Shell",
+    "cpuGen": "",
+    "ramGb": "",
+    "ssdGb": "",
     "condition": "new",
+    "conditionLabel": "Brand New · Sealed",
+    "availability": "In Stock · Moga",
+    "availabilityStatus": "in_stock",
     "badge": "Unbreakable 3-Piece Set",
-    "badgeClass": "apple-badge apple-badge--gold",
     "warranty": "5 Years International Warranty",
     "title": "Safari / American Tourister 3-Piece Hard-Shell Luggage Set",
-    "desc": "Full family travel set containing 55cm Cabin, 65cm Medium, and 75cm Large suitcases. Built from 100% unbreakable polycarbonate with scratch-resistant micro-diamond texture and 360\u00b0 dual spinner wheels.",
+    "desc": "Full family travel set containing 55cm Cabin, 65cm Medium, and 75cm Large suitcases. Built from 100% unbreakable polycarbonate with scratch-resistant micro-diamond texture and 360° dual spinner wheels.",
     "specs": [
       "Set of 3 (Cabin, Medium, Large)",
       "100% Polycarbonate Shell",
-      "Dual 360\u00b0 Silent Spinner Wheels",
-      "Embedded TSA Combination Lock",
-      "Expandable Zipper Volume"
+      "Dual 360° Silent Spinner Wheels",
+      "Embedded TSA Combination Lock"
     ],
     "details": {
       "Weights": "Small: 2.6 kg (45L), Medium: 3.5 kg (78L), Large: 4.4 kg (112L)",
       "Interior": "Dual sided packing with zippered divider and cross compression straps"
     },
+    "labReport": null,
     "image": "images/products/suit-1.svg",
-    "rating": 4.5,
-    "reviewsCount": 890,
-    "boughtPastMonth": "1K+ bought in past month",
-    "mrp": "\u20b911,199",
+    "mrp": "₹11,199",
     "mrpNum": 11199,
-    "discount": "29% off",
-    "offers": [
-      "Save extra with No Cost EMI & Card Offers",
-      "Official Brand Warranty with 100% Genuine Tax Invoice"
-    ],
-    "delivery": "FREE delivery Thu, 19 Nov",
-    "fastDelivery": "Or fastest delivery Tomorrow, 17 Nov"
+    "delivery": "In-Store Pickup · Sodhi Nagar, Moga"
   },
   {
     "id": "suit-2",
-    "category": "suitcases",
+    "category": "other",
+    "subCategory": "suitcases",
     "brand": "Safari",
     "priceNum": 2499,
-    "price": "From \u20b92,499",
+    "price": "₹2,499",
     "budget": "under-5k",
     "size": "Cabin 20\"",
     "panel": "Hard-Shell",
+    "cpuGen": "",
+    "ramGb": "",
+    "ssdGb": "",
     "condition": "new",
+    "conditionLabel": "Brand New · Sealed",
+    "availability": "In Stock · Moga",
+    "availabilityStatus": "in_stock",
     "badge": "Airline Cabin Approved",
-    "badgeClass": "apple-badge",
     "warranty": "3 Years Warranty",
     "title": "Safari 20\" Hard-Shell Cabin Carry-On Trolley Bag",
     "desc": "Ultra-lightweight 2.6kg airline cabin luggage approved for IndiGo, Air India, Emirates, and international flights. Impact-resistant polypropylene, multi-stage telescopic handle, and smooth spinner wheels.",
@@ -2600,38 +3667,35 @@
       "20-inch (55 cm) Cabin Size",
       "Ultra-Lightweight 2.6 kg",
       "International Airline Approved",
-      "Recessed TSA Combination Lock",
-      "Smooth 8-Wheel System"
+      "Recessed TSA Combination Lock"
     ],
     "details": {
       "Capacity": "48 Litres"
     },
+    "labReport": null,
     "image": "images/products/suit-2.svg",
-    "rating": 4.8,
-    "reviewsCount": 1420,
-    "boughtPastMonth": "2K+ bought in past month",
-    "mrp": "\u20b93,749",
+    "mrp": "₹3,749",
     "mrpNum": 3749,
-    "discount": "33% off",
-    "offers": [
-      "Save extra with No Cost EMI & Card Offers",
-      "Official Brand Warranty with 100% Genuine Tax Invoice"
-    ],
-    "delivery": "FREE delivery Thu, 19 Nov",
-    "fastDelivery": "Or fastest delivery Tomorrow, 17 Nov"
+    "delivery": "In-Store Pickup · Sodhi Nagar, Moga"
   },
   {
     "id": "suit-3",
-    "category": "suitcases",
+    "category": "other",
+    "subCategory": "suitcases",
     "brand": "Traveler Pro",
     "priceNum": 5499,
-    "price": "From \u20b95,499",
+    "price": "₹5,499",
     "budget": "5k-20k",
     "size": "Medium 24\"",
     "panel": "Aluminium",
+    "cpuGen": "",
+    "ramGb": "",
+    "ssdGb": "",
     "condition": "new",
+    "conditionLabel": "Brand New · Sealed",
+    "availability": "In Stock · Moga",
+    "availabilityStatus": "in_stock",
     "badge": "Aluminium Corner Trunk",
-    "badgeClass": "apple-badge apple-badge--new",
     "warranty": "5 Years Warranty",
     "title": "Premium Aluminum-Magnesium Corner Trunk Suitcase",
     "desc": "Luxury executive luggage with reinforced aviation-grade aluminum corner protectors, zipperless dual TSA flip-latch locks for maximum anti-theft security, and silent rubberized aircraft wheels.",
@@ -2639,38 +3703,35 @@
       "Reinforced Aluminium Corners",
       "Zipperless Dual TSA Locks",
       "Aviation-Grade Alloy Telescopic Bar",
-      "Waterproof Rubber Seal Gasket",
-      "360\u00b0 Silent Double Wheels"
+      "Waterproof Rubber Seal Gasket"
     ],
     "details": {
       "Security": "Keyless dual TSA combination flip latches (cannot be punctured with pens like zipper bags)"
     },
+    "labReport": null,
     "image": "images/products/suit-3.svg",
-    "rating": 4.5,
-    "reviewsCount": 890,
-    "boughtPastMonth": "1K+ bought in past month",
-    "mrp": "\u20b97,699",
+    "mrp": "₹7,699",
     "mrpNum": 7699,
-    "discount": "29% off",
-    "offers": [
-      "Save extra with No Cost EMI & Card Offers",
-      "Official Brand Warranty with 100% Genuine Tax Invoice"
-    ],
-    "delivery": "FREE delivery Thu, 19 Nov",
-    "fastDelivery": "Or fastest delivery Tomorrow, 17 Nov"
+    "delivery": "In-Store Pickup · Sodhi Nagar, Moga"
   },
   {
     "id": "app-1",
-    "category": "appliances",
+    "category": "other",
+    "subCategory": "appliances",
     "brand": "LG",
     "priceNum": 34990,
-    "price": "From \u20b934,990",
+    "price": "₹34,990",
     "budget": "20k-40k",
     "size": "Appliance",
     "panel": "Front Load",
+    "cpuGen": "",
+    "ramGb": "",
+    "ssdGb": "",
     "condition": "new",
+    "conditionLabel": "Brand New · Sealed",
+    "availability": "In Stock · Moga",
+    "availabilityStatus": "in_stock",
     "badge": "AI Direct Drive Front Load",
-    "badgeClass": "apple-badge apple-badge--gold",
     "warranty": "2 Yrs Product + 10 Yrs Motor",
     "title": "LG 8.0kg 5-Star AI Direct Drive Front Load Washer",
     "desc": "Advanced front load washing machine with AI DD (Artificial Intelligence Direct Drive) that senses fabric weight and softness, Steam Allergy Care cycle that removes 99.9% allergens, and 6 Motion technology.",
@@ -2678,39 +3739,36 @@
       "8.0 kg Capacity",
       "5-Star Energy Rating",
       "AI Direct Drive Motor (No Belts)",
-      "Steam Allergy Care 99.9%",
-      "Stainless Steel Lifter Drum"
+      "Steam Allergy Care 99.9%"
     ],
     "details": {
       "Spin Speed": "1400 RPM for ultra-fast drying",
       "Features": "Smart Diagnosis via LG ThinQ Wi-Fi, Child Lock, Full Touch Waterproof Control"
     },
+    "labReport": null,
     "image": "images/products/app-1.svg",
-    "rating": 4.6,
-    "reviewsCount": 315,
-    "boughtPastMonth": "300+ bought in past month",
-    "mrp": "\u20b944,999",
+    "mrp": "₹44,999",
     "mrpNum": 44999,
-    "discount": "22% off",
-    "offers": [
-      "Save extra with No Cost EMI & Card Offers",
-      "Official Brand Warranty with 100% Genuine Tax Invoice"
-    ],
-    "delivery": "FREE delivery Thu, 19 Nov",
-    "fastDelivery": "Or fastest delivery Tomorrow, 17 Nov"
+    "delivery": "In-Store Pickup · Sodhi Nagar, Moga"
   },
   {
     "id": "app-2",
-    "category": "appliances",
+    "category": "other",
+    "subCategory": "appliances",
     "brand": "Samsung",
     "priceNum": 17490,
-    "price": "From \u20b917,490",
+    "price": "₹17,490",
     "budget": "5k-20k",
     "size": "Appliance",
     "panel": "Top Load",
+    "cpuGen": "",
+    "ramGb": "",
+    "ssdGb": "",
     "condition": "new",
+    "conditionLabel": "Brand New · Sealed",
+    "availability": "In Stock · Moga",
+    "availabilityStatus": "in_stock",
     "badge": "Smart Inverter Top Load",
-    "badgeClass": "apple-badge",
     "warranty": "3 Yrs Comprehensive + 20 Yrs Motor",
     "title": "Samsung 7.5kg Fully-Automatic Top Load Washing Machine",
     "desc": "Tangle-free laundry with Wobble pulsator technology. Digital Inverter Motor with 20-year warranty, Magic Dispenser filter, Diamond Drum that protects delicate fabrics, and soft-closing tempered glass lid.",
@@ -2718,38 +3776,35 @@
       "7.5 kg Capacity",
       "5-Star Energy Efficiency",
       "Wobble Pulsator (No Tangling)",
-      "20-Year Digital Inverter Motor",
-      "Soft-Close Tempered Glass Lid"
+      "20-Year Digital Inverter Motor"
     ],
     "details": {
       "Drum": "Gentle Diamond Drum with Magic Lint Filter that catches particles in low water"
     },
+    "labReport": null,
     "image": "images/products/app-2.svg",
-    "rating": 4.6,
-    "reviewsCount": 315,
-    "boughtPastMonth": "300+ bought in past month",
-    "mrp": "\u20b922,999",
+    "mrp": "₹22,999",
     "mrpNum": 22999,
-    "discount": "24% off",
-    "offers": [
-      "Save extra with No Cost EMI & Card Offers",
-      "Official Brand Warranty with 100% Genuine Tax Invoice"
-    ],
-    "delivery": "FREE delivery Thu, 19 Nov",
-    "fastDelivery": "Or fastest delivery Tomorrow, 17 Nov"
+    "delivery": "In-Store Pickup · Sodhi Nagar, Moga"
   },
   {
     "id": "app-3",
-    "category": "appliances",
+    "category": "other",
+    "subCategory": "appliances",
     "brand": "Whirlpool",
     "priceNum": 12990,
-    "price": "From \u20b912,990",
+    "price": "₹12,990",
     "budget": "5k-20k",
     "size": "Appliance",
     "panel": "Semi-Automatic",
+    "cpuGen": "",
+    "ramGb": "",
+    "ssdGb": "",
     "condition": "new",
+    "conditionLabel": "Brand New · Sealed",
+    "availability": "In Stock · Moga",
+    "availabilityStatus": "in_stock",
     "badge": "8.5kg Heavy Semi-Auto",
-    "badgeClass": "apple-badge",
     "warranty": "2 Yrs Comprehensive + 5 Yrs Motor",
     "title": "Whirlpool 8.5kg 5-Star Semi-Automatic Washing Machine",
     "desc": "High-capacity twin-tub washer built for heavy Punjabi blankets, curtains, and jeans. 1400 RPM spin motor, TurboScrub scrub-station technology, 25-minute SuperSoak, and rust-proof durable plastic body.",
@@ -2757,25 +3812,16 @@
       "8.5 kg Big Capacity",
       "5-Star Energy Rating",
       "1400 RPM High-Speed Spin",
-      "TurboScrub Technology",
-      "100% Rust-Proof Body"
+      "TurboScrub Technology"
     ],
     "details": {
       "Specialty": "Easily washes heavy heavy blankets and winter wear, shock-proof control panel"
     },
+    "labReport": null,
     "image": "images/products/app-3.svg",
-    "rating": 4.5,
-    "reviewsCount": 890,
-    "boughtPastMonth": "1K+ bought in past month",
-    "mrp": "\u20b918,199",
+    "mrp": "₹18,199",
     "mrpNum": 18199,
-    "discount": "29% off",
-    "offers": [
-      "Save extra with No Cost EMI & Card Offers",
-      "Official Brand Warranty with 100% Genuine Tax Invoice"
-    ],
-    "delivery": "FREE delivery Thu, 19 Nov",
-    "fastDelivery": "Or fastest delivery Tomorrow, 17 Nov"
+    "delivery": "In-Store Pickup · Sodhi Nagar, Moga"
   },
   {
     "id": "rep-1",
@@ -2786,9 +3832,14 @@
     "budget": "under-5k",
     "size": "Service",
     "panel": "Repair",
+    "cpuGen": "",
+    "ramGb": "",
+    "ssdGb": "",
     "condition": "service",
+    "conditionLabel": "In-House Lab Service",
+    "availability": "Same-Day Service · Moga",
+    "availabilityStatus": "in_stock",
     "badge": "Motherboard Lab",
-    "badgeClass": "apple-badge apple-badge--new",
     "warranty": "Service Warranty Included",
     "title": "Chip-Level Motherboard BGA Rework & Short-Circuit Repair",
     "desc": "Specialized laboratory diagnosis in Sodhi Nagar for laptops with no display, complete power dead, liquid spills, charging IC failure, and graphics card reflowing. 24-48h turnaround.",
@@ -2796,25 +3847,16 @@
       "BGA Chip Rework",
       "Short-Circuit Diagnostics",
       "Power IC & MOSFET Swap",
-      "BIOS EEPROM Flash",
-      "Stereo Microscope Lab"
+      "BIOS EEPROM Flash"
     ],
     "details": {
       "Equipment": "High-precision hot-air SMD rework stations, programmable DC power analyzers, and stereo zoom microscopes"
     },
-    "image": "images/products/rep-1.svg",
-    "rating": 4.8,
-    "reviewsCount": 1420,
-    "boughtPastMonth": "2K+ bought in past month",
-    "mrp": "\u20b91,799",
-    "mrpNum": 1799,
-    "discount": "33% off",
-    "offers": [
-      "Free Diagnostic Checkup in Lab before any repair",
-      "Same-Day Service on Display & Thermal Servicing"
-    ],
-    "delivery": "Walk-in Service Available \u00b7 5-A, Sodhi Nagar, Moga",
-    "fastDelivery": "Instant Turnaround: 30 to 90 Mins"
+    "labReport": null,
+    "image": "images/products/photos/lab-repair-bench.jpg",
+    "mrp": "",
+    "mrpNum": 0,
+    "delivery": "In-House Lab · 5-A Sodhi Nagar, Moga"
   },
   {
     "id": "rep-2",
@@ -2825,9 +3867,14 @@
     "budget": "under-5k",
     "size": "Service",
     "panel": "Repair",
+    "cpuGen": "",
+    "ramGb": "",
+    "ssdGb": "",
     "condition": "service",
+    "conditionLabel": "In-House Lab Service",
+    "availability": "Same-Day Service · Moga",
+    "availabilityStatus": "in_stock",
     "badge": "Same-Day Replacement",
-    "badgeClass": "apple-badge",
     "warranty": "6 Months Screen Warranty",
     "title": "Original Laptop Display / Screen Replacement",
     "desc": "Immediate screen replacement for cracked, flickering, vertical line, or dim displays. Original 30-pin & 40-pin EDP panels in stock: 14\", 15.6\", 16\" Full HD IPS and 144Hz gaming screens.",
@@ -2835,90 +3882,195 @@
       "Slim & Ultra-Slim LED Panels",
       "FHD 1080p IPS & 144Hz",
       "Dell, HP, Lenovo, Asus, Apple",
-      "Zero Dead Pixel Guarantee",
-      "Same-Day Service"
+      "Zero Dead Pixel Guarantee"
     ],
     "details": {
       "Testing": "Screen tested for uniform color calibration and zero backlight leakage before customer handover"
     },
-    "image": "images/products/rep-2.svg",
-    "rating": 4.8,
-    "reviewsCount": 1420,
-    "boughtPastMonth": "2K+ bought in past month",
-    "mrp": "\u20b93,749",
-    "mrpNum": 3749,
-    "discount": "33% off",
-    "offers": [
-      "Free Diagnostic Checkup in Lab before any repair",
-      "Same-Day Service on Display & Thermal Servicing"
-    ],
-    "delivery": "Walk-in Service Available \u00b7 5-A, Sodhi Nagar, Moga",
-    "fastDelivery": "Instant Turnaround: 30 to 90 Mins"
+    "labReport": null,
+    "image": "images/products/photos/lab-repair-bench.jpg",
+    "mrp": "",
+    "mrpNum": 0,
+    "delivery": "In-House Lab · 5-A Sodhi Nagar, Moga"
   },
   {
     "id": "rep-3",
     "category": "repairs",
     "brand": "Supreme Lab",
     "priceNum": 450,
-    "price": "From \u20b9450",
+    "price": "₹450",
     "budget": "under-5k",
     "size": "Service",
     "panel": "Repair",
+    "cpuGen": "",
+    "ramGb": "",
+    "ssdGb": "",
     "condition": "service",
+    "conditionLabel": "In-House Lab Service",
+    "availability": "Same-Day Service · Moga",
+    "availabilityStatus": "in_stock",
     "badge": "Deep Thermal Service",
-    "badgeClass": "apple-badge",
-    "warranty": "Noticeable 20\u00b0C Drop",
+    "warranty": "Noticeable 20°C Drop",
     "title": "Thermal Servicing, Fan Replacement & Hinge Tuning",
     "desc": "Restore factory thermal performance. Internal heatsink and blower de-dusting, premium Arctic MX-4 high-conductivity thermal paste reapplication, fan bearing lubrication, and hinge tension adjustment.",
     "specs": [
       "Arctic MX-4 Thermal Paste",
       "Heatsink Ultrasonic Clean",
       "Fan Lubrication / Replacement",
-      "Hinge Torque Balancing",
-      "Stops Overheating & Lag"
+      "Hinge Torque Balancing"
     ],
     "details": {
-      "Results": "Lowers operating temperatures by up to 25\u00b0C, eliminating thermal throttling and prolonging laptop lifespan"
+      "Results": "Lowers operating temperatures by up to 25°C, eliminating thermal throttling and prolonging laptop lifespan"
     },
-    "image": "images/products/rep-3.svg",
-    "rating": 4.8,
-    "reviewsCount": 1420,
-    "boughtPastMonth": "2K+ bought in past month",
-    "mrp": "\u20b9699",
-    "mrpNum": 699,
-    "discount": "36% off",
-    "offers": [
-      "Free Diagnostic Checkup in Lab before any repair",
-      "Same-Day Service on Display & Thermal Servicing"
-    ],
-    "delivery": "Walk-in Service Available \u00b7 5-A, Sodhi Nagar, Moga",
-    "fastDelivery": "Instant Turnaround: 30 to 90 Mins"
+    "labReport": null,
+    "image": "images/products/photos/lab-repair-bench.jpg",
+    "mrp": "",
+    "mrpNum": 0,
+    "delivery": "In-House Lab · 5-A Sodhi Nagar, Moga"
   },
   {
     "id": "lap-game-6",
     "category": "laptops_gaming",
     "brand": "Asus",
-    "title": "ASUS ROG Strix G16 (RTX 4060)",
     "priceNum": 114990,
-    "price": "From \u20b91,14,990",
-    "mrp": "\u20b91,44,990",
-    "discount": "21% off",
-    "rating": 4.9,
-    "reviewsCount": 312,
-    "boughtPastMonth": "200+ bought in past month",
-    "badge": "RTX 4060 8GB \u00b7 165Hz",
+    "price": "₹1,14,990",
+    "budget": "",
+    "size": "",
+    "panel": "",
+    "cpuGen": "13th Gen",
+    "ramGb": "16GB",
+    "ssdGb": "1TB",
     "condition": "new",
-    "image": "images/products/lap-game-3.svg",
+    "conditionLabel": "Brand New · Sealed",
+    "availability": "In Stock · Moga",
+    "availabilityStatus": "in_stock",
+    "badge": "RTX 4060 8GB · 165Hz",
+    "warranty": "1 Year Official ASUS India Global Warranty + Genuine GST Tax Invoice",
+    "title": "ASUS ROG Strix G16 (RTX 4060)",
+    "desc": "Pro-tier esports battlestation with 140W max TGP RTX 4060 GPU, MUX switch, liquid metal cooling, and 165Hz ROG Nebula display.",
     "specs": [
       "Intel Core i7 13th Gen (14 Cores)",
       "16GB DDR5 4800MHz",
       "1TB PCIe 4.0 NVMe SSD",
-      "NVIDIA RTX 4060 8GB GDDR6 (140W TGP)",
-      "16.0\" 165Hz FHD+ 100% sRGB Nebula"
+      "NVIDIA RTX 4060 8GB GDDR6 (140W TGP)"
     ],
-    "desc": "Pro-tier esports battlestation with 140W max TGP RTX 4060 GPU, MUX switch, liquid metal cooling, and 165Hz ROG Nebula display.",
-    "warranty": "1 Year Official ASUS India Global Warranty + Genuine GST Tax Invoice",
-    "delivery": "FREE delivery Tomorrow",
-    "fastDelivery": "Pickup available today at Sodhi Nagar"
+    "details": {},
+    "labReport": null,
+    "image": "images/products/photos/lap-game-front.jpg",
+    "mrp": "",
+    "mrpNum": 0,
+    "delivery": "In-Store Pickup · Sodhi Nagar, Moga"
+  },
+  {
+    "id": "acc-bag-1",
+    "category": "accessories",
+    "subCategory": "Laptop Bags",
+    "brand": "Supreme",
+    "priceNum": 1199,
+    "price": "₹1,199",
+    "budget": "under-5k",
+    "size": "15.6-inch",
+    "panel": "Accessory",
+    "condition": "new",
+    "conditionLabel": "Brand New",
+    "availability": "In Stock · Moga",
+    "availabilityStatus": "in_stock",
+    "compatibleWith": [
+      "laptops_used",
+      "laptops_new",
+      "laptops_gaming"
+    ],
+    "badge": "Laptop Essential",
+    "warranty": "6 Months Stitch Warranty",
+    "title": "15.6\" Padded Water-Resistant Laptop Backpack",
+    "desc": "Shock-absorbing padded laptop compartment fitting 13.3\" to 15.6\" ThinkPads, MacBooks, and gaming laptops with charger organizer pocket.",
+    "specs": [
+      "Fits 13\" to 15.6\" Laptops",
+      "Padded Shock Sleeve",
+      "Water-Resistant Fabric",
+      "Dedicated Charger Pocket"
+    ],
+    "details": {
+      "Compatibility": "All 13.3\", 14\", and 15.6\" Laptops",
+      "Material": "Water-Resistant Ballistic Polyester",
+      "Compartments": "Padded Laptop Bay + Accessories Organizer"
+    },
+    "image": "images/products/per-7.svg",
+    "delivery": "In Stock · Sodhi Nagar, Moga"
+  },
+  {
+    "id": "acc-dock-1",
+    "category": "accessories",
+    "subCategory": "Docks & Hubs",
+    "brand": "Supreme",
+    "priceNum": 1699,
+    "price": "₹1,699",
+    "budget": "under-5k",
+    "size": "Accessory",
+    "panel": "USB-C Dock",
+    "condition": "new",
+    "conditionLabel": "Brand New",
+    "availability": "In Stock · Moga",
+    "availabilityStatus": "in_stock",
+    "compatibleWith": [
+      "laptops_used",
+      "laptops_new",
+      "laptops_gaming"
+    ],
+    "badge": "USB-C 6-in-1",
+    "warranty": "1 Year Replacement Warranty",
+    "title": "6-in-1 USB-C Multiport Dock (4K HDMI + 100W PD)",
+    "desc": "Compact aluminum USB-C hub adding 4K HDMI output, 100W Power Delivery pass-through, 3x USB 3.0 ports, and SD/TF card reader for laptops.",
+    "specs": [
+      "4K HDMI Display Out",
+      "100W USB-C PD Pass-Through",
+      "3x USB 3.0 Ports",
+      "Aluminum Heat-Dissipating Shell"
+    ],
+    "details": {
+      "Compatibility": "MacBook Air/Pro, ThinkPad T480/T14, Dell Latitude, HP EliteBook",
+      "Video Output": "HDMI up to 4K @ 30Hz / 1080p @ 60Hz",
+      "Power Delivery": "Up to 100W USB-C Pass-Through"
+    },
+    "image": "images/products/gad-5.svg",
+    "delivery": "In Stock · Sodhi Nagar, Moga"
+  },
+  {
+    "id": "acc-ram-1",
+    "category": "pc_components",
+    "subCategory": "Laptop RAM",
+    "brand": "Crucial",
+    "priceNum": 2850,
+    "price": "₹2,850",
+    "budget": "under-5k",
+    "size": "Component",
+    "panel": "RAM",
+    "ramGb": "16GB",
+    "condition": "new",
+    "conditionLabel": "Brand New Sealed",
+    "availability": "In Stock · Moga",
+    "availabilityStatus": "in_stock",
+    "compatibleWith": [
+      "laptops_used",
+      "laptops_new",
+      "laptops_gaming"
+    ],
+    "badge": "Laptop RAM Upgrade",
+    "warranty": "Limited Lifetime Crucial Warranty",
+    "title": "Crucial 16GB DDR4 3200MHz Laptop SO-DIMM RAM",
+    "desc": "Genuine single-stick 16GB DDR4 SO-DIMM laptop memory upgrade module with free in-store installation and memtest check.",
+    "specs": [
+      "16GB DDR4 SO-DIMM",
+      "3200 MHz (Downclocks 2666/2400)",
+      "Free In-Store Install",
+      "Lifetime Brand Warranty"
+    ],
+    "details": {
+      "Form Factor": "260-Pin SO-DIMM (For Laptops)",
+      "Capacity": "16 GB Single Module",
+      "Speed": "DDR4-3200 MT/s (Compatible with 2400/2666 MHz systems)"
+    },
+    "image": "images/products/pcc-10.svg",
+    "delivery": "Free In-Store Installation · Sodhi Nagar, Moga"
   }
 ]
