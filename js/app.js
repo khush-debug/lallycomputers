@@ -2047,7 +2047,7 @@ function initAppleMegaMenu() {
 
   const WA_BASE = 'https://wa.me/919872010193?text=';
   function countFor(catId) {
-    return (window.PRODUCTS || []).filter(p => normalizeCategory(p.category) === catId).length;
+    return (window.PRODUCTS || []).filter(p => matchesCatalogueCategory(p, catId)).length;
   }
 
   function getMenuData(key) {
@@ -2057,8 +2057,8 @@ function initAppleMegaMenu() {
         col1Heading: 'Laptop Departments',
         primary: [
           { label: 'Used Laptops', cat: 'laptops_used', count: countFor('laptops_used') },
-          { label: 'New Laptops', cat: 'laptops_new', count: countFor('laptops_new') },
-          { label: 'Gaming', cat: 'laptops_gaming', count: countFor('laptops_gaming') }
+          { label: 'Brand New Laptops', href: '#featuredNewLaptops', count: countFor('laptops_new') },
+          { label: 'Gaming Laptops', cat: 'laptops_gaming', count: countFor('laptops_gaming') }
         ],
         sub: [
           { label: 'Intel 8th Gen ThinkPads & Latitudes', cat: 'laptops_used', filter: { cpuGen: '8th Gen' } },
@@ -2078,11 +2078,12 @@ function initAppleMegaMenu() {
         ]
       },
       pcs: {
-        title: 'Custom PCs',
-        col1Heading: 'Desktops & Hardware',
+        title: 'Custom PCs & Monitors',
+        col1Heading: 'Desktops, Monitors & Parts',
         primary: [
           { label: 'Custom PCs', cat: 'pc', count: countFor('pc') },
-          { label: 'Components', cat: 'pc_components', count: countFor('pc_components') }
+          { label: 'Monitors & LCDs', href: 'monitors.html', count: countFor('monitors') },
+          { label: 'PC Components', cat: 'pc_components', count: countFor('pc_components') }
         ],
         sub: [
           { label: 'RTX Gaming Builds', cat: 'pc', filter: { search: 'RTX' } },
@@ -2101,34 +2102,37 @@ function initAppleMegaMenu() {
         ]
       },
       accessories: {
-        title: 'Accessories',
-        col1Heading: 'Gear & Lifestyle',
+        title: 'Gadgets, Gym & More',
+        col1Heading: 'Featured Departments',
         primary: [
-          { label: 'Accessories', cat: 'accessories', count: countFor('accessories') },
-          { label: 'Other Departments', cat: 'other', count: countFor('other') }
+          { label: 'Smart Gadgets & Audio', href: '#featuredGadgets', count: countFor('gadgets') },
+          { label: 'Gym Equipment', href: '#featuredGym', count: countFor('gym') },
+          { label: 'Smartwatches & Casio', href: '#featuredWatches', count: countFor('watches') }
         ],
         sub: [
-          { label: 'Laptop Bags, Docks & Mice', cat: 'accessories', filter: { search: 'Laptop' } },
-          { label: 'Monitors & Displays', cat: 'accessories', filter: { search: 'Monitor' } }
+          { label: 'Peripherals & Keyboards', cat: 'accessories', count: countFor('accessories') },
+          { label: 'Luggage & Home Washers', href: '#featuredAppliances', count: countFor('other') }
         ],
-        col2Heading: 'Other Departments',
+        col2Heading: 'Shop By Category',
         col2: [
-          { label: 'Washing Machines', cat: 'other', filter: { search: 'Wash' } },
-          { label: 'Luggage & Suitcases', cat: 'other', filter: { search: 'Luggage' } },
-          { label: 'Gym Equipment', cat: 'other', filter: { search: 'Treadmill' } },
-          { label: 'Watches', cat: 'other', filter: { search: 'Watch' } }
+          { label: '144Hz Gaming Monitors', href: 'monitors.html' },
+          { label: 'Commercial Treadmills & Bikes', tab: 'gym' },
+          { label: 'Apple Watch Ultra & G-Shock', tab: 'watches' },
+          { label: 'AirPods, Audio & GaN Chargers', tab: 'gadgets' }
         ],
         col3Heading: 'Store Info',
         col3: [
-          { label: '5-A, Sodhi Nagar, Moga', href: '#visit' },
-          { label: 'Enquire on WhatsApp', external: WA_BASE + encodeURIComponent('Hi Lally Computers, I want to check accessory availability.') }
+          { label: 'All Store Departments', href: '#lineup' },
+          { label: '5-A, Sodhi Nagar, Moga', href: '#store' },
+          { label: 'Enquire on WhatsApp', external: WA_BASE + encodeURIComponent('Hi Lally Computers, I want to check product availability.') }
         ]
       },
       repairs: {
-        title: 'Repairs',
+        title: 'Repairs & Lab',
         col1Heading: 'In-House Repair Lab',
         primary: [
-          { label: 'Repairs', cat: 'repairs', count: countFor('repairs') }
+          { label: 'Chip-Level Repairs', cat: 'repairs', count: countFor('repairs') },
+          { label: 'Lab & Support Overview', href: '#support' }
         ],
         sub: [
           { label: 'Motherboard BGA Rework', cat: 'repairs', filter: { search: 'Motherboard' } },
@@ -2147,20 +2151,19 @@ function initAppleMegaMenu() {
         ]
       },
       store: {
-        title: 'Store',
+        title: 'Store & Warranty',
         col1Heading: 'Lally Computers (Supreme Infosys)',
         primary: [
-          { label: 'Featured Stock', href: '#featured' },
+          { label: 'Shop the Hardware', href: '#catalogue' },
           { label: 'Main Departments', href: '#lineup' },
-          { label: 'Testing & Warranty', href: '#why' },
-          { label: 'Genuine Reviews', href: '#reviews' },
-          { label: 'Store Location', href: '#visit' }
+          { label: 'Why Buy from Us', href: '#why' },
+          { label: 'Google Reviews (700+)', href: '#reviews' }
         ],
         sub: [],
-        col2Heading: 'Contact',
+        col2Heading: 'Contact & Visit',
         col2: [
+          { label: '5-A, Sodhi Nagar, Moga', href: '#store' },
           { label: 'Call 098720 10193', href: 'tel:+919872010193' },
-          { label: 'Chat on WhatsApp', external: WA_BASE + encodeURIComponent('Hi Lally Computers, I have an enquiry.') },
           { label: 'Google Maps Directions', external: 'https://www.google.com/maps/dir/?api=1&destination=Supreme%20Infosys%20(Lally%20Computers)%2C%205-A%2C%20Sodhi%20Nagar%2C%20Moga%2C%20Punjab%20142001' }
         ],
         col3Heading: 'Tools',
@@ -2177,7 +2180,8 @@ function initAppleMegaMenu() {
   function renderLinkItem(item, cls) {
     const countHtml = typeof item.count === 'number' ? `<span class="apple-mega-count">${item.count}</span>` : '';
     if (item.external) return `<li><a class="${cls}" href="${item.external}" target="_blank" rel="noopener">${item.label} &nearr;</a></li>`;
-    if (item.href) return `<li><a class="${cls}" href="${item.href}" data-mega-close>${item.label}</a></li>`;
+    if (item.tab) return `<li><button type="button" class="${cls}" data-drawer-tab="${item.tab}">${item.label}${countHtml}</button></li>`;
+    if (item.href) return `<li><a class="${cls}" href="${item.href}" data-mega-close>${item.label}${countHtml}</a></li>`;
     if (item.action) return `<li><button type="button" class="${cls}" data-mega-action="${item.action}">${item.label}</button></li>`;
     const filterAttr = item.filter ? ` data-mega-filter='${JSON.stringify(item.filter)}'` : '';
     return `<li><button type="button" class="${cls}" data-mega-cat="${item.cat}"${filterAttr}>${item.label}${countHtml}</button></li>`;
@@ -2241,6 +2245,17 @@ function initAppleMegaMenu() {
   }
 
   function handleMenuInteraction(e) {
+    const tabBtn = e.target.closest('[data-drawer-tab]');
+    if (tabBtn) {
+      const targetTab = tabBtn.getAttribute('data-drawer-tab');
+      closeMega();
+      closeMobileDrawer();
+      if (typeof window.selectHardwareTab === 'function') {
+        window.selectHardwareTab(targetTab);
+      }
+      return;
+    }
+
     const catBtn = e.target.closest('[data-mega-cat]');
     if (catBtn) {
       const cat = catBtn.getAttribute('data-mega-cat');
@@ -2288,31 +2303,115 @@ function initAppleMegaMenu() {
   function renderMobileDrawer() {
     if (!mobileContent) return;
     const keys = ['laptops', 'pcs', 'accessories', 'repairs', 'store'];
-    mobileContent.innerHTML = keys.map((k, idx) => {
-      const d = getMenuData(k);
-      return `
-        <div class="mobile-mega-group ${idx === 0 ? 'is-expanded' : ''}">
-          <button class="mobile-mega-group-btn" type="button" aria-expanded="${idx === 0 ? 'true' : 'false'}">
-            <span>${d.title}</span>
-            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
-              <polyline points="6 9 12 15 18 9" />
-            </svg>
-          </button>
-          <div class="mobile-mega-group-body">
-            <div class="mobile-mega-subgrid">
-              <div>
-                <p class="apple-mega-heading">${d.col1Heading}</p>
-                <ul class="apple-mega-primary-list">${d.primary.map(it => renderLinkItem(it, 'apple-mega-primary-link')).join('')}</ul>
-              </div>
-              <div>
-                <p class="apple-mega-heading">${d.col2Heading}</p>
-                <ul class="apple-mega-secondary-list">${d.col2.map(it => renderLinkItem(it, 'apple-mega-secondary-link')).join('')}</ul>
-              </div>
-            </div>
-          </div>
+    const cartCount = (typeof getCart === 'function' ? getCart().length : 0);
+
+    const quickDepts = [
+      { label: 'Used Laptops', count: countFor('laptops_used'), tab: 'laptops_used', icon: '<rect x="3" y="4" width="18" height="12" rx="2"/><line x1="2" y1="20" x2="22" y2="20"/>' },
+      { label: 'New Laptops', count: countFor('laptops_new'), href: '#featuredNewLaptops', icon: '<path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 16.8l-6.2 4.5 2.4-7.4L2 9.4h7.6z"/>' },
+      { label: 'Custom PCs', count: countFor('pc'), tab: 'pc', icon: '<rect x="4" y="2" width="16" height="20" rx="2"/><circle cx="12" cy="14" r="3"/><line x1="8" y1="6" x2="16" y2="6"/>' },
+      { label: 'LCDs & Monitors', count: countFor('monitors'), href: 'monitors.html', icon: '<rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/>' },
+      { label: 'Gadgets & Audio', count: countFor('gadgets'), href: '#featuredGadgets', icon: '<path d="M3 18v-6a9 9 0 0 1 18 0v6"/><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/>' },
+      { label: 'Gym Equipment', count: countFor('gym'), href: '#featuredGym', icon: '<path d="M6.5 6.5h11"/><path d="M6.5 17.5h11"/><path d="M3 10v4"/><path d="M21 10v4"/><path d="M6 7v10"/><path d="M18 7v10"/>' },
+      { label: 'Smartwatches', count: countFor('watches'), href: '#featuredWatches', icon: '<circle cx="12" cy="12" r="6"/><polyline points="12 9 12 12 14 13"/><path d="M9 6V3h6v3M9 18v3h6v-3"/>' },
+      { label: 'Components', count: countFor('pc_components'), tab: 'pc_components', icon: '<rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6"/>' },
+      { label: 'Gaming Laptops', count: countFor('laptops_gaming'), tab: 'laptops_gaming', icon: '<polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>' },
+      { label: 'Luggage & Home', count: countFor('other'), href: '#featuredAppliances', icon: '<rect x="5" y="7" width="14" height="14" rx="2"/><path d="M9 7V5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2"/>' }
+    ];
+
+    const quickHtml = `
+      <form class="mobile-drawer-search" id="mobileDrawerSearchForm">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+          <circle cx="10.5" cy="10.5" r="6.7"/><path d="m16 16 5 5"/>
+        </svg>
+        <input type="search" id="mobileDrawerSearchInput" placeholder="Search laptops, LCDs, gym, watches..." aria-label="Search store inventory">
+        <button type="submit">Find</button>
+      </form>
+
+      <div>
+        <p class="mobile-drawer-kicker">Shop All Departments</p>
+        <div class="mobile-dept-grid">
+          ${quickDepts.map(d => {
+            const inner = `
+              <span class="mobile-dept-tile__ico">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${d.icon}</svg>
+              </span>
+              <span class="mobile-dept-tile__text">
+                <span class="mobile-dept-tile__name">${d.label}</span>
+                <span class="mobile-dept-tile__meta">${d.count} items &rarr;</span>
+              </span>
+            `;
+            return d.tab
+              ? `<button type="button" class="mobile-dept-tile" data-drawer-tab="${d.tab}">${inner}</button>`
+              : `<a class="mobile-dept-tile" href="${d.href}" data-mega-close>${inner}</a>`;
+          }).join('')}
         </div>
-      `;
-    }).join('');
+      </div>
+
+      <div>
+        <p class="mobile-drawer-kicker">Browse &amp; Quick Filters</p>
+        <div class="mobile-mega-accordions">
+          ${keys.map(k => {
+            const d = getMenuData(k);
+            return `
+              <div class="mobile-mega-group">
+                <button class="mobile-mega-group-btn" type="button" aria-expanded="false">
+                  <span>${d.title}</span>
+                  <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                    <polyline points="6 9 12 15 18 9" />
+                  </svg>
+                </button>
+                <div class="mobile-mega-group-body">
+                  <div class="mobile-mega-subgrid">
+                    <div>
+                      <p class="apple-mega-heading">${d.col1Heading}</p>
+                      <ul class="apple-mega-primary-list">${d.primary.map(it => renderLinkItem(it, 'apple-mega-primary-link')).join('')}</ul>
+                    </div>
+                    <div>
+                      <p class="apple-mega-heading">${d.col2Heading}</p>
+                      <ul class="apple-mega-secondary-list">${d.col2.map(it => renderLinkItem(it, 'apple-mega-secondary-link')).join('')}</ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            `;
+          }).join('')}
+        </div>
+      </div>
+
+      <div class="mobile-drawer-footer">
+        <div class="mobile-drawer-actions">
+          <button type="button" class="mobile-drawer-action-btn" data-mega-action="cart">
+            <span>Inquiry Basket (${cartCount})</span>
+          </button>
+          <a class="mobile-drawer-action-btn mobile-drawer-action-btn--wa" href="${WA_BASE + encodeURIComponent('Hi Lally Computers, I have an enquiry from your website.')}" target="_blank" rel="noopener">
+            <span>WhatsApp Store</span>
+          </a>
+        </div>
+        <div class="mobile-drawer-store-note">
+          5-A, Sodhi Nagar, Moga &middot; 098720 10193 &middot; Mon&ndash;Sat 9:30 AM &ndash; 7:00 PM
+        </div>
+      </div>
+    `;
+
+    mobileContent.innerHTML = quickHtml;
+
+    const searchForm = document.getElementById('mobileDrawerSearchForm');
+    const searchInput = document.getElementById('mobileDrawerSearchInput');
+    if (searchForm && searchInput) {
+      searchForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const q = searchInput.value.trim();
+        closeMobileDrawer();
+        const mainSearch = document.getElementById('searchHardwareInput');
+        if (mainSearch) {
+          mainSearch.value = q;
+          catalogueSearchQuery = q.toLowerCase();
+        }
+        renderFeaturedStock();
+        const catEl = document.getElementById('catalogue');
+        if (catEl) catEl.scrollIntoView({ behavior: 'smooth' });
+      });
+    }
   }
 
   function openMobileDrawer() {
