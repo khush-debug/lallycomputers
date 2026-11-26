@@ -1303,11 +1303,337 @@ function finishTopLoader() {
 }
 
 /* ==========================================================================
+   CAROUSEL PAGINATION & CONTINUOUS MARQUEE SLIDER CONTROLLER
+   ========================================================================== */
+function initSliderWithDots(sliderWrapperId, trackId, dotsContainerId, cardCount, durationSeconds, prevBtnId, nextBtnId) {
+  const wrapper = document.getElementById(sliderWrapperId);
+  const track = document.getElementById(trackId);
+  const dotsContainer = document.getElementById(dotsContainerId);
+  if (!wrapper || !track || !dotsContainer) return;
+
+  const prevBtn = prevBtnId ? document.getElementById(prevBtnId) : null;
+  const nextBtn = nextBtnId ? document.getElementById(nextBtnId) : null;
+
+  const dots = Array.from(dotsContainer.querySelectorAll('.slider-dot'));
+  if (dots.length === 0) return;
+
+  const allCards = Array.from(track.children);
+  const uniqueCards = allCards.slice(0, cardCount);
+
+  let isManualNav = false;
+  let resumeTimeout = null;
+  let lastActiveIndex = 0;
+
+  function getTranslateX() {
+    const style = window.getComputedStyle(track);
+    const transform = style.transform || style.webkitTransform;
+    if (!transform || transform === 'none') return 0;
+    const match = transform.match(/matrix(?:3d)?\((.+)\)/);
+    if (!match) return 0;
+    const values = match[1].split(', ');
+    return parseFloat(values.length > 6 ? values[12] : values[4]) || 0;
+  }
+
+  function setActiveDot(index) {
+    if (index === lastActiveIndex && dots[index]?.classList.contains('is-active')) return;
+    lastActiveIndex = index;
+    dots.forEach((dot, i) => {
+      const active = i === index;
+      dot.classList.toggle('is-active', active);
+      dot.setAttribute('aria-selected', active ? 'true' : 'false');
+    });
+  }
+
+  // Animation frame loop to keep dots in sync with continuous marquee
+  let lastTimestamp = 0;
+  function updateFromMarquee(timestamp) {
+    if (!isManualNav) {
+      if (!lastTimestamp || timestamp - lastTimestamp > 70) {
+        lastTimestamp = timestamp;
+        const currentTx = Math.abs(getTranslateX());
+        const halfWidth = track.scrollWidth / 2;
+        if (halfWidth > 0 && uniqueCards.length > 0) {
+          const currentX = currentTx % halfWidth;
+          const focusPoint = currentX + (wrapper.clientWidth / 2);
+
+          let closestIdx = 0;
+          let minDiff = Infinity;
+          uniqueCards.forEach((c, idx) => {
+            const cardCenter = (c.offsetLeft - uniqueCards[0].offsetLeft) + (c.offsetWidth / 2);
+            const diff = Math.abs(focusPoint - cardCenter);
+            if (diff < minDiff) {
+              minDiff = diff;
+              closestIdx = idx;
+            }
+          });
+          setActiveDot(closestIdx);
+        }
+      }
+    }
+    requestAnimationFrame(updateFromMarquee);
+  }
+  requestAnimationFrame(updateFromMarquee);
+
+  function navigateToSlide(targetIndex, smooth = true) {
+    if (targetIndex < 0 || targetIndex >= uniqueCards.length) return;
+    const targetCard = uniqueCards[targetIndex];
+    if (!targetCard) return;
+
+    // Read current position before removing animation
+    const currentTx = getTranslateX();
+
+    isManualNav = true;
+    clearTimeout(resumeTimeout);
+
+    // Compute target X to center the target card in the visible viewport
+    const wrapperWidth = wrapper.clientWidth;
+    const cardWidth = targetCard.offsetWidth;
+    const cardLeft = targetCard.offsetLeft - uniqueCards[0].offsetLeft;
+    const targetX = Math.max(0, cardLeft - Math.max(0, (wrapperWidth - cardWidth) / 2));
+
+    if (!track.classList.contains('is-manual-nav')) {
+      track.classList.add('is-manual-nav');
+      track.style.transition = 'none';
+      track.style.transform = `translate3d(${currentTx}px, 0, 0)`;
+      void track.offsetHeight; // Force reflow
+    }
+
+    if (smooth) {
+      track.style.transition = 'transform 0.55s cubic-bezier(0.16, 1, 0.3, 1)';
+    } else {
+      track.style.transition = 'none';
+    }
+
+    track.style.transform = `translate3d(-${targetX}px, 0, 0)`;
+
+    // Highlight card and active dot
+    allCards.forEach(c => c.classList.remove('is-card-focused'));
+    targetCard.classList.add('is-card-focused');
+    setActiveDot(targetIndex);
+
+    // Schedule auto-resume after 6 seconds of idle
+    scheduleAutoResume(targetX);
+  }
+
+  function scheduleAutoResume(currentOffset) {
+    clearTimeout(resumeTimeout);
+    resumeTimeout = setTimeout(() => {
+      if (!isManualNav) return;
+      const halfWidth = track.scrollWidth / 2;
+      if (halfWidth <= 0) return;
+
+      const normalized = Math.abs(currentOffset) % halfWidth;
+      const delaySeconds = (normalized / halfWidth) * durationSeconds;
+
+      allCards.forEach(c => c.classList.remove('is-card-focused'));
+
+      // Seamlessly switch back to CSS marquee from current position
+      track.style.transition = 'none';
+      track.style.transform = '';
+      track.style.animationDelay = `-${delaySeconds.toFixed(2)}s`;
+      track.classList.remove('is-manual-nav');
+      void track.offsetHeight;
+      isManualNav = false;
+    }, 6000);
+  }
+
+  // Hovering pauses the resume countdown
+  wrapper.addEventListener('mouseenter', () => clearTimeout(resumeTimeout));
+  wrapper.addEventListener('mouseleave', () => {
+    if (isManualNav && !isPointerDown) {
+      const currentTx = Math.abs(getTranslateX());
+      scheduleAutoResume(currentTx);
+    }
+  });
+
+  // ==========================================
+  // POINTER & TOUCH DRAG CONTROLLER (MANUAL MOVEMENT)
+  // ==========================================
+  let isPointerDown = false;
+  let hasDragged = false;
+  let startPointerX = 0;
+  let startPointerY = 0;
+  let startTx = 0;
+  let dragCurrentTx = 0;
+  let pointerStartTime = 0;
+
+  function onPointerDown(e) {
+    if (e.button !== undefined && e.button !== 0) return;
+    isPointerDown = true;
+    hasDragged = false;
+    startPointerX = e.clientX;
+    startPointerY = e.clientY;
+    pointerStartTime = Date.now();
+
+    startTx = getTranslateX();
+    dragCurrentTx = startTx;
+    clearTimeout(resumeTimeout);
+  }
+
+  function onPointerMove(e) {
+    if (!isPointerDown) return;
+    const deltaX = e.clientX - startPointerX;
+    const deltaY = e.clientY - startPointerY;
+
+    if (!hasDragged) {
+      if (Math.abs(deltaY) > Math.abs(deltaX) && Math.abs(deltaY) > 8) {
+        isPointerDown = false;
+        return;
+      }
+      if (Math.abs(deltaX) > 6) {
+        hasDragged = true;
+        isManualNav = true;
+        track.classList.add('is-manual-nav', 'is-dragging');
+        track.style.transition = 'none';
+        if (track.setPointerCapture) {
+          try { track.setPointerCapture(e.pointerId); } catch (err) {}
+        }
+      }
+    }
+
+    if (hasDragged) {
+      e.preventDefault();
+      const halfWidth = track.scrollWidth / 2;
+      if (halfWidth <= 0) return;
+
+      let newTx = startTx + deltaX;
+      while (newTx > 0) newTx -= halfWidth;
+      while (newTx < -halfWidth) newTx += halfWidth;
+
+      dragCurrentTx = newTx;
+      track.style.transform = `translate3d(${newTx}px, 0, 0)`;
+
+      // Live update active dot
+      const currentX = Math.abs(newTx) % halfWidth;
+      const focusPoint = currentX + (wrapper.clientWidth / 2);
+      let closestIdx = 0;
+      let minDiff = Infinity;
+      uniqueCards.forEach((c, idx) => {
+        const cardCenter = (c.offsetLeft - uniqueCards[0].offsetLeft) + (c.offsetWidth / 2);
+        const diff = Math.abs(focusPoint - cardCenter);
+        if (diff < minDiff) {
+          minDiff = diff;
+          closestIdx = idx;
+        }
+      });
+      setActiveDot(closestIdx);
+    }
+  }
+
+  function onPointerUp(e) {
+    if (!isPointerDown) return;
+    isPointerDown = false;
+
+    if (hasDragged) {
+      track.classList.remove('is-dragging');
+      if (track.releasePointerCapture) {
+        try { track.releasePointerCapture(e.pointerId); } catch (err) {}
+      }
+
+      const deltaTime = Math.max(1, Date.now() - pointerStartTime);
+      const deltaX = e.clientX - startPointerX;
+      const velocity = deltaX / deltaTime; // px per ms
+
+      const halfWidth = track.scrollWidth / 2;
+      const currentX = Math.abs(dragCurrentTx) % halfWidth;
+      const projectedFocus = currentX + (wrapper.clientWidth / 2) - (velocity * 200);
+
+      let closestIdx = 0;
+      let minDiff = Infinity;
+      uniqueCards.forEach((c, idx) => {
+        const cardCenter = (c.offsetLeft - uniqueCards[0].offsetLeft) + (c.offsetWidth / 2);
+        const diff = Math.abs(projectedFocus - cardCenter);
+        if (diff < minDiff) {
+          minDiff = diff;
+          closestIdx = idx;
+        }
+      });
+
+      navigateToSlide(closestIdx);
+    }
+  }
+
+  track.addEventListener('pointerdown', onPointerDown, { passive: true });
+  track.addEventListener('pointermove', onPointerMove, { passive: false });
+  track.addEventListener('pointerup', onPointerUp, { passive: true });
+  track.addEventListener('pointercancel', onPointerUp, { passive: true });
+
+  // Dots click listener
+  dots.forEach(dot => {
+    dot.addEventListener('click', (e) => {
+      e.preventDefault();
+      const targetIndex = parseInt(dot.getAttribute('data-index'), 10);
+      if (!isNaN(targetIndex)) {
+        navigateToSlide(targetIndex);
+      }
+    });
+  });
+
+  // Previous & Next Arrow Buttons
+  if (prevBtn) {
+    prevBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      const prevIndex = (lastActiveIndex - 1 + cardCount) % cardCount;
+      navigateToSlide(prevIndex);
+    });
+  }
+
+  if (nextBtn) {
+    nextBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      const nextIndex = (lastActiveIndex + 1) % cardCount;
+      navigateToSlide(nextIndex);
+    });
+  }
+
+  // Clicking any card directly navigates to it (unless user was dragging)
+  allCards.forEach((card, idx) => {
+    card.style.cursor = 'grab';
+    card.addEventListener('click', (e) => {
+      if (hasDragged) {
+        e.preventDefault();
+        return;
+      }
+      navigateToSlide(idx % cardCount);
+    });
+  });
+}
+
+/* ==========================================================================
    INITIALIZATION
    ========================================================================== */
 document.addEventListener('DOMContentLoaded', () => {
   initCookieBanner();
   initModalSwipeToDismiss();
+
+  // Initialize Animated Smooth Minimalistic Sliders
+  initSliderWithDots('whySliderWrap', 'whyTrack', 'whyDots', 6, 42, 'whyPrevBtn', 'whyNextBtn');
+  initSliderWithDots('reviewsSliderWrap', 'reviewsTrack', 'reviewsDots', 8, 48, 'reviewsPrevBtn', 'reviewsNextBtn');
+
+  // Pause animations when swiped/scrolled away from the specific section
+  if ('IntersectionObserver' in window) {
+    const pauseObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        const track = entry.target.querySelector('.why-slider-track, .reviews-slider-track');
+        if (track && !track.classList.contains('is-manual-nav')) {
+          track.style.animationPlayState = entry.isIntersecting ? 'running' : 'paused';
+        }
+      });
+    }, { threshold: 0.05 });
+    const whySec = document.getElementById('why');
+    const revSec = document.getElementById('reviews');
+    if (whySec) pauseObserver.observe(whySec);
+    if (revSec) pauseObserver.observe(revSec);
+  }
+
+  // Pause animations when browser tab is hidden to save resources
+  document.addEventListener('visibilitychange', () => {
+    const whyTrack = document.getElementById('whyTrack');
+    const revTrack = document.getElementById('reviewsTrack');
+    const state = document.visibilityState === 'visible' ? 'running' : 'paused';
+    if (whyTrack && !whyTrack.classList.contains('is-manual-nav')) whyTrack.style.animationPlayState = state;
+    if (revTrack && !revTrack.classList.contains('is-manual-nav')) revTrack.style.animationPlayState = state;
+  });
 
   const activeSheetUrl = localStorage.getItem('lally_sheet_url') || DEFAULT_LIVE_SHEET_URL;
   if (activeSheetUrl) hydrateCachedStock(activeSheetUrl);
