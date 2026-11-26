@@ -2421,7 +2421,7 @@ function initAppleMegaMenu() {
     mobileDrawer.classList.add('is-open');
     mobileDrawer.setAttribute('aria-hidden', 'false');
     mobileBtn.setAttribute('aria-expanded', 'true');
-    document.body.style.overflow = 'hidden';
+    document.documentElement.style.overflow = 'hidden';
     pushNavigationState('mobileDrawer');
   }
 
@@ -2431,7 +2431,9 @@ function initAppleMegaMenu() {
     mobileDrawer.classList.remove('is-open');
     mobileDrawer.setAttribute('aria-hidden', 'true');
     mobileBtn.setAttribute('aria-expanded', 'false');
-    if (!document.querySelector('.modal-backdrop.is-open')) document.body.style.overflow = '';
+    if (!document.querySelector('.modal-backdrop.is-open')) {
+      document.documentElement.style.overflow = '';
+    }
     if (syncHistory) popNavigationStateIfMatches('mobileDrawer');
   }
 
