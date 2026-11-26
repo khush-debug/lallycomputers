@@ -144,49 +144,283 @@ function initModalSwipeToDismiss() {
 }
 
 /* ==========================================================================
-   FEATURED STOCK WITH PRICES (HOMEPAGE)
+   FEATURED STOCK & HARDWARE CATALOGUE (HOMEPAGE)
    ========================================================================== */
+const CATALOGUE_TABS = [
+  { label: 'All hardware', key: 'all' },
+  { label: 'Pre-owned', key: 'laptops_used' },
+  { label: 'New laptops', key: 'laptops_new' },
+  { label: 'Gaming laptops', key: 'laptops_gaming' },
+  { label: 'Custom PCs', key: 'pc' },
+  { label: 'Monitors', key: 'monitors' },
+  { label: 'Components', key: 'pc_components' },
+  { label: 'Accessories', key: 'accessories' }
+];
+let activeCatalogueCategory = 'all';
+let catalogueSearchQuery = '';
+let catalogueBudgetCeiling = 0;
+let catalogueSortOrder = 'featured';
+
+function getNumericPrice(val) {
+  if (typeof val === 'number') return val;
+  return Number(String(val || '').replace(/[^0-9]/g, '')) || 0;
+}
+
+function formatCardSpecs(specs) {
+  if (!specs || !specs.length) return '';
+  return specs.slice(0, 3).map(s => {
+    return String(s)
+      .replace(/ \(.*?\)/g, '')
+      .replace(/Intel Core /g, 'Core ')
+      .replace(/\s*(DDR[45]|Unified)\s*(RAM|Memory)?$/i, '')
+      .replace(/\s*(NVMe |Gen4 )?SSD$/i, ' SSD');
+  }).join(' · ');
+}
+
+function getShortlist() {
+  try {
+    return JSON.parse(localStorage.getItem('lally_shortlist') || '[]');
+  } catch (e) {
+    return [];
+  }
+}
+
+function toggleShortlist(id) {
+  if (!id) return;
+  let list = getShortlist();
+  const exists = list.includes(id);
+  if (exists) {
+    list = list.filter(item => item !== id);
+  } else {
+    list.push(id);
+  }
+  try {
+    localStorage.setItem('lally_shortlist', JSON.stringify(list));
+  } catch (e) {}
+
+  document.querySelectorAll(`.fav[data-save="${id}"]`).forEach(btn => {
+    btn.setAttribute('aria-pressed', !exists);
+    btn.setAttribute('aria-label', (!exists ? 'Remove from' : 'Add to') + ' shortlist');
+  });
+
+  if (typeof showToast === 'function') {
+    showToast(!exists ? 'Saved to shortlist' : 'Removed from shortlist');
+  }
+}
+
 function renderFeaturedStock() {
   const grid = document.getElementById('featuredStockGrid');
   if (!grid) return;
 
-  const featuredIds = ['lap-used-1', 'lap-used-6', 'lap-used-2', 'lap-used-3', 'lap-game-1', 'pc-2'];
-  const featuredItems = featuredIds
-    .map(id => window.PRODUCTS.find(p => p.id === id))
-    .filter(Boolean);
+  const products = window.PRODUCTS || window.DEFAULT_PRODUCTS || [];
+  let items = [];
 
-  grid.innerHTML = featuredItems.map(item => {
-    const specs = (item.specs || []).slice(0, 4);
+  const isDefaultView = activeCatalogueCategory === 'all' &&
+    !catalogueSearchQuery &&
+    !catalogueBudgetCeiling &&
+    catalogueSortOrder === 'featured';
+
+  if (isDefaultView) {
+    // Curated 8 items across hardware categories (matching prototype 2 rows of 4)
+    const featuredIds = ['lap-used-1', 'lap-new-1', 'lap-used-6', 'mon-1', 'pc-2', 'lap-new-4', 'mon-3', 'lap-used-2'];
+    items = featuredIds
+      .map(id => products.find(p => p.id === id))
+      .filter(Boolean);
+    if (items.length < 8) {
+      items = products.slice(0, 8);
+    }
+  } else {
+    items = products.filter(p => {
+      // Category filter
+      if (activeCatalogueCategory !== 'all') {
+        const cat = normalizeCategory(p.category);
+        if (cat !== activeCatalogueCategory) return false;
+      }
+      // Budget filter
+      if (catalogueBudgetCeiling > 0) {
+        if (getNumericPrice(p.price) > catalogueBudgetCeiling) return false;
+      }
+      // Search filter
+      if (catalogueSearchQuery) {
+        const hay = [
+          p.title,
+          p.name,
+          p.brand,
+          p.id,
+          p.category,
+          p.condition,
+          p.conditionLabel,
+          (p.specs || []).join(' ')
+        ].filter(Boolean).join(' ').toLowerCase();
+
+        const words = catalogueSearchQuery.split(/\s+/).filter(Boolean);
+        const matches = words.every(w => hay.includes(w));
+        if (!matches) return false;
+      }
+      return true;
+    });
+
+    // Sorting
+    if (catalogueSortOrder === 'asc') {
+      items.sort((a, b) => getNumericPrice(a.price) - getNumericPrice(b.price));
+    } else if (catalogueSortOrder === 'desc') {
+      items.sort((a, b) => getNumericPrice(b.price) - getNumericPrice(a.price));
+    }
+  }
+
+  const savedList = getShortlist();
+
+  if (!items.length) {
+    grid.innerHTML = `
+      <div style="grid-column: 1 / -1; text-align: center; padding: 3.5rem 1.5rem; background: var(--bg-surface-elevated); border: 1px solid var(--border-subtle); border-radius: 12px;">
+        <h3 style="font-size: 1.25rem; font-weight: 700; margin-bottom: 0.5rem; color: var(--text-primary);">No matching hardware</h3>
+        <p style="color: var(--text-secondary); margin-bottom: 1.5rem; font-size: 0.95rem;">Try another keyword or widen your filters.</p>
+        <button class="btn-hero orange" type="button" onclick="resetCatalogueFilters()">Clear all filters</button>
+      </div>
+    `;
+    return;
+  }
+
+  grid.innerHTML = items.map(item => {
     const img = normalizeProductImageUrl(item.image) || getCategoryFallbackImage(item.category);
-    const isLow = item.availabilityStatus === 'low_stock' || item.isLowStock;
+    const isSaved = savedList.includes(item.id);
+    const condLabel = item.conditionLabel ? item.conditionLabel.split(' · ')[0] : (item.condition === 'used' ? 'Pre-owned' : (item.category === 'pc' ? 'Custom Rig' : 'New'));
+    const brand = item.brand || (item.title ? item.title.split(' ')[0] : 'HARDWARE');
+    const brief = formatCardSpecs(item.specs);
+    const isSvg = img.endsWith('.svg');
 
     return `
-      <article class="featured-card">
-        <a class="featured-card__img-wrap" href="product.html?id=${item.id}">
-          <img src="${img}" alt="${item.title}" loading="lazy" onerror="this.onerror=null;this.src='images/store-banner.jpg';">
+      <article class="card">
+        <a class="product-link" href="product.html?id=${item.id}" data-product="${item.id}">
+          <div class="product-photo">
+            <img class="${isSvg ? 'illustration' : ''}" loading="lazy" src="${img}" alt="${item.title}" onerror="this.onerror=null;this.src='images/store-banner.jpg';">
+            <span class="pill">${condLabel}</span>
+          </div>
+          <div class="card-info">
+            <span class="brand-meta">${brand}</span>
+            <strong class="card-title">${item.title}</strong>
+            <span class="brief">${brief}</span>
+          </div>
         </a>
-        <div class="featured-card__body">
-          <div class="featured-card__meta">
-            <span class="featured-card__cond">${item.conditionLabel || (item.condition === 'used' ? 'Pre-Owned · Lab Tested' : 'Brand New · Sealed')}</span>
-            <span class="featured-card__avail ${isLow ? 'is-low' : ''}">${item.availability || 'In Stock'}</span>
-          </div>
-          <a href="product.html?id=${item.id}" class="featured-card__title-link">
-            <h3 class="featured-card__title">${item.title}</h3>
-          </a>
-          <ul class="featured-card__specs">
-            ${specs.map(s => `<li>${s}</li>`).join('')}
-          </ul>
-          <div class="featured-card__footer">
-            <div>
-              <div class="featured-card__price">${item.price}</div>
-              <div class="featured-card__warranty">${item.warranty || 'Warranty Included'}</div>
-            </div>
-            <a class="btn-card-primary" href="product.html?id=${item.id}">View Details &rarr;</a>
-          </div>
+        <button class="fav" type="button" data-save="${item.id}" aria-pressed="${isSaved}" aria-label="${isSaved ? 'Remove from' : 'Add to'} shortlist: ${item.title}">
+          <svg class="ico" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M6 4a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v17l-6-4-6 4Z"/>
+          </svg>
+        </button>
+        <div class="card-foot">
+          <b class="price">${item.price}</b>
+          <a class="view" href="product.html?id=${item.id}" aria-label="View ${item.title} details">Details</a>
         </div>
       </article>
     `;
   }).join('');
+}
+
+function initCatalogueControls() {
+  const tabsContainer = document.getElementById('categoriesTabs');
+  if (tabsContainer && !tabsContainer.dataset.initialized) {
+    tabsContainer.dataset.initialized = 'true';
+    tabsContainer.innerHTML = CATALOGUE_TABS.map(tab => {
+      const isPressed = tab.key === activeCatalogueCategory;
+      return `<button class="tab" type="button" role="tab" data-cat="${tab.key}" aria-pressed="${isPressed}">${tab.label}</button>`;
+    }).join('');
+
+    tabsContainer.addEventListener('click', e => {
+      const btn = e.target.closest('.tab');
+      if (!btn) return;
+      activeCatalogueCategory = btn.dataset.cat;
+      tabsContainer.querySelectorAll('.tab').forEach(t => {
+        t.setAttribute('aria-pressed', t.dataset.cat === activeCatalogueCategory);
+      });
+      renderFeaturedStock();
+    });
+  }
+
+  const searchInput = document.getElementById('searchHardwareInput');
+  if (searchInput && !searchInput.dataset.initialized) {
+    searchInput.dataset.initialized = 'true';
+    searchInput.addEventListener('input', () => {
+      catalogueSearchQuery = searchInput.value.trim().toLowerCase();
+      renderFeaturedStock();
+    });
+  }
+
+  const filterBtn = document.getElementById('filterToggleBtn');
+  const filtersPanel = document.getElementById('catalogueFilters');
+  const filterActiveDot = document.getElementById('filterActiveDot');
+  if (filterBtn && filtersPanel && !filterBtn.dataset.initialized) {
+    filterBtn.dataset.initialized = 'true';
+    filterBtn.addEventListener('click', () => {
+      const isHidden = filtersPanel.hidden;
+      filtersPanel.hidden = !isHidden;
+      filterBtn.setAttribute('aria-expanded', isHidden);
+    });
+  }
+
+  const budgetSelect = document.getElementById('budgetFilter');
+  if (budgetSelect && !budgetSelect.dataset.initialized) {
+    budgetSelect.dataset.initialized = 'true';
+    budgetSelect.addEventListener('change', () => {
+      catalogueBudgetCeiling = Number(budgetSelect.value) || 0;
+      if (filterActiveDot) {
+        filterActiveDot.hidden = catalogueBudgetCeiling === 0 && catalogueSortOrder === 'featured';
+      }
+      renderFeaturedStock();
+    });
+  }
+
+  const sortSelect = document.getElementById('sortFilter');
+  if (sortSelect && !sortSelect.dataset.initialized) {
+    sortSelect.dataset.initialized = 'true';
+    sortSelect.addEventListener('change', () => {
+      catalogueSortOrder = sortSelect.value || 'featured';
+      if (filterActiveDot) {
+        filterActiveDot.hidden = catalogueBudgetCeiling === 0 && catalogueSortOrder === 'featured';
+      }
+      renderFeaturedStock();
+    });
+  }
+
+  const resetBtn = document.getElementById('resetCatalogueFilters');
+  if (resetBtn && !resetBtn.dataset.initialized) {
+    resetBtn.dataset.initialized = 'true';
+    resetBtn.addEventListener('click', resetCatalogueFilters);
+  }
+
+  const grid = document.getElementById('featuredStockGrid');
+  if (grid && !grid.dataset.favInitialized) {
+    grid.dataset.favInitialized = 'true';
+    grid.addEventListener('click', e => {
+      const favBtn = e.target.closest('.fav');
+      if (favBtn) {
+        e.preventDefault();
+        e.stopPropagation();
+        toggleShortlist(favBtn.dataset.save);
+      }
+    });
+  }
+}
+
+function resetCatalogueFilters() {
+  activeCatalogueCategory = 'all';
+  catalogueSearchQuery = '';
+  catalogueBudgetCeiling = 0;
+  catalogueSortOrder = 'featured';
+  const searchInput = document.getElementById('searchHardwareInput');
+  if (searchInput) searchInput.value = '';
+  const budgetSelect = document.getElementById('budgetFilter');
+  if (budgetSelect) budgetSelect.value = '0';
+  const sortSelect = document.getElementById('sortFilter');
+  if (sortSelect) sortSelect.value = 'featured';
+  const filterActiveDot = document.getElementById('filterActiveDot');
+  if (filterActiveDot) filterActiveDot.hidden = true;
+  const tabsContainer = document.getElementById('categoriesTabs');
+  if (tabsContainer) {
+    tabsContainer.querySelectorAll('.tab').forEach(t => {
+      t.setAttribute('aria-pressed', t.dataset.cat === 'all');
+    });
+  }
+  renderFeaturedStock();
 }
 
 /* ==========================================================================
@@ -1220,6 +1454,7 @@ function resetToDefaultStock() {
   } catch (e) { }
   window.PRODUCTS = window.DEFAULT_PRODUCTS.slice(0);
   renderFeaturedStock();
+  initCatalogueControls();
   renderFeaturedNewStock();
   renderFeaturedMonitors();
   renderCategories();
@@ -1639,6 +1874,7 @@ document.addEventListener('DOMContentLoaded', () => {
   if (activeSheetUrl) hydrateCachedStock(activeSheetUrl);
 
   renderFeaturedStock();
+  initCatalogueControls();
   renderFeaturedNewStock();
   renderFeaturedMonitors();
   renderCategories();

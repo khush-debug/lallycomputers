@@ -197,88 +197,115 @@
   </div>
 
   <!-- ========================================================================
-       1. CLEAR STORE INTRODUCTION
+       1. HERO SECTION (COMPUTER SHOWROOM · MOGA)
        ======================================================================== -->
-  <section class="store-hero" id="top" aria-label="Lally Computers Store Introduction">
-    <div class="inner store-hero__grid">
-      <div class="store-hero__copy">
-        <div class="store-hero__eyebrow">
-          <span class="dot-status dot-open" aria-hidden="true"></span>
-          <span>Lally Computers &middot; Supreme Infosys &middot; 5-A, Sodhi Nagar, Moga</span>
-        </div>
-
-        <h1 class="store-hero__title">Laptops, custom PCs &amp; expert repairs in Moga.</h1>
-        <p class="store-hero__sub">
-          Shop new and tested pre-owned systems, with in-store inspection and local support.
-        </p>
-
-        <div class="store-hero__meta">
-          <a class="store-hero__rating-link"
-            href="https://www.google.com/maps/search/?api=1&amp;query=Supreme+Infosys+5-A+Sodhi+Nagar+Moga+Punjab+142001"
-            target="_blank" rel="noopener">
-            <svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor" aria-hidden="true">
-              <path d="m12 2.5 2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3 6.1 20.6l1.3-6.6L2.5 9.4l6.6-.8z" />
-            </svg>
-            <span><strong>4.2</strong> on Google (709 reviews) &nearr;</span>
-          </a>
-          <span class="hero-meta-sep" aria-hidden="true">&middot;</span>
-          <span>25-Point Lab Reports</span>
-          <span class="hero-meta-sep" aria-hidden="true">&middot;</span>
-          <span>Genuine GST Invoice</span>
-        </div>
-
-        <div class="store-hero__actions">
-          <button class="btn-primary-blue" type="button" onclick="openCatalogueSpace('laptops_used')">
-            <span>Browse Used &amp; New Stock</span>
-            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true">
-              <path d="M5 12h14M13 5l7 7-7 7" />
-            </svg>
-          </button>
-          <a class="btn-wa-green"
-            href="https://wa.me/919872010193?text=Hi%20Lally%20Computers%20(Supreme%20Infosys)%2C%20I%20would%20like%20to%20enquire%20about%20in-store%20stock."
-            target="_blank" rel="noopener">
-            <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden="true">
-              <path d="M17.472 14.382c-.301-.15-1.782-.879-2.058-.98-.276-.1-.476-.15-.677.15-.2.301-.777.98-.952 1.18-.175.201-.351.226-.652.076-.301-.15-1.27-.468-2.42-1.493-.894-.799-1.498-1.786-1.674-2.087-.175-.3-.019-.463.132-.612.136-.134.301-.351.451-.527.15-.175.2-.301.301-.501.1-.2.05-.376-.025-.526-.075-.15-.677-1.631-.928-2.233-.244-.585-.493-.506-.677-.515-.175-.009-.376-.011-.577-.011-.2 0-.526.075-.802.376-.276.301-1.053 1.028-1.053 2.508 0 1.48 1.078 2.91 1.228 3.111.15.2 2.122 3.24 5.141 4.544.718.31 1.279.496 1.716.635.722.23 1.379.197 1.898.12.579-.086 1.782-.728 2.033-1.431.251-.703.251-1.305.175-1.431-.075-.126-.276-.201-.577-.351zM12.04 2C6.516 2 2.023 6.49 2.023 12.013c0 1.942.555 3.756 1.517 5.292L2 22l4.834-1.503a10.007 10.007 0 0 0 5.206 1.516c5.524 0 10.017-4.49 10.017-10.013C22.057 6.49 17.564 2 12.04 2z" />
-            </svg>
-            <span>WhatsApp Enquiry</span>
-          </a>
-        </div>
+  <section class="hero" id="top" aria-labelledby="hero-title">
+    <div class="wrap hero-in">
+      <div class="hero-art">
+        <img src="images/performance.jpg" alt="Graphite performance laptop with an orange ribbon of light across its screen" fetchpriority="high">
       </div>
-
-      <div class="store-hero__media">
-        <div class="store-hero__photo-frame">
-          <img src="images/store-banner.jpg" alt="Lally Computers (Supreme Infosys) Showroom in Sodhi Nagar, Moga" width="760" height="480">
-          <div class="store-hero__photo-caption">
-            <span class="availability-pill">
-              <span class="dot-status dot-open" aria-hidden="true"></span>
-              <span>In-Store Bench Testing &amp; Pickup</span>
-            </span>
-            <span>5-A, Sodhi Nagar, Moga</span>
-          </div>
+      <div class="hero-copy">
+        <div class="kicker light"><span></span> COMPUTER SHOWROOM · MOGA</div>
+        <h1 id="hero-title">Find your next<br><em>upgrade.</em></h1>
+        <p>New and pre-owned laptops, custom PCs and expert repairs. Get hands-on with your hardware in Moga.</p>
+        <div class="hero-actions">
+          <a class="btn-hero orange" href="#catalogue">
+            <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <rect x="3" y="3" width="7" height="7" rx="1" />
+              <rect x="14" y="3" width="7" height="7" rx="1" />
+              <rect x="3" y="14" width="7" height="7" rx="1" />
+              <rect x="14" y="14" width="7" height="7" rx="1" />
+            </svg>
+            <span>Browse hardware</span>
+          </a>
+          <a class="btn-hero ghost" href="#store">
+            <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M20 10c0 6-8 12-8 12S4 16 4 10a8 8 0 1 1 16 0Z" />
+              <circle cx="12" cy="10" r="2.5" />
+            </svg>
+            <span>Visit showroom</span>
+          </a>
         </div>
       </div>
     </div>
   </section>
 
+  <!-- 3-Item Assurance Strip -->
+  <div class="assurance">
+    <div class="wrap assurances">
+      <div>
+        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <rect x="2" y="3" width="20" height="14" rx="2" />
+          <path d="M8 21h8m-4-4v4m-5-11 3 3 6-6" />
+        </svg>
+        <span>In-store testing</span>
+      </div>
+      <div>
+        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M5 2h14v20l-3-2-4 2-4-2-3 2V2Z" />
+          <path d="M8 7h8M8 11h8M8 15h4" />
+        </svg>
+        <span>GST invoices</span>
+      </div>
+      <div>
+        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M20.3 3.7a5.8 5.8 0 0 1-6.9 7.6l-8.3 8.3a2 2 0 0 1-2.8-2.8l8.3-8.3A5.8 5.8 0 0 1 18.2 2L15 5.3l.6 3 2.7.5Z" />
+        </svg>
+        <span>Local repair support</span>
+      </div>
+    </div>
+  </div>
+
   <!-- ========================================================================
-       2. FEATURED STOCK WITH PRICES
+       2. THE CATALOGUE (FEATURED STOCK WITH HARDWARE TABS & SEARCH)
        ======================================================================== -->
-  <section class="apple-section" id="featured">
-    <div class="inner">
-      <div class="featured-header-row">
+  <section class="apple-section" id="catalogue">
+    <span id="featured" style="position:relative;top:-70px;visibility:hidden;"></span>
+    <div class="inner wrap">
+      <div class="section-head">
         <div>
-          <p class="section-eyebrow">Ready In Store</p>
-          <h2 class="section-headline">Featured Stock with Prices.</h2>
-          <p class="section-desc">
-            Individual configurations with exact pricing, current lab test results, and real condition photos.
-          </p>
+          <div class="kicker"><span></span>THE CATALOGUE</div>
+          <h2 class="catalogue-headline">Shop the hardware<span>.</span></h2>
         </div>
-        <button class="btn-primary-blue" type="button" onclick="openCatalogueSpace('laptops_used')">
-          <span>Open Full Catalogue</span>
-          <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true">
-            <path d="M5 12h14M13 5l7 7-7 7" />
-          </svg>
-        </button>
+        <div class="controls">
+          <label class="searchbox">
+            <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <circle cx="10.5" cy="10.5" r="6.7" />
+              <path d="m16 16 5 5" />
+            </svg>
+            <input type="search" id="searchHardwareInput" placeholder="Search hardware" aria-label="Search hardware">
+          </label>
+          <button class="filter-button" id="filterToggleBtn" type="button" aria-expanded="false" aria-controls="catalogueFilters">
+            <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M3 6h5m4 0h9M3 17h10m4 0h4" />
+              <circle cx="10" cy="6" r="2" />
+              <circle cx="15" cy="17" r="2" />
+            </svg>
+            <span>Filters</span>
+            <span id="filterActiveDot" hidden></span>
+          </button>
+        </div>
+      </div>
+
+      <div class="tabs" id="categoriesTabs" role="tablist" aria-label="Hardware categories"></div>
+
+      <div class="filters" id="catalogueFilters" hidden>
+        <label>Budget
+          <select id="budgetFilter">
+            <option value="0">Any budget</option>
+            <option value="25000">Up to ₹25,000</option>
+            <option value="50000">Up to ₹50,000</option>
+            <option value="75000">Up to ₹75,000</option>
+          </select>
+        </label>
+        <label>Sort by
+          <select id="sortFilter">
+            <option value="featured">Featured</option>
+            <option value="asc">Price · low to high</option>
+            <option value="desc">Price · high to low</option>
+          </select>
+        </label>
+        <button class="link-btn" id="resetCatalogueFilters" type="button">Reset filters</button>
       </div>
 
       <div class="featured-stock-grid" id="featuredStockGrid">
