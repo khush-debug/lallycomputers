@@ -1521,10 +1521,33 @@ window.DEFAULT_PRODUCTS = [
       "Condition": "100% Brand New Sealed Box with Official GST Invoice"
     },
     "labReport": null,
-    "image": "images/products/photos/lap-used-3-front.jpg",
+    "image": "images/products/photos/lap-new-1-front.jpg",
     "mrp": "₹135,999",
     "mrpNum": 135999,
-    "delivery": "In-Store Pickup · Sodhi Nagar, Moga"
+    "delivery": "In-Store Pickup · Sodhi Nagar, Moga",
+    "gallery": [
+      {
+        "label": "Front View & Display",
+        "src": "images/products/photos/lap-new-1-front.jpg"
+      },
+      {
+        "label": "Keyboard & Trackpad",
+        "src": "images/products/photos/lap-new-1-keyboard.jpg"
+      },
+      {
+        "label": "MagSafe & Ports Profile",
+        "src": "images/products/photos/lap-new-1-ports.jpg"
+      },
+      {
+        "label": "Underside & Base",
+        "src": "images/products/photos/lap-new-1-underside.jpg"
+      },
+      {
+        "label": "Factory Sealed Box & Tamper Seals",
+        "src": "images/products/photos/lap-new-1-seal.jpg"
+      }
+    ],
+    "wearNote": "Brand-new factory sealed unit in unopened original Apple retail box. Zero prior battery cycles, intact Apple pull-tab security seals, eligible for 1-Year official Apple warranty."
   },
   {
     "id": "lap-new-3",
@@ -1561,10 +1584,25 @@ window.DEFAULT_PRODUCTS = [
       "Software": "Pre-installed Genuine Windows 11 Home & Microsoft Office 2021"
     },
     "labReport": null,
-    "image": "images/products/photos/lap-used-7-front.jpg",
+    "image": "images/products/photos/lap-new-3-front.jpg",
     "mrp": "₹59,999",
     "mrpNum": 59999,
-    "delivery": "In-Store Pickup · Sodhi Nagar, Moga"
+    "delivery": "In-Store Pickup · Sodhi Nagar, Moga",
+    "gallery": [
+      {
+        "label": "Front View & 120Hz Display",
+        "src": "images/products/photos/lap-new-3-front.jpg"
+      },
+      {
+        "label": "Keyboard & Numpad",
+        "src": "images/products/photos/lap-used-2-front.jpg"
+      },
+      {
+        "label": "Factory Sealed Box & Serial Barcode",
+        "src": "images/products/photos/lap-new-seal.jpg"
+      }
+    ],
+    "wearNote": "Brand-new factory sealed unit in original Dell packaging. Unused, zero battery cycles, genuine GST invoice with 1-Year Dell India warranty."
   },
   {
     "id": "lap-new-4",
@@ -1600,10 +1638,25 @@ window.DEFAULT_PRODUCTS = [
       "Display": "14.0\" WUXGA (1920x1200) OLED 400 nits Glossy, 100% DCI-P3, DisplayHDR True Black 500"
     },
     "labReport": null,
-    "image": "images/products/photos/lap-used-7-front.jpg",
+    "image": "images/products/photos/lap-new-4-front.jpg",
     "mrp": "₹74,999",
     "mrpNum": 74999,
-    "delivery": "In-Store Pickup · Sodhi Nagar, Moga"
+    "delivery": "In-Store Pickup · Sodhi Nagar, Moga",
+    "gallery": [
+      {
+        "label": "Front View & OLED Screen",
+        "src": "images/products/photos/lap-new-4-front.jpg"
+      },
+      {
+        "label": "Backlit Keyboard & Ports",
+        "src": "images/products/photos/lap-new-4-keyboard.jpg"
+      },
+      {
+        "label": "Factory Sealed Packaging",
+        "src": "images/products/photos/lap-new-seal.jpg"
+      }
+    ],
+    "wearNote": "Brand-new factory sealed unit in original Lenovo carton. 400-nit WUXGA OLED panel, untouched chassis, eligible for 1-Year Lenovo onsite warranty."
   },
   {
     "id": "lap-new-6",
@@ -1636,7 +1689,26 @@ window.DEFAULT_PRODUCTS = [
     "image": "images/products/photos/lap-used-3-front.jpg",
     "mrp": "",
     "mrpNum": 0,
-    "delivery": "In-Store Pickup · Sodhi Nagar, Moga"
+    "delivery": "In-Store Pickup · Sodhi Nagar, Moga",
+    "gallery": [
+      {
+        "label": "Front View & Retina Display",
+        "src": "images/products/photos/lap-used-3-front.jpg"
+      },
+      {
+        "label": "Backlit Magic Keyboard",
+        "src": "images/products/photos/lap-new-1-keyboard.jpg"
+      },
+      {
+        "label": "Thunderbolt & MagSafe Ports",
+        "src": "images/products/photos/lap-new-1-ports.jpg"
+      },
+      {
+        "label": "Factory Sealed Box & Tamper Seals",
+        "src": "images/products/photos/lap-new-1-seal.jpg"
+      }
+    ],
+    "wearNote": "Brand-new factory sealed Apple unit in unopened retail packaging with official Apple India warranty."
   },
   {
     "id": "lap-new-7",
@@ -1669,7 +1741,22 @@ window.DEFAULT_PRODUCTS = [
     "image": "images/products/photos/lap-used-7-front.jpg",
     "mrp": "",
     "mrpNum": 0,
-    "delivery": "In-Store Pickup · Sodhi Nagar, Moga"
+    "delivery": "In-Store Pickup · Sodhi Nagar, Moga",
+    "gallery": [
+      {
+        "label": "Front View & Micro-Edge Screen",
+        "src": "images/products/photos/lap-used-7-front.jpg"
+      },
+      {
+        "label": "Natural Silver Keyboard & Ports",
+        "src": "images/products/photos/lap-new-7-keyboard.jpg"
+      },
+      {
+        "label": "Factory Sealed Packaging",
+        "src": "images/products/photos/lap-new-seal.jpg"
+      }
+    ],
+    "wearNote": "Brand-new factory sealed unit in unopened HP carton. Zero usage, complete with genuine Windows 11 Home license and 1-Year HP Onsite Warranty."
   },
   {
     "id": "lap-game-1",

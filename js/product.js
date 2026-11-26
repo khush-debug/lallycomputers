@@ -140,7 +140,8 @@
     const wearCallout = document.getElementById('pdpWearCallout');
     if (wearCallout) {
       if (p.wearNote) {
-        wearCallout.innerHTML = `<strong>Cosmetic Condition Note:</strong> ${p.wearNote}`;
+        const noteHeading = p.condition === 'new' ? 'Factory Packaging &amp; Seal Inspection:' : 'Cosmetic Condition Note:';
+        wearCallout.innerHTML = `<strong>${noteHeading}</strong> ${p.wearNote}`;
         wearCallout.style.display = 'block';
       } else {
         wearCallout.style.display = 'none';

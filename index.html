@@ -287,6 +287,30 @@
   </section>
 
   <!-- ========================================================================
+       2B. BRAND NEW LAPTOPS SHOWCASE (PAGE 2 BELOW USED LAPTOPS)
+       ======================================================================== -->
+  <section class="apple-section apple-section--alt" id="featuredNewLaptops" aria-label="Brand New Laptops in Moga">
+    <div class="inner">
+      <div class="featured-header-row">
+        <div>
+          <p class="section-eyebrow">Factory Sealed · 1-Year Official Warranty · Genuine GST Invoice</p>
+          <h2 class="section-headline">Brand New Laptops.</h2>
+          <p class="section-desc">
+            Authorized distributor stock from Apple, Lenovo, Dell, and HP with multi-angle packaging inspection and in-store setup.
+          </p>
+        </div>
+        <button class="btn-primary-blue" type="button" onclick="openCatalogueSpace('laptops_new')">
+          <span>Browse All New Laptops &rarr;</span>
+        </button>
+      </div>
+
+      <div class="featured-stock-grid" id="featuredNewStockGrid">
+        <!-- Populated dynamically via js/app.js -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================
        SINGLE-SELECTOR FILTERABLE CATALOGUE SPACE
        ======================================================================== -->
   <section class="catalogue-space" id="catalogueSpace" aria-label="Department Inventory Catalogue">
@@ -377,6 +401,9 @@
 
       <!-- Simplified Product Cards -->
       <div id="spaceLineupGrid"></div>
+
+      <!-- Catalogue Page Navigation (Below Used Laptops) -->
+      <div class="catalogue-pagination" id="spacePagination"></div>
     </div>
   </section>
 

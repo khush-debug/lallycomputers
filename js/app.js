@@ -190,6 +190,48 @@ function renderFeaturedStock() {
 }
 
 /* ==========================================================================
+   FEATURED BRAND NEW LAPTOPS (PAGE 2 BELOW USED LAPTOPS ON HOMEPAGE)
+   ========================================================================== */
+function renderFeaturedNewStock() {
+  const grid = document.getElementById('featuredNewStockGrid');
+  if (!grid) return;
+
+  const newItems = window.PRODUCTS.filter(p => normalizeCategory(p.category) === 'laptops_new');
+
+  grid.innerHTML = newItems.map(item => {
+    const specs = (item.specs || []).slice(0, 4);
+    const img = normalizeProductImageUrl(item.image) || getCategoryFallbackImage(item.category);
+
+    return `
+      <article class="featured-card">
+        <a class="featured-card__img-wrap" href="product.html?id=${item.id}">
+          <img src="${img}" alt="${item.title}" loading="lazy" onerror="this.onerror=null;this.src='images/store-banner.jpg';">
+        </a>
+        <div class="featured-card__body">
+          <div class="featured-card__meta">
+            <span class="featured-card__cond" style="color: #22C55E;">Brand New · Sealed</span>
+            <span class="featured-card__avail">${item.availability || 'In Stock · Moga'}</span>
+          </div>
+          <a href="product.html?id=${item.id}" class="featured-card__title-link">
+            <h3 class="featured-card__title">${item.title}</h3>
+          </a>
+          <ul class="featured-card__specs">
+            ${specs.map(s => `<li>${s}</li>`).join('')}
+          </ul>
+          <div class="featured-card__footer">
+            <div>
+              <div class="featured-card__price">${item.price}</div>
+              <div class="featured-card__warranty">${item.warranty || '1-Year Official Warranty'}</div>
+            </div>
+            <a class="btn-card-primary" href="product.html?id=${item.id}">Multi-Angle Views &rarr;</a>
+          </div>
+        </div>
+      </article>
+    `;
+  }).join('');
+}
+
+/* ==========================================================================
    CATEGORY NAVIGATION & RENDERING (SINGLE HORIZONTAL SELECTOR)
    ========================================================================== */
 function renderCategories() {
@@ -301,6 +343,10 @@ function switchSpaceCategory(catId) {
   });
 
   resetFilters();
+  const spaceEl = document.getElementById('catalogueSpace');
+  if (spaceEl && spaceEl.classList.contains('is-open')) {
+    spaceEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
   setTimeout(finishTopLoader, 140);
 }
 
@@ -486,6 +532,57 @@ function renderSpaceProducts() {
       </article>
     `;
   }).join('');
+
+  // Catalogue Page Navigation (Below Used Laptops)
+  const paginationEl = document.getElementById('spacePagination');
+  if (paginationEl) {
+    if (activeCategory === 'laptops_used') {
+      paginationEl.innerHTML = `
+        <div class="catalogue-pagination-bar">
+          <div class="pagination-counter">Page <strong>1 of 2</strong> &middot; Used Laptops (7 verified units)</div>
+          <div class="pagination-page-pills">
+            <button class="pagination-pill is-active" type="button" aria-current="page" disabled>1</button>
+            <button class="pagination-pill" type="button" onclick="switchSpaceCategory('laptops_new')" aria-label="Go to Page 2: Brand New Laptops">2</button>
+          </div>
+        </div>
+        <div class="pagination-next-card" onclick="switchSpaceCategory('laptops_new')" role="button" tabindex="0">
+          <div class="pagination-next-content">
+            <span class="pagination-next-badge">Next Page: Brand New Stock</span>
+            <h4 class="pagination-next-title">Looking for Brand New Sealed Laptops? Go to Page 2 &rarr;</h4>
+            <p class="pagination-next-desc">Browse factory-sealed systems from Apple, Lenovo, Dell, and HP with official manufacturer warranty, genuine GST invoices, and multi-angle packaging inspection.</p>
+          </div>
+          <div class="pagination-next-action">
+            <span class="btn-primary-blue">Open Page 2: New Laptops &rarr;</span>
+          </div>
+        </div>
+      `;
+      paginationEl.style.display = 'flex';
+    } else if (activeCategory === 'laptops_new') {
+      paginationEl.innerHTML = `
+        <div class="catalogue-pagination-bar">
+          <div class="pagination-counter">Page <strong>2 of 2</strong> &middot; Brand New Laptops (5 factory-sealed units)</div>
+          <div class="pagination-page-pills">
+            <button class="pagination-pill" type="button" onclick="switchSpaceCategory('laptops_used')" aria-label="Go to Page 1: Used Laptops">1</button>
+            <button class="pagination-pill is-active" type="button" aria-current="page" disabled>2</button>
+          </div>
+        </div>
+        <div class="pagination-next-card" onclick="switchSpaceCategory('laptops_used')" role="button" tabindex="0">
+          <div class="pagination-next-content">
+            <span class="pagination-next-badge">Previous Page: Used &amp; Tested Stock</span>
+            <h4 class="pagination-next-title">&larr; Return to Page 1: Used Laptops (25-Point Lab Tested)</h4>
+            <p class="pagination-next-desc">Browse tested pre-owned enterprise ThinkPads, Latitudes, and MacBooks with dated hardware diagnostics and honest cosmetic wear photos.</p>
+          </div>
+          <div class="pagination-next-action">
+            <span class="btn-primary-blue">&larr; Open Page 1: Used Laptops</span>
+          </div>
+        </div>
+      `;
+      paginationEl.style.display = 'flex';
+    } else {
+      paginationEl.innerHTML = '';
+      paginationEl.style.display = 'none';
+    }
+  }
 }
 
 /* ==========================================================================
@@ -949,7 +1046,7 @@ function mapCsvToProducts(rows) {
   return products;
 }
 
-const STOCK_CACHE_KEY = 'lally_stock_cache_v2';
+const STOCK_CACHE_KEY = 'lally_stock_cache_v3';
 
 function hydrateCachedStock(activeUrl) {
   try {
@@ -1011,6 +1108,7 @@ function fetchAndSyncGoogleSheet(csvUrl, isManual) {
       if (indicatorEl) indicatorEl.className = 'dot-status dot-open';
 
       renderFeaturedStock();
+      renderFeaturedNewStock();
       renderCategories();
       const space = document.getElementById('catalogueSpace');
       if (space && space.classList.contains('is-open')) renderSpaceProducts();
@@ -1054,6 +1152,7 @@ function resetToDefaultStock() {
   } catch (e) { }
   window.PRODUCTS = window.DEFAULT_PRODUCTS.slice(0);
   renderFeaturedStock();
+  renderFeaturedNewStock();
   renderCategories();
   renderSpaceProducts();
   showToast('Restored default catalogue');
@@ -1145,6 +1244,7 @@ document.addEventListener('DOMContentLoaded', () => {
   if (activeSheetUrl) hydrateCachedStock(activeSheetUrl);
 
   renderFeaturedStock();
+  renderFeaturedNewStock();
   renderCategories();
   updateCartUI();
   updateHours();
