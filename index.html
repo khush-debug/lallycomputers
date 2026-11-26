@@ -102,7 +102,7 @@
     <link rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=Oswald:wght@500;600;700&display=swap">
   </noscript>
-  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/styles.css?v=20261126-4">
 
   <script>
     try {
@@ -202,48 +202,48 @@
   <nav class="ecom-dept-bar" id="ecomDeptBar" aria-label="Department Quick Navigation">
     <div class="inner ecom-dept-bar__inner">
       <div class="ecom-dept-scroll">
-        <a href="#catalogue" class="ecom-dept-chip" onclick="selectHardwareTab('all')">
-          <span class="ecom-dept-icon">🛍️</span>
+        <a href="#catalogue" class="ecom-dept-chip is-active" data-dept="all" onclick="selectHardwareTab('all')">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
           <span>All Hardware</span>
         </a>
-        <a href="#catalogue" class="ecom-dept-chip" onclick="selectHardwareTab('laptops_used')">
-          <span class="ecom-dept-icon">💻</span>
+        <a href="#catalogue" class="ecom-dept-chip" data-dept="laptops_used" onclick="selectHardwareTab('laptops_used')">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="4" width="18" height="12" rx="2"/><line x1="2" y1="20" x2="22" y2="20"/></svg>
           <span>Used Laptops</span>
         </a>
-        <a href="#featuredNewLaptops" class="ecom-dept-chip">
-          <span class="ecom-dept-icon">✨</span>
-          <span>Brand New Laptops</span>
+        <a href="#featuredNewLaptops" class="ecom-dept-chip" data-dept="laptops_new">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 16.8l-6.2 4.5 2.4-7.4L2 9.4h7.6z"/></svg>
+          <span>New Laptops</span>
         </a>
-        <a href="#catalogue" class="ecom-dept-chip" onclick="selectHardwareTab('pc')">
-          <span class="ecom-dept-icon">🖥️</span>
+        <a href="#catalogue" class="ecom-dept-chip" data-dept="pc" onclick="selectHardwareTab('pc')">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="4" y="2" width="16" height="20" rx="2"/><circle cx="12" cy="14" r="3"/><line x1="8" y1="6" x2="16" y2="6"/></svg>
           <span>Custom PCs</span>
         </a>
-        <a href="#featuredMonitors" class="ecom-dept-chip">
-          <span class="ecom-dept-icon">📺</span>
+        <a href="#featuredMonitors" class="ecom-dept-chip" data-dept="monitors">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
           <span>LCDs &amp; Monitors</span>
         </a>
-        <a href="#featuredGadgets" class="ecom-dept-chip">
-          <span class="ecom-dept-icon">🎧</span>
+        <a href="#featuredGadgets" class="ecom-dept-chip" data-dept="gadgets">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 18v-6a9 9 0 0 1 18 0v6"/><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/></svg>
           <span>Gadgets &amp; Audio</span>
         </a>
-        <a href="#featuredGym" class="ecom-dept-chip">
-          <span class="ecom-dept-icon">🏋️</span>
+        <a href="#featuredGym" class="ecom-dept-chip" data-dept="gym">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6.5 6.5h11"/><path d="M6.5 17.5h11"/><path d="M3 10v4"/><path d="M21 10v4"/><path d="M6 7v10"/><path d="M18 7v10"/></svg>
           <span>Gym Equipment</span>
         </a>
-        <a href="#featuredWatches" class="ecom-dept-chip">
-          <span class="ecom-dept-icon">⌚</span>
+        <a href="#featuredWatches" class="ecom-dept-chip" data-dept="watches">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="6"/><polyline points="12 9 12 12 14 13"/><path d="M9 6V3h6v3M9 18v3h6v-3"/></svg>
           <span>Smartwatches</span>
         </a>
-        <a href="#catalogue" class="ecom-dept-chip" onclick="selectHardwareTab('pc_components')">
-          <span class="ecom-dept-icon">⚡</span>
+        <a href="#catalogue" class="ecom-dept-chip" data-dept="pc_components" onclick="selectHardwareTab('pc_components')">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6"/><line x1="9" y1="1" x2="9" y2="4"/><line x1="15" y1="1" x2="15" y2="4"/><line x1="9" y1="20" x2="9" y2="23"/><line x1="15" y1="20" x2="15" y2="23"/></svg>
           <span>Components</span>
         </a>
-        <a href="#featuredAppliances" class="ecom-dept-chip">
-          <span class="ecom-dept-icon">🧳</span>
+        <a href="#featuredAppliances" class="ecom-dept-chip" data-dept="other">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="5" y="7" width="14" height="14" rx="2"/><path d="M9 7V5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2"/></svg>
           <span>Luggage &amp; Home</span>
         </a>
         <a href="#lineup" class="ecom-dept-chip ecom-dept-chip--more">
-          <span>All Departments &rarr;</span>
+          <span>All Depts &rarr;</span>
         </a>
       </div>
     </div>
@@ -1749,8 +1749,8 @@
 
   <div class="top-loader-bar" id="topLoaderBar"></div>
 
-  <script defer src="js/data.js"></script>
-  <script defer src="js/app.js"></script>
+  <script defer src="js/data.js?v=20261126-4"></script>
+  <script defer src="js/app.js?v=20261126-4"></script>
 </body>
 
 </html>

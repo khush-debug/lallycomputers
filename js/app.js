@@ -185,8 +185,15 @@ function matchesCatalogueCategory(product, targetCat) {
   return normalizeCategory(product.category) === targetCat;
 }
 
+function syncDeptRibbonActive(catKey) {
+  document.querySelectorAll('.ecom-dept-chip[data-dept]').forEach(chip => {
+    chip.classList.toggle('is-active', chip.getAttribute('data-dept') === catKey);
+  });
+}
+
 window.selectHardwareTab = function(catKey) {
   activeCatalogueCategory = catKey;
+  syncDeptRibbonActive(catKey);
   const tabsContainer = document.getElementById('categoriesTabs');
   if (tabsContainer) {
     tabsContainer.querySelectorAll('.tab').forEach(t => {
@@ -350,9 +357,9 @@ function renderFeaturedStock() {
           </svg>
         </button>
         <div class="card-foot">
-          <div>
+          <div class="card-foot-top">
             <b class="price">${item.price}</b>
-            <span class="card-foot-badge">✓ GST Bill &amp; Tested</span>
+            <span class="card-foot-badge">✓ GST &amp; Tested</span>
           </div>
           <div class="card-foot-actions">
             <button class="btn-card-cart" type="button" onclick="event.preventDefault(); event.stopPropagation(); addToCart('${item.id}');" title="Add to inquiry basket">
@@ -380,6 +387,7 @@ function initCatalogueControls() {
       const btn = e.target.closest('.tab');
       if (!btn) return;
       activeCatalogueCategory = btn.dataset.cat;
+      syncDeptRibbonActive(activeCatalogueCategory);
       tabsContainer.querySelectorAll('.tab').forEach(t => {
         t.setAttribute('aria-pressed', t.dataset.cat === activeCatalogueCategory);
       });
@@ -475,270 +483,112 @@ function resetCatalogueFilters() {
 }
 
 /* ==========================================================================
-   FEATURED BRAND NEW LAPTOPS (PAGE 2 BELOW USED LAPTOPS ON HOMEPAGE)
+   FEATURED DEPARTMENT SHOWCASES (SHARED CLEAN CARD RENDERER)
    ========================================================================== */
+function renderShowcaseGrid(gridId, items, opts) {
+  const grid = document.getElementById(gridId);
+  if (!grid) return;
+
+  const badgeLabel = (opts && opts.badgeLabel) || 'Brand New · Sealed';
+  const badgeColor = (opts && opts.badgeColor) || '#22C55E';
+  const defaultWarranty = (opts && opts.defaultWarranty) || 'Official Warranty';
+  const inspectLabel = (opts && opts.inspectLabel) || 'Details &rarr;';
+  const maxSpecs = (opts && opts.maxSpecs) || 3;
+
+  grid.innerHTML = items.map(item => {
+    const specs = (item.specs || []).slice(0, maxSpecs);
+    const img = normalizeProductImageUrl(item.image) || getCategoryFallbackImage(item.category);
+    const isSvg = img.endsWith('.svg');
+
+    return `
+      <article class="featured-card">
+        <a class="featured-card__img-wrap" href="product.html?id=${item.id}">
+          <img class="${isSvg ? 'illustration' : ''}" src="${img}" alt="${item.title}" loading="lazy" onerror="this.onerror=null;this.src='images/store-banner.jpg';">
+        </a>
+        <div class="featured-card__body">
+          <div class="featured-card__meta">
+            <span class="featured-card__cond" style="color: ${badgeColor};">${badgeLabel}</span>
+            <span class="featured-card__avail">${item.availability || 'In Stock · Moga'}</span>
+          </div>
+          <a href="product.html?id=${item.id}" class="featured-card__title-link">
+            <h3 class="featured-card__title">${item.title}</h3>
+          </a>
+          <ul class="featured-card__specs">
+            ${specs.map(s => `<li>${s}</li>`).join('')}
+          </ul>
+          <div class="featured-card__footer">
+            <div class="featured-card__price-row">
+              <span class="featured-card__price">${item.price}</span>
+              <span class="featured-card__warranty">${item.warranty || defaultWarranty}</span>
+            </div>
+            <div class="featured-card__btn-row">
+              <button class="btn-card-cart" type="button" onclick="event.preventDefault(); event.stopPropagation(); addToCart('${item.id}');" title="Add to inquiry basket">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+                <span>+ Basket</span>
+              </button>
+              <a class="btn-card-primary" href="product.html?id=${item.id}">${inspectLabel}</a>
+            </div>
+          </div>
+        </div>
+      </article>
+    `;
+  }).join('');
+}
+
 function renderFeaturedNewStock() {
-  const grid = document.getElementById('featuredNewStockGrid');
-  if (!grid) return;
-
-  const newItems = window.PRODUCTS.filter(p => normalizeCategory(p.category) === 'laptops_new');
-
-  grid.innerHTML = newItems.map(item => {
-    const specs = (item.specs || []).slice(0, 4);
-    const img = normalizeProductImageUrl(item.image) || getCategoryFallbackImage(item.category);
-
-    return `
-      <article class="featured-card">
-        <a class="featured-card__img-wrap" href="product.html?id=${item.id}">
-          <img src="${img}" alt="${item.title}" loading="lazy" onerror="this.onerror=null;this.src='images/store-banner.jpg';">
-        </a>
-        <div class="featured-card__body">
-          <div class="featured-card__meta">
-            <span class="featured-card__cond" style="color: #22C55E;">Brand New · Sealed</span>
-            <span class="featured-card__avail">${item.availability || 'In Stock · Moga'}</span>
-          </div>
-          <a href="product.html?id=${item.id}" class="featured-card__title-link">
-            <h3 class="featured-card__title">${item.title}</h3>
-          </a>
-          <ul class="featured-card__specs">
-            ${specs.map(s => `<li>${s}</li>`).join('')}
-          </ul>
-          <div class="featured-card__footer">
-            <div>
-              <div class="featured-card__price">${item.price}</div>
-              <div class="featured-card__warranty">${item.warranty || '1-Year Official Warranty'}</div>
-            </div>
-            <div style="display: flex; gap: 6px; align-items: center;">
-              <button class="btn-card-cart" type="button" onclick="event.preventDefault(); event.stopPropagation(); addToCart('${item.id}');" title="Add to inquiry basket">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
-                <span>+ Basket</span>
-              </button>
-              <a class="btn-card-primary" href="product.html?id=${item.id}">Multi-Angle Views &rarr;</a>
-            </div>
-          </div>
-        </div>
-      </article>
-    `;
-  }).join('');
+  const newItems = (window.PRODUCTS || []).filter(p => normalizeCategory(p.category) === 'laptops_new');
+  renderShowcaseGrid('featuredNewStockGrid', newItems, {
+    badgeLabel: 'Brand New · Sealed',
+    badgeColor: '#22C55E',
+    defaultWarranty: '1-Year Official Warranty',
+    inspectLabel: 'Inspect &rarr;'
+  });
 }
 
-/* ==========================================================================
-   FEATURED MONITORS & DISPLAYS SHOWCASE (PAGE / SECTION BELOW LAPTOPS)
-   ========================================================================== */
 function renderFeaturedMonitors() {
-  const grid = document.getElementById('featuredMonitorsGrid');
-  if (!grid) return;
-
-  const monitorItems = window.PRODUCTS.filter(p => normalizeCategory(p.category) === 'monitors');
-
-  grid.innerHTML = monitorItems.map(item => {
-    const specs = (item.specs || []).slice(0, 4);
-    const img = normalizeProductImageUrl(item.image) || getCategoryFallbackImage(item.category);
-
-    return `
-      <article class="featured-card">
-        <a class="featured-card__img-wrap" href="product.html?id=${item.id}">
-          <img src="${img}" alt="${item.title}" loading="lazy" onerror="this.onerror=null;this.src='images/store-banner.jpg';">
-        </a>
-        <div class="featured-card__body">
-          <div class="featured-card__meta">
-            <span class="featured-card__cond" style="color: #22C55E;">Brand New · Sealed</span>
-            <span class="featured-card__avail">${item.availability || 'In Stock · Moga'}</span>
-          </div>
-          <a href="product.html?id=${item.id}" class="featured-card__title-link">
-            <h3 class="featured-card__title">${item.title}</h3>
-          </a>
-          <ul class="featured-card__specs">
-            ${specs.map(s => `<li>${s}</li>`).join('')}
-          </ul>
-          <div class="featured-card__footer">
-            <div>
-              <div class="featured-card__price">${item.price}</div>
-              <div class="featured-card__warranty">${item.warranty || 'Official Brand Warranty'}</div>
-            </div>
-            <div style="display: flex; gap: 6px; align-items: center;">
-              <button class="btn-card-cart" type="button" onclick="event.preventDefault(); event.stopPropagation(); addToCart('${item.id}');" title="Add to inquiry basket">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
-                <span>+ Basket</span>
-              </button>
-              <a class="btn-card-primary" href="product.html?id=${item.id}">Multi-Angle Views &rarr;</a>
-            </div>
-          </div>
-        </div>
-      </article>
-    `;
-  }).join('');
+  const monitorItems = (window.PRODUCTS || []).filter(p => normalizeCategory(p.category) === 'monitors');
+  renderShowcaseGrid('featuredMonitorsGrid', monitorItems, {
+    badgeLabel: 'Brand New · Sealed',
+    badgeColor: '#22C55E',
+    defaultWarranty: 'Official Brand Warranty',
+    inspectLabel: 'Inspect &rarr;'
+  });
 }
 
-/* ==========================================================================
-   FEATURED DEPARTMENT SHOWCASES (GADGETS, GYM, WATCHES, APPLIANCES)
-   ========================================================================== */
 function renderFeaturedGadgets() {
-  const grid = document.getElementById('featuredGadgetsGrid');
-  if (!grid) return;
   const items = (window.PRODUCTS || window.DEFAULT_PRODUCTS || []).filter(p => p.subCategory === 'gadgets' || (p.id && p.id.startsWith('gad-')));
-  grid.innerHTML = items.slice(0, 4).map(item => {
-    const specs = (item.specs || []).slice(0, 3);
-    const img = normalizeProductImageUrl(item.image) || getCategoryFallbackImage(item.category);
-    return `
-      <article class="featured-card">
-        <a class="featured-card__img-wrap" href="product.html?id=${item.id}">
-          <img src="${img}" alt="${item.title}" loading="lazy" onerror="this.onerror=null;this.src='images/store-banner.jpg';">
-        </a>
-        <div class="featured-card__body">
-          <div class="featured-card__meta">
-            <span class="featured-card__cond" style="color: #22C55E;">Original · Sealed</span>
-            <span class="featured-card__avail">${item.availability || 'In Stock · Moga'}</span>
-          </div>
-          <a href="product.html?id=${item.id}" class="featured-card__title-link">
-            <h3 class="featured-card__title">${item.title}</h3>
-          </a>
-          <ul class="featured-card__specs">
-            ${specs.map(s => `<li>${s}</li>`).join('')}
-          </ul>
-          <div class="featured-card__footer">
-            <div>
-              <div class="featured-card__price">${item.price}</div>
-              <div class="featured-card__warranty">${item.warranty || 'Brand Warranty'}</div>
-            </div>
-            <div style="display: flex; gap: 6px; align-items: center;">
-              <button class="btn-card-cart" type="button" onclick="event.preventDefault(); event.stopPropagation(); addToCart('${item.id}');" title="Add to inquiry basket">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
-                <span>+ Basket</span>
-              </button>
-              <a class="btn-card-primary" href="product.html?id=${item.id}">Details &rarr;</a>
-            </div>
-          </div>
-        </div>
-      </article>
-    `;
-  }).join('');
+  renderShowcaseGrid('featuredGadgetsGrid', items.slice(0, 4), {
+    badgeLabel: 'Original · Sealed',
+    badgeColor: '#22C55E',
+    defaultWarranty: 'Brand Warranty'
+  });
 }
 
 function renderFeaturedGym() {
-  const grid = document.getElementById('featuredGymGrid');
-  if (!grid) return;
   const items = (window.PRODUCTS || window.DEFAULT_PRODUCTS || []).filter(p => p.subCategory === 'gym' || (p.id && p.id.startsWith('gym-')));
-  grid.innerHTML = items.slice(0, 4).map(item => {
-    const specs = (item.specs || []).slice(0, 3);
-    const img = normalizeProductImageUrl(item.image) || getCategoryFallbackImage(item.category);
-    return `
-      <article class="featured-card">
-        <a class="featured-card__img-wrap" href="product.html?id=${item.id}">
-          <img src="${img}" alt="${item.title}" loading="lazy" onerror="this.onerror=null;this.src='images/store-banner.jpg';">
-        </a>
-        <div class="featured-card__body">
-          <div class="featured-card__meta">
-            <span class="featured-card__cond" style="color: #FF673B;">Commercial Grade</span>
-            <span class="featured-card__avail">${item.availability || 'In Stock · Moga'}</span>
-          </div>
-          <a href="product.html?id=${item.id}" class="featured-card__title-link">
-            <h3 class="featured-card__title">${item.title}</h3>
-          </a>
-          <ul class="featured-card__specs">
-            ${specs.map(s => `<li>${s}</li>`).join('')}
-          </ul>
-          <div class="featured-card__footer">
-            <div>
-              <div class="featured-card__price">${item.price}</div>
-              <div class="featured-card__warranty">${item.warranty || 'Doorstep Delivery'}</div>
-            </div>
-            <div style="display: flex; gap: 6px; align-items: center;">
-              <button class="btn-card-cart" type="button" onclick="event.preventDefault(); event.stopPropagation(); addToCart('${item.id}');" title="Add to inquiry basket">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
-                <span>+ Basket</span>
-              </button>
-              <a class="btn-card-primary" href="product.html?id=${item.id}">Details &rarr;</a>
-            </div>
-          </div>
-        </div>
-      </article>
-    `;
-  }).join('');
+  renderShowcaseGrid('featuredGymGrid', items.slice(0, 4), {
+    badgeLabel: 'Commercial Grade',
+    badgeColor: '#FF673B',
+    defaultWarranty: 'Doorstep Delivery'
+  });
 }
 
 function renderFeaturedWatches() {
-  const grid = document.getElementById('featuredWatchesGrid');
-  if (!grid) return;
   const items = (window.PRODUCTS || window.DEFAULT_PRODUCTS || []).filter(p => p.subCategory === 'watches' || (p.id && p.id.startsWith('wat-')));
-  grid.innerHTML = items.slice(0, 4).map(item => {
-    const specs = (item.specs || []).slice(0, 3);
-    const img = normalizeProductImageUrl(item.image) || getCategoryFallbackImage(item.category);
-    return `
-      <article class="featured-card">
-        <a class="featured-card__img-wrap" href="product.html?id=${item.id}">
-          <img src="${img}" alt="${item.title}" loading="lazy" onerror="this.onerror=null;this.src='images/store-banner.jpg';">
-        </a>
-        <div class="featured-card__body">
-          <div class="featured-card__meta">
-            <span class="featured-card__cond" style="color: #38BDF8;">Authentic · Sealed</span>
-            <span class="featured-card__avail">${item.availability || 'In Stock · Moga'}</span>
-          </div>
-          <a href="product.html?id=${item.id}" class="featured-card__title-link">
-            <h3 class="featured-card__title">${item.title}</h3>
-          </a>
-          <ul class="featured-card__specs">
-            ${specs.map(s => `<li>${s}</li>`).join('')}
-          </ul>
-          <div class="featured-card__footer">
-            <div>
-              <div class="featured-card__price">${item.price}</div>
-              <div class="featured-card__warranty">${item.warranty || 'Official Warranty'}</div>
-            </div>
-            <div style="display: flex; gap: 6px; align-items: center;">
-              <button class="btn-card-cart" type="button" onclick="event.preventDefault(); event.stopPropagation(); addToCart('${item.id}');" title="Add to inquiry basket">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
-                <span>+ Basket</span>
-              </button>
-              <a class="btn-card-primary" href="product.html?id=${item.id}">Details &rarr;</a>
-            </div>
-          </div>
-        </div>
-      </article>
-    `;
-  }).join('');
+  renderShowcaseGrid('featuredWatchesGrid', items.slice(0, 4), {
+    badgeLabel: 'Authentic · Sealed',
+    badgeColor: '#38BDF8',
+    defaultWarranty: 'Official Warranty'
+  });
 }
 
 function renderFeaturedAppliances() {
-  const grid = document.getElementById('featuredAppliancesGrid');
-  if (!grid) return;
   const items = (window.PRODUCTS || window.DEFAULT_PRODUCTS || []).filter(p => ['appliances', 'suitcases'].includes(p.subCategory) || (p.id && (p.id.startsWith('app-') || p.id.startsWith('suit-'))));
-  grid.innerHTML = items.slice(0, 4).map(item => {
-    const specs = (item.specs || []).slice(0, 3);
-    const img = normalizeProductImageUrl(item.image) || getCategoryFallbackImage(item.category);
-    return `
-      <article class="featured-card">
-        <a class="featured-card__img-wrap" href="product.html?id=${item.id}">
-          <img src="${img}" alt="${item.title}" loading="lazy" onerror="this.onerror=null;this.src='images/store-banner.jpg';">
-        </a>
-        <div class="featured-card__body">
-          <div class="featured-card__meta">
-            <span class="featured-card__cond" style="color: #A855F7;">Genuine Brand</span>
-            <span class="featured-card__avail">${item.availability || 'In Stock · Moga'}</span>
-          </div>
-          <a href="product.html?id=${item.id}" class="featured-card__title-link">
-            <h3 class="featured-card__title">${item.title}</h3>
-          </a>
-          <ul class="featured-card__specs">
-            ${specs.map(s => `<li>${s}</li>`).join('')}
-          </ul>
-          <div class="featured-card__footer">
-            <div>
-              <div class="featured-card__price">${item.price}</div>
-              <div class="featured-card__warranty">${item.warranty || 'Warranty &amp; GST'}</div>
-            </div>
-            <div style="display: flex; gap: 6px; align-items: center;">
-              <button class="btn-card-cart" type="button" onclick="event.preventDefault(); event.stopPropagation(); addToCart('${item.id}');" title="Add to inquiry basket">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
-                <span>+ Basket</span>
-              </button>
-              <a class="btn-card-primary" href="product.html?id=${item.id}">Details &rarr;</a>
-            </div>
-          </div>
-        </div>
-      </article>
-    `;
-  }).join('');
+  renderShowcaseGrid('featuredAppliancesGrid', items.slice(0, 4), {
+    badgeLabel: 'Genuine Brand',
+    badgeColor: '#A855F7',
+    defaultWarranty: 'Warranty & GST'
+  });
 }
 
 /* ==========================================================================
