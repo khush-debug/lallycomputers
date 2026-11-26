@@ -152,10 +152,53 @@ const CATALOGUE_TABS = [
   { label: 'New laptops', key: 'laptops_new' },
   { label: 'Gaming laptops', key: 'laptops_gaming' },
   { label: 'Custom PCs', key: 'pc' },
-  { label: 'Monitors', key: 'monitors' },
+  { label: 'Monitors & LCDs', key: 'monitors' },
+  { label: 'Gadgets & Audio', key: 'gadgets' },
+  { label: 'Gym Equipment', key: 'gym' },
+  { label: 'Smartwatches', key: 'watches' },
   { label: 'Components', key: 'pc_components' },
-  { label: 'Accessories', key: 'accessories' }
+  { label: 'Peripherals', key: 'accessories' },
+  { label: 'Luggage & Washers', key: 'other' }
 ];
+
+function matchesCatalogueCategory(product, targetCat) {
+  if (!product) return false;
+  if (targetCat === 'all') return true;
+  if (targetCat === 'gadgets') {
+    return product.subCategory === 'gadgets' || (product.id && product.id.startsWith('gad-'));
+  }
+  if (targetCat === 'gym') {
+    return product.subCategory === 'gym' || (product.id && product.id.startsWith('gym-'));
+  }
+  if (targetCat === 'watches') {
+    return product.subCategory === 'watches' || (product.id && product.id.startsWith('wat-'));
+  }
+  if (targetCat === 'monitors') {
+    return product.category === 'monitors' || product.subCategory === 'monitors' || (product.id && product.id.startsWith('mon-'));
+  }
+  if (targetCat === 'other') {
+    return product.category === 'other' || ['appliances', 'suitcases'].includes(product.subCategory);
+  }
+  if (targetCat === 'accessories') {
+    return product.category === 'accessories' && product.subCategory !== 'gadgets' && product.subCategory !== 'monitors';
+  }
+  return normalizeCategory(product.category) === targetCat;
+}
+
+window.selectHardwareTab = function(catKey) {
+  activeCatalogueCategory = catKey;
+  const tabsContainer = document.getElementById('categoriesTabs');
+  if (tabsContainer) {
+    tabsContainer.querySelectorAll('.tab').forEach(t => {
+      t.setAttribute('aria-pressed', t.dataset.cat === catKey);
+    });
+  }
+  renderFeaturedStock();
+  const catEl = document.getElementById('catalogue');
+  if (catEl) {
+    catEl.scrollIntoView({ behavior: 'smooth' });
+  }
+};
 let activeCatalogueCategory = 'all';
 let catalogueSearchQuery = '';
 let catalogueBudgetCeiling = 0;
@@ -233,8 +276,7 @@ function renderFeaturedStock() {
     items = products.filter(p => {
       // Category filter
       if (activeCatalogueCategory !== 'all') {
-        const cat = normalizeCategory(p.category);
-        if (cat !== activeCatalogueCategory) return false;
+        if (!matchesCatalogueCategory(p, activeCatalogueCategory)) return false;
       }
       // Budget filter
       if (catalogueBudgetCeiling > 0) {
@@ -308,8 +350,17 @@ function renderFeaturedStock() {
           </svg>
         </button>
         <div class="card-foot">
-          <b class="price">${item.price}</b>
-          <a class="view" href="product.html?id=${item.id}" aria-label="View ${item.title} details">Details</a>
+          <div>
+            <b class="price">${item.price}</b>
+            <span class="card-foot-badge">✓ GST Bill &amp; Tested</span>
+          </div>
+          <div class="card-foot-actions">
+            <button class="btn-card-cart" type="button" onclick="event.preventDefault(); event.stopPropagation(); addToCart('${item.id}');" title="Add to inquiry basket">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+              <span>+ Basket</span>
+            </button>
+            <a class="view" href="product.html?id=${item.id}" aria-label="View ${item.title} details">Details</a>
+          </div>
         </div>
       </article>
     `;
@@ -457,7 +508,13 @@ function renderFeaturedNewStock() {
               <div class="featured-card__price">${item.price}</div>
               <div class="featured-card__warranty">${item.warranty || '1-Year Official Warranty'}</div>
             </div>
-            <a class="btn-card-primary" href="product.html?id=${item.id}">Multi-Angle Views &rarr;</a>
+            <div style="display: flex; gap: 6px; align-items: center;">
+              <button class="btn-card-cart" type="button" onclick="event.preventDefault(); event.stopPropagation(); addToCart('${item.id}');" title="Add to inquiry basket">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+                <span>+ Basket</span>
+              </button>
+              <a class="btn-card-primary" href="product.html?id=${item.id}">Multi-Angle Views &rarr;</a>
+            </div>
           </div>
         </div>
       </article>
@@ -499,7 +556,184 @@ function renderFeaturedMonitors() {
               <div class="featured-card__price">${item.price}</div>
               <div class="featured-card__warranty">${item.warranty || 'Official Brand Warranty'}</div>
             </div>
-            <a class="btn-card-primary" href="product.html?id=${item.id}">Multi-Angle Views &rarr;</a>
+            <div style="display: flex; gap: 6px; align-items: center;">
+              <button class="btn-card-cart" type="button" onclick="event.preventDefault(); event.stopPropagation(); addToCart('${item.id}');" title="Add to inquiry basket">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+                <span>+ Basket</span>
+              </button>
+              <a class="btn-card-primary" href="product.html?id=${item.id}">Multi-Angle Views &rarr;</a>
+            </div>
+          </div>
+        </div>
+      </article>
+    `;
+  }).join('');
+}
+
+/* ==========================================================================
+   FEATURED DEPARTMENT SHOWCASES (GADGETS, GYM, WATCHES, APPLIANCES)
+   ========================================================================== */
+function renderFeaturedGadgets() {
+  const grid = document.getElementById('featuredGadgetsGrid');
+  if (!grid) return;
+  const items = (window.PRODUCTS || window.DEFAULT_PRODUCTS || []).filter(p => p.subCategory === 'gadgets' || (p.id && p.id.startsWith('gad-')));
+  grid.innerHTML = items.slice(0, 4).map(item => {
+    const specs = (item.specs || []).slice(0, 3);
+    const img = normalizeProductImageUrl(item.image) || getCategoryFallbackImage(item.category);
+    return `
+      <article class="featured-card">
+        <a class="featured-card__img-wrap" href="product.html?id=${item.id}">
+          <img src="${img}" alt="${item.title}" loading="lazy" onerror="this.onerror=null;this.src='images/store-banner.jpg';">
+        </a>
+        <div class="featured-card__body">
+          <div class="featured-card__meta">
+            <span class="featured-card__cond" style="color: #22C55E;">Original · Sealed</span>
+            <span class="featured-card__avail">${item.availability || 'In Stock · Moga'}</span>
+          </div>
+          <a href="product.html?id=${item.id}" class="featured-card__title-link">
+            <h3 class="featured-card__title">${item.title}</h3>
+          </a>
+          <ul class="featured-card__specs">
+            ${specs.map(s => `<li>${s}</li>`).join('')}
+          </ul>
+          <div class="featured-card__footer">
+            <div>
+              <div class="featured-card__price">${item.price}</div>
+              <div class="featured-card__warranty">${item.warranty || 'Brand Warranty'}</div>
+            </div>
+            <div style="display: flex; gap: 6px; align-items: center;">
+              <button class="btn-card-cart" type="button" onclick="event.preventDefault(); event.stopPropagation(); addToCart('${item.id}');" title="Add to inquiry basket">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+                <span>+ Basket</span>
+              </button>
+              <a class="btn-card-primary" href="product.html?id=${item.id}">Details &rarr;</a>
+            </div>
+          </div>
+        </div>
+      </article>
+    `;
+  }).join('');
+}
+
+function renderFeaturedGym() {
+  const grid = document.getElementById('featuredGymGrid');
+  if (!grid) return;
+  const items = (window.PRODUCTS || window.DEFAULT_PRODUCTS || []).filter(p => p.subCategory === 'gym' || (p.id && p.id.startsWith('gym-')));
+  grid.innerHTML = items.slice(0, 4).map(item => {
+    const specs = (item.specs || []).slice(0, 3);
+    const img = normalizeProductImageUrl(item.image) || getCategoryFallbackImage(item.category);
+    return `
+      <article class="featured-card">
+        <a class="featured-card__img-wrap" href="product.html?id=${item.id}">
+          <img src="${img}" alt="${item.title}" loading="lazy" onerror="this.onerror=null;this.src='images/store-banner.jpg';">
+        </a>
+        <div class="featured-card__body">
+          <div class="featured-card__meta">
+            <span class="featured-card__cond" style="color: #FF673B;">Commercial Grade</span>
+            <span class="featured-card__avail">${item.availability || 'In Stock · Moga'}</span>
+          </div>
+          <a href="product.html?id=${item.id}" class="featured-card__title-link">
+            <h3 class="featured-card__title">${item.title}</h3>
+          </a>
+          <ul class="featured-card__specs">
+            ${specs.map(s => `<li>${s}</li>`).join('')}
+          </ul>
+          <div class="featured-card__footer">
+            <div>
+              <div class="featured-card__price">${item.price}</div>
+              <div class="featured-card__warranty">${item.warranty || 'Doorstep Delivery'}</div>
+            </div>
+            <div style="display: flex; gap: 6px; align-items: center;">
+              <button class="btn-card-cart" type="button" onclick="event.preventDefault(); event.stopPropagation(); addToCart('${item.id}');" title="Add to inquiry basket">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+                <span>+ Basket</span>
+              </button>
+              <a class="btn-card-primary" href="product.html?id=${item.id}">Details &rarr;</a>
+            </div>
+          </div>
+        </div>
+      </article>
+    `;
+  }).join('');
+}
+
+function renderFeaturedWatches() {
+  const grid = document.getElementById('featuredWatchesGrid');
+  if (!grid) return;
+  const items = (window.PRODUCTS || window.DEFAULT_PRODUCTS || []).filter(p => p.subCategory === 'watches' || (p.id && p.id.startsWith('wat-')));
+  grid.innerHTML = items.slice(0, 4).map(item => {
+    const specs = (item.specs || []).slice(0, 3);
+    const img = normalizeProductImageUrl(item.image) || getCategoryFallbackImage(item.category);
+    return `
+      <article class="featured-card">
+        <a class="featured-card__img-wrap" href="product.html?id=${item.id}">
+          <img src="${img}" alt="${item.title}" loading="lazy" onerror="this.onerror=null;this.src='images/store-banner.jpg';">
+        </a>
+        <div class="featured-card__body">
+          <div class="featured-card__meta">
+            <span class="featured-card__cond" style="color: #38BDF8;">Authentic · Sealed</span>
+            <span class="featured-card__avail">${item.availability || 'In Stock · Moga'}</span>
+          </div>
+          <a href="product.html?id=${item.id}" class="featured-card__title-link">
+            <h3 class="featured-card__title">${item.title}</h3>
+          </a>
+          <ul class="featured-card__specs">
+            ${specs.map(s => `<li>${s}</li>`).join('')}
+          </ul>
+          <div class="featured-card__footer">
+            <div>
+              <div class="featured-card__price">${item.price}</div>
+              <div class="featured-card__warranty">${item.warranty || 'Official Warranty'}</div>
+            </div>
+            <div style="display: flex; gap: 6px; align-items: center;">
+              <button class="btn-card-cart" type="button" onclick="event.preventDefault(); event.stopPropagation(); addToCart('${item.id}');" title="Add to inquiry basket">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+                <span>+ Basket</span>
+              </button>
+              <a class="btn-card-primary" href="product.html?id=${item.id}">Details &rarr;</a>
+            </div>
+          </div>
+        </div>
+      </article>
+    `;
+  }).join('');
+}
+
+function renderFeaturedAppliances() {
+  const grid = document.getElementById('featuredAppliancesGrid');
+  if (!grid) return;
+  const items = (window.PRODUCTS || window.DEFAULT_PRODUCTS || []).filter(p => ['appliances', 'suitcases'].includes(p.subCategory) || (p.id && (p.id.startsWith('app-') || p.id.startsWith('suit-'))));
+  grid.innerHTML = items.slice(0, 4).map(item => {
+    const specs = (item.specs || []).slice(0, 3);
+    const img = normalizeProductImageUrl(item.image) || getCategoryFallbackImage(item.category);
+    return `
+      <article class="featured-card">
+        <a class="featured-card__img-wrap" href="product.html?id=${item.id}">
+          <img src="${img}" alt="${item.title}" loading="lazy" onerror="this.onerror=null;this.src='images/store-banner.jpg';">
+        </a>
+        <div class="featured-card__body">
+          <div class="featured-card__meta">
+            <span class="featured-card__cond" style="color: #A855F7;">Genuine Brand</span>
+            <span class="featured-card__avail">${item.availability || 'In Stock · Moga'}</span>
+          </div>
+          <a href="product.html?id=${item.id}" class="featured-card__title-link">
+            <h3 class="featured-card__title">${item.title}</h3>
+          </a>
+          <ul class="featured-card__specs">
+            ${specs.map(s => `<li>${s}</li>`).join('')}
+          </ul>
+          <div class="featured-card__footer">
+            <div>
+              <div class="featured-card__price">${item.price}</div>
+              <div class="featured-card__warranty">${item.warranty || 'Warranty &amp; GST'}</div>
+            </div>
+            <div style="display: flex; gap: 6px; align-items: center;">
+              <button class="btn-card-cart" type="button" onclick="event.preventDefault(); event.stopPropagation(); addToCart('${item.id}');" title="Add to inquiry basket">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+                <span>+ Basket</span>
+              </button>
+              <a class="btn-card-primary" href="product.html?id=${item.id}">Details &rarr;</a>
+            </div>
           </div>
         </div>
       </article>
@@ -801,6 +1035,10 @@ function renderSpaceProducts() {
           </div>
 
           <div class="amz-actions-row">
+            <button class="btn-card-cart" type="button" onclick="event.preventDefault(); event.stopPropagation(); addToCart('${item.id}');" title="Add to inquiry basket">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+              <span>+ Basket</span>
+            </button>
             <a class="btn-card-primary" href="product.html?id=${item.id}">View Details &amp; Photos &rarr;</a>
             ${item.labReport ? `<button class="amz-btn-lab-link" data-lab-id="${item.id}" type="button">25-Point Lab Report</button>` : ''}
           </div>
@@ -1411,6 +1649,10 @@ function fetchAndSyncGoogleSheet(csvUrl, isManual) {
       renderFeaturedStock();
       renderFeaturedNewStock();
       renderFeaturedMonitors();
+      renderFeaturedGadgets();
+      renderFeaturedGym();
+      renderFeaturedWatches();
+      renderFeaturedAppliances();
       renderCategories();
       const space = document.getElementById('catalogueSpace');
       if (space && space.classList.contains('is-open')) renderSpaceProducts();
@@ -1457,6 +1699,10 @@ function resetToDefaultStock() {
   initCatalogueControls();
   renderFeaturedNewStock();
   renderFeaturedMonitors();
+  renderFeaturedGadgets();
+  renderFeaturedGym();
+  renderFeaturedWatches();
+  renderFeaturedAppliances();
   renderCategories();
   renderSpaceProducts();
   showToast('Restored default catalogue');
@@ -1877,6 +2123,10 @@ document.addEventListener('DOMContentLoaded', () => {
   initCatalogueControls();
   renderFeaturedNewStock();
   renderFeaturedMonitors();
+  renderFeaturedGadgets();
+  renderFeaturedGym();
+  renderFeaturedWatches();
+  renderFeaturedAppliances();
   renderCategories();
   updateCartUI();
   updateHours();

@@ -197,6 +197,59 @@
   </div>
 
   <!-- ========================================================================
+       E-COMMERCE QUICK DEPARTMENT BAR
+       ======================================================================== -->
+  <nav class="ecom-dept-bar" id="ecomDeptBar" aria-label="Department Quick Navigation">
+    <div class="inner ecom-dept-bar__inner">
+      <div class="ecom-dept-scroll">
+        <a href="#catalogue" class="ecom-dept-chip" onclick="selectHardwareTab('all')">
+          <span class="ecom-dept-icon">🛍️</span>
+          <span>All Hardware</span>
+        </a>
+        <a href="#catalogue" class="ecom-dept-chip" onclick="selectHardwareTab('laptops_used')">
+          <span class="ecom-dept-icon">💻</span>
+          <span>Used Laptops</span>
+        </a>
+        <a href="#featuredNewLaptops" class="ecom-dept-chip">
+          <span class="ecom-dept-icon">✨</span>
+          <span>Brand New Laptops</span>
+        </a>
+        <a href="#catalogue" class="ecom-dept-chip" onclick="selectHardwareTab('pc')">
+          <span class="ecom-dept-icon">🖥️</span>
+          <span>Custom PCs</span>
+        </a>
+        <a href="#featuredMonitors" class="ecom-dept-chip">
+          <span class="ecom-dept-icon">📺</span>
+          <span>LCDs &amp; Monitors</span>
+        </a>
+        <a href="#featuredGadgets" class="ecom-dept-chip">
+          <span class="ecom-dept-icon">🎧</span>
+          <span>Gadgets &amp; Audio</span>
+        </a>
+        <a href="#featuredGym" class="ecom-dept-chip">
+          <span class="ecom-dept-icon">🏋️</span>
+          <span>Gym Equipment</span>
+        </a>
+        <a href="#featuredWatches" class="ecom-dept-chip">
+          <span class="ecom-dept-icon">⌚</span>
+          <span>Smartwatches</span>
+        </a>
+        <a href="#catalogue" class="ecom-dept-chip" onclick="selectHardwareTab('pc_components')">
+          <span class="ecom-dept-icon">⚡</span>
+          <span>Components</span>
+        </a>
+        <a href="#featuredAppliances" class="ecom-dept-chip">
+          <span class="ecom-dept-icon">🧳</span>
+          <span>Luggage &amp; Home</span>
+        </a>
+        <a href="#lineup" class="ecom-dept-chip ecom-dept-chip--more">
+          <span>All Departments &rarr;</span>
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ========================================================================
        1. HERO SECTION (COMPUTER SHOWROOM · MOGA)
        ======================================================================== -->
   <section class="hero" id="top" aria-labelledby="hero-title">
@@ -273,7 +326,7 @@
               <circle cx="10.5" cy="10.5" r="6.7" />
               <path d="m16 16 5 5" />
             </svg>
-            <input type="search" id="searchHardwareInput" placeholder="Search hardware" aria-label="Search hardware">
+            <input type="search" id="searchHardwareInput" placeholder="Search laptops, PCs, LCDs, gym, watches, gadgets..." aria-label="Search hardware">
           </label>
           <button class="filter-button" id="filterToggleBtn" type="button" aria-expanded="false" aria-controls="catalogueFilters">
             <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -482,9 +535,113 @@
   </section>
 
   <!-- ========================================================================
-       4. THE SUPREME GUARANTEE (WHY BUY FROM US - SMOOTH RIGHT-TO-LEFT MARQUEE SLIDER)
+       6. SMART GADGETS & PREMIUM AUDIO
        ======================================================================== -->
-  <section class="apple-section apple-section--alt" id="why">
+  <section class="apple-section" id="featuredGadgets" aria-label="Smart Gadgets and Audio in Moga">
+    <div class="inner">
+      <div class="featured-header-row">
+        <div>
+          <p class="section-eyebrow">AirPods · ANC Headphones · GaN Fast Chargers · MagSafe &amp; Wi-Fi 6</p>
+          <h2 class="section-headline">Smart Gadgets &amp; Audio.</h2>
+          <p class="section-desc">
+            High-fidelity wireless earbuds, noise-canceling headphones, ultra-compact GaN fast chargers, and high-speed Wi-Fi 6 networking equipment in stock in Moga.
+          </p>
+        </div>
+        <div class="featured-header-actions" style="display: flex; gap: 10px; align-items: center; flex-wrap: wrap;">
+          <button class="btn-primary-blue" type="button" onclick="selectHardwareTab('gadgets')">
+            <span>Browse All Gadgets &rarr;</span>
+          </button>
+        </div>
+      </div>
+
+      <div class="featured-stock-grid" id="featuredGadgetsGrid">
+        <!-- Populated dynamically via js/app.js -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       7. COMMERCIAL GYM & FITNESS EQUIPMENT
+       ======================================================================== -->
+  <section class="apple-section apple-section--alt" id="featuredGym" aria-label="Commercial Gym and Fitness Equipment in Moga">
+    <div class="inner">
+      <div class="featured-header-row">
+        <div>
+          <p class="section-eyebrow">Commercial Treadmills · Spin Bikes · Multi-Gym Stations · Hex Dumbbells</p>
+          <h2 class="section-headline">Gym &amp; Fitness Equipment.</h2>
+          <p class="section-desc">
+            Heavy-gauge steel frames, motorized incline commercial running decks, magnetic spin bikes, and professional rubber hex dumbbell sets with doorstep delivery in Punjab.
+          </p>
+        </div>
+        <div class="featured-header-actions" style="display: flex; gap: 10px; align-items: center; flex-wrap: wrap;">
+          <button class="btn-primary-blue" type="button" onclick="selectHardwareTab('gym')">
+            <span>Browse All Fitness Gear &rarr;</span>
+          </button>
+        </div>
+      </div>
+
+      <div class="featured-stock-grid" id="featuredGymGrid">
+        <!-- Populated dynamically via js/app.js -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       8. SMARTWATCHES & TIMEPIECES
+       ======================================================================== -->
+  <section class="apple-section" id="featuredWatches" aria-label="Smartwatches and Timepieces in Moga">
+    <div class="inner">
+      <div class="featured-header-row">
+        <div>
+          <p class="section-eyebrow">Apple Watch Ultra 2 · Series 9 · Casio G-Shock CasiOak &amp; Mudmaster</p>
+          <h2 class="section-headline">Smartwatches &amp; Timepieces.</h2>
+          <p class="section-desc">
+            Rugged aerospace-grade titanium smartwatches, advanced ECG &amp; heart-rate fitness wearables, and legendary shock-resistant Japanese G-Shock chronographs.
+          </p>
+        </div>
+        <div class="featured-header-actions" style="display: flex; gap: 10px; align-items: center; flex-wrap: wrap;">
+          <button class="btn-primary-blue" type="button" onclick="selectHardwareTab('watches')">
+            <span>Browse All Watches &rarr;</span>
+          </button>
+        </div>
+      </div>
+
+      <div class="featured-stock-grid" id="featuredWatchesGrid">
+        <!-- Populated dynamically via js/app.js -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       9. TRAVEL LUGGAGE & HOME APPLIANCES
+       ======================================================================== -->
+  <section class="apple-section apple-section--alt" id="featuredAppliances" aria-label="Travel Luggage and Home Appliances in Moga">
+    <div class="inner">
+      <div class="featured-header-row">
+        <div>
+          <p class="section-eyebrow">Safari Hard Luggage · LG &amp; Samsung AI Inverter Washers</p>
+          <h2 class="section-headline">Luggage &amp; Home Appliances.</h2>
+          <p class="section-desc">
+            Impact-resistant polycarbonate travel suitcases with 360&deg; spinner wheels and 5-star energy-rated AI inverter front-load washing machines.
+          </p>
+        </div>
+        <div class="featured-header-actions" style="display: flex; gap: 10px; align-items: center; flex-wrap: wrap;">
+          <button class="btn-primary-blue" type="button" onclick="selectHardwareTab('other')">
+            <span>Browse All Appliances &rarr;</span>
+          </button>
+        </div>
+      </div>
+
+      <div class="featured-stock-grid" id="featuredAppliancesGrid">
+        <!-- Populated dynamically via js/app.js -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       10. THE SUPREME GUARANTEE (WHY BUY FROM US - SMOOTH RIGHT-TO-LEFT MARQUEE SLIDER)
+       ======================================================================== -->
+  <section class="apple-section" id="why">
     <div class="inner">
       <div class="section-intro section-intro--center">
         <p class="section-eyebrow">The Supreme Guarantee</p>
