@@ -391,14 +391,17 @@
     const accNavLink = document.getElementById('accessoriesNavLink');
     const isLaptop = p.category === 'laptops_used' || p.category === 'laptops_new' || p.category === 'laptops_gaming';
     const isDesktop = p.category === 'pc' || p.category === 'pc_components';
+    const isMonitor = p.category === 'monitors';
 
     if (accTitle) {
       accTitle.textContent = isLaptop
         ? 'Pair with Laptop — Compatible Mice, Bags, Docks & Upgrades'
-        : (isDesktop ? 'Pair with Desktop Setup' : 'Recommended Accessories');
+        : (isMonitor
+            ? 'Pair with Monitor — High-Speed Cables, Docks & Desk Gear'
+            : (isDesktop ? 'Pair with Desktop Setup' : 'Recommended Accessories'));
     }
     if (accNavLink) {
-      accNavLink.textContent = isLaptop ? 'Pair with Laptop' : 'Compatible Gear';
+      accNavLink.textContent = isLaptop ? 'Pair with Laptop' : (isMonitor ? 'Pair with Monitor' : 'Compatible Gear');
     }
 
     if (accTrack) {
@@ -408,6 +411,11 @@
           item.id !== p.id &&
           Array.isArray(item.compatibleWith) &&
           item.compatibleWith.includes(p.category)
+        );
+      } else if (isMonitor) {
+        accessories = allProducts.filter(item =>
+          item.id !== p.id &&
+          (item.category === 'accessories' || item.category === 'pc')
         );
       } else if (isDesktop) {
         accessories = allProducts.filter(item =>

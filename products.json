@@ -2818,7 +2818,7 @@
   },
   {
     "id": "mon-1",
-    "category": "accessories",
+    "category": "monitors",
     "subCategory": "monitors",
     "brand": "LG",
     "priceNum": 10999,
@@ -2848,14 +2848,41 @@
       "Features": "Black Stabilizer, Dynamic Action Sync, Crosshair overlay"
     },
     "labReport": null,
-    "image": "images/products/mon-1.svg",
+    "image": "images/products/photos/mon-lg-front.jpg",
     "mrp": "₹15,399",
     "mrpNum": 15399,
-    "delivery": "In-Store Pickup · Sodhi Nagar, Moga"
+    "delivery": "In-Store Pickup · Sodhi Nagar, Moga",
+    "wearNote": "Brand-new factory sealed LG UltraGear gaming display in unopened original retail packaging. Checked for zero dead pixels, full sRGB 99% color gamut coverage, 1ms motion response, and eligible for 3 Years LG Onsite Warranty.",
+    "gallery": [
+      {
+        "label": "Front View & 144Hz IPS Display",
+        "src": "images/products/photos/mon-lg-front.jpg"
+      },
+      {
+        "label": "Three-Quarter Borderless Bezel",
+        "src": "images/products/photos/mon-lg-angle.jpg"
+      },
+      {
+        "label": "Rear I/O & DisplayPort / HDMI",
+        "src": "images/products/photos/mon-lg-ports.jpg"
+      },
+      {
+        "label": "Side Profile & Tilt Ergonomics",
+        "src": "images/products/photos/mon-lg-side.jpg"
+      },
+      {
+        "label": "90-Degree Portrait Pivot Mode",
+        "src": "images/products/photos/mon-lg-pivot.jpg"
+      },
+      {
+        "label": "Factory Sealed Box & Tamper Seals",
+        "src": "images/products/photos/lap-new-seal.jpg"
+      }
+    ]
   },
   {
     "id": "mon-2",
-    "category": "accessories",
+    "category": "monitors",
     "subCategory": "monitors",
     "brand": "LG",
     "priceNum": 21499,
@@ -2884,14 +2911,37 @@
       "Ports": "2x HDMI 2.0, 1x DisplayPort 1.4"
     },
     "labReport": null,
-    "image": "images/products/mon-2.svg",
+    "image": "images/products/photos/mon-lg-angle.jpg",
     "mrp": "₹27,999",
     "mrpNum": 27999,
-    "delivery": "In-Store Pickup · Sodhi Nagar, Moga"
+    "delivery": "In-Store Pickup · Sodhi Nagar, Moga",
+    "wearNote": "Brand-new factory sealed unit in unopened retail carton. 2560x1440 QHD IPS display tested for zero stuck or dead pixels, NVIDIA G-Sync compatibility, and covered by 3 Years Official LG Warranty.",
+    "gallery": [
+      {
+        "label": "Three-Quarter View & 2K QHD Panel",
+        "src": "images/products/photos/mon-lg-angle.jpg"
+      },
+      {
+        "label": "Front View & 144Hz IPS Panel",
+        "src": "images/products/photos/mon-lg-front.jpg"
+      },
+      {
+        "label": "Rear UltraGear Ring & Dual HDMI / DP",
+        "src": "images/products/photos/mon-lg-ports.jpg"
+      },
+      {
+        "label": "Side Profile & Slim Bezel",
+        "src": "images/products/photos/mon-lg-side.jpg"
+      },
+      {
+        "label": "Factory Sealed Box & Tamper Seals",
+        "src": "images/products/photos/lap-new-seal.jpg"
+      }
+    ]
   },
   {
     "id": "mon-3",
-    "category": "accessories",
+    "category": "monitors",
     "subCategory": "monitors",
     "brand": "Dell",
     "priceNum": 34500,
@@ -2921,14 +2971,37 @@
       "Connectivity": "DisplayPort 1.4, HDMI, USB-A and USB-C upstream/downstream hub"
     },
     "labReport": null,
-    "image": "images/products/mon-3.svg",
+    "image": "images/products/photos/mon-dell-front.jpg",
     "mrp": "₹44,999",
     "mrpNum": 44999,
-    "delivery": "In-Store Pickup · Sodhi Nagar, Moga"
+    "delivery": "In-Store Pickup · Sodhi Nagar, Moga",
+    "wearNote": "Brand-new factory sealed Dell UltraSharp monitor in unopened original box. Industry-leading 2000:1 contrast ratio IPS Black panel, factory color-calibrated (Delta E < 2), zero bright dot guarantee, and 3 Years Dell Advanced Exchange Warranty.",
+    "gallery": [
+      {
+        "label": "Front View & 2000:1 IPS Black Panel",
+        "src": "images/products/photos/mon-dell-front.jpg"
+      },
+      {
+        "label": "Rear I/O Hub & Cable Management",
+        "src": "images/products/photos/mon-dell-ports.jpg"
+      },
+      {
+        "label": "Side Profile & Aluminum Ergonomic Stand",
+        "src": "images/products/photos/mon-dell-side.jpg"
+      },
+      {
+        "label": "90-Degree Vertical Pivot Adjustment",
+        "src": "images/products/photos/mon-dell-pivot.jpg"
+      },
+      {
+        "label": "Factory Sealed Box & Tamper Seals",
+        "src": "images/products/photos/lap-new-seal.jpg"
+      }
+    ]
   },
   {
     "id": "mon-4",
-    "category": "accessories",
+    "category": "monitors",
     "subCategory": "monitors",
     "brand": "Samsung",
     "priceNum": 32990,
@@ -2957,10 +3030,37 @@
       "Aspect Ratio": "21:9 Ultrawide equivalent to two standard displays side by side"
     },
     "labReport": null,
-    "image": "images/products/mon-4.svg",
+    "image": "images/products/photos/mon-samsung-front.jpg",
     "mrp": "₹42,999",
     "mrpNum": 42999,
-    "delivery": "In-Store Pickup · Sodhi Nagar, Moga"
+    "delivery": "In-Store Pickup · Sodhi Nagar, Moga",
+    "wearNote": "Brand-new factory sealed Samsung Odyssey ultrawide in unopened original carton. 3440x1440 WQHD panoramic screen with deep 1000R curve, 165Hz FreeSync Premium, zero dead pixels, and 3 Years Samsung India Warranty.",
+    "gallery": [
+      {
+        "label": "Front Panoramic 1000R Curve View",
+        "src": "images/products/photos/mon-samsung-front.jpg"
+      },
+      {
+        "label": "Top Down Deep 1000R Curvature Angle",
+        "src": "images/products/photos/mon-samsung-curve.jpg"
+      },
+      {
+        "label": "Three-Quarter Perspective & Gaming Base",
+        "src": "images/products/photos/mon-samsung-angle.jpg"
+      },
+      {
+        "label": "Rear Shell & Odyssey Sphere Venting",
+        "src": "images/products/photos/mon-samsung-rear.jpg"
+      },
+      {
+        "label": "Side Profile & Slim Edge Bezel",
+        "src": "images/products/photos/mon-samsung-side.jpg"
+      },
+      {
+        "label": "Factory Sealed Box & Tamper Seals",
+        "src": "images/products/photos/lap-new-seal.jpg"
+      }
+    ]
   },
   {
     "id": "mon-5",

@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Monitors & High-Refresh Displays in Moga | Lally Computers</title>
+  <meta name="description"
+    content="Shop brand-new 144Hz-165Hz gaming monitors, 2K/4K IPS Black creator displays, and curved ultrawides in Sodhi Nagar, Moga. Zero dead pixel inspection and 3-year brand warranties.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://lallycomputers.vercel.app/monitors.html">
+  <meta name="theme-color" content="#0B0D10">
+  <link rel="icon" type="image/png" href="favicon.png">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://lallycomputers.vercel.app/monitors.html">
+  <meta property="og:title" content="Monitors & High-Refresh Displays | Lally Computers Moga">
+  <meta property="og:description"
+    content="Explore LG UltraGear, Dell UltraSharp, and Samsung Odyssey monitors with multi-angle inspection and in-store testing in Moga.">
+  <meta property="og:image" content="https://lallycomputers.vercel.app/og.jpg">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/product.css">
+
+  <script>
+    (function () {
+      try {
+        var savedTheme = localStorage.getItem('lally_apple_theme');
+        var theme = savedTheme ? savedTheme : 'dark';
+        document.documentElement.setAttribute('data-theme', theme);
+      } catch (e) { }
+    })();
+  </script>
+
+  <style>
+    .monitors-page-hero {
+      padding: 120px 0 48px;
+      background: linear-gradient(180deg, rgba(59, 130, 246, 0.05) 0%, rgba(11, 13, 16, 0) 100%);
+      border-bottom: 1px solid var(--border-subtle);
+    }
+    .monitors-hero-inner {
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+    .monitors-breadcrumbs {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+      color: var(--text-secondary);
+      margin-bottom: 24px;
+      list-style: none;
+      padding: 0;
+    }
+    .monitors-breadcrumbs a {
+      color: var(--text-secondary);
+      text-decoration: none;
+      transition: color 0.15s ease;
+    }
+    .monitors-breadcrumbs a:hover {
+      color: var(--accent-blue);
+    }
+    .monitors-hero-title {
+      font-size: clamp(32px, 4.5vw, 52px);
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      line-height: 1.1;
+      color: var(--text-primary);
+      margin-bottom: 16px;
+    }
+    .monitors-hero-desc {
+      font-size: clamp(16px, 1.8vw, 19px);
+      line-height: 1.55;
+      color: var(--text-secondary);
+      max-width: 820px;
+      margin-bottom: 32px;
+    }
+    .monitors-trust-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .monitors-trust-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 14px;
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: 980px;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--text-primary);
+    }
+    .monitors-trust-pill svg {
+      width: 16px;
+      height: 16px;
+      color: var(--status-open);
+      flex-shrink: 0;
+    }
+
+    /* Filters Bar */
+    .monitors-controls-bar {
+      padding: 24px 0;
+      background: var(--bg-card);
+      border-bottom: 1px solid var(--border-subtle);
+      position: sticky;
+      top: 60px;
+      z-index: 20;
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+    }
+    .monitors-controls-inner {
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 0 24px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .monitors-filters-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+    }
+    .filter-select {
+      background: var(--bg-dark);
+      border: 1px solid var(--border-subtle);
+      color: var(--text-primary);
+      padding: 8px 14px;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 500;
+      font-family: inherit;
+      cursor: pointer;
+      outline: none;
+      transition: border-color 0.15s ease;
+    }
+    .filter-select:focus {
+      border-color: var(--accent-blue);
+    }
+    .monitors-search-box {
+      position: relative;
+      min-width: 260px;
+    }
+    .monitors-search-input {
+      width: 100%;
+      background: var(--bg-dark);
+      border: 1px solid var(--border-subtle);
+      color: var(--text-primary);
+      padding: 8px 14px 8px 36px;
+      border-radius: 8px;
+      font-size: 13px;
+      outline: none;
+      font-family: inherit;
+      transition: border-color 0.15s ease;
+    }
+    .monitors-search-input:focus {
+      border-color: var(--accent-blue);
+    }
+    .monitors-search-icon {
+      position: absolute;
+      left: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 16px;
+      height: 16px;
+      color: var(--text-secondary);
+      pointer-events: none;
+    }
+
+    /* Product Grid Section */
+    .monitors-grid-section {
+      padding: 48px 0 80px;
+      background: var(--bg-dark);
+    }
+    .monitors-grid-inner {
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+    .monitors-count-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 28px;
+      color: var(--text-secondary);
+      font-size: 14px;
+    }
+
+    /* 4-Point Guarantee Banner */
+    .monitors-guarantee-section {
+      padding: 64px 0;
+      background: var(--bg-card);
+      border-top: 1px solid var(--border-subtle);
+      border-bottom: 1px solid var(--border-subtle);
+    }
+    .guarantee-inner {
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+    .guarantee-header {
+      text-align: center;
+      max-width: 720px;
+      margin: 0 auto 44px;
+    }
+    .guarantee-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 24px;
+    }
+    .guarantee-card {
+      background: var(--bg-dark);
+      border: 1px solid var(--border-subtle);
+      border-radius: 12px;
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .guarantee-icon-wrap {
+      width: 44px;
+      height: 44px;
+      border-radius: 10px;
+      background: rgba(59, 130, 246, 0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--accent-blue);
+    }
+    .guarantee-icon-wrap svg {
+      width: 22px;
+      height: 22px;
+    }
+    .guarantee-title {
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--text-primary);
+    }
+    .guarantee-desc {
+      font-size: 14px;
+      line-height: 1.5;
+      color: var(--text-secondary);
+    }
+  </style>
+</head>
+
+<body>
+  <!-- ========================================================================
+       GLOBAL HEADER & NAV
+       ======================================================================== -->
+  <header class="apple-nav" role="banner">
+    <div class="inner apple-nav__inner">
+      <div class="nav-left">
+        <a class="nav-brand" href="index.html" aria-label="Lally Computers Home">
+          <img src="images/logo.png" alt="Lally Computers Logo" class="nav-brand-logo" width="34" height="34">
+          <span class="nav-brand-stack">
+            <span class="nav-brand-main">Lally Computers</span>
+            <span class="nav-brand-sub">Supreme Infosys</span>
+          </span>
+        </a>
+      </div>
+
+      <nav class="nav-desktop-nav" aria-label="Main Navigation">
+        <ul class="nav-links">
+          <li><a href="index.html#featured" style="color:var(--text-secondary);font-size:14px;font-weight:500;padding:8px 10px;text-decoration:none;">Used Laptops</a></li>
+          <li><a href="index.html#featuredNewLaptops" style="color:var(--text-secondary);font-size:14px;font-weight:500;padding:8px 10px;text-decoration:none;">New Laptops</a></li>
+          <li><a href="monitors.html" style="color:var(--accent-blue);font-size:14px;font-weight:600;padding:8px 10px;text-decoration:none;">Monitors</a></li>
+          <li><a href="index.html#lineup" style="color:var(--text-secondary);font-size:14px;font-weight:500;padding:8px 10px;text-decoration:none;">Custom PCs</a></li>
+          <li><a href="index.html#why" style="color:var(--text-secondary);font-size:14px;font-weight:500;padding:8px 10px;text-decoration:none;">Testing Lab</a></li>
+          <li><a href="index.html#visit" style="color:var(--text-secondary);font-size:14px;font-weight:500;padding:8px 10px;text-decoration:none;">Store Location</a></li>
+        </ul>
+      </nav>
+
+      <div class="nav-actions">
+        <a class="apple-pill-btn apple-pill-btn--primary" href="tel:+919872010193" title="Call Store">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+          </svg>
+          <span>Call Store</span>
+        </a>
+        <a class="btn-primary-blue" href="index.html" style="padding: 8px 16px; font-size: 13px; text-decoration: none;">
+          <span>&larr; Store Home</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main id="mainContent">
+    <!-- ========================================================================
+         PAGE HERO
+         ======================================================================== -->
+    <section class="monitors-page-hero">
+      <div class="monitors-hero-inner">
+        <ol class="monitors-breadcrumbs">
+          <li><a href="index.html">Store</a></li>
+          <li>&rsaquo;</li>
+          <li><a href="index.html#lineup">Departments</a></li>
+          <li>&rsaquo;</li>
+          <li style="color: var(--text-primary); font-weight: 600;">Monitors &amp; High-Refresh Displays</li>
+        </ol>
+
+        <p class="section-eyebrow">144Hz–165Hz Gaming · 2K/4K IPS Black Creators · Curved Ultrawides</p>
+        <h1 class="monitors-hero-title">Monitors &amp; High-Refresh Displays.</h1>
+        <p class="monitors-hero-desc">
+          Browse verified, brand-new monitors in Moga with in-store testing. Every monitor undergoes zero-dead-pixel inspection, panel backlight uniformity checks, and comes with full 3-year brand warranties and genuine GST tax invoices.
+        </p>
+
+        <div class="monitors-trust-pills">
+          <div class="monitors-trust-pill">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+            <span>Zero Dead Pixel Guarantee</span>
+          </div>
+          <div class="monitors-trust-pill">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+            <span>144Hz–165Hz Tested High Refresh</span>
+          </div>
+          <div class="monitors-trust-pill">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="m4.93 4.93 4.24 4.24"/><path d="m14.83 9.17 4.24-4.24"/><path d="m14.83 14.83 4.24 4.24"/><path d="m9.17 14.83-4.24 4.24"/></svg>
+            <span>Multi-Angle Inspection Photos</span>
+          </div>
+          <div class="monitors-trust-pill">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+            <span>3-Year Official Brand Warranty</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================================
+         INTERACTIVE CONTROLS BAR
+         ======================================================================== -->
+    <div class="monitors-controls-bar">
+      <div class="monitors-controls-inner">
+        <div class="monitors-filters-group">
+          <select id="monResolutionFilter" class="filter-select" aria-label="Filter by Resolution">
+            <option value="">All Resolutions</option>
+            <option value="1080">Full HD (1920x1080)</option>
+            <option value="1440">2K QHD (2560x1440)</option>
+            <option value="3440">Ultra WQHD (3440x1440)</option>
+          </select>
+
+          <select id="monRefreshFilter" class="filter-select" aria-label="Filter by Refresh Rate">
+            <option value="">All Refresh Rates</option>
+            <option value="144">144Hz Refresh Rate</option>
+            <option value="165">165Hz High Refresh</option>
+            <option value="120">120Hz Smooth</option>
+          </select>
+
+          <select id="monPanelFilter" class="filter-select" aria-label="Filter by Panel Type">
+            <option value="">All Panel Types</option>
+            <option value="IPS">Fast IPS Panels</option>
+            <option value="IPS Black">IPS Black (2000:1 Contrast)</option>
+            <option value="Curved">Curved (1000R Curve)</option>
+          </select>
+
+          <select id="monSortFilter" class="filter-select" aria-label="Sort by Price">
+            <option value="">Sort by Price</option>
+            <option value="asc">Price: Low to High</option>
+            <option value="desc">Price: High to Low</option>
+          </select>
+        </div>
+
+        <div class="monitors-search-box">
+          <svg class="monitors-search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+          </svg>
+          <input type="text" id="monSearchInput" class="monitors-search-input" placeholder="Search LG, Dell, Samsung..." aria-label="Search monitors">
+        </div>
+      </div>
+    </div>
+
+    <!-- ========================================================================
+         PRODUCT GRID SECTION
+         ======================================================================== -->
+    <section class="monitors-grid-section">
+      <div class="monitors-grid-inner">
+        <div class="monitors-count-row">
+          <span id="monitorsCounter">Showing all available monitors</span>
+          <span>In-Store Inspection &amp; Pickup at Sodhi Nagar, Moga</span>
+        </div>
+
+        <div class="featured-stock-grid" id="monitorsGrid">
+          <!-- Populated dynamically via JS -->
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================================
+         MULTI-ANGLE INSPECTION & 4-POINT QUALITY GUARANTEE
+         ======================================================================== -->
+    <section class="monitors-guarantee-section">
+      <div class="guarantee-inner">
+        <div class="guarantee-header">
+          <p class="section-eyebrow">Rigorous Hardware Standards</p>
+          <h2 class="section-headline">Why Buy Displays at Lally Computers?</h2>
+          <p class="section-desc">
+            Buying a monitor online often risks dead pixels, harsh backlight bleed, or shipping transit damage. At Lally Computers Moga, every panel is inspected and powered on for you in the store.
+          </p>
+        </div>
+
+        <div class="guarantee-grid">
+          <div class="guarantee-card">
+            <div class="guarantee-icon-wrap">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><circle cx="12" cy="12" r="8"/></svg>
+            </div>
+            <h3 class="guarantee-title">Zero Dead Pixel Inspection</h3>
+            <p class="guarantee-desc">
+              We test each monitor through full-screen red, green, blue, white, and black solid test patterns to guarantee zero dead or stuck subpixels before you leave.
+            </p>
+          </div>
+
+          <div class="guarantee-card">
+            <div class="guarantee-icon-wrap">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
+            </div>
+            <h3 class="guarantee-title">Dark-Room Backlight Uniformity</h3>
+            <p class="guarantee-desc">
+              Inspected in our darkened service area to ensure no corner IPS glow or edge bleeding ruins your late-night gaming, coding, or color-grading sessions.
+            </p>
+          </div>
+
+          <div class="guarantee-card">
+            <div class="guarantee-icon-wrap">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+            </div>
+            <h3 class="guarantee-title">Full Refresh &amp; Bandwidth Check</h3>
+            <p class="guarantee-desc">
+              We verify DisplayPort 1.4 and HDMI 2.0 port connectivity at full 144Hz–165Hz with G-Sync / FreeSync compatibility to ensure flawless cable throughput.
+            </p>
+          </div>
+
+          <div class="guarantee-card">
+            <div class="guarantee-icon-wrap">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
+            </div>
+            <h3 class="guarantee-title">Factory Sealed Box &amp; GST Bill</h3>
+            <p class="guarantee-desc">
+              Every unit comes with untouched manufacturer pull-tabs and tamper seals, 3-year brand warranty, and a genuine GST tax invoice for official claim support.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ========================================================================
+       FOOTER
+       ======================================================================== -->
+  <footer class="apple-footer" role="contentinfo">
+    <div class="inner apple-footer__inner">
+      <div class="footer-top">
+        <div>
+          <div style="font-weight:700;font-size:18px;color:var(--text-primary);margin-bottom:6px;">Lally Computers</div>
+          <div style="font-size:13px;color:var(--text-secondary);">Supreme Infosys &middot; 5-A, Sodhi Nagar, Moga, Punjab 142001</div>
+          <div style="font-size:13px;color:var(--text-secondary);margin-top:4px;">Direct Phone: <a href="tel:+919872010193" style="color:var(--accent-blue);text-decoration:none;">+91-98720-10193</a></div>
+        </div>
+        <div style="display:flex;gap:12px;align-items:center;">
+          <a class="btn-primary-blue" href="https://wa.me/919872010193?text=Hi%20Lally%20Computers%2C%20I%20am%20interested%20in%20buying%20a%20monitor." target="_blank" rel="noopener">WhatsApp Us &rarr;</a>
+          <a class="btn-card-primary" href="index.html" style="text-decoration:none;">Back to Store Home</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 Lally Computers (Supreme Infosys). All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="js/data.js"></script>
+  <script>
+    (function() {
+      'use strict';
+
+      const grid = document.getElementById('monitorsGrid');
+      const counterEl = document.getElementById('monitorsCounter');
+      const resFilter = document.getElementById('monResolutionFilter');
+      const refFilter = document.getElementById('monRefreshFilter');
+      const panelFilter = document.getElementById('monPanelFilter');
+      const sortFilter = document.getElementById('monSortFilter');
+      const searchInput = document.getElementById('monSearchInput');
+
+      const allMonitors = (window.DEFAULT_PRODUCTS || []).filter(p => p.category === 'monitors');
+
+      function render() {
+        if (!grid) return;
+
+        let filtered = allMonitors.slice();
+
+        const q = (searchInput.value || '').trim().toLowerCase();
+        if (q) {
+          filtered = filtered.filter(p =>
+            (p.title && p.title.toLowerCase().includes(q)) ||
+            (p.brand && p.brand.toLowerCase().includes(q)) ||
+            (p.desc && p.desc.toLowerCase().includes(q))
+          );
+        }
+
+        const resVal = resFilter.value;
+        if (resVal) {
+          filtered = filtered.filter(p => {
+            const specStr = (p.specs || []).join(' ') + ' ' + (p.title || '');
+            return specStr.includes(resVal);
+          });
+        }
+
+        const refVal = refFilter.value;
+        if (refVal) {
+          filtered = filtered.filter(p => {
+            const specStr = (p.specs || []).join(' ') + ' ' + (p.title || '');
+            return specStr.includes(refVal);
+          });
+        }
+
+        const panelVal = panelFilter.value;
+        if (panelVal) {
+          filtered = filtered.filter(p => {
+            const specStr = (p.specs || []).join(' ') + ' ' + (p.title || '') + ' ' + (p.badge || '');
+            return specStr.toLowerCase().includes(panelVal.toLowerCase());
+          });
+        }
+
+        const sortVal = sortFilter.value;
+        if (sortVal === 'asc') {
+          filtered.sort((a, b) => (a.priceNum || 0) - (b.priceNum || 0));
+        } else if (sortVal === 'desc') {
+          filtered.sort((a, b) => (b.priceNum || 0) - (a.priceNum || 0));
+        }
+
+        if (counterEl) {
+          counterEl.textContent = `Showing ${filtered.length} of ${allMonitors.length} monitors in Moga store`;
+        }
+
+        if (filtered.length === 0) {
+          grid.innerHTML = `
+            <div style="grid-column: 1 / -1; text-align: center; padding: 64px 20px; color: var(--text-secondary);">
+              <h3 style="color: var(--text-primary); margin-bottom: 8px;">No matching monitors found</h3>
+              <p>Try resetting the resolution or refresh rate filters above.</p>
+              <button class="btn-primary-blue" style="margin-top: 16px;" onclick="location.reload()">Reset All Filters</button>
+            </div>
+          `;
+          return;
+        }
+
+        grid.innerHTML = filtered.map(item => {
+          const specs = (item.specs || []).slice(0, 4);
+          const img = item.image || 'images/store-banner.jpg';
+          const pNum = item.priceNum || 0;
+          const mrpNum = item.mrpNum || 0;
+          const showMrp = mrpNum > pNum;
+          const waUrl = `https://wa.me/919872010193?text=${encodeURIComponent('Hi Lally Computers, I want to inquire about the ' + item.title + ' listed at ' + item.price + ' in your Moga store.')}`;
+
+          return `
+            <article class="featured-card">
+              <a class="featured-card__img-wrap" href="product.html?id=${item.id}">
+                <img src="${img}" alt="${item.title}" loading="lazy" onerror="this.onerror=null;this.src='images/store-banner.jpg';">
+              </a>
+              <div class="featured-card__body">
+                <div class="featured-card__meta">
+                  <span class="featured-card__cond" style="color: #22C55E;">Brand New · Sealed</span>
+                  <span class="featured-card__avail">${item.availability || 'In Stock · Moga'}</span>
+                </div>
+                <a href="product.html?id=${item.id}" class="featured-card__title-link">
+                  <h3 class="featured-card__title">${item.title}</h3>
+                </a>
+                <ul class="featured-card__specs">
+                  ${specs.map(s => `<li>${s}</li>`).join('')}
+                </ul>
+                <div class="featured-card__footer">
+                  <div>
+                    <div class="featured-card__price">${item.price}</div>
+                    ${showMrp ? `<div style="font-size:12px;color:var(--text-secondary);text-decoration:line-through;">${item.mrp}</div>` : ''}
+                    <div class="featured-card__warranty">${item.warranty || '3 Years Brand Warranty'}</div>
+                  </div>
+                  <div style="display:flex;flex-direction:column;gap:6px;">
+                    <a class="btn-card-primary" href="product.html?id=${item.id}">Multi-Angle Views &rarr;</a>
+                    <a class="btn-secondary-outline" href="${waUrl}" target="_blank" rel="noopener" style="padding:6px 12px;font-size:12px;border-radius:6px;text-align:center;text-decoration:none;border:1px solid var(--border-subtle);color:#22C55E;">WhatsApp &rarr;</a>
+                  </div>
+                </div>
+              </div>
+            </article>
+          `;
+        }).join('');
+      }
+
+      resFilter.addEventListener('change', render);
+      refFilter.addEventListener('change', render);
+      panelFilter.addEventListener('change', render);
+      sortFilter.addEventListener('change', render);
+      searchInput.addEventListener('input', render);
+
+      render();
+    })();
+  </script>
+</body>
+
+</html>

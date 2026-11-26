@@ -147,6 +147,7 @@
         <ul class="nav-links" id="navMegaTriggers">
           <li><button class="nav-mega-trigger" type="button" data-mega="laptops" aria-expanded="false" aria-controls="appleMegaMenu">Laptops</button></li>
           <li><button class="nav-mega-trigger" type="button" data-mega="pcs" aria-expanded="false" aria-controls="appleMegaMenu">Custom PCs</button></li>
+          <li><a class="nav-link" href="monitors.html" style="color:var(--text-secondary);font-size:14px;font-weight:500;padding:8px 10px;text-decoration:none;">Monitors</a></li>
           <li><button class="nav-mega-trigger" type="button" data-mega="accessories" aria-expanded="false" aria-controls="appleMegaMenu">Accessories</button></li>
           <li><button class="nav-mega-trigger" type="button" data-mega="repairs" aria-expanded="false" aria-controls="appleMegaMenu">Repairs</button></li>
           <li><button class="nav-mega-trigger" type="button" data-mega="store" aria-expanded="false" aria-controls="appleMegaMenu">Store</button></li>
@@ -305,6 +306,35 @@
       </div>
 
       <div class="featured-stock-grid" id="featuredNewStockGrid">
+        <!-- Populated dynamically via js/app.js -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       2C. MONITORS & HIGH-REFRESH DISPLAYS (PAGE 3 / SECTION BELOW LAPTOPS)
+       ======================================================================== -->
+  <section class="apple-section" id="featuredMonitors" aria-label="Gaming & Productivity Monitors in Moga">
+    <div class="inner">
+      <div class="featured-header-row">
+        <div>
+          <p class="section-eyebrow">144Hz–165Hz Gaming · 2K/4K IPS Black Creators · Zero-Dead-Pixel Inspection</p>
+          <h2 class="section-headline">Monitors &amp; Displays.</h2>
+          <p class="section-desc">
+            High-refresh esports screens, color-calibrated 2K/4K creator panels, and panoramic curved ultrawides with multi-angle inspection and in-store testing.
+          </p>
+        </div>
+        <div class="featured-header-actions" style="display: flex; gap: 10px; align-items: center; flex-wrap: wrap;">
+          <a class="btn-secondary-outline" href="monitors.html" style="padding: 10px 18px; font-size: 14px; font-weight: 600; border-radius: 980px; text-decoration: none; border: 1px solid var(--border-subtle); color: var(--text-primary); display: inline-flex; align-items: center; gap: 6px;">
+            <span>Dedicated Monitors Page &rarr;</span>
+          </a>
+          <button class="btn-primary-blue" type="button" onclick="openCatalogueSpace('monitors')">
+            <span>Browse All Monitors &rarr;</span>
+          </button>
+        </div>
+      </div>
+
+      <div class="featured-stock-grid" id="featuredMonitorsGrid">
         <!-- Populated dynamically via js/app.js -->
       </div>
     </div>

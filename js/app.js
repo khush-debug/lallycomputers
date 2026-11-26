@@ -17,7 +17,7 @@ let availabilityFilter = '';
 
 function normalizeCategory(cat) {
   if (!cat) return 'laptops_used';
-  if (['pc_peripherals', 'monitors', 'gadgets'].includes(cat)) return 'accessories';
+  if (['pc_peripherals', 'gadgets'].includes(cat)) return 'accessories';
   if (['appliances', 'suitcases', 'gym', 'watches'].includes(cat)) return 'other';
   return cat;
 }
@@ -222,6 +222,48 @@ function renderFeaturedNewStock() {
             <div>
               <div class="featured-card__price">${item.price}</div>
               <div class="featured-card__warranty">${item.warranty || '1-Year Official Warranty'}</div>
+            </div>
+            <a class="btn-card-primary" href="product.html?id=${item.id}">Multi-Angle Views &rarr;</a>
+          </div>
+        </div>
+      </article>
+    `;
+  }).join('');
+}
+
+/* ==========================================================================
+   FEATURED MONITORS & DISPLAYS SHOWCASE (PAGE / SECTION BELOW LAPTOPS)
+   ========================================================================== */
+function renderFeaturedMonitors() {
+  const grid = document.getElementById('featuredMonitorsGrid');
+  if (!grid) return;
+
+  const monitorItems = window.PRODUCTS.filter(p => normalizeCategory(p.category) === 'monitors');
+
+  grid.innerHTML = monitorItems.map(item => {
+    const specs = (item.specs || []).slice(0, 4);
+    const img = normalizeProductImageUrl(item.image) || getCategoryFallbackImage(item.category);
+
+    return `
+      <article class="featured-card">
+        <a class="featured-card__img-wrap" href="product.html?id=${item.id}">
+          <img src="${img}" alt="${item.title}" loading="lazy" onerror="this.onerror=null;this.src='images/store-banner.jpg';">
+        </a>
+        <div class="featured-card__body">
+          <div class="featured-card__meta">
+            <span class="featured-card__cond" style="color: #22C55E;">Brand New · Sealed</span>
+            <span class="featured-card__avail">${item.availability || 'In Stock · Moga'}</span>
+          </div>
+          <a href="product.html?id=${item.id}" class="featured-card__title-link">
+            <h3 class="featured-card__title">${item.title}</h3>
+          </a>
+          <ul class="featured-card__specs">
+            ${specs.map(s => `<li>${s}</li>`).join('')}
+          </ul>
+          <div class="featured-card__footer">
+            <div>
+              <div class="featured-card__price">${item.price}</div>
+              <div class="featured-card__warranty">${item.warranty || 'Official Brand Warranty'}</div>
             </div>
             <a class="btn-card-primary" href="product.html?id=${item.id}">Multi-Angle Views &rarr;</a>
           </div>
@@ -539,10 +581,11 @@ function renderSpaceProducts() {
     if (activeCategory === 'laptops_used') {
       paginationEl.innerHTML = `
         <div class="catalogue-pagination-bar">
-          <div class="pagination-counter">Page <strong>1 of 2</strong> &middot; Used Laptops (7 verified units)</div>
+          <div class="pagination-counter">Page <strong>1 of 3</strong> &middot; Used Laptops (7 verified units)</div>
           <div class="pagination-page-pills">
             <button class="pagination-pill is-active" type="button" aria-current="page" disabled>1</button>
             <button class="pagination-pill" type="button" onclick="switchSpaceCategory('laptops_new')" aria-label="Go to Page 2: Brand New Laptops">2</button>
+            <button class="pagination-pill" type="button" onclick="switchSpaceCategory('monitors')" aria-label="Go to Page 3: Gaming &amp; IPS Monitors">3</button>
           </div>
         </div>
         <div class="pagination-next-card" onclick="switchSpaceCategory('laptops_new')" role="button" tabindex="0">
@@ -560,15 +603,38 @@ function renderSpaceProducts() {
     } else if (activeCategory === 'laptops_new') {
       paginationEl.innerHTML = `
         <div class="catalogue-pagination-bar">
-          <div class="pagination-counter">Page <strong>2 of 2</strong> &middot; Brand New Laptops (5 factory-sealed units)</div>
+          <div class="pagination-counter">Page <strong>2 of 3</strong> &middot; Brand New Laptops (5 factory-sealed units)</div>
           <div class="pagination-page-pills">
             <button class="pagination-pill" type="button" onclick="switchSpaceCategory('laptops_used')" aria-label="Go to Page 1: Used Laptops">1</button>
             <button class="pagination-pill is-active" type="button" aria-current="page" disabled>2</button>
+            <button class="pagination-pill" type="button" onclick="switchSpaceCategory('monitors')" aria-label="Go to Page 3: Gaming &amp; IPS Monitors">3</button>
+          </div>
+        </div>
+        <div class="pagination-next-card" onclick="switchSpaceCategory('monitors')" role="button" tabindex="0">
+          <div class="pagination-next-content">
+            <span class="pagination-next-badge">Next Page: Monitors &amp; Displays</span>
+            <h4 class="pagination-next-title">Looking for High-Refresh &amp; IPS Monitors? Go to Page 3 &rarr;</h4>
+            <p class="pagination-next-desc">Browse 144Hz–165Hz gaming monitors, Dell UltraSharp IPS Black displays, and Samsung 1000R curved ultrawides with zero-dead-pixel inspection.</p>
+          </div>
+          <div class="pagination-next-action">
+            <span class="btn-primary-blue">Open Page 3: Monitors &rarr;</span>
+          </div>
+        </div>
+      `;
+      paginationEl.style.display = 'flex';
+    } else if (activeCategory === 'monitors') {
+      paginationEl.innerHTML = `
+        <div class="catalogue-pagination-bar">
+          <div class="pagination-counter">Page <strong>3 of 3</strong> &middot; Monitors &amp; Displays (4 factory-sealed units)</div>
+          <div class="pagination-page-pills">
+            <button class="pagination-pill" type="button" onclick="switchSpaceCategory('laptops_used')" aria-label="Go to Page 1: Used Laptops">1</button>
+            <button class="pagination-pill" type="button" onclick="switchSpaceCategory('laptops_new')" aria-label="Go to Page 2: Brand New Laptops">2</button>
+            <button class="pagination-pill is-active" type="button" aria-current="page" disabled>3</button>
           </div>
         </div>
         <div class="pagination-next-card" onclick="switchSpaceCategory('laptops_used')" role="button" tabindex="0">
           <div class="pagination-next-content">
-            <span class="pagination-next-badge">Previous Page: Used &amp; Tested Stock</span>
+            <span class="pagination-next-badge">Return to Laptops</span>
             <h4 class="pagination-next-title">&larr; Return to Page 1: Used Laptops (25-Point Lab Tested)</h4>
             <p class="pagination-next-desc">Browse tested pre-owned enterprise ThinkPads, Latitudes, and MacBooks with dated hardware diagnostics and honest cosmetic wear photos.</p>
           </div>
@@ -877,6 +943,7 @@ const CATEGORY_FALLBACK_IMAGES = {
   laptops_used: 'images/products/photos/lap-used-1-front.jpg',
   laptops_new: 'images/products/photos/lap-used-7-front.jpg',
   laptops_gaming: 'images/products/photos/lap-game-front.jpg',
+  monitors: 'images/products/photos/mon-dell-front.jpg',
   pc: 'images/products/pc-1.svg',
   pc_components: 'images/products/pcc-1.svg',
   accessories: 'images/products/per-1.svg',
@@ -1046,7 +1113,7 @@ function mapCsvToProducts(rows) {
   return products;
 }
 
-const STOCK_CACHE_KEY = 'lally_stock_cache_v3';
+const STOCK_CACHE_KEY = 'lally_stock_cache_v4';
 
 function hydrateCachedStock(activeUrl) {
   try {
@@ -1109,6 +1176,7 @@ function fetchAndSyncGoogleSheet(csvUrl, isManual) {
 
       renderFeaturedStock();
       renderFeaturedNewStock();
+      renderFeaturedMonitors();
       renderCategories();
       const space = document.getElementById('catalogueSpace');
       if (space && space.classList.contains('is-open')) renderSpaceProducts();
@@ -1153,6 +1221,7 @@ function resetToDefaultStock() {
   window.PRODUCTS = window.DEFAULT_PRODUCTS.slice(0);
   renderFeaturedStock();
   renderFeaturedNewStock();
+  renderFeaturedMonitors();
   renderCategories();
   renderSpaceProducts();
   showToast('Restored default catalogue');
@@ -1245,6 +1314,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   renderFeaturedStock();
   renderFeaturedNewStock();
+  renderFeaturedMonitors();
   renderCategories();
   updateCartUI();
   updateHours();

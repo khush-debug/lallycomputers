@@ -31,6 +31,16 @@
       "count": 6
     },
     {
+      "id": "monitors",
+      "name": "Monitors",
+      "cardName": "Monitors",
+      "eyebrow": "144Hz+ & IPS Displays",
+      "badge": "144Hz · IPS Black · Ultrawide",
+      "icon": "<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\"><rect x=\"2\" y=\"3\" width=\"20\" height=\"14\" rx=\"2\"/><line x1=\"8\" y1=\"21\" x2=\"16\" y2=\"21\"/><line x1=\"12\" y1=\"17\" x2=\"12\" y2=\"21\"/></svg>",
+      "desc": "144Hz–165Hz gaming monitors, color-accurate 2K/4K IPS Black creator displays, and curved ultrawides with zero-dead-pixel inspection.",
+      "count": 4
+    },
+    {
       "id": "pc",
       "name": "Custom PCs",
       "cardName": "Custom PCs",
