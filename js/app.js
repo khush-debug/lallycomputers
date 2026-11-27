@@ -87,7 +87,7 @@ const Modal = {
     const el = document.getElementById(id);
     if (el) {
       el.classList.add('is-open');
-      document.body.style.overflow = 'hidden';
+      document.documentElement.style.overflow = 'hidden';
       pushNavigationState('modal', id);
     }
   },
@@ -98,8 +98,10 @@ const Modal = {
     } else {
       document.querySelectorAll('.modal-backdrop.is-open').forEach(m => m.classList.remove('is-open'));
     }
-    if (!document.querySelector('.modal-backdrop.is-open')) {
-      document.body.style.overflow = '';
+    const mobileDrawer = document.getElementById('appleMobileDrawer');
+    const drawerOpen = mobileDrawer && mobileDrawer.classList.contains('is-open');
+    if (!document.querySelector('.modal-backdrop.is-open') && !drawerOpen) {
+      document.documentElement.style.overflow = '';
     }
     if (syncHistory) popNavigationStateIfMatches('modal');
   }
@@ -2123,7 +2125,7 @@ function initAppleMegaMenu() {
         col3Heading: 'Store Info',
         col3: [
           { label: 'All Store Departments', href: '#lineup' },
-          { label: '5-A, Sodhi Nagar, Moga', href: '#store' },
+          { label: '5-A, Sodhi Nagar, Moga', href: '#visit' },
           { label: 'Enquire on WhatsApp', external: WA_BASE + encodeURIComponent('Hi Lally Computers, I want to check product availability.') }
         ]
       },
@@ -2132,7 +2134,7 @@ function initAppleMegaMenu() {
         col1Heading: 'In-House Repair Lab',
         primary: [
           { label: 'Chip-Level Repairs', cat: 'repairs', count: countFor('repairs') },
-          { label: 'Lab & Support Overview', href: '#support' }
+          { label: 'Lab & Support Overview', href: '#why' }
         ],
         sub: [
           { label: 'Motherboard BGA Rework', cat: 'repairs', filter: { search: 'Motherboard' } },
@@ -2162,7 +2164,7 @@ function initAppleMegaMenu() {
         sub: [],
         col2Heading: 'Contact & Visit',
         col2: [
-          { label: '5-A, Sodhi Nagar, Moga', href: '#store' },
+          { label: '5-A, Sodhi Nagar, Moga', href: '#visit' },
           { label: 'Call 098720 10193', href: 'tel:+919872010193' },
           { label: 'Google Maps Directions', external: 'https://www.google.com/maps/dir/?api=1&destination=Supreme%20Infosys%20(Lally%20Computers)%2C%205-A%2C%20Sodhi%20Nagar%2C%20Moga%2C%20Punjab%20142001' }
         ],

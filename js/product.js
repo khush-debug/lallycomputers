@@ -612,7 +612,7 @@
     const modal = document.getElementById('cartModal');
     if (modal) {
       modal.classList.add('is-open', 'active');
-      document.body.style.overflow = 'hidden';
+      document.documentElement.style.overflow = 'hidden';
     }
   };
 
@@ -620,7 +620,7 @@
     const modal = document.getElementById('cartModal');
     if (modal) {
       modal.classList.remove('is-open', 'active');
-      document.body.style.overflow = '';
+      document.documentElement.style.overflow = '';
     }
   };
 
