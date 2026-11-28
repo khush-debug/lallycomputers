@@ -641,11 +641,9 @@ function renderCategories() {
 
   if (gridEl) {
     gridEl.innerHTML = window.CATEGORIES.map(c => {
-      const cnt = counts[c.id] || 0;
       const title = c.cardName || c.name;
       const isWide = c.id === 'repairs';
       const ctaLabel = ctaShortNames[c.id] || title;
-      const countLabel = c.id === 'repairs' ? `${cnt} Services` : `${cnt} Items`;
       const focal = c.focalPoint || '76% 50%';
       return `
         <article class="cat-opt-card${isWide ? ' cat-opt-card--wide' : ''}" data-cat="${c.id}" onclick="openCatalogueSpace('${c.id}')">
@@ -656,14 +654,7 @@ function renderCategories() {
             </div>
           ` : ''}
           <div class="cat-opt-card__inner">
-            <div class="cat-opt-top">
-              <div class="cat-opt-header-row">
-                <span class="cat-opt-eyebrow">${c.eyebrow || c.badge}</span>
-                <span class="cat-opt-count-badge">${countLabel}</span>
-              </div>
-              <h3>${title}</h3>
-              <p>${c.desc}</p>
-            </div>
+            <h3>${title}</h3>
             <div class="cat-opt-actions">
               <button class="btn-open-cat" type="button" onclick="event.stopPropagation(); openCatalogueSpace('${c.id}')">
                 Browse ${ctaLabel} &rarr;
