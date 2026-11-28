@@ -55,19 +55,20 @@
   const CATEGORY_NAMES = {
     laptops_used: 'Used Laptops',
     laptops_new: 'New Laptops',
-    laptops_gaming: 'Gaming',
+    laptops_gaming: 'Gaming Laptops',
     pc: 'Custom PCs',
     pc_components: 'Components',
-    accessories: 'Accessories',
-    pc_peripherals: 'Accessories',
-    monitors: 'Accessories',
-    gadgets: 'Accessories',
+    accessories: 'Accessories & Peripherals',
+    pc_peripherals: 'Accessories & Peripherals',
+    monitors: 'Monitors & LCDs',
+    gadgets: 'Gadgets & Audio',
     repairs: 'Repairs',
-    other: 'Other Departments',
-    watches: 'Other Departments',
-    gym: 'Other Departments',
-    suitcases: 'Other Departments',
-    appliances: 'Other Departments'
+    other: 'Store Stock',
+    watches: 'Smartwatches & Timepieces',
+    gym: 'Gym Equipment',
+    suitcases: 'Luggage',
+    luggage: 'Luggage',
+    appliances: 'Washing Machines & Home Appliances'
   };
 
   function renderProductPage() {
@@ -77,7 +78,7 @@
     if (!currentProduct) return;
 
     const p = currentProduct;
-    const catName = CATEGORY_NAMES[p.category] || 'Showroom Stock';
+    const catName = CATEGORY_NAMES[p.subCategory] || CATEGORY_NAMES[p.category] || 'Showroom Stock';
     const brand = p.brand || 'Lally Computers';
 
     document.title = `${p.title} | Lally Computers (Supreme Infosys)`;

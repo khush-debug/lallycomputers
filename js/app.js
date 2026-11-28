@@ -17,9 +17,10 @@ let availabilityFilter = '';
 
 function normalizeCategory(cat) {
   if (!cat) return 'laptops_used';
-  if (['pc_peripherals', 'gadgets'].includes(cat)) return 'accessories';
-  if (['appliances', 'suitcases', 'gym', 'watches'].includes(cat)) return 'other';
-  return cat;
+  const clean = String(cat).trim();
+  if (clean === 'pc_peripherals') return 'accessories';
+  if (clean === 'suitcases') return 'luggage';
+  return clean;
 }
 
 /* ==========================================================================
@@ -150,39 +151,50 @@ function initModalSwipeToDismiss() {
    ========================================================================== */
 const CATALOGUE_TABS = [
   { label: 'All hardware', key: 'all' },
-  { label: 'Pre-owned', key: 'laptops_used' },
-  { label: 'New laptops', key: 'laptops_new' },
-  { label: 'Gaming laptops', key: 'laptops_gaming' },
+  { label: 'Used Laptops', key: 'laptops_used' },
+  { label: 'New Laptops', key: 'laptops_new' },
+  { label: 'Gaming Laptops', key: 'laptops_gaming' },
   { label: 'Custom PCs', key: 'pc' },
   { label: 'Monitors & LCDs', key: 'monitors' },
+  { label: 'Components', key: 'pc_components' },
+  { label: 'Accessories', key: 'accessories' },
   { label: 'Gadgets & Audio', key: 'gadgets' },
   { label: 'Gym Equipment', key: 'gym' },
   { label: 'Smartwatches', key: 'watches' },
-  { label: 'Components', key: 'pc_components' },
-  { label: 'Peripherals', key: 'accessories' },
-  { label: 'Luggage & Washers', key: 'other' }
+  { label: 'Luggage', key: 'luggage' },
+  { label: 'Home Appliances', key: 'appliances' },
+  { label: 'Repairs', key: 'repairs' }
 ];
 
 function matchesCatalogueCategory(product, targetCat) {
   if (!product) return false;
   if (targetCat === 'all') return true;
   if (targetCat === 'gadgets') {
-    return product.subCategory === 'gadgets' || (product.id && product.id.startsWith('gad-'));
+    return product.category === 'gadgets' || product.subCategory === 'gadgets' || (product.id && product.id.startsWith('gad-'));
   }
   if (targetCat === 'gym') {
-    return product.subCategory === 'gym' || (product.id && product.id.startsWith('gym-'));
+    return product.category === 'gym' || product.subCategory === 'gym' || (product.id && product.id.startsWith('gym-'));
   }
   if (targetCat === 'watches') {
-    return product.subCategory === 'watches' || (product.id && product.id.startsWith('wat-'));
+    return product.category === 'watches' || product.subCategory === 'watches' || (product.id && product.id.startsWith('wat-'));
+  }
+  if (targetCat === 'luggage' || targetCat === 'suitcases') {
+    return ['luggage', 'suitcases'].includes(product.category) || product.subCategory === 'suitcases' || (product.id && product.id.startsWith('suit-'));
+  }
+  if (targetCat === 'appliances') {
+    return product.category === 'appliances' || product.subCategory === 'appliances' || (product.id && product.id.startsWith('app-'));
   }
   if (targetCat === 'monitors') {
     return product.category === 'monitors' || product.subCategory === 'monitors' || (product.id && product.id.startsWith('mon-'));
   }
   if (targetCat === 'other') {
-    return product.category === 'other' || ['appliances', 'suitcases'].includes(product.subCategory);
+    return product.category === 'other' || ['appliances', 'suitcases', 'gym', 'watches'].includes(product.subCategory);
   }
   if (targetCat === 'accessories') {
-    return product.category === 'accessories' && product.subCategory !== 'gadgets' && product.subCategory !== 'monitors';
+    return product.category === 'accessories' &&
+      product.subCategory !== 'gadgets' &&
+      product.subCategory !== 'monitors' &&
+      !(product.id && (product.id.startsWith('gad-') || product.id.startsWith('mon-')));
   }
   return normalizeCategory(product.category) === targetCat;
 }
@@ -598,9 +610,8 @@ function renderFeaturedAppliances() {
    ========================================================================== */
 function renderCategories() {
   const counts = {};
-  window.PRODUCTS.forEach(p => {
-    const cat = normalizeCategory(p.category);
-    counts[cat] = (counts[cat] || 0) + 1;
+  (window.CATEGORIES || []).forEach(c => {
+    counts[c.id] = (window.PRODUCTS || []).filter(p => matchesCatalogueCategory(p, c.id)).length;
   });
 
   const spaceScrollerEl = document.getElementById('spaceCatScroller');
@@ -618,27 +629,48 @@ function renderCategories() {
     }).join('');
   }
 
+  const ctaShortNames = {
+    accessories: 'Accessories',
+    appliances: 'Appliances',
+    watches: 'Watches',
+    monitors: 'Monitors',
+    gadgets: 'Gadgets',
+    gym: 'Gym Gear',
+    repairs: 'Lab Services'
+  };
+
   if (gridEl) {
     gridEl.innerHTML = window.CATEGORIES.map(c => {
       const cnt = counts[c.id] || 0;
       const title = c.cardName || c.name;
+      const isWide = c.id === 'repairs';
+      const ctaLabel = ctaShortNames[c.id] || title;
+      const countLabel = c.id === 'repairs' ? `${cnt} Services` : `${cnt} Items`;
+      const focal = c.focalPoint || '76% 50%';
       return `
-        <div class="cat-opt-card" data-cat="${c.id}" onclick="openCatalogueSpace('${c.id}')">
-          <div class="cat-opt-top">
-            <div class="cat-opt-header-row">
-              <div class="cat-opt-icon">${c.icon}</div>
-              <span class="cat-opt-count-badge">${cnt} Items</span>
+        <article class="cat-opt-card${isWide ? ' cat-opt-card--wide' : ''}" data-cat="${c.id}" onclick="openCatalogueSpace('${c.id}')">
+          ${c.image ? `
+            <div class="cat-opt-card__media">
+              <img src="${c.image}" alt="${c.alt || title}" width="1280" height="533" loading="lazy" decoding="async" style="object-position: ${focal};">
+              <div class="cat-opt-card__scrim" aria-hidden="true"></div>
             </div>
-            <h3>${title}</h3>
-            <span class="cat-opt-feature-tag">${c.badge}</span>
-            <p>${c.desc}</p>
+          ` : ''}
+          <div class="cat-opt-card__inner">
+            <div class="cat-opt-top">
+              <div class="cat-opt-header-row">
+                <span class="cat-opt-eyebrow">${c.eyebrow || c.badge}</span>
+                <span class="cat-opt-count-badge">${countLabel}</span>
+              </div>
+              <h3>${title}</h3>
+              <p>${c.desc}</p>
+            </div>
+            <div class="cat-opt-actions">
+              <button class="btn-open-cat" type="button" onclick="event.stopPropagation(); openCatalogueSpace('${c.id}')">
+                Browse ${ctaLabel} &rarr;
+              </button>
+            </div>
           </div>
-          <div class="cat-opt-actions">
-            <button class="btn-open-cat" type="button" onclick="event.stopPropagation(); openCatalogueSpace('${c.id}')">
-              Browse ${title} &rarr;
-            </button>
-          </div>
-        </div>
+        </article>
       `;
     }).join('');
   }
@@ -765,7 +797,7 @@ function renderSpaceProducts() {
   if (!grid) return;
 
   let items = window.PRODUCTS.filter(item => {
-    if (normalizeCategory(item.category) !== activeCategory) return false;
+    if (!matchesCatalogueCategory(item, activeCategory)) return false;
 
     if (cpuGenFilter) {
       const cpuText = `${item.cpuGen || ''} ${item.title || ''} ${(item.specs || []).join(' ')}`.toLowerCase();
@@ -2107,13 +2139,14 @@ function initAppleMegaMenu() {
         title: 'Gadgets, Gym & More',
         col1Heading: 'Featured Departments',
         primary: [
+          { label: 'Accessories & Peripherals', cat: 'accessories', count: countFor('accessories') },
           { label: 'Smart Gadgets & Audio', href: '#featuredGadgets', count: countFor('gadgets') },
           { label: 'Gym Equipment', href: '#featuredGym', count: countFor('gym') },
           { label: 'Smartwatches & Casio', href: '#featuredWatches', count: countFor('watches') }
         ],
         sub: [
-          { label: 'Peripherals & Keyboards', cat: 'accessories', count: countFor('accessories') },
-          { label: 'Luggage & Home Washers', href: '#featuredAppliances', count: countFor('other') }
+          { label: 'Luggage & Travel Gear', cat: 'luggage', count: countFor('luggage') },
+          { label: 'Washing Machines & Appliances', cat: 'appliances', count: countFor('appliances') }
         ],
         col2Heading: 'Shop By Category',
         col2: [
@@ -2310,14 +2343,16 @@ function initAppleMegaMenu() {
     const quickDepts = [
       { label: 'Used Laptops', count: countFor('laptops_used'), tab: 'laptops_used', icon: '<rect x="3" y="4" width="18" height="12" rx="2"/><line x1="2" y1="20" x2="22" y2="20"/>' },
       { label: 'New Laptops', count: countFor('laptops_new'), href: '#featuredNewLaptops', icon: '<path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 16.8l-6.2 4.5 2.4-7.4L2 9.4h7.6z"/>' },
+      { label: 'Gaming Laptops', count: countFor('laptops_gaming'), tab: 'laptops_gaming', icon: '<polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>' },
       { label: 'Custom PCs', count: countFor('pc'), tab: 'pc', icon: '<rect x="4" y="2" width="16" height="20" rx="2"/><circle cx="12" cy="14" r="3"/><line x1="8" y1="6" x2="16" y2="6"/>' },
       { label: 'LCDs & Monitors', count: countFor('monitors'), href: 'monitors.html', icon: '<rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/>' },
+      { label: 'Components', count: countFor('pc_components'), tab: 'pc_components', icon: '<rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6"/>' },
+      { label: 'Accessories', count: countFor('accessories'), tab: 'accessories', icon: '<rect x="2" y="5" width="20" height="14" rx="2"/><line x1="6" y1="12" x2="18" y2="12"/>' },
       { label: 'Gadgets & Audio', count: countFor('gadgets'), href: '#featuredGadgets', icon: '<path d="M3 18v-6a9 9 0 0 1 18 0v6"/><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/>' },
       { label: 'Gym Equipment', count: countFor('gym'), href: '#featuredGym', icon: '<path d="M6.5 6.5h11"/><path d="M6.5 17.5h11"/><path d="M3 10v4"/><path d="M21 10v4"/><path d="M6 7v10"/><path d="M18 7v10"/>' },
       { label: 'Smartwatches', count: countFor('watches'), href: '#featuredWatches', icon: '<circle cx="12" cy="12" r="6"/><polyline points="12 9 12 12 14 13"/><path d="M9 6V3h6v3M9 18v3h6v-3"/>' },
-      { label: 'Components', count: countFor('pc_components'), tab: 'pc_components', icon: '<rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6"/>' },
-      { label: 'Gaming Laptops', count: countFor('laptops_gaming'), tab: 'laptops_gaming', icon: '<polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>' },
-      { label: 'Luggage & Home', count: countFor('other'), href: '#featuredAppliances', icon: '<rect x="5" y="7" width="14" height="14" rx="2"/><path d="M9 7V5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2"/>' }
+      { label: 'Luggage', count: countFor('luggage'), tab: 'luggage', icon: '<rect x="5" y="7" width="14" height="14" rx="2"/><path d="M9 7V5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2"/>' },
+      { label: 'Washers & Home', count: countFor('appliances'), tab: 'appliances', icon: '<rect x="4" y="2" width="16" height="20" rx="2"/><circle cx="12" cy="13" r="4"/>' }
     ];
 
     const quickHtml = `
